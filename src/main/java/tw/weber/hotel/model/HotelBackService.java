@@ -24,7 +24,10 @@ public class HotelBackService {
 	}
 	
 	public List<Hotel> selectByKey(String type,String keyword){
-		return hRepo.findAllByKey(type,keyword);
+		if(type.equals("name")) {
+			return hRepo.findAllByNameContaining(keyword);
+		}
+		return null;
 	}
 	
 	public Hotel insert(Hotel hotel) {

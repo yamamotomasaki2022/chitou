@@ -39,14 +39,14 @@ public class HotelBackController {
 		
 		model.addAttribute("result",result);
 		
-		return "hotel/weber-hotel";
+		return "weber/hotel/hotelMain";
 	}	
 	
 	@GetMapping(path = "/insertHotelPage")
 	public String insertHotelPage(Model m) {
 		Hotel hotel = new Hotel();
 		m.addAttribute("hotel",hotel);
-		return "hotel/weber-newHotel";
+		return "weber/hotel/newHotel";
 	}
 	
 	@PostMapping(path = "/insertHotel")
@@ -61,7 +61,7 @@ public class HotelBackController {
 		
 		m.addAttribute("result",result);
 		
-		return "hotel/weber-updateHotel";
+		return "weber/hotel/updateHotel";
 	}
 	
 	@DeleteMapping(path = "/deleteHotel")

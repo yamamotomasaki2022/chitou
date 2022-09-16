@@ -20,7 +20,7 @@ import tw.jacky.model.AdminChitou;
 import tw.jacky.model.MemberBasicInfo;
 import tw.jacky.model.MemberService;
 
-@Controller
+//@Controller
 @SessionAttributes({"memberlist","adminlist"} )
 public class MemberController {
 
