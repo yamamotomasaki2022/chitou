@@ -65,7 +65,7 @@ response.setContentType("text/html;charset=UTF-8");
 		</div>
 	</div>
 		<script>
-		var type = ["HotelID","name","address","type","intro","country","phone","status","capacity","owner","averagePrice","photos"];
+		var type = ["hotelID","name","address","type","intro","country","phone","status","capacity","owner","averagePrice","photos"];
 		var typeName = ["飯店ID","飯店名","地址","類型","介紹","國家","電話","狀態","可容納人數","業主名稱","平均房價","照片路徑名稱"];
 	    $(document).ready( function () {
 	        for(var i=0;i<type.length;i++){
