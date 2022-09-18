@@ -1,5 +1,7 @@
 package tw.weber.hotel.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import tw.weber.hotel.model.Hotel;
 import tw.weber.hotel.model.HotelBackService;
@@ -21,6 +24,8 @@ import tw.weber.hotel.model.HotelBackService;
 
 @Controller
 public class HotelBackController {
+	
+	private String photosDir = "D:\\Hibernate\\workspace\\chitou\\src\\main\\webapp\\WEB-INF\\resources\\images\\hotelPhotos\\";
 	
 	@Autowired
 	private HotelBackService hService;
@@ -50,8 +55,22 @@ public class HotelBackController {
 	}
 	
 	@PostMapping(path = "/insertHotel")
-	public String insertHotel(@ModelAttribute("hotel")Hotel hotel) {
-		hService.insert(hotel);
+	public String insertHotel(@ModelAttribute("hotel")Hotel hotel,@RequestParam("photo1")MultipartFile mf) throws IOException {
+		
+		Hotel result = hService.insert(hotel);
+
+		String fileName = mf.getOriginalFilename();
+		
+		String targetDir = photosDir + "photosHotelNB" + hotel.getHotelID(); 
+		
+		File saveFilePath = new File(targetDir, fileName);
+		File parentFile = saveFilePath.getParentFile();
+		parentFile.mkdirs();
+		
+		byte[] bytePhoto = mf.getBytes();
+		
+		mf.transferTo(saveFilePath);
+		
 		return "redirect:hotel";
 	}
 	
@@ -67,6 +86,7 @@ public class HotelBackController {
 	@DeleteMapping(path = "/deleteHotel")
 	public String deleteHotel(@RequestParam("hotelID")int hotelID) {
 		hService.delete(hotelID);
+		
 		return "redirect:hotel" ;
 	}
 	

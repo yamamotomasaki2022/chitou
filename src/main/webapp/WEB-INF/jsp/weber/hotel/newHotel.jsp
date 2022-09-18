@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div align="center">
-	    <form:form action="insertHotel" method="post" modelAttribute="hotel">
+	    <form:form action="insertHotel" method="post" modelAttribute="hotel" enctype="multipart/form-data">
 	        飯店名稱:
 	        <form:input type="text" path="name" name="name" id="name"/><br>
 	        地址:
@@ -32,6 +32,7 @@
 	        <form:input type="text" path="averagePrice" name="averagePrice" id="averagePrice"/><br>
 	        照片:
 	        <form:input type="text" path="photos" name="photos" id="photos"/><br>
+	        <input type="file" name="photo1" accept="image/*">
 	        <input type="submit" name="insert" value="加入一筆資料">
 	    </form:form>
     </div>
