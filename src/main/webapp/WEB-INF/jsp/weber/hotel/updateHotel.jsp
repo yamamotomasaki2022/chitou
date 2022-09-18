@@ -33,7 +33,7 @@
 	        平均房價:
 	        <form:input type="text" path="averagePrice" name="averagePrice" id="averagePrice"/><br>
 	        照片:
-	        <form:input type="text" path="photos" name="photos" id="photos"/><br>
+	        <input type="file" name="photo" id="photo"/><br>
 	        <input type="submit" name="insert" value="更新">
 	    </form:form>
     </div>

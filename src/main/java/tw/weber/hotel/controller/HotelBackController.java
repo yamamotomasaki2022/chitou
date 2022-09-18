@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +26,8 @@ import tw.weber.hotel.model.HotelBackService;
 @Controller
 public class HotelBackController {
 	
-	private String photosDir = "D:\\Hibernate\\workspace\\chitou\\src\\main\\webapp\\WEB-INF\\resources\\images\\hotelPhotos\\";
+	//C:\Users\weber\AppData\Local\Temp\tomcat.8080.3056583608791830196\work\Tomcat\localhost\ROOT\.\src\main\webapp\WEB-INF\resources\images\hotelNB9\260.jpg 
+	private String photoFolder = ".//src//main//webapp//WEB-INF//resources//images//";
 	
 	@Autowired
 	private HotelBackService hService;
@@ -35,6 +37,7 @@ public class HotelBackController {
 		List<Hotel> result = hService.findAll();
 		
 		model.addAttribute("result",result);
+		
 		return "weber/hotel/hotelMain";
 	}	
 	
@@ -56,20 +59,24 @@ public class HotelBackController {
 	
 	@PostMapping(path = "/insertHotel")
 	public String insertHotel(@ModelAttribute("hotel")Hotel hotel,@RequestParam("photo1")MultipartFile mf) throws IOException {
+//		byte[] bytePhoto = mf.getBytes();
+		
+//		hotel.setPhoto(bytePhoto);
 		
 		Hotel result = hService.insert(hotel);
 
 		String fileName = mf.getOriginalFilename();
 		
-		String targetDir = photosDir + "photosHotelNB" + hotel.getHotelID(); 
+		String targetDir = photoFolder + "hotelNB" + result.getHotelID(); 
 		
-		File saveFilePath = new File(targetDir, fileName);
+		File saveFilePath = new File(targetDir, "photo1.jpg");
 		File parentFile = saveFilePath.getParentFile();
 		parentFile.mkdirs();
 		
-		byte[] bytePhoto = mf.getBytes();
+		System.out.println(saveFilePath);
+		System.out.println(saveFilePath.getAbsolutePath());
 		
-		mf.transferTo(saveFilePath);
+		mf.transferTo(saveFilePath.getAbsoluteFile());
 		
 		return "redirect:hotel";
 	}

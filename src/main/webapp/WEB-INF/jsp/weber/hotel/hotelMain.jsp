@@ -37,17 +37,17 @@ response.setContentType("text/html;charset=UTF-8");
 						<tr>
 							<form action="toUpdateHotel" method="post">
 				                <td><input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">${bean.hotelID}</td>
-				                <td><input type="hidden" name="name" value="${bean.name}">${bean.name}</td>
-				                <td><input type="hidden" name="address" value="${bean.address}">${bean.address}</td>
-				                <td><input type="hidden" name="type" value="${bean.type}">${bean.type}</td>
-				                <td><input type="hidden" name="intro" value="${bean.intro}">${bean.intro}</td>
-				                <td><input type="hidden" name="country" value="${bean.country}">${bean.country}</td>
-				                <td><input type="hidden" name="phone" value="${bean.phone}">${bean.phone}</td>
-				                <td><input type="hidden" name="status" value="${bean.status}">${bean.status}</td>
-				                <td><input type="hidden" name="capacity" value="${bean.capacity}">${bean.capacity}</td>
-				                <td><input type="hidden" name="owner" value="${bean.owner}">${bean.owner}</td>
-				                <td><input type="hidden" name="averagePrice" value="${bean.averagePrice}">${bean.averagePrice}</td>
-				                <td><input type="hidden" name="photos" value="${bean.photos}">${bean.photos}</td>
+				                <td>${bean.name}</td>
+				                <td>${bean.address}</td>
+				                <td>${bean.type}</td>
+				                <td>${bean.intro}</td>
+				                <td>${bean.country}</td>
+				                <td>${bean.phone}</td>
+				                <td>${bean.status}</td>
+				                <td>${bean.capacity}</td>
+				                <td>${bean.owner}</td>
+				                <td>${bean.averagePrice}</td>
+				                <td><img src="images/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ><!--{bean.photo}--></td>
 				                <td><input type="submit" class="update" name="toUpdatePage" value="修改"></td>
 			                </form>
 			                <form action="deleteHotel" method="post">
@@ -66,7 +66,7 @@ response.setContentType("text/html;charset=UTF-8");
 	</div>
 		<script>
 		var type = ["hotelID","name","address","type","intro","country","phone","status","capacity","owner","averagePrice","photos"];
-		var typeName = ["飯店ID","飯店名","地址","類型","介紹","國家","電話","狀態","可容納人數","業主名稱","平均房價","照片路徑名稱"];
+		var typeName = ["飯店ID","飯店名","地址","類型","介紹","國家","電話","狀態","可容納人數","業主名稱","平均房價","照片"];
 	    $(document).ready( function () {
 	        for(var i=0;i<type.length;i++){
 	        	let option = '"<option value="'+type[i]+'">'+typeName[i]+'</option>"';

@@ -24,5 +24,4 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 	public List<Hotel> findAllByOwnerContaining(String keyword);
 	@Query("from Hotel where AveragePrice like concat('%',?1,'%')")
 	public List<Hotel> findAllByAveragePriceContaining(String keyword);
-	public List<Hotel> findAllByPhotosContaining(String keyword);
 }
