@@ -16,6 +16,7 @@ response.setContentType("text/html;charset=UTF-8");
 
   </head>
   <body>
+  <%@ include file="/WEB-INF/includes/Header.jsp"  %>
     <h2 align="center">飯店查詢</h2>
     <div align="center">
 	    <form action="searchHotel" method="get" >
@@ -47,7 +48,8 @@ response.setContentType("text/html;charset=UTF-8");
 				                <td>${bean.capacity}</td>
 				                <td>${bean.owner}</td>
 				                <td>${bean.averagePrice}</td>
-				                <td><img src="images/hotelPhotos/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ></td>
+				                <td><a href="images/hotelPhotos/hotelNB${bean.hotelID}/photo1.jpg">
+				                	<img src="images/hotelPhotos/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ></td>
 				                <td><input type="submit" class="update" name="toUpdatePage" value="修改"></td>
 			                </form>
 			                <form action="deleteHotel" method="post">

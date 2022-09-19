@@ -113,6 +113,16 @@ public class HotelBackController {
 		return "redirect:hotel";
 	}
 	
+	@PostMapping(path = "/hotelPhotoAjax")
+	@ResponseBody
+	public String addPhoto(@RequestParam("upload")MultipartFile mf) throws IllegalStateException, IOException {
+		String targetDir = photoFolder + "hotel";
+		int random = (int)(Math.random()*1000000);
+		String filename = Integer.toString(random)+".jpg";
+		File saveFilePath = new File(targetDir,filename);
+		mf.transferTo(saveFilePath.getAbsoluteFile());
+		return filename;
+	}
 	
 	
 	@GetMapping(path = "/hotelAjax/{hotelID}")
@@ -121,6 +131,7 @@ public class HotelBackController {
 		Hotel result = hService.findById(hotelID);
 		return result;
 	}
+	
 	
 //	@GetMapping(path = "/hotelAjax")
 //	@ResponseBody

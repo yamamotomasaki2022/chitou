@@ -14,6 +14,7 @@
 
   </head>
 <body>
+<%@ include file="/WEB-INF/includes/Header.jsp"  %>
 	<h2 align="center">您想去哪裡?</h2>
     <div align="center">
 	    <form action="searchRoom" action="hotelSearch" method="get" >
