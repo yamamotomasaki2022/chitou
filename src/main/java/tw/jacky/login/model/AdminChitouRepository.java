@@ -9,6 +9,7 @@ public interface AdminChitouRepository extends JpaRepository<AdminChitou, Intege
 	
 	
 	public AdminChitou findByUsername (String username);
+	public AdminChitou findByAdminid(int id);
 	
 	
 

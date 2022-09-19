@@ -74,6 +74,21 @@ public class LoginService {
 		return acrepo.findAll();
 	}
 	
+	public AdminChitou adminInsertAdmin(AdminChitou ac) {
+		return acrepo.save(ac);
+	}
+	
+	public void adminDeleteAdmin(int id) {
+		AdminChitou adminchitou = findByAdminId(id);
+		acrepo.delete(adminchitou);
+	}
+	
+	public AdminChitou findByAdminId(int id) {
+		return acrepo.findByAdminid(id);
+	}
+	
+
+	
 	
 ////	賬號密碼確認
 //	public boolean checkAdminLogin(AdminChitou bean) {

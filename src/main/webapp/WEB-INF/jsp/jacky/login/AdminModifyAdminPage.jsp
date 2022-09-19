@@ -44,12 +44,12 @@ td {
 	<div>
 	
 			<%
-			AdminChitou bean = (AdminChitou) request.getSession().getAttribute("modifyadminbean");
+			AdminChitou bean = (AdminChitou) request.getAttribute("modifyadminbean");
 			%>
 
 			<tr>
-				<form action="adminupdateAdmin" method="post" modelAttribute="memberlistinfo">
-
+				<form action="AdminModifyAdmin" method="post">
+				<input type="hidden" name="_method" value="PUT">
 				<input type="hidden" name="adminid" value="<%=bean.getAdminid()%>"><br>
 				權限<input type="text" name="adminstatus" value="<%=bean.getAdminstatus()%>"><br>
 				賬號<input type="text" name="username" value="<%=bean.getUsername()%>"><br>

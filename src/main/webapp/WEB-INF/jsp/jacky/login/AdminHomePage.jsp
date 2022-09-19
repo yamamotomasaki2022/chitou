@@ -151,7 +151,8 @@
 			%>
 
 			<tr>
-				<form action="" method="post">
+				<form action="AdminDeleteAdmin" method="post">
+				<input type="hidden" name="_method" value="DELETE">
 					<td><input type="hidden" name="td_memberid" value="<%=bean.getAdminid()%>"><%=bean.getAdminid()%></td>
 					<td><%=bean.getAdminstatus()%></td>
 					<td><%=bean.getUsername()%></td>
@@ -162,7 +163,7 @@
 					<td><input type=submit name="deletefromadmin" value="刪除"></td>
 				</form>
 
-				<form action="adminmodifyadminpage" method="post">
+				<form action="ToAdminModifyAdmin" method="post">
 				<input type="hidden" name="adminid" value="<%=bean.getAdminid()%>">
 				<input type="hidden" name="adminstatus" value="<%=bean.getAdminstatus()%>">
 				<input type="hidden" name="username" value="<%=bean.getUsername()%>">
@@ -185,7 +186,7 @@
 	
 	<hr>
 	
-	<FORM ACTION="entercreateadminpage" method="post">
+	<FORM ACTION="ToAdminCreateAdmin" method="post">
 		
 		<input class="bot" type="submit" name="addnewmember" value="新增管理員資料">
 		<hr>
@@ -193,7 +194,7 @@
 	
 	<hr>
 	
-	<form action="loginmain.controller">
+	<form action="adminlogin">
 		<button onclick="">返回登入界面</button>
 	</form>
 	

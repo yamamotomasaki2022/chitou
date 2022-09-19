@@ -30,6 +30,7 @@ public class LoginController {
 	String adminlogin = "jacky/login/AdminLogin";
 	String adminhomepage= "jacky/login/AdminHomePage";
 	String memberlist = "memberlist";
+	String adminlist = "adminlist";
 
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -53,6 +54,20 @@ public class LoginController {
 		m.addAttribute("modifymemberbean",modifymemberbean);
 		return "jacky/login/AdminModifyMemberPage";
 	}
+//	跳轉到 admin 新增admin page
+	@PostMapping("/ToAdminCreateAdmin")
+	public  String processToAdminCreateAdmin() {
+		return "jacky/login/AdminCreateAdmin";
+	}
+	
+	
+//	跳轉到 admin 修改admin page
+	@PostMapping("/ToAdminModifyAdmin")
+	public String processToAdminModifyAdmin(@RequestParam("adminid") int id, Model m) {
+		AdminChitou modifyadminbean = lservice.findByAdminId(id);
+		m.addAttribute("modifyadminbean",modifyadminbean);
+		return "jacky/login/AdminModifyAdminPage";
+	}
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	秀出memberlist
@@ -63,6 +78,14 @@ public class LoginController {
 		return adminhomepage;
 	}
 
+	
+//	秀出adminlist
+	@RequestMapping(path = "/adminlist")
+	public String adminlist (Model m) {
+		List<AdminChitou> adminlist = lservice.adminFindAll();
+		m.addAttribute("adminlist",adminlist);
+		return adminhomepage;
+	}
 
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -157,6 +180,46 @@ public class LoginController {
 		m.addAttribute("result", result );
 		return "jacky/login/SearchPage";
 	}
+	
+	
+//	------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//	admin
+	
+	
+//	管理員 新增管理員
+	@PostMapping(path="/AdminInsertAdmin")
+	public String processAdminInsertAdmin(@RequestParam("adminstatus") String adminstatus, @RequestParam("username") String username, @RequestParam("password") String password) {
+		
+		int adminstatus_int = Integer.parseInt(adminstatus);
+		AdminChitou adminChitou = new AdminChitou(adminstatus_int,username,password,true);
+		lservice.adminInsertAdmin(adminChitou);
+		return "redirect:" + adminlist;
+	}
+	
+//	管理員刪除管理員
+	@DeleteMapping(path = "AdminDeleteAdmin")
+	public String processAdminDeleteAdmin(@RequestParam("td_memberid") String adminid) {
+		int adminid_int = Integer.parseInt(adminid);
+		lservice.adminDeleteAdmin(adminid_int);
+		return "redirect:" + adminlist;
+	}
+	
+//	管理員更新管理員基本咨詢
+	@PutMapping(path="AdminModifyAdmin")
+	public String processAdminModifyAdmin(@RequestParam("adminid")String adminid,@RequestParam("adminstatus") String adminstatus,@RequestParam("username") String username
+			, @RequestParam("password") String password, @RequestParam("permission")String permission) {
+		int adminid_int = Integer.parseInt(adminid);
+		int adminstatus_int = Integer.parseInt(adminstatus);
+		boolean permission_boolean = Boolean.parseBoolean(permission);
+		
+		AdminChitou adminChitou = new AdminChitou(adminid_int,adminstatus_int,username,password,permission_boolean);
+		lservice.adminInsertAdmin(adminChitou);
+		return "redirect:" + adminlist;
+		
+	}
+	
+	
 
 
 }
