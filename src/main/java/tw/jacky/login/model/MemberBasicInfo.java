@@ -14,6 +14,7 @@ import javax.persistence.Table;
 public class MemberBasicInfo {
 	
 	
+	
 	@Id
 	//annoId代表的是pk 
 	@Column(name="memberid")
