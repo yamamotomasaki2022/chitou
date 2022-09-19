@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,8 +25,8 @@ import tw.weber.hotel.model.HotelBackService;
 @Controller
 public class HotelBackController {
 	
-	//C:\Users\weber\AppData\Local\Temp\tomcat.8080.3056583608791830196\work\Tomcat\localhost\ROOT\.\src\main\webapp\WEB-INF\resources\images\hotelNB9\260.jpg 
-	private String photoFolder = ".//src//main//webapp//WEB-INF//resources//images//";
+	//C:\Users\weber\AppData\Local\Temp\tomcat.8080.3056583608791830196\work\Tomcat\localhost\ROOT\.\src\main\webapp\WEB-INF\resources\images\hotelNB9\hotelPhotos\260.jpg 
+	private String photoFolder = ".//src//main//webapp//WEB-INF//resources//images//hotelPhotos//";
 	
 	@Autowired
 	private HotelBackService hService;
