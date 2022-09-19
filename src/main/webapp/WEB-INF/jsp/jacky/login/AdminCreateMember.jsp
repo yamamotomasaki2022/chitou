@@ -51,7 +51,7 @@ label.error {
 
 <body>
 
-<%@include file="WEB-INF/includes/Header.jsp" %>
+<%@include file="/WEB-INF/includes/Header.jsp" %>
 
 	<H1>管理員創建會員</H1>
 

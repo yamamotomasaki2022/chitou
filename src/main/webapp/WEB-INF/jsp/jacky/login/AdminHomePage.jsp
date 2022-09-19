@@ -1,17 +1,10 @@
-
-<%@page import="javax.management.MBeanAttributeInfo"%>
-<%@page
-	import="java.sql.Connection, java.util.*, javax.sql.*, tw.jacky.controller.*, javax.naming.*,java.io.*,java.sql.* ,tw.jacky.model.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
-
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
+<%@page import="java.util.*, javax.sql.*,tw.jacky.login.model.*"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+
 <title>AdminHomePage</title>
 <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
 <link rel="stylesheet"
@@ -28,20 +21,20 @@
 <body>
 
 
-<%@include file="WEB-INF/includes/Header.jsp" %>
+<%@include file="/WEB-INF/includes/Header.jsp" %>
 
 	<h1>管理員界面</h1>
 	<hr>
 	<hr>
 	
-		<FORM ACTION="entercreatememberpage" method="post">
+		<FORM ACTION="ToAdminCreateMemberPage" method="post">
 		
 		<input class="bot" type="submit" name="addnewmember" value="新增會員資料">
 		<hr>
 
 	</form>
 
-	<FORM ACTION="adminsearchindb" method="post">
+	<FORM ACTION="AdminQueryMember" method="get">
 		<select name="searchinfo">
 			<option value="memberid">會員編號</option>
 			<option value="username">賬號</option>
@@ -94,7 +87,8 @@
 			%>
 
 			<tr>
-				<form action="admindeletemember" method="post">
+				<form action="AdminDeleteMember" method="post">
+					<input type="hidden" name="_method" value="DELETE">
 					<td><input type="hidden" name="td_memberid" value="<%=bean.getMemberid()%>"><%=bean.getMemberid()%></td>
 					<!--  <td><%=bean.getStatusid()%></td>-->
 					<td><%=bean.getUsername()%></td>
@@ -105,7 +99,7 @@
 					<td><input type=submit name="deletefromadmin" value="刪除"></td>
 				</form>
 
-				<form action="adminmodifypage" method="post">
+				<form action="ToAdminModifyMember" method="post">
 				<input type="hidden" name="memberid" value="<%=bean.getMemberid()%>">
 				<input type="hidden" name="statusid" value="<%=bean.getStatusid()%>">
 				<input type="hidden" name="statusid" value="<%=bean.getUsername()%>">
@@ -157,7 +151,7 @@
 			%>
 
 			<tr>
-				<form action="admindeleteadmin" method="post">
+				<form action="" method="post">
 					<td><input type="hidden" name="td_memberid" value="<%=bean.getAdminid()%>"><%=bean.getAdminid()%></td>
 					<td><%=bean.getAdminstatus()%></td>
 					<td><%=bean.getUsername()%></td>

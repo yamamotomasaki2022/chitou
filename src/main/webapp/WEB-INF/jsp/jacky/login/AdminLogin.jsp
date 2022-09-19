@@ -42,7 +42,7 @@ legend {
 
 	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
 
-	<FORM ACTION="adminlogin" method="post">
+	<FORM ACTION="adminchecklogin" method="post">
 		<fieldset class="container col-md-5">
 			<legend>管理員登入界面</legend>
 		<table>

@@ -1,9 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
 
 <%@page import="javax.management.MBeanAttributeInfo"%>
-<%@page
-	import="java.sql.Connection, java.util.*, javax.sql.*, tw.jacky.controller.*, javax.naming.*,java.io.*,java.sql.* ,tw.jacky.model.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
+<%@page import=" java.util.*,tw.jacky.login.model.*"%>
 
 
 
@@ -37,7 +35,7 @@ td {
 <body>
 
 
-<%@include file="WEB-INF/includes/Header.jsp" %>
+<%@include file="/WEB-INF/includes/Header.jsp" %>
 
 	<hr>
 	<br>
@@ -45,12 +43,12 @@ td {
 	<div>
 	
 			<%
-			MemberBasicInfo bean = (MemberBasicInfo) request.getSession().getAttribute("modifymemberbean");
+			MemberBasicInfo bean = (MemberBasicInfo) request.getAttribute("modifymemberbean");
 			%>
 
 			<tr>
-				<form action="adminupdatemember" method="post" modelAttribute="memberlistinfo">
-
+				<form action="AdminModifyMember" method="post" >
+				<input type="hidden" name="_method" value="PUT">
 				<input type="hidden" name="memberid" value="<%=bean.getMemberid()%>"><br>
 				<input type="hidden" name="statusid" value="<%=bean.getStatusid()%>"><br>
 				<input type="text" name="username" value="<%=bean.getUsername()%>"><br>

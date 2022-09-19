@@ -19,7 +19,7 @@
 			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="adminlist"
+				<li><a href="memberlist"
 					class="nav-link">會員登入界面</a></li>
 				<li><a
 					href="article.main"
