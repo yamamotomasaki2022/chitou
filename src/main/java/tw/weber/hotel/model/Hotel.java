@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.io.IOUtils;
+
 @Entity
 @Table(name = "hotel")
 
@@ -39,7 +41,7 @@ public class Hotel implements Serializable {
 	@Column(name = "averageprice")
 	private int averagePrice;
 	
-	private String photos;
+//	private byte[] photo;
 	
 	public Hotel() {
 		
@@ -47,7 +49,7 @@ public class Hotel implements Serializable {
 
 	
 	public Hotel(int hotelID, String name, String address, String type, String intro, String country, String phone,
-			String status, int capacity, String owner, int averagePrice, String photos) {
+			String status, int capacity, String owner, int averagePrice) {
 		super();
 		this.hotelID = hotelID;
 		this.name = name;
@@ -60,7 +62,7 @@ public class Hotel implements Serializable {
 		this.capacity = capacity;
 		this.owner = owner;
 		this.averagePrice = averagePrice;
-		this.photos = photos;
+//		this.photo = photo;
 	}
 
 
@@ -152,13 +154,13 @@ public class Hotel implements Serializable {
 		this.averagePrice = averagePrice;
 	}
 
-	public String getPhotos() {
-		return photos;
-	}
-
-	public void setPhotos(String photos) {
-		this.photos = photos;
-	}
-	
+//	public byte[] getPhoto() {
+//		return photo;
+//	}
+//
+//	public void setPhoto(byte[] photo) {
+//		this.photo = photo;
+//	}
+//	
 	
 }
