@@ -1,5 +1,7 @@
 package tw.jacky.login.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,10 +13,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import tw.jacky.login.model.AdminChitou;
 import tw.jacky.login.model.LoginService;
@@ -89,6 +94,72 @@ public class LoginController {
 
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//	管理員新增會員
+	@PostMapping(path = "/admininsertmember")
+	public String processAdminInsertMember(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("photo") 
+			String photo,@RequestParam("email") String email) {
+//		會員預設權力為 1
+		MemberBasicInfo bean = new MemberBasicInfo(1,username,password,photo,email);
+		MemberBasicInfo adminInsertMember = lservice.adminInsertMember(bean);
+		
+		return "redirect:" + memberlist ;
+	}
+	
+//	管理員刪除會員
+	@DeleteMapping(path= "/AdminDeleteMember")
+	public String processAdminDeleteMember(@RequestParam("td_memberid") int memberid) {
+		System.out.println("檢查刪除的ID：" + memberid);
+		lservice.adminDeleteMember(memberid);
+		return "redirect:" + memberlist;
+	}
+
+	
+//  管理員更新會員
+	@PutMapping(path = "/AdminModifyMember")
+	public String processAdminModifyMember(@RequestParam("memberid") int memberid, @RequestParam("statusid") int statusid, @RequestParam("username")
+			String username, @RequestParam("password") String password, @RequestParam("photo") String photo, @RequestParam("email") String email) {
+		
+		MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid,statusid,username,password,photo,email);
+		lservice.adminModifyMember(memberBasicInfo);
+		
+		return "redirect:" + memberlist;
+	}
+	
+//	管理員查詢會員資料
+	@GetMapping(path = "/AdminQueryMember")
+	public String processAdminQueryMember(@RequestParam("searchinfo") String column, @RequestParam("searchtext") String value,Model m) {
+		String hql = lservice.mergeHql(column, value);
+		List<MemberBasicInfo> result = lservice.adminQeuryMember(hql);
+		m.addAttribute("result", result );
+		return "jacky/login/SearchPage";
+	}
+	
+//	上傳會員圖片到文件夾
+	@PostMapping(path = "/AdminUploadPic")
+	@ResponseBody
+	public String processAdminUploadPic(@RequestParam("myFile") MultipartFile mf) throws IllegalStateException, IOException {
+		String fileName = mf.getOriginalFilename();
+		//		你存儲的路徑
+		String saveFileDir= "c:/temp/upload/";
+		//		轉換成虛擬路徑(建立資料夾)
+		File saveFileDirPath = new File(saveFileDir);
+		//		檢查是否虛擬路徑成功create（確立此資料夾是否成功)
+		saveFileDirPath.mkdirs();
+		// 	存儲文件到此處
+		File saveFile = new File(saveFileDirPath, fileName);
+		mf.transferTo(saveFile);
+		
+		return "savefile:" + saveFile;
+	}
+	
+	
+//	------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//	admin
+	
+	
+	
 //	檢查賬號密碼是否正確
 	@PostMapping(path = "/adminchecklogin")
 	public String processAdminCheckLogin(@RequestParam("loginuserid")String user,@RequestParam("loginpw")String pwd,Model m) {
@@ -141,50 +212,6 @@ public class LoginController {
 		return  adminlogin;
 	}
 	
-//	管理員新增會員
-	@PostMapping(path = "/admininsertmember")
-	public String processAdminInsertMember(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("photo") 
-			String photo,@RequestParam("email") String email) {
-//		會員預設權力為 1
-		MemberBasicInfo bean = new MemberBasicInfo(1,username,password,photo,email);
-		MemberBasicInfo adminInsertMember = lservice.adminInsertMember(bean);
-		
-		return "redirect:" + memberlist ;
-	}
-	
-//	管理員刪除會員
-	@DeleteMapping(path= "/AdminDeleteMember")
-	public String processAdminDeleteMember(@RequestParam("td_memberid") int memberid) {
-		System.out.println("檢查刪除的ID：" + memberid);
-		lservice.adminDeleteMember(memberid);
-		return "redirect:" + memberlist;
-	}
-
-	
-//  管理員更新會員
-	@PutMapping(path = "/AdminModifyMember")
-	public String processAdminModifyMember(@RequestParam("memberid") int memberid, @RequestParam("statusid") int statusid, @RequestParam("username")
-			String username, @RequestParam("password") String password, @RequestParam("photo") String photo, @RequestParam("email") String email) {
-		
-		MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid,statusid,username,password,photo,email);
-		lservice.adminModifyMember(memberBasicInfo);
-		
-		return "redirect:" + memberlist;
-	}
-	
-//	管理員查詢會員資料
-	@GetMapping(path = "/AdminQueryMember")
-	public String processAdminQueryMember(@RequestParam("searchinfo") String column, @RequestParam("searchtext") String value,Model m) {
-		String hql = lservice.mergeHql(column, value);
-		List<MemberBasicInfo> result = lservice.adminQeuryMember(hql);
-		m.addAttribute("result", result );
-		return "jacky/login/SearchPage";
-	}
-	
-	
-//	------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//	admin
 	
 	
 //	管理員 新增管理員
