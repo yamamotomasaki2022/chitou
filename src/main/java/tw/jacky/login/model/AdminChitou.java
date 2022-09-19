@@ -1,4 +1,4 @@
-package tw.jacky.admin.model;
+package tw.jacky.login.model;
 
 
 import java.io.Serializable;

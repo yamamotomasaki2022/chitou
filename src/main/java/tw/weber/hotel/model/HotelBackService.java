@@ -46,8 +46,6 @@ public class HotelBackService {
 			return hRepo.findAllByOwnerContaining(keyword);
 		}else if(type.equals("averagePrice")) {
 			return hRepo.findAllByAveragePriceContaining(keyword);
-		}else if(type.equals("photos")) {
-			return hRepo.findAllByPhotosContaining(keyword);
 		}
 		return null;
 	}

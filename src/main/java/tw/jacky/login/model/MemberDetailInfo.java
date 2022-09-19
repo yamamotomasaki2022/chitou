@@ -1,4 +1,4 @@
-package tw.jacky.member.model;
+package tw.jacky.login.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -47,6 +47,7 @@ public class HotelBackController {
 		
 		model.addAttribute("result",result);
 		
+		
 		return "weber/hotel/hotelMain";
 	}	
 	
