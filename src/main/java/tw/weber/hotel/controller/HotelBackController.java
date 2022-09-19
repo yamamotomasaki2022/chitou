@@ -2,6 +2,7 @@ package tw.weber.hotel.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,8 @@ public class HotelBackController {
 		Hotel result = hService.findById(hotelID);
 		
 		m.addAttribute("result",result);
+
+		
 		
 		return "weber/hotel/updateHotel";
 	}
@@ -98,7 +101,13 @@ public class HotelBackController {
 	}
 	
 	@PutMapping(path = "/updateHotel")
-	public String updateHotel(@ModelAttribute("hotel")Hotel hotel) {
+	public String updateHotel(@ModelAttribute("hotel")Hotel hotel,@RequestParam("photo1")MultipartFile mf) {
+		if (!mf.isEmpty()) {
+			String targetDir = photoFolder + "hotelNB" + hotel.getHotelID(); 
+			
+			File saveFilePath = new File(targetDir, "photo1.jpg");
+		}
+		
 		hService.update(hotel);
 		
 		return "redirect:hotel";

@@ -36,5 +36,8 @@
 	        <input type="submit" name="insert" value="加入一筆資料">
 	    </form:form>
     </div>
+    <script>
+    
+    </script>
 </body>
 </html>

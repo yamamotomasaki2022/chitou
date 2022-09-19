@@ -47,7 +47,7 @@ response.setContentType("text/html;charset=UTF-8");
 				                <td>${bean.capacity}</td>
 				                <td>${bean.owner}</td>
 				                <td>${bean.averagePrice}</td>
-				                <td><img src="images/hotelPhotos/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ><!--{bean.photo}--></td>
+				                <td><img src="images/hotelPhotos/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ></td>
 				                <td><input type="submit" class="update" name="toUpdatePage" value="修改"></td>
 			                </form>
 			                <form action="deleteHotel" method="post">
