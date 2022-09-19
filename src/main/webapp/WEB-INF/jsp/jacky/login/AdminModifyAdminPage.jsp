@@ -1,9 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 
 <%@page import="javax.management.MBeanAttributeInfo"%>
-<%@page
-	import="java.sql.Connection, java.util.*, javax.sql.*, tw.jacky.controller.*, javax.naming.*,java.io.*,java.sql.* ,tw.jacky.model.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
+<%@page import=" java.util.*,tw.jacky.login.model.*"%>
+
 
 
 
@@ -36,7 +35,7 @@ td {
 </head>
 <body>
 
-<%@include file="WEB-INF/includes/Header.jsp" %>
+<%@include file="/WEB-INF/includes/Header.jsp" %>
 
 	<hr>
 	<br>

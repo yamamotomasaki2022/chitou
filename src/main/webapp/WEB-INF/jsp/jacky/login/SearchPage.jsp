@@ -1,9 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" session="false"%>
 
 <%@page import="javax.management.MBeanAttributeInfo"%>
 <%@page
-	import="java.sql.Connection, java.util.*, javax.sql.*, tw.jacky.controller.*, javax.naming.*,java.io.*,java.sql.* ,tw.jacky.model.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
+	import=" java.util.*,tw.jacky.login.model.*"%>
 
 
 
@@ -35,7 +35,7 @@ border: 2px solid;
 </head>
 <body>
 
-<%@include file="WEB-INF/includes/Header.jsp" %>
+<%@include file="/WEB-INF/includes/Header.jsp" %>
 
 
 	<FORM ACTION="./Project2Servlet" method="post">
@@ -111,7 +111,7 @@ for(MemberBasicInfo bean:result) { %>
 
 </FORM>
 <hr>
-<form action="adminhomepage">
+<form action="memberlist">
 <button onclick="">返回管理員主頁面</button>
 </form>
 
