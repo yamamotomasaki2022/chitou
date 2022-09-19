@@ -19,6 +19,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "attraction_Luana")
 
+
+
+
+
 public class Attraction_Luana implements Serializable {
 
 	
