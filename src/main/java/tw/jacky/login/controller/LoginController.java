@@ -30,9 +30,7 @@ import tw.jacky.login.model.MemberBasicInfo;
 public class LoginController {
 	
 	
-//	測試
-	
-//	test2
+
 	@Autowired
 	private LoginService lservice;
 	
