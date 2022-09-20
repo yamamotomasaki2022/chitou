@@ -23,7 +23,7 @@ import tw.coco.model.AttractionService;
 public class AttractionController {
 	
 	@Autowired
-	private AttractionService attractionService;
+	private AttractionService_Luana attractionService;
 	
 	@RequestMapping(path = "/attraction.controller", method = RequestMethod.GET)
 	//model處理controller的環境 之前是request.setAttribute現在換成model裡的Attribute處理

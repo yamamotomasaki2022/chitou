@@ -1,4 +1,4 @@
-package tw.luana.cart.model;
+package tw.luana.attraction.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
