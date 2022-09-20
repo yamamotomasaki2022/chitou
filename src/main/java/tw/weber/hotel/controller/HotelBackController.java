@@ -26,9 +26,6 @@ import tw.weber.hotel.model.HotelBackService;
 @Controller
 public class HotelBackController {
 	
-	//C:\Users\weber\AppData\Local\Temp\tomcat.8080.3056583608791830196\work\Tomcat\localhost\ROOT\.\src\main\webapp\WEB-INF\resources\images\hotelNB9\hotelPhotos\260.jpg 
-	private String photoFolder = ".//src//main//webapp//WEB-INF//resources//images//hotelPhotos//";
-	
 	@Autowired
 	private HotelBackService hService;
 	
@@ -59,25 +56,15 @@ public class HotelBackController {
 	}
 	
 	@PostMapping(path = "/insertHotel")
-	public String insertHotel(@ModelAttribute("hotel")Hotel hotel,@RequestParam("photo1")MultipartFile mf) throws IOException {
-//		byte[] bytePhoto = mf.getBytes();
-		
-//		hotel.setPhoto(bytePhoto);
+	public String insertHotel(@ModelAttribute("hotel")Hotel hotel,@RequestParam("upload")MultipartFile[] mfiles) throws IOException {
 		
 		Hotel result = hService.insert(hotel);
-
-		String fileName = mf.getOriginalFilename();
-		
-		String targetDir = photoFolder + "hotelNB" + result.getHotelID(); 
-		
-		File saveFilePath = new File(targetDir, "photo1.jpg");
-		File parentFile = saveFilePath.getParentFile();
-		parentFile.mkdirs();
-		
-		System.out.println(saveFilePath);
-		System.out.println(saveFilePath.getAbsolutePath());
-		
-		mf.transferTo(saveFilePath.getAbsoluteFile());
+//		hService.insertPhoto(hotel.getHotelID(), mfiles);
+		if(!mfiles[0].isEmpty()) {
+			hService.insertPhoto(result.getHotelID(), mfiles);
+		}else {
+			System.out.println("沒有照片");
+		}
 		
 		return "redirect:hotel";
 	}
@@ -85,10 +72,8 @@ public class HotelBackController {
 	@PostMapping(path = "/toUpdateHotel")
 	public String updateHotelPage(@RequestParam("hotelID")int hotelID,Model m) {
 		Hotel result = hService.findById(hotelID);
-		
+		m.addAttribute("hotelID",hotelID);
 		m.addAttribute("result",result);
-
-		
 		
 		return "weber/hotel/updateHotel";
 	}
@@ -96,16 +81,18 @@ public class HotelBackController {
 	@DeleteMapping(path = "/deleteHotel")
 	public String deleteHotel(@RequestParam("hotelID")int hotelID) {
 		hService.delete(hotelID);
-		
+		boolean result = hService.deletePhotoFolder(hotelID);
+		System.out.println("刪除目錄結果:"+result);
 		return "redirect:hotel" ;
 	}
 	
 	@PutMapping(path = "/updateHotel")
-	public String updateHotel(@ModelAttribute("hotel")Hotel hotel,@RequestParam("photo1")MultipartFile mf) {
-		if (!mf.isEmpty()) {
-			String targetDir = photoFolder + "hotelNB" + hotel.getHotelID(); 
-			
-			File saveFilePath = new File(targetDir, "photo1.jpg");
+	public String updateHotel(@ModelAttribute("hotel")Hotel hotel,@RequestParam("upload")MultipartFile[] mfiles) throws IllegalStateException, IOException {
+		System.out.println("修改:hotelID"+hotel.getHotelID());
+		if(!mfiles[0].isEmpty()) {
+			hService.insertPhoto(hotel.getHotelID(), mfiles);
+		}else {
+			System.out.println("沒有照片");
 		}
 		
 		hService.update(hotel);
@@ -113,30 +100,18 @@ public class HotelBackController {
 		return "redirect:hotel";
 	}
 	
-	@PostMapping(path = "/hotelPhotoAjax")
-	@ResponseBody
-	public String addPhoto(@RequestParam("upload")MultipartFile mf) throws IllegalStateException, IOException {
-		String targetDir = photoFolder + "hotel";
-		int random = (int)(Math.random()*1000000);
-		String filename = Integer.toString(random)+".jpg";
-		File saveFilePath = new File(targetDir,filename);
-		mf.transferTo(saveFilePath.getAbsoluteFile());
-		return filename;
-	}
-	
-	
-	@GetMapping(path = "/hotelAjax/{hotelID}")
-	@ResponseBody
-	public Hotel allDataForAjax(@PathVariable("hotelID")int hotelID) {
-		Hotel result = hService.findById(hotelID);
-		return result;
-	}
-	
-	
-//	@GetMapping(path = "/hotelAjax")
+//	@GetMapping(path = "/hotelAjax/{hotelID}")
 //	@ResponseBody
-//	public List<Hotel> allDataForAjax() {
-//		List<Hotel> result = hotelBackService.selectAll();
+//	public Hotel allDataForAjax(@PathVariable("hotelID")int hotelID) {
+//		Hotel result = hService.findById(hotelID);
 //		return result;
 //	}
+	
+	@GetMapping(path = "/loadHotelPhotoAjax/{hotelID}")
+	@ResponseBody
+	public String loadPhoto(@PathVariable("hotelID")int hotelID) {
+		int amount = hService.loadPhoto(hotelID);
+		return Integer.toString(amount);
+	}
+
 }
