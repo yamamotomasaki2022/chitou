@@ -16,4 +16,6 @@ public interface MemberBasicInfoRepository extends JpaRepository<MemberBasicInfo
 	
 	
 	
+	
+	
 }

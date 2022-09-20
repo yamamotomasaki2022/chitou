@@ -104,9 +104,8 @@ public class LoginController {
 	public String processAdminInsertMember(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("myFile") 
 	MultipartFile mf,@RequestParam("email") String email) {
 //		將照片存入文件夾内
-		lservice.savePicToLocal(mf);
 		
-		String photo = mf.getOriginalFilename();
+		String photo = lservice.savePicToLocal(mf);
 		String pic_locaiton = piclocation + photo;
 		
 		System.out.println("生成bean之前");
@@ -135,7 +134,7 @@ public class LoginController {
 			MultipartFile mf, @RequestParam("email") String email) {
 		
 		
-		String photo = mf.getOriginalFilename();
+		String photo = lservice.savePicToLocal(mf);
 		String pic_locaiton = piclocation + photo;
 		
 		MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid,statusid,username,password,pic_locaiton,email);

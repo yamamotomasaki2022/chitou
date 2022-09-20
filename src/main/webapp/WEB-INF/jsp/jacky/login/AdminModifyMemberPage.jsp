@@ -61,9 +61,9 @@ td {
 					type="text" name="password" value="<%=bean.getPassword()%>"><br>
 				<p>
 					Photo:<br /> 
-					<img id="img1" alt="" src=""><br> 
-					<input
-						id="myfile" type="file" name="myFile" />
+					<img id="img1" alt="" src=" <%=bean.getPhoto() %>"><br> 
+
+					<input id="myfile2" class="myfile" type="file" name="myFile" />
 
 				</p>
 				email <input type="text" name="email" value="<%=bean.getEmail()%>"><br>
@@ -81,12 +81,13 @@ td {
 	</form>
 
 	<script>
-		$('#myfile').on('change', function(e) {
+		$('.myfile').on('change', function(e) {
 			const file = this.files[0];//將上傳檔案轉換為base64字串
 
 			const fr = new FileReader();//建立FileReader物件
 			fr.onload = function(e) {
 				$('#img1').attr('src', e.target.result);//读取的结果放入圖片
+				console.log(e.target.result);
 			};
 
 			// 使用 readAsDataURL 將圖片轉成 Base64
