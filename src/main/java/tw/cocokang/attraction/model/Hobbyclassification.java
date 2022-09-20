@@ -1,4 +1,4 @@
-package tw.coco.attraction.model;
+package tw.cocokang.attraction.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
