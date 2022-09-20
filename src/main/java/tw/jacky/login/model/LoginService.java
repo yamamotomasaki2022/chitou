@@ -40,8 +40,8 @@ public class LoginService {
 //	寫絕對路徑的辦法
 	private String getStaticPath() {
 		String path = this.getClass().getClassLoader().getResource("").getPath();
-		path = path.substring(1).replace("target", "src").replaceAll("classes", "main") + "resources" + File.separator + "static"
-				+ File.separator;
+		path = path.substring(1).replace("target", "src").replaceAll("classes", "main") + "webapp" + File.separator + "WEB-INF"
+				+ File.separator + "resources" + File.separator + "images" + File.separator + "jacky" + File.separator + "login";
 		path = path.replaceAll("/", Matcher.quoteReplacement(File.separator));
 		return path;
 	}
@@ -97,10 +97,12 @@ public class LoginService {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String format = simpleDateFormat.format(new Date());
 		fileName = format + fileName;
+		
+		System.out.println("確定路徑是否正確：" + staticPath);
 		//		你存儲的路徑
-		String saveFileDir= "C:\\Chitou\\workspace\\Chitou\\src\\main\\webapp\\WEB-INF\\resources\\images\\jacky\\login";
+//		String saveFileDir= "C:\\Chitou\\workspace\\Chitou\\src\\main\\webapp\\WEB-INF\\resources\\images\\jacky\\login";
 		//		轉換成虛擬路徑(建立資料夾)
-		File saveFileDirPath = new File(saveFileDir);
+		File saveFileDirPath = new File(staticPath);
 		//		檢查是否虛擬路徑成功create（確立此資料夾是否成功)
 		saveFileDirPath.mkdirs();
 		// 	存儲文件到此處
