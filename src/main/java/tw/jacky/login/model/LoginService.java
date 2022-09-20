@@ -1,5 +1,7 @@
 package tw.jacky.login.model;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,6 +12,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.Mergeable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
@@ -64,6 +67,33 @@ public class LoginService {
 		+ dbcolumn + " like '" + value + "%' or "  
 		+ dbcolumn + " like '%" + value + "'";
 		return hql;
+	}
+	
+	
+//	將照片存入專案資料夾中
+	
+	public void savePicToLocal(MultipartFile mf) {
+		System.out.println("進入圖片的方法");
+		
+		String fileName = mf.getOriginalFilename();
+		//		你存儲的路徑
+		String saveFileDir= "C:\\Chitou\\workspace\\Chitou\\src\\main\\webapp\\WEB-INF\\resources\\images\\jacky\\login";
+		//		轉換成虛擬路徑(建立資料夾)
+		File saveFileDirPath = new File(saveFileDir);
+		//		檢查是否虛擬路徑成功create（確立此資料夾是否成功)
+		saveFileDirPath.mkdirs();
+		// 	存儲文件到此處
+		File saveFile = new File(saveFileDirPath, fileName);
+		try {
+			mf.transferTo(saveFile);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("資料確定儲存了");
+		
 	}
 	
 	

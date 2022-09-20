@@ -18,6 +18,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
 form label {
 	display: inline-block;
@@ -51,13 +52,12 @@ label.error {
 
 <body>
 
-<%@include file="/WEB-INF/includes/Header.jsp" %>
+	<%@include file="/WEB-INF/includes/Header.jsp"%>
 
 	<H1>管理員創建會員</H1>
 
 	<h5>jQuery 驗證其中幾個欄目</h5>
-	<FORM ACTION="admininsertmember" method="post" id="form"
-		modelAttribute="memberinfo">
+	<FORM ACTION="admininsertmember" method="post" id="form" enctype="multipart/form-data"  >
 		<!--  ><div><input type="hidden" name="memberid" value="1"></div> -->
 
 		<div>
@@ -70,10 +70,12 @@ label.error {
 				id="password" name="password" autocomplete="off" size="10">
 		</div>
 
-		<div>
-			<label for=""> photo</label> <br> </a><input type="text"
-				id="photo" name="photo" autocomplete="off" size="10">
-		</div>
+		<p>
+			Photo:<br /> 
+			<img id="img1" alt="" src=""><br>
+			<input  id= "myfile" type="file" name="myFile" />
+			
+		</p>
 
 
 		<div>
@@ -89,13 +91,27 @@ label.error {
 
 	</form>
 	<br>
-	<FORM ACTION="./Jacky-AdminHomePage.jsp" method="post">
+	<FORM ACTION="AdminHomePage" method="post">
 		<button onclick="">返回</button>
 	</form>
 
 
 
+<script>
 
+$('#myfile').on('change', function(e){      
+	  const file = this.files[0];//將上傳檔案轉換為base64字串
+	      
+	  const fr = new FileReader();//建立FileReader物件
+	  fr.onload = function (e) {
+	    $('#img1').attr('src', e.target.result);//读取的结果放入圖片
+	  };
+	      
+	 // 使用 readAsDataURL 將圖片轉成 Base64
+	  fr.readAsDataURL(file);
+	});
+
+</script>
 
 
 
