@@ -2,6 +2,7 @@ package tw.weber.hotel.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,8 @@ public class HotelBackController {
 		Hotel result = hService.findById(hotelID);
 		
 		m.addAttribute("result",result);
+
+		
 		
 		return "weber/hotel/updateHotel";
 	}
@@ -98,12 +101,28 @@ public class HotelBackController {
 	}
 	
 	@PutMapping(path = "/updateHotel")
-	public String updateHotel(@ModelAttribute("hotel")Hotel hotel) {
+	public String updateHotel(@ModelAttribute("hotel")Hotel hotel,@RequestParam("photo1")MultipartFile mf) {
+		if (!mf.isEmpty()) {
+			String targetDir = photoFolder + "hotelNB" + hotel.getHotelID(); 
+			
+			File saveFilePath = new File(targetDir, "photo1.jpg");
+		}
+		
 		hService.update(hotel);
 		
 		return "redirect:hotel";
 	}
 	
+	@PostMapping(path = "/hotelPhotoAjax")
+	@ResponseBody
+	public String addPhoto(@RequestParam("upload")MultipartFile mf) throws IllegalStateException, IOException {
+		String targetDir = photoFolder + "hotel";
+		int random = (int)(Math.random()*1000000);
+		String filename = Integer.toString(random)+".jpg";
+		File saveFilePath = new File(targetDir,filename);
+		mf.transferTo(saveFilePath.getAbsoluteFile());
+		return filename;
+	}
 	
 	
 	@GetMapping(path = "/hotelAjax/{hotelID}")
@@ -112,6 +131,7 @@ public class HotelBackController {
 		Hotel result = hService.findById(hotelID);
 		return result;
 	}
+	
 	
 //	@GetMapping(path = "/hotelAjax")
 //	@ResponseBody

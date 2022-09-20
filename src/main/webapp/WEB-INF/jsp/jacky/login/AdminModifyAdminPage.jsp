@@ -1,9 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 
 <%@page import="javax.management.MBeanAttributeInfo"%>
-<%@page
-	import="java.sql.Connection, java.util.*, javax.sql.*, tw.jacky.controller.*, javax.naming.*,java.io.*,java.sql.* ,tw.jacky.model.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
+<%@page import=" java.util.*,tw.jacky.login.model.*"%>
+
 
 
 
@@ -36,7 +35,7 @@ td {
 </head>
 <body>
 
-<%@include file="WEB-INF/includes/Header.jsp" %>
+<%@include file="/WEB-INF/includes/Header.jsp" %>
 
 	<hr>
 	<br>
@@ -45,12 +44,12 @@ td {
 	<div>
 	
 			<%
-			AdminChitou bean = (AdminChitou) request.getSession().getAttribute("modifyadminbean");
+			AdminChitou bean = (AdminChitou) request.getAttribute("modifyadminbean");
 			%>
 
 			<tr>
-				<form action="adminupdateAdmin" method="post" modelAttribute="memberlistinfo">
-
+				<form action="AdminModifyAdmin" method="post">
+				<input type="hidden" name="_method" value="PUT">
 				<input type="hidden" name="adminid" value="<%=bean.getAdminid()%>"><br>
 				權限<input type="text" name="adminstatus" value="<%=bean.getAdminstatus()%>"><br>
 				賬號<input type="text" name="username" value="<%=bean.getUsername()%>"><br>

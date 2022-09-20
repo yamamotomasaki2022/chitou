@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
@@ -51,12 +50,12 @@ label.error {
 
 <body>
 
-<%@include file="WEB-INF/includes/Header.jsp" %>
+<%@include file="/WEB-INF/includes/Header.jsp" %>
 
 	<H1>老闆創建管理員</H1>
 
-	<h5>jQuery 驗證其中幾個欄目</h5>
-	<FORM ACTION="admininsertadmin" method="post" id="form">
+	<h5>jQuery 驗證其中幾個c目</h5>
+	<FORM ACTION="AdminInsertAdmin" method="post" id="form">
 		<!--  ><div><input type="hidden" name="memberid" value="1"></div> -->
 
 		<div>

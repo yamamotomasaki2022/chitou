@@ -8,6 +8,7 @@
 <title>更改飯店資料</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/includes/Header.jsp"  %>
 	<div align="center">
 	    <form:form action="updateHotel" method="post" modelAttribute="result">
 	    	<input type="hidden" name="_method" value="PUT">
