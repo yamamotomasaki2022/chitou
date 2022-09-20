@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="tw.cocokang.attraction.model.*"%>
+<%@page import="tw.coco.model.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -90,7 +90,8 @@
 									<button type="submit" name="update" class="btn btn-success">編輯</button>
 							</form>
 
-
+							<!--<input type="hidden" name="attid" value="${attraction.attid}"> -->
+							<!--  <a href="${pageContext.request.contextPath}/book/delete/${attraction.attid}">删除</a>-->
 							<a href="deleteAttraction?attid=${attraction.attid}">刪除</a>
 							<!-- <button type="submit" name="delete" class="btn btn-success">刪除</button>-->
 							</td>

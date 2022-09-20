@@ -1,4 +1,4 @@
-package tw.cocokang.attraction.model;
+package tw.coco.attraction.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +30,8 @@ public class Attraction {
 	@Column(name = "prefer_id")
 	@Transient
 	private Integer preferid;
+	
+	
 	
 	@Column(name = "attraction_name")
 	private String attName;
