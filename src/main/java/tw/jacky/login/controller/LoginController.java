@@ -29,6 +29,8 @@ import tw.jacky.login.model.MemberBasicInfo;
 @SessionAttributes({"memberlist","adminlist"} )
 public class LoginController {
 	
+	
+//	測試
 	@Autowired
 	private LoginService lservice;
 	
