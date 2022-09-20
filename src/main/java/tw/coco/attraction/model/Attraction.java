@@ -31,6 +31,8 @@ public class Attraction {
 	@Transient
 	private Integer preferid;
 	
+	
+	
 	@Column(name = "attraction_name")
 	private String attName;
 	
