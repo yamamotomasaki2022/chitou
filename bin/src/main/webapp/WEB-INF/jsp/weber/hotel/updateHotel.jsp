@@ -8,6 +8,7 @@
 <title>更改飯店資料</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/includes/Header.jsp"  %>
 	<div align="center">
 	    <form:form action="updateHotel" method="post" modelAttribute="result">
 	    	<input type="hidden" name="_method" value="PUT">
@@ -33,7 +34,7 @@
 	        平均房價:
 	        <form:input type="text" path="averagePrice" name="averagePrice" id="averagePrice"/><br>
 	        照片:
-	        <form:input type="text" path="photos" name="photos" id="photos"/><br>
+	        <input type="file" name="photo" id="photo"/><br>
 	        <input type="submit" name="insert" value="更新">
 	    </form:form>
     </div>
