@@ -2,18 +2,20 @@ package tw.trista.flightticket.controller;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.trista.flightticket.model.FlightTicketService;
+
+
 import tw.trista.flightticket.model.FlightTicket;
 
 
@@ -22,25 +24,26 @@ import tw.trista.flightticket.model.FlightTicket;
 @Transactional
 public class FlightTicketController {
 	
-	@Autowired
-	private SessionFactory sessionFactory;
+
 	
 	@Autowired
 	private FlightTicketService flightservice;
 	
-	String mainUrl="http://localhost:8080/flightticket.main";
+	//http://localhost:8080/flightticket.main;
 	
-	@RequestMapping(path = "/flightticket.main", method = RequestMethod.GET)
+	@GetMapping(path = "/flightticket.main")
 	public String processActionMain(Model m) {
 		FlightTicket fly1 = new FlightTicket();
 		m.addAttribute("flightTicket",fly1);
 		return "trista/flightticket/flightTicket";
-	}
+	} 
 	
 	//新增航班
-	@RequestMapping(path = "/addFlightTicket", method = RequestMethod.POST)
+	@PostMapping(path = "/addFlightTicket")
 	public String processInsertAction(@ModelAttribute("flightticket") FlightTicket fly, BindingResult result, Model m) {
+		m.addAttribute("flightticket",fly);
 		flightservice.insert(fly);
+		
 
 		List<FlightTicket> list = (List<FlightTicket>)flightservice.selectAll();
 		m.addAttribute("insertflight", list);
@@ -49,18 +52,19 @@ public class FlightTicketController {
 	
 	
 	//修改航班
-	@RequestMapping(path = "/updateFlightTicket",method = RequestMethod.POST)
-	public String processUpdateAction(@RequestParam("flightID") String flightID,@RequestParam("newfare")int newfare,Model m) {
-		if(flightID != null) {
-		flightservice.updateOne(flightID, newfare);
-	}
-	  List<FlightTicket> list = (List<FlightTicket>)flightservice.selectAll();
-	  m.addAttribute("updateflight", list);
-	  return "trista/flightticket/thanksUpdate";
+	@PostMapping(path = "/updateFlightTicket")
+	public String processUpdateAction(@RequestParam("flightID") String flightID,@RequestParam("newfare") Integer fare,Model m) {
+		FlightTicket ft = flightservice.selectByFlightid(flightID);
+		FlightTicket ft_2 = new FlightTicket(ft.getFlightID(), ft.getClassID(), ft.getDepartureTime(), ft.getArrivalTime(), fare, ft.getAirline(),
+				ft.getOriginID(), ft.getDestinationID());
+		List<FlightTicket> selectAll = flightservice.selectAll();
+		m.addAttribute("updateflight",selectAll);
+		flightservice.updateOne(ft_2);
+		return "trista/flightticket/thanksUpdate";
 	}
 	
 	//刪除航班	
-	@RequestMapping(path = "/deleteFlightTicket",method = RequestMethod.POST)
+	@PostMapping(path = "/deleteFlightTicket")
 	 public String processDeleteAction(@RequestParam("flightID") String flightID,Model m) {
 	  if(flightID != null) {
 		  flightservice.deleteOne(flightID);
@@ -71,7 +75,7 @@ public class FlightTicketController {
 	 }
 		
 	//查詢航班
-	@RequestMapping(path="/searchFlightTicket",method = RequestMethod.POST)
+	@PostMapping(path = "/searchFlightTicket")
 	public String processSearchAction(@RequestParam("originID")String originID,@RequestParam("destinationID")String destinationID,
 									  @RequestParam("departureTime")String departureTime,@RequestParam("arrivalTime")String arrivalTime,
 									  @RequestParam("classID")String classID,Model m) {
@@ -82,6 +86,26 @@ public class FlightTicketController {
 		  m.addAttribute("searchflight", list);
 		  return"trista/flightticket/thanksRead";
 		 }
+	
+//	@PostMapping(path = "/searchFlightTicket")
+//	public String SearchByKey(@RequestParam("type")String type,@RequestParam("keyword")String keyword,Model m) {
+//		
+//		List<FlightTicket> result = flightservice.selectByKey(type,keyword);
+//		
+//		m.addAttribute("result",result);
+//		return "trista/flightticket/thanksRead";
+//	}
+	
+	@PostMapping(path = "/searchFlightTicket")
+	public String SearchByKey(@RequestParam("Originid")String Originid,@RequestParam("Destinationid")String Destinationid,@RequestParam("Departuretime")String Departuretime,@RequestParam("Arrivaltime")String Arrivaltime,@RequestParam("Classid")int Classid,Model m) {
+		List<FlightTicket> ft = flightservice.selectByFlight(Originid,Destinationid,Departuretime,Arrivaltime,Classid);
+//		List<FlightTicket> ft_2 = new FlightTicket(ft.getFlightID(), ft.getClassID(), ft.getDepartureTime(), ft.getArrivalTime(), fare, ft.getAirline(),
+//				ft.getOriginID(), ft.getDestinationID());
+		List<FlightTicket> selectAll = flightservice.selectAll();
+		m.addAttribute("updateflight",selectAll);
+		flightservice.selectByFlight(ft_2);
+		return "trista/flightticket/thanksRead";
+	}
 	}
 
 

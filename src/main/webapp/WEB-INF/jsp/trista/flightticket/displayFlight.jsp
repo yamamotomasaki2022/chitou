@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="tw.trista.flightticket.model.* %>
 <%
 response.setContentType("text/html;charset=UTF-8");
 response.setHeader("Cache-Control","no-cache"); // HTTP 1.1
@@ -13,8 +14,8 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <title>新增航班確認</title>
 </head>
 <body>
-<jsp:useBean id="insert_flight" class="tw.trista.flightticket.model" scope="session" />
-<h2>
+<jsp:useBean id="insert_flight" class="tw.trista.flightticket.model" scope="session" /> 
+<h2> 
 新增航班資料如下請確認
 </h2>
 <form action="FlightTicket.controller" method="post">

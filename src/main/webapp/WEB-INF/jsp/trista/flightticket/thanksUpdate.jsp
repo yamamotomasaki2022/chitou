@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="false"%>
-<%@ page import="chitou.trista.model.*,java.util.*" %> 
+<%@ page import="tw.trista.flightticket.model.*,java.util.*" %> 
 
 <%
 response.setContentType("text/html;charset=UTF-8");
