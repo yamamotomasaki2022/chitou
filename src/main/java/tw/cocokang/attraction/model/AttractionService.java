@@ -1,7 +1,6 @@
 package tw.cocokang.attraction.model;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,7 @@ public class AttractionService {
 		aRepo.deleteById(attid); 
 	}
 	//Get Attraction By attName
-	public List<Attraction> findByattNameLikeAction(String attName){
+	public List<Attraction> findAttractionsAction(String attName){
 //			Optional<Attraction> op = aRepo.findByattNameLike(attName);
 		
 //			if(op.isEmpty()) {
@@ -39,7 +38,7 @@ public class AttractionService {
 //				throw new AttractionNotFoundException("Can't find Attraction");
 //			}
 //			return op.get();
-			return aRepo.findByAttNameLike(attName);
+			return aRepo.findAttractions(attName);
 		}
 //	public List<Attraction> findByNameLike(String attName){
 //		return aRepo.findByattNameLike(attName);
