@@ -17,19 +17,11 @@
 <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
 </head>
 <body>
-	<header> <nav class="navbar navbar-expand-md navbar-dark"
-		style="background-color: lightblue">
-	<div>
-		<img src="images/chitou.png" /> <a
-			href="http://localhost:8080/HibernateChiTou/Kang-list.jsp"
-			class="navbar-brand"> ChiTou </a>
-	</div>
 
-	<ul class="navbar-nav">
-		<li><a href="http://localhost:8080/HibernateChiTou/Kang-list.jsp"
-			class="nav-link">景點</a></li>
-	</ul>
-	</nav> </header>
+
+	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
+
 	<br>
 	<div class="row">
 		<div class="container">
@@ -39,7 +31,7 @@
 			</h3>
 			<hr>
 			<a href="addAttraction">
-				<button class="btn btn-success">新增專欄</button>
+				<button class="btn btn-success">新增景點</button>
 			</a>
 			
 			<form action="searchAttraction" method="post" enctype="multipart/form-data">
@@ -72,7 +64,7 @@
 										value="${attraction.hobbyclassification.preferid}" /></td>
 								<td><c:out value="${attraction.attName}" /></td>
 								<td><c:out value="${attraction.attLocation}" /></td>
-								<td><c:out value="${attraction.attDescription}" /></td>
+								<td><c:out value="${attraction.attDescription}.substring(0,5)" /></td>
 								<td><c:out value="${attraction.attNotice}" /></td>
 
 

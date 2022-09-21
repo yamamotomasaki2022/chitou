@@ -111,7 +111,7 @@ for(MemberBasicInfo bean:result) { %>
 
 </FORM>
 <hr>
-<form action="memberlist">
+<form action="adminhomepage">
 <button onclick="">返回管理員主頁面</button>
 </form>
 

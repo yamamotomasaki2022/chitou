@@ -1,8 +1,11 @@
 package tw.georgia.article.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.regex.Matcher;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +16,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import tw.georgia.article.model.Article;
 import tw.georgia.article.model.ArticleService;
+
 
 @Controller
 public class ArticleController {
@@ -23,7 +29,22 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 	
+	
+	private String staticPath = getStaticPath();
+	
+	
 	String mainUrl="http://localhost:8080/article.main";
+	
+	
+//	寫絕對路徑辦法(圖片)
+	private String getStaticPath() {
+		String path = this.getClass().getClassLoader().getResource("").getPath();
+		path = path.substring(1).replace("target", "src").replaceAll("classes", "main") + "webapp" + File.separator + "WEB-INF"
+				+ File.separator + "resources" + File.separator + "images" + File.separator + "georgia" + File.separator + "picture";
+		path = path.replaceAll("/", Matcher.quoteReplacement(File.separator));
+		return path;
+	}
+	
 
 
 //	**********文章首頁********************************************
@@ -48,14 +69,22 @@ public class ArticleController {
 								@RequestParam("title") String title,
 								@RequestParam("chooseCountry") String chooseCountry,
 								@RequestParam("chooseType") String chooseType,
-								@RequestParam("photo") String photo,
-								@RequestParam("content") String content) {
-		System.out.println(content);
+								@RequestParam("photo") MultipartFile mf,
+								@RequestParam("content") String content) throws IllegalStateException, IOException {
 		int typeID = Integer.parseInt(chooseCountry+chooseType);
 		int countryID = Integer.parseInt(chooseCountry);
+		
+		String photo = mf.getOriginalFilename();
+		System.out.println(photo);
+		String saveFileDir = staticPath;
+        File saveFilePath = new File(saveFileDir, photo);
+        mf.transferTo(saveFilePath);
+		
 		String date =DateTimeFormatter.ofPattern("yyyy/MM/dd").format(LocalDateTime.now());
+		
 		//int posterID, int countryID, int typeID, String title, String content, String date, String photo
 		Article insertBean = new Article(posterID,countryID,typeID,title,content,date,photo);
+		
 		articleService.insert(insertBean);
 		return "redirect:"+mainUrl;
 	}
@@ -78,12 +107,26 @@ public class ArticleController {
 								@RequestParam("title") String title,
 								@RequestParam("content") String content,
 								@RequestParam("date") String date,
-								@RequestParam("photo") String photo) {
-		System.out.println(date);
+								@RequestParam("photo") String photoDefault,
+								@RequestParam("photoRenew") MultipartFile mf) throws IllegalStateException, IOException {
 		int typeID = Integer.parseInt(chooseCountry+chooseType);
 		int countryID = Integer.parseInt(chooseCountry);
-		Article updateBean = new Article(postID,posterID,countryID,typeID,title,content,date,photo);
-		articleService.update(updateBean);
+
+		System.out.println("*************************************************************************");
+		System.out.println(mf.getOriginalFilename());
+		if (mf.getOriginalFilename().length()==0) {
+			String photo=photoDefault;
+			Article updateBean = new Article(postID,posterID,countryID,typeID,title,content,date,photo);
+			articleService.update(updateBean);
+		}else {
+			String photo = mf.getOriginalFilename();
+			String saveFileDir = staticPath;
+	        File saveFilePath = new File(saveFileDir, photo);
+	        mf.transferTo(saveFilePath);
+	        Article updateBean = new Article(postID,posterID,countryID,typeID,title,content,date,photo);
+			articleService.update(updateBean);
+		}
+		
 		return "redirect:"+mainUrl;
 	}
 	
@@ -111,4 +154,5 @@ public class ArticleController {
 		}
 		return "georgia/article/articleRead";
 	}
+	
 }
