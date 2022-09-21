@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.cocokang.exception.AttractionNotFoundException;
+
 
 @Service
 @Transactional
@@ -52,5 +52,4 @@ public class AttractionService {
 	 public List<Attraction> getAll(){
 	 return aRepo.findAll();  
 	 }  
-
 }

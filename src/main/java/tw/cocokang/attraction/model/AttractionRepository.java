@@ -10,6 +10,6 @@ public interface AttractionRepository extends JpaRepository<Attraction, Integer>
 
 	public List<Attraction> findByAttNameLike(String attName);
 //	public Optional<Attraction> findByName(String attName);
-
+	
 
 }

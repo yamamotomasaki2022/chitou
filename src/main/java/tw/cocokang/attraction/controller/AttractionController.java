@@ -45,6 +45,14 @@ public class AttractionController {
 	public String insert(@ModelAttribute("attraction") Attraction attraction, Integer preferid, Model m) {
 
 //		Integer preferid_2 = attraction.getHobbyclassification().getPreferid();	
+		
+		
+//		Attraction attractionbean = aService.selectByAttid(attraction.getAttid());
+		
+		  Hobbyclassification hobbyclassification = new Hobbyclassification();
+		  hobbyclassification.setPreferid(attraction.getPreferid());
+		  attraction.setHobbyclassification(hobbyclassification);
+		  
 
 		m.addAttribute("attraction", attraction);
 		aService.insert(attraction);
