@@ -36,8 +36,7 @@ response.setContentType("text/html;charset=UTF-8");
 	            <tbody>
 					<c:forEach var="bean" items="${result}">
 						<tr>
-							<form action="toUpdateHotel" method="post">
-				                <td><input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">${bean.hotelID}</td>
+				                <td>${bean.hotelID}</td>
 				                <td>${bean.name}</td>
 				                <td>${bean.address}</td>
 				                <td>${bean.type}</td>
@@ -48,15 +47,29 @@ response.setContentType("text/html;charset=UTF-8");
 				                <td>${bean.capacity}</td>
 				                <td>${bean.owner}</td>
 				                <td>${bean.averagePrice}</td>
-				                <td><a href="images/hotelPhotos/hotelNB${bean.hotelID}/photo1.jpg">
-				                	<img src="images/hotelPhotos/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ></td>
-				                <td><input type="submit" class="update" name="toUpdatePage" value="修改"></td>
-			                </form>
-			                <form action="deleteHotel" method="post">
-								<input type="hidden" name="_method" value="DELETE"/>
-				                <input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
-				                <td><input type="submit" name="delete" value="刪除"></td>
-				            </form>
+				                <td>
+				                	<a href="images/hotelPhotos/hotelNB${bean.hotelID}/photo1.jpg">
+				                	<img src="images/hotelPhotos/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ></a>
+				                </td>
+				                <td>
+				            		<form action="toUpdateHotel" method="post">
+				            			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
+				                		<input type="submit" class="update" name="toUpdatePage" value="修改">
+			                		</form>
+			                	</td>
+			                	<td>
+			                		<form action="deleteHotel" method="post">
+										<input type="hidden" name="_method" value="DELETE"/>
+				                		<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
+				                		<input type="submit" name="delete" value="刪除">
+				            		</form>
+				            	</td>
+				            	<td>
+				            		<form action="room" method="get">
+				            			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
+				                		<input type="submit" class="update" name="toUpdatePage" value="查看房間">
+				            		</form>
+				            	</td>
 		              	</tr>
 		            </c:forEach>
 				</tbody>
@@ -78,8 +91,7 @@ response.setContentType("text/html;charset=UTF-8");
 	        	let tr =  '<th>'+typeName[i]+'</th>';
 	        	$('#tableHead').append(tr);
 	        }
-			$('#tableHead').append('"<th></th>"');	        
-			$('#tableHead').append('"<th></th>"');	        
+			$('#tableHead').append('<th></th><th></th><th></th>');	        
 	        $('#table').DataTable();
 	    }); 
 	    $('.delete').on('click',function(){

@@ -1,15 +1,19 @@
 package tw.weber.hotel.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.apache.commons.io.IOUtils;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import tw.weber.roomStyle.model.RoomStyle;
 
 @Entity
 @Table(name = "hotel")
@@ -41,7 +45,9 @@ public class Hotel implements Serializable {
 	@Column(name = "averageprice")
 	private int averagePrice;
 	
-//	private byte[] photo;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "hotel")
+	private List<RoomStyle> styles;
 	
 	public Hotel() {
 		
@@ -49,7 +55,7 @@ public class Hotel implements Serializable {
 
 	
 	public Hotel(int hotelID, String name, String address, String type, String intro, String country, String phone,
-			String status, int capacity, String owner, int averagePrice) {
+			String status, int capacity, String owner, int averagePrice,List<RoomStyle> styles) {
 		super();
 		this.hotelID = hotelID;
 		this.name = name;
@@ -63,6 +69,7 @@ public class Hotel implements Serializable {
 		this.owner = owner;
 		this.averagePrice = averagePrice;
 //		this.photo = photo;
+		this.styles = styles;
 	}
 
 
@@ -152,6 +159,16 @@ public class Hotel implements Serializable {
 
 	public void setAveragePrice(int averagePrice) {
 		this.averagePrice = averagePrice;
+	}
+
+
+	public List<RoomStyle> getStyles() {
+		return styles;
+	}
+
+
+	public void setRooms(List<RoomStyle> styles) {
+		this.styles = styles;
 	}
 
 //	public byte[] getPhoto() {
