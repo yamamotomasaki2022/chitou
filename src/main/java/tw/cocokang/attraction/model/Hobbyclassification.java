@@ -1,10 +1,13 @@
 package tw.cocokang.attraction.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +24,9 @@ public class Hobbyclassification {
 	
 	@Column(name = "prefer_descrip")
 	private String preferDescrip;
+	
+	@OneToMany(mappedBy = "hobbyclassification")
+	private List<Attraction> cAttractions;
 	
 	public Hobbyclassification() {
 		
@@ -48,6 +54,14 @@ public class Hobbyclassification {
 
 	public void setPreferDescrip(String preferDescrip) {
 		this.preferDescrip = preferDescrip;
+	}
+
+	public List<Attraction> getcAttractions() {
+		return cAttractions;
+	}
+
+	public void setcAttractions(List<Attraction> cAttractions) {
+		this.cAttractions = cAttractions;
 	}
 
 }
