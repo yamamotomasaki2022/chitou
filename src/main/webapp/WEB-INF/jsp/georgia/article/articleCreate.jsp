@@ -68,8 +68,8 @@ button, .btn {
 <!--國家編號:  <BR><INPUT TYPE="TEXT" NAME="bigClassID" VALUE="" id="bigClassIDInput"><BR>-->
 <!--文章類型編號:  <BR><INPUT TYPE="TEXT" NAME="articleClassID" VALUE="" id="articleClassIDInput"><BR>-->
 <!--  發布日期: <BR><INPUT TYPE="TEXT" NAME="articleDate" VALUE="" id="articleDateInput"><BR>-->
-<!--選擇上傳的圖片:<INPUT TYPE="FILE" NAME="phototo" ID=""><BR>-->
-圖片上傳:  <BR><INPUT TYPE="TEXT" NAME="photo" VALUE="" id="photoInput"><BR>
+選擇上傳的圖片:<INPUT TYPE="FILE" NAME="photo" ID=""><BR>
+<!--圖片上傳:  <BR><INPUT TYPE="TEXT" NAME="photo" VALUE="" id="photoInput"><BR>-->
 文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="" id="contentInput"><BR>
 <INPUT TYPE="SUBMIT" value="發表文章" name="sentarticle" class="btn">
 </form>
@@ -81,7 +81,7 @@ $('#fastInput').click(function(){
 	//$('#bigClassIDInput').val('101');
 	//$('#articleClassIDInput').val('10194');
 	//$('#articleDateInput').val('20220822');
-	$('#photoInput').val('nowhere.jpg');
+	//$('#photoInput').val('nowhere.jpg');
 	$('#contentInput').val('求分享，求推薦');
 })
 </script>
