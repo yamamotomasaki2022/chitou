@@ -141,6 +141,10 @@ public class LoginService {
 		return acrepo.findByAdminid(id);
 	}
 	
+	public AdminChitou findByAdminUersname(String username) {
+		return acrepo.findByUsername(username);
+	}
+	
 
 	
 	
