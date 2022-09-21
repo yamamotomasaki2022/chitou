@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.cocokang.exception.AttractionNotFoundException;
+
 
 @Service
 @Transactional
@@ -17,11 +17,13 @@ public class AttractionService {
 	private AttractionRepository aRepo;
 
 	//insert
-	public void insert(Attraction attraction,Integer preferID) {
+	public void insert(Attraction attraction) {
+		
 		aRepo.save(attraction);
 	}
 	//update
 	 public void update(Attraction attraction,Integer preferid){  
+		 System.out.println(attraction.getPreferid());
 		 aRepo.save(attraction);
 	 }  
 	//Delete
@@ -29,14 +31,15 @@ public class AttractionService {
 		aRepo.deleteById(attid); 
 	}
 	//Get Attraction By attName
-	public Attraction findByattNameLike(String attName){
-			Optional<Attraction> op = aRepo.findByattNameLike(attName);
-			
-			if(op.isEmpty()) {
-				//如果是空的拋出狀況(自訂訊息)
-				throw new AttractionNotFoundException("Can't find Attraction");
-			}
-			return op.get();
+	public List<Attraction> findByattNameLikeAction(String attName){
+//			Optional<Attraction> op = aRepo.findByattNameLike(attName);
+		
+//			if(op.isEmpty()) {
+//				//如果是空的拋出狀況(自訂訊息)
+//				throw new AttractionNotFoundException("Can't find Attraction");
+//			}
+//			return op.get();
+			return aRepo.findByAttNameLike(attName);
 		}
 //	public List<Attraction> findByNameLike(String attName){
 //		return aRepo.findByattNameLike(attName);
@@ -49,5 +52,4 @@ public class AttractionService {
 	 public List<Attraction> getAll(){
 	 return aRepo.findAll();  
 	 }  
-
 }
