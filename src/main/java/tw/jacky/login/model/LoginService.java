@@ -1,6 +1,11 @@
 package tw.jacky.login.model;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
 
 import javax.transaction.Transactional;
 
@@ -9,7 +14,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.Mergeable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.AbstractAuditable_;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+
 
 
 
@@ -24,6 +33,18 @@ public class LoginService {
 	private  AdminChitouRepository acrepo;
 	@Autowired
 	private MemberBasicInfoDAO mDao;
+	
+	private String staticPath = getStaticPath();
+	
+//	------------------------------------------------------------------------------------------------------------------------------------------------------------
+//	寫絕對路徑的辦法
+	private String getStaticPath() {
+		String path = this.getClass().getClassLoader().getResource("").getPath();
+		path = path.substring(1).replace("target", "src").replaceAll("classes", "main") + "webapp" + File.separator + "WEB-INF"
+				+ File.separator + "resources" + File.separator + "images" + File.separator + "jacky" + File.separator + "login";
+		path = path.replaceAll("/", Matcher.quoteReplacement(File.separator));
+		return path;
+	}
 	
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -64,6 +85,39 @@ public class LoginService {
 		+ dbcolumn + " like '" + value + "%' or "  
 		+ dbcolumn + " like '%" + value + "'";
 		return hql;
+	}
+	
+	
+//	將照片存入專案資料夾中
+	
+	public String savePicToLocal(MultipartFile mf) {
+		System.out.println("進入圖片的方法");
+		
+		String fileName = mf.getOriginalFilename();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		String format = simpleDateFormat.format(new Date());
+		fileName = format + fileName;
+		
+		System.out.println("確定路徑是否正確：" + staticPath);
+		//		你存儲的路徑
+//		String saveFileDir= "C:\\Chitou\\workspace\\Chitou\\src\\main\\webapp\\WEB-INF\\resources\\images\\jacky\\login";
+		//		轉換成虛擬路徑(建立資料夾)
+		File saveFileDirPath = new File(staticPath);
+		//		檢查是否虛擬路徑成功create（確立此資料夾是否成功)
+		saveFileDirPath.mkdirs();
+		// 	存儲文件到此處
+		File saveFile = new File(saveFileDirPath, fileName);
+		try {
+			mf.transferTo(saveFile);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("資料確定儲存了");
+		
+		return fileName;
 	}
 	
 	
@@ -149,6 +203,7 @@ public class LoginService {
 		}
 		return null;
 	}
+
 	
 	
 

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" session="false"%>
 <%@page import="java.util.*, javax.sql.*,tw.jacky.login.model.*"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,9 +12,32 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel= "stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>	
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript">
+	function upload() {
+		//alert('ok');
+		var form1 = document.getElementById("form1");
+		var formData = new FormData(form1);
+
+		fetch('/AdminUploadPic', {
+			method : 'POST',
+			body : formData
+		}).then(function(response) {
+			var status = response.status;
+
+			if (status != 200) {
+				console.log('status1:' + status);
+				return;
+			}
+
+			console.log('status2:' + status);
+		});
+	}
+</script>
 
 </head>
 
@@ -21,14 +45,14 @@
 <body>
 
 
-<%@include file="/WEB-INF/includes/Header.jsp" %>
+	<%@include file="/WEB-INF/includes/Header.jsp"%>
 
 	<h1>管理員界面</h1>
 	<hr>
 	<hr>
-	
-		<FORM ACTION="ToAdminCreateMemberPage" method="post">
-		
+
+	<FORM ACTION="ToAdminCreateMemberPage" method="post">
+
 		<input class="bot" type="submit" name="addnewmember" value="新增會員資料">
 		<hr>
 
@@ -49,22 +73,21 @@
 			<option value="email">郵箱</option>
 			<option value="createtime">創建時間</option>
 			<option value="modify">修改時間</option>
-		</select> 
-		<label>查詢</label> <input type="text" name="searchtext" size="10">
+		</select> <label>查詢</label> <input type="text" name="searchtext" size="10">
 		<input class="bot" type="submit" name="searchmemberinDB" value="查詢">
 
 	</form>
-	
-	
+
+
 	<table id="myTable" class="display">
-	
-	<h1>會員資料表</h1>
-	
-	
-	<hr>
-	<br>
-	
-	
+
+		<h1>會員資料表</h1>
+
+
+		<hr>
+		<br>
+
+
 		<thead>
 			<tr>
 				<th>會員編號</th>
@@ -89,126 +112,136 @@
 			<tr>
 				<form action="AdminDeleteMember" method="post">
 					<input type="hidden" name="_method" value="DELETE">
-					<td><input type="hidden" name="td_memberid" value="<%=bean.getMemberid()%>"><%=bean.getMemberid()%></td>
+					<td><input type="hidden" name="td_memberid"
+						value="<%=bean.getMemberid()%>"><%=bean.getMemberid()%></td>
 					<!--  <td><%=bean.getStatusid()%></td>-->
 					<td><%=bean.getUsername()%></td>
 					<td><%=bean.getPassword()%></td>
-					<td><%=bean.getPhoto()%></td>
+					<td><img width="300px" height="300px" src="<%=bean.getPhoto()%>"></td>
 					<td><%=bean.getEmail()%></td>
 
 					<td><input type=submit name="deletefromadmin" value="刪除"></td>
 				</form>
 
 				<form action="ToAdminModifyMember" method="post">
-				<input type="hidden" name="memberid" value="<%=bean.getMemberid()%>">
-				<input type="hidden" name="statusid" value="<%=bean.getStatusid()%>">
-				<input type="hidden" name="statusid" value="<%=bean.getUsername()%>">
-				<input type="hidden" name="userid" value="<%=bean.getUsername()%>">
-				<input type="hidden" name="password" value="<%=bean.getPassword()%>">
-				<input type="hidden" name="photo" value="<%=bean.getPhoto()%>">
-				<input type="hidden" name="email" value="<%=bean.getEmail()%>">
+					<input type="hidden" name="memberid"
+						value="<%=bean.getMemberid()%>"> <input type="hidden"
+						name="statusid" value="<%=bean.getStatusid()%>"> <input
+						type="hidden" name="statusid" value="<%=bean.getUsername()%>">
+					<input type="hidden" name="userid" value="<%=bean.getUsername()%>">
+					<input type="hidden" name="password"
+						value="<%=bean.getPassword()%>"> <input type="hidden"
+						name="photo" value="<%=bean.getPhoto()%>"> <input
+						type="hidden" name="email" value="<%=bean.getEmail()%>">
 
-				<td><input type=submit name="modifyfromadmin" value="更改"></td>
+					<td><input type=submit name="modifyfromadmin" value="更改"></td>
 				</form>
 			</tr>
-
-		<%
-		}
-		%>
-		
-
-
-	
-	
-
-		
-		
-		<table id="myTable2" class="display">
-		<hr>
-		
-		<h1>管理員資料表</h1>
-		<div> 一般管理員為 1，  主管為 2， 老闆為 3</div>
-		
-		<thead>
-			<tr>
-				<th>管理員編號</th>
-				<th>權限</th>
-				<th>賬號</th>
-				<th>密碼</th>
-				<th>禁止</th>
-				<th>刪除</th>
-				<th>修改</th>
-
-			</tr>
-		</thead>
-
-
-		<tbody>
 
 			<%
-			List<AdminChitou> resultofadmin = (List) request.getSession().getAttribute("adminlist");
-				for (AdminChitou bean : resultofadmin) {
+			}
 			%>
 
-			<tr>
-				<form action="AdminDeleteAdmin" method="post">
-				<input type="hidden" name="_method" value="DELETE">
-					<td><input type="hidden" name="td_memberid" value="<%=bean.getAdminid()%>"><%=bean.getAdminid()%></td>
-					<td><%=bean.getAdminstatus()%></td>
-					<td><%=bean.getUsername()%></td>
-					<td><%=bean.getPassword()%></td>
-					<td><%=bean.getPermission()%></td>
 
 
-					<td><input type=submit name="deletefromadmin" value="刪除"></td>
-				</form>
-
-				<form action="ToAdminModifyAdmin" method="post">
-				<input type="hidden" name="adminid" value="<%=bean.getAdminid()%>">
-				<input type="hidden" name="adminstatus" value="<%=bean.getAdminstatus()%>">
-				<input type="hidden" name="username" value="<%=bean.getUsername()%>">
-				<input type="hidden" name="password" value="<%=bean.getPassword()%>">
-				<input type="hidden" name="permission" value="<%=bean.getPermission()%>">
 
 
-				<td><input type=submit name="modifyfromadmin" value="更改"></td>
-				</form>
-			</tr>
-
-		<%
-		}
-		%>
-		
-		
-		
-		</tbody>
-	</table>
-	
-	<hr>
-	
-	<FORM ACTION="ToAdminCreateAdmin" method="post">
-		
-		<input class="bot" type="submit" name="addnewmember" value="新增管理員資料">
-		<hr>
-	</form>
-	
-	<hr>
-	
-	<form action="adminlogin">
-		<button onclick="">返回登入界面</button>
-	</form>
-	
 
 
-<script>
 
-$(document).ready( function () {
-    $('#myTable').DataTable();
-    $('#myTable2').DataTable();
-} );
+			<table id="myTable2" class="display">
+				<hr>
 
-</script>
+				<h1>管理員資料表</h1>
+				<div>一般管理員為 1， 主管為 2， 老闆為 3</div>
+
+				<thead>
+					<tr>
+						<th>管理員編號</th>
+						<th>權限</th>
+						<th>賬號</th>
+						<th>密碼</th>
+						<th>禁止</th>
+						<th>刪除</th>
+						<th>修改</th>
+
+					</tr>
+				</thead>
 
 
+				<tbody>
+
+					<%
+					List<AdminChitou> resultofadmin = (List) request.getSession().getAttribute("adminlist");
+					for (AdminChitou bean : resultofadmin) {
+					%>
+
+					<tr>
+						<form action="AdminDeleteAdmin" method="post">
+							<input type="hidden" name="_method" value="DELETE">
+							<td><input type="hidden" name="td_memberid"
+								value="<%=bean.getAdminid()%>"><%=bean.getAdminid()%></td>
+							<td><%=bean.getAdminstatus()%></td>
+							<td><%=bean.getUsername()%></td>
+							<td><%=bean.getPassword()%></td>
+							<td><%=bean.getPermission()%></td>
+
+
+							<td><input type=submit name="deletefromadmin" value="刪除"></td>
+						</form>
+
+						<form action="ToAdminModifyAdmin" method="post">
+							<input type="hidden" name="adminid"
+								value="<%=bean.getAdminid()%>"> <input type="hidden"
+								name="adminstatus" value="<%=bean.getAdminstatus()%>"> <input
+								type="hidden" name="username" value="<%=bean.getUsername()%>">
+							<input type="hidden" name="password"
+								value="<%=bean.getPassword()%>"> <input type="hidden"
+								name="permission" value="<%=bean.getPermission()%>">
+
+
+							<td><input type=submit name="modifyfromadmin" value="更改"></td>
+						</form>
+					</tr>
+
+					<%
+					}
+					%>
+
+
+
+				</tbody>
+			</table>
+
+			<hr>
+
+			<FORM ACTION="ToAdminCreateAdmin" method="post">
+
+				<input class="bot" type="submit" name="addnewmember" value="新增管理員資料">
+				<hr>
+			</form>
+
+			<hr>
+
+			<form action="adminlogin">
+				<button onclick="">返回登入界面</button>
+			</form>
+
+			<hr>
+
+			<h3>Upload</h3>
+			<form id="form1">
+				<p>Select File To Upload:<br /> <input type="file" name="myFile" /></p>
+				<button value="upload" onclick="upload()">Upload</button>
+			</form>
+
+
+
+			<script>
+				$(document).ready(function() {
+					$('#myTable').DataTable();
+					$('#myTable2').DataTable();
+				});
+			</script>
 </body>
 </html>

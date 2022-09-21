@@ -38,6 +38,8 @@ public class LoginController {
 	String adminhomepage= "jacky/login/AdminHomePage";
 	String memberlist = "memberlist";
 	String adminlist = "adminlist";
+	
+	String piclocation= "images/jacky/login/";
 
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -78,7 +80,7 @@ public class LoginController {
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	秀出memberlist
-	@RequestMapping(path = "/memberlist")
+	@GetMapping(path = "/memberlist")
 	public String memberlist (Model m) {
 		List<MemberBasicInfo> memberlist = lservice.memberFindAll();
 		m.addAttribute("memberlist",memberlist);
@@ -87,7 +89,7 @@ public class LoginController {
 
 	
 //	秀出adminlist
-	@RequestMapping(path = "/adminlist")
+	@GetMapping(path = "/adminlist")
 	public String adminlist (Model m) {
 		List<AdminChitou> adminlist = lservice.adminFindAll();
 		m.addAttribute("adminlist",adminlist);
@@ -99,11 +101,19 @@ public class LoginController {
 
 //	管理員新增會員
 	@PostMapping(path = "/admininsertmember")
-	public String processAdminInsertMember(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("photo") 
-			String photo,@RequestParam("email") String email) {
+	public String processAdminInsertMember(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("myFile") 
+	MultipartFile mf,@RequestParam("email") String email) {
+//		將照片存入文件夾内
+		
+		String photo = lservice.savePicToLocal(mf);
+		String pic_locaiton = piclocation + photo;
+		
+		System.out.println("生成bean之前");
 //		會員預設權力為 1
-		MemberBasicInfo bean = new MemberBasicInfo(1,username,password,photo,email);
-		MemberBasicInfo adminInsertMember = lservice.adminInsertMember(bean);
+		MemberBasicInfo bean = new MemberBasicInfo(1,username,password,pic_locaiton,email);
+		lservice.adminInsertMember(bean);
+		
+		System.out.println("生成bean之后，導回memberlist");
 		
 		return "redirect:" + memberlist ;
 	}
@@ -120,9 +130,14 @@ public class LoginController {
 //  管理員更新會員
 	@PutMapping(path = "/AdminModifyMember")
 	public String processAdminModifyMember(@RequestParam("memberid") int memberid, @RequestParam("statusid") int statusid, @RequestParam("username")
-			String username, @RequestParam("password") String password, @RequestParam("photo") String photo, @RequestParam("email") String email) {
+			String username, @RequestParam("password") String password, @RequestParam("myFile") 
+			MultipartFile mf, @RequestParam("email") String email) {
 		
-		MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid,statusid,username,password,photo,email);
+		
+		String photo = lservice.savePicToLocal(mf);
+		String pic_locaiton = piclocation + photo;
+		
+		MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid,statusid,username,password,pic_locaiton,email);
 		lservice.adminModifyMember(memberBasicInfo);
 		
 		return "redirect:" + memberlist;
@@ -137,23 +152,6 @@ public class LoginController {
 		return "jacky/login/SearchPage";
 	}
 	
-//	上傳會員圖片到文件夾
-	@PostMapping(path = "/AdminUploadPic")
-	@ResponseBody
-	public String processAdminUploadPic(@RequestParam("myFile") MultipartFile mf) throws IllegalStateException, IOException {
-		String fileName = mf.getOriginalFilename();
-		//		你存儲的路徑
-		String saveFileDir= "c:/temp/upload/";
-		//		轉換成虛擬路徑(建立資料夾)
-		File saveFileDirPath = new File(saveFileDir);
-		//		檢查是否虛擬路徑成功create（確立此資料夾是否成功)
-		saveFileDirPath.mkdirs();
-		// 	存儲文件到此處
-		File saveFile = new File(saveFileDirPath, fileName);
-		mf.transferTo(saveFile);
-		
-		return "savefile:" + saveFile;
-	}
 	
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -245,7 +243,6 @@ public class LoginController {
 		AdminChitou adminChitou = new AdminChitou(adminid_int,adminstatus_int,username,password,permission_boolean);
 		lservice.adminInsertAdmin(adminChitou);
 		return "redirect:" + adminlist;
-		
 	}
 	
 	
