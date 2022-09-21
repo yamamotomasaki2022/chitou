@@ -4,16 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import tw.cocokang.attraction.model.Attraction;
 import tw.cocokang.attraction.model.AttractionService;
@@ -44,11 +40,8 @@ public class AttractionController {
 	@PostMapping("/addAttractionAction")
 	public String insert(@ModelAttribute("attraction") Attraction attraction, Integer preferid, Model m) {
 
-//		Integer preferid_2 = attraction.getHobbyclassification().getPreferid();	
-		
-		
+//		Integer preferid_2 = attraction.getHobbyclassification().getPreferid();		
 //		Attraction attractionbean = aService.selectByAttid(attraction.getAttid());
-		
 		  Hobbyclassification hobbyclassification = new Hobbyclassification();
 		  hobbyclassification.setPreferid(attraction.getPreferid());
 		  attraction.setHobbyclassification(hobbyclassification);
@@ -73,9 +66,14 @@ public class AttractionController {
 
 	@PostMapping("/updateAttraction")
 	public String updateAction(@ModelAttribute("selectByAttid") Attraction attraction, Integer preferid, Model m) {
-		System.out.println(attraction.getPreferid());
-		System.out.println(preferid);
-		aService.update(attraction, preferid);
+
+		
+		
+		  Hobbyclassification hobbyclassification = new Hobbyclassification();
+		  hobbyclassification.setPreferid(attraction.getPreferid());
+		  attraction.setHobbyclassification(hobbyclassification);
+		  
+		  aService.update(attraction, preferid);
 
 		List<Attraction> attractionAll = aService.getAll();
 		m.addAttribute("listAttraction", attractionAll);
@@ -97,7 +95,7 @@ public class AttractionController {
 	@PostMapping("/searchAttraction")
 	public String selectbyname(@RequestParam("search") String attName, Model m) {
 //    	Attraction attraction = aService.findByattNameLike(attName);
-		List<Attraction> attraction = aService.findByattNameLikeAction(attName);
+		List<Attraction> attraction = aService.findAttractionsAction(attName);
 		m.addAttribute("attraction", attraction);
 		return path + "kangSelectBackground";
 
