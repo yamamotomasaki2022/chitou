@@ -19,18 +19,11 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 	
 	</head>
 <body>	
-	<header>
-			<nav class="navbar navbar-expand-md navbar-dark" style="background-color: lightblue">
-  					 <div>
-  				  		<img src ="images/chitou.png" />
-                        <a href="http://localhost:8080/HibernateChiTou/Kang-list.jsp" class="navbar-brand"> ChiTou </a>
-                    </div>
 
-                    <ul class="navbar-nav">
-                        <li><a href="http://localhost:8080/HibernateChiTou/Kang-list.jsp" class="nav-link">景點項目</a></li>
-                    </ul>
-              </nav>
-	</header>
+
+	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
+
 	            <br>
  			<div class="container col-md-5">
   

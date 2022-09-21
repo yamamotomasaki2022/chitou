@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.regex.Matcher;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,22 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 	
+	
+	private String staticPath = getStaticPath();
+	
+	
 	String mainUrl="http://localhost:8080/article.main";
+	
+	
+//	寫絕對路徑辦法(圖片)
+	private String getStaticPath() {
+		String path = this.getClass().getClassLoader().getResource("").getPath();
+		path = path.substring(1).replace("target", "src").replaceAll("classes", "main") + "webapp" + File.separator + "WEB-INF"
+				+ File.separator + "resources" + File.separator + "images" + File.separator + "georgia" + File.separator + "picture";
+		path = path.replaceAll("/", Matcher.quoteReplacement(File.separator));
+		return path;
+	}
+	
 
 
 //	**********文章首頁********************************************
@@ -60,7 +76,7 @@ public class ArticleController {
 		
 		String photo = mf.getOriginalFilename();
 		System.out.println(photo);
-		String saveFileDir = "C:/sspprriinngg/chitou/src/main/webapp/WEB-INF/resources/images/georgia/picture";
+		String saveFileDir = staticPath;
         File saveFilePath = new File(saveFileDir, photo);
         mf.transferTo(saveFilePath);
 		
@@ -104,7 +120,7 @@ public class ArticleController {
 			articleService.update(updateBean);
 		}else {
 			String photo = mf.getOriginalFilename();
-			String saveFileDir = "C:/sspprriinngg/chitou/src/main/webapp/WEB-INF/resources/images/georgia/picture";
+			String saveFileDir = staticPath;
 	        File saveFilePath = new File(saveFileDir, photo);
 	        mf.transferTo(saveFilePath);
 	        Article updateBean = new Article(postID,posterID,countryID,typeID,title,content,date,photo);

@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
 <title>新增文章</title>
 <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -23,8 +22,10 @@ button, .btn {
 </style>
 </head>
 <body>
-<header>
-</header>
+
+
+<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
 <br>
 <form action="article.insert" method="post" enctype="multipart/form-data">
 會員ID:  <BR><INPUT TYPE="TEXT" NAME="posterID" VALUE="" id="posterIDInput"><BR>

@@ -43,9 +43,11 @@ table {
 </head>
 
 <body>
-<header>
 
-</header>
+
+	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
+
 <br>
 
 <INPUT TYPE="Button" value="返回" name="goBack" class="btn" onclick="back()"><br><br>

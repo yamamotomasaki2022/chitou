@@ -44,7 +44,11 @@ button, .btn {
 </style>
 </head>
 <body>
-	<header> </header>
+
+
+	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
+
 	<br>
 	<form action="article.new" method="get">
 		<INPUT TYPE="SUBMIT" value="新增文章" name="newarticle" class="btn">
