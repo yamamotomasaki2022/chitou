@@ -48,8 +48,8 @@ response.setContentType("text/html;charset=UTF-8");
 				                <td>${bean.owner}</td>
 				                <td>${bean.averagePrice}</td>
 				                <td>
-				                	<a href="images/hotelPhotos/hotelNB${bean.hotelID}/photo1.jpg">
-				                	<img src="images/hotelPhotos/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ></a>
+				                	<a href="images/weber/hotel/hotelNB${bean.hotelID}/photo1.jpg">
+				                	<img src="images/weber/hotel/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ></a>
 				                </td>
 				                <td>
 				            		<form action="toUpdateHotel" method="post">
@@ -65,9 +65,10 @@ response.setContentType("text/html;charset=UTF-8");
 				            		</form>
 				            	</td>
 				            	<td>
-				            		<form action="room" method="get">
+				            		<form action="toRoomPage" method="get">
+				            			<input type="hidden" name="name" value="${bean.name}">
 				            			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
-				                		<input type="submit" class="update" name="toUpdatePage" value="查看房間">
+				                		<input type="submit" class="update" value="查看房間">
 				            		</form>
 				            	</td>
 		              	</tr>

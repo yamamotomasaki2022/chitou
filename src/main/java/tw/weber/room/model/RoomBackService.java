@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tw.weber.roomStyle.model.RoomStyle;
+
 @Service
 @Transactional
 public class RoomBackService {
@@ -14,53 +16,38 @@ public class RoomBackService {
 	@Autowired
 	private RoomRepository rRepo;
 	
-	public List<Room> findAll(){
-		return rRepo.findAll();
+	public int[] addRooms(int roomAmount,RoomStyle roomStyle) {
+		int[] roomNumbers = new int[roomAmount];
+		for(int i = 0; i < roomAmount ; i++) {
+			Room room = new Room();
+			room.setStyle(roomStyle);
+			Room result = rRepo.save(room);
+			roomNumbers[i-1] = result.getRoomID();
+			System.out.println("new room:"+result.getRoomID());
+		}
+		return roomNumbers;
 	}
 	
-	public Room findById(int roomID){
-		Optional<Room> op = rRepo.findById(roomID);
-		return op.get();
-	}
-	
-	public List<Room> selectByKey(String type,String keyword){
-//		if(type.equals("hotelID")) {
-//			return rRepo.findAllByHotelIDContaining(keyword);
-//		}else if(type.equals("name")) {
-//			return rRepo.findAllByNameContaining(keyword);
-//		}else if(type.equals("address")) {
-//			return rRepo.findAllByAddressContaining(keyword);
-//		}else if(type.equals("type")) {
-//			return rRepo.findAllByTypeContaining(keyword);
-//		}else if(type.equals("intro")) {
-//			return rRepo.findAllByIntroContaining(keyword);
-//		}else if(type.equals("country")) {
-//			return rRepo.findAllByCountryContaining(keyword);
-//		}else if(type.equals("phone")) {
-//			return rRepo.findAllByPhoneContaining(keyword);
-//		}else if(type.equals("status")) {
-//			return rRepo.findAllByStatusContaining(keyword);
-//		}else if(type.equals("capacity")) {
-//			return rRepo.findAllByCapacity(keyword);
-//		}else if(type.equals("owner")) {
-//			return rRepo.findAllByOwnerContaining(keyword);
-//		}else if(type.equals("averagePrice")) {
-//			return rRepo.findAllByAveragePriceContaining(keyword);
-//		}
-		return null;
-	}
-	
-	public Room insert(Room room) {
-		return rRepo.save(room);
-	}
-	
-	public Room update(Room room) {
-		return rRepo.save(room);
-	}
-	
-	public boolean delete(int roomID) {
-		rRepo.deleteById(roomID);
-		return true;
-	}
+//	public List<Room> findAll(){
+//		return rRepo.findAll();
+//	}
+//	
+//	public Room findById(int roomID){
+//		Optional<Room> op = rRepo.findById(roomID);
+//		return op.get();
+//	}
+//	
+//	public Room insert(Room room) {
+//		return rRepo.save(room);
+//	}
+//	
+//	public Room update(Room room) {
+//		return rRepo.save(room);
+//	}
+//	
+//	public boolean delete(int roomID) {
+//		rRepo.deleteById(roomID);
+//		return true;
+//	}
 	
 }

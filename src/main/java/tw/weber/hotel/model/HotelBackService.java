@@ -18,7 +18,7 @@ public class HotelBackService {
 	private HotelRepository hRepo;
 	
 	//C:\Users\weber\AppData\Local\Temp\tomcat.8080.3056583608791830196\work\Tomcat\localhost\ROOT\.\src\main\webapp\WEB-INF\resources\images\hotelNB9\hotelPhotos\260.jpg 
-	private String photoFolder = ".//src//main//webapp//WEB-INF//resources//images//hotelPhotos//";
+	private String photoFolder = ".//src//main//webapp//WEB-INF//resources//images//weber//hotel//";
 	
 	public List<Hotel> findAll(){
 		return hRepo.findAll();
@@ -62,6 +62,7 @@ public class HotelBackService {
 	
 	public boolean delete(int hotelID) {
 		hRepo.deleteById(hotelID);
+		deletePhotoFolder(hotelID);
 		return true;
 	}
 	
