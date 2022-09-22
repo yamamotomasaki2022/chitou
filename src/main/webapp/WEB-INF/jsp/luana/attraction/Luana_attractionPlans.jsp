@@ -13,6 +13,9 @@
 <%@ include file="../Luana_include/head.jsp"%>
 </head>
 <body>
+
+	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
 	<div>
 		<%@ include file="../Luana_include/navbar.jsp"%>
 		<div class='container'>
