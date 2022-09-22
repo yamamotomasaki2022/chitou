@@ -1,15 +1,13 @@
-<%@page import="java.util.List"%>
-<%@page import="tw.cocokang.attraction.model.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<title>ChiTou後台管理系統-景點總覽</title>
-<!-- plugins:css -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChiTou後台管理系統-新增景點</title>
 <link rel="stylesheet" href="/css/coco/feather.css">
 <link rel="stylesheet" href="/css/coco/themify-icons.css">
 <link rel="stylesheet" href="/css/coco/vendor.bundle.base.css">
@@ -17,7 +15,19 @@
 
 <link rel="stylesheet" href="/css/coco/vertical-layout-light/style.css">
 <link rel="shortcut icon" href="/images/coco/favicon.png" />
+
+<!--設定長編輯器寬度-->
+<style>
+
+.ck-editor__editable {
+	min-height: 100px;
+	/* width: 100%;
+            margin: 0 auto; */
+}
+</style>
 </head>
+
+<body>
 <body>
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
@@ -317,6 +327,7 @@
 					<!-- chat tab ends -->
 				</div>
 			</div>
+			<!-- partial -->
 			<!-- 右邊欄位 (不需要更動)-->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
@@ -404,152 +415,116 @@
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="row">
-
-						<div class="col-lg-12 grid-margin stretch-card">
+						<div class="col-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title text-primary">&nbsp;景點總覽</h4>
-									<p class="card-description" href="addAttraction">
-										<button type="button" class="btn btn-inverse-primary btn-fw">
-											<i class="ti-plus"></i>&nbsp;新增景點
-										</button>
-									</p>
-									<div class="table-responsive">
-										<table class="table table-hover">
-											<thead>
-												<tr>
-													<th>景點圖片</th>
-													<th>景點編號</th>
-													<th>方案編號</th>
-													<th>景點名稱</th>
-													<th>景點位置</th>
-													<th>景點說明</th>
-													<th>購票須知:</th>
-													<th>操作:</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="attraction" items="${listAttraction}">
-													<tr>
-														<form action="updateAttraction" method="get">
-															<td></td>
-															<td><c:out value="${attraction.attid}" /></td>
-															<td><c:out
-																	value="${attraction.hobbyclassification.preferid}" /></td>
-															<td><c:out value="${attraction.attName}" /></td>
-															<td><c:out value="${attraction.attLocation}" /></td>
-															<td><c:out
-																	value="${attraction.attDescription.substring(0,5)}" /></td>
-															<td><c:out value="${attraction.attNotice}" /></td>
+									<!--標頭開始-->
+									<h4 class="card-title text-primary">&nbsp;新增景點</h4>
+									<p class="card-description">請輸入您要新增的景點</p>
+									<!--form開始-->
+									<form class="forms-sample">
+										<div class="form-group">
+											<label>景點圖片:</label> <input type="file" name="img[]"
+												class="file-upload-default">
+											<div class="input-group col-xs-12">
+												<input type="text" class="form-control file-upload-info"
+													disabled placeholder="Upload Image"> <span
+													class="input-group-append">
+													<button class="file-upload-browse btn btn-primary"
+														type="button">Upload</button>
+												</span>
+											</div>
+										</div>
 
+										<div class="form-group">
+											<label path="attid">景點編號:</label> <input type="text"
+												path="attid" class="form-control" id=""
+												placeholder="請輸入新增的景點ID">
+										</div>
+										<div class="form-group">
+											<label path="preferid" path="preferid">方案編號:</label> <select
+												class="form-control">
+												<option>1</option>
+												<option>2</option>
+											</select>
+										</div>
 
+										<div class="form-group">
+											<label>景點名稱:</label> <input type="" class="form-control"
+												id="" placeholder="請輸入新增的景點名稱">
+										</div>
+										<div class="form-group">
+											<label path="preferid">方案編號:</label> <input type=""
+												path="preferid" class="form-control" id=""
+												placeholder="請輸入新增的方案編號">
+										</div>
 
-															<td><input type="hidden" name="attid"
-																value="${attraction.attid}"> <input
-																type="hidden" name="hobbyclassification"
-																value="${attraction.hobbyclassification.preferid}">
-																<input type="hidden" name="attName"
-																value="${attraction.attName}"> <input
-																type="hidden" name="attLocation"
-																value="${attraction.attLocation}"> <input
-																type="hidden" name="attDescription"
-																value="${attraction.attDescription}"> <input
-																type="hidden" name="attNotice"
-																value="${attraction.attNotice}">
+										<div class="form-group">
+											<label>景點位置:</label> <input type="" class="form-control"
+												id="" placeholder="請選擇新增的景點位置">
+										</div>
 
-																<button type="submit" name="update"
-																	class="btn btn-inverse-success btn-icon">
-																	<i class="ti-pencil-alt"></i>
-																</button> &nbsp; &nbsp;
-																 <!-- 刪除 -->
-																<button 
-																	href="deleteAttraction?attid=${attraction.attid}"
-																	class="btn btn-inverse-danger btn-icon">
-																	<i class="ti-trash"></i>
-																</button></td>
-												</c:forEach>
+										<div class="form-group">
+											<label> 景點說明: </label>
+											<div id="editor">
+												<textarea></textarea>
+											</div>
+										</div>
+										<br>
 
 
 
 
 
-												<tr>
-													<td class="py-1"><img
-														src="../../images/faces/face3.jpg" alt="image" /></td>
-													<td>John Richards</td>
-													<td>
-														<div class="progress">
-															<div class="progress-bar bg-warning" role="progressbar"
-																style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-																aria-valuemax="100"></div>
-														</div>
-													</td>
-													<td>$138.00</td>
-													<td>Apr 12, 2015</td>
-													<td>June 16, 2015</td>
-													<td>
-														<button type="button"
-															class="btn btn-inverse-success btn-icon">
-															<i class="ti-pencil-alt"></i>
-														</button> &nbsp; &nbsp;
-														<button type="button"
-															class="btn btn-inverse-danger btn-icon">
-															<i class="ti-trash"></i>
-														</button>
-													</td>
-												</tr>
-
-
-
-
-
-
-											</tbody>
-										</table>
-									</div>
+										<!-- <div class="form-group">
+                                                <label for="exampleTextarea1">Textarea</label>
+                                                <textarea class="form-control" id="exampleTextarea1"
+                                                    rows="4"></textarea>
+                                            </div> -->
+										<button type="submit" class="btn btn-primary mr-2">送出</button>
+										<button class="btn btn-light">返回</button>
+									</form>
 								</div>
 							</div>
 						</div>
-
-
-						<footer class="footer">
-							<div
-								class="d-sm-flex justify-content-center justify-content-sm-between">
-								<span
-									class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
-									© 2021. Premium <a href="https://www.bootstrapdash.com/"
-									target="_blank">Bootstrap admin template</a> from
-									BootstrapDash. All rights reserved.
-								</span> <span
-									class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted
-									& made with <i class="ti-heart text-danger ml-1"></i>
-								</span>
-							</div>
-							<div
-								class="d-sm-flex justify-content-center justify-content-sm-between">
-								<span
-									class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed
-									by <a href="https://www.themewagon.com/" target="_blank">Themewagon</a>
-								</span>
-							</div>
-						</footer>
-						<!-- partial -->
 					</div>
-					<!-- main-panel ends -->
 				</div>
-				<!-- page-body-wrapper ends -->
 			</div>
 
 
+		</div>
+	</div>
+	</div>
 
 
 
-			<script src="/js/coco/vendor.bundle.base.js"></script>
-			<!-- inject:js -->
-			<script src="/js/coco/off-canvas.js"></script>
-			<script src="/js/coco/hoverable-collapse.js"></script>
-			<script src="/js/coco/template.js"></script>
-			<script src="/js/coco/settings.js"></script>
-			<script src="/js/coco/todolist.js"></script>
+
+	<!-- plugins:js -->
+	<script src="/js/coco/vendor.bundle.base.js"></script>
+	<!-- ckeditor:js & function-->
+	<script src="/js/coco/ckeditor.js"></script>
+	<script>
+
+            ClassicEditor
+                .create(document.querySelector('#editor'))
+                .catch(error => {
+                    console.error(error)
+                })
+                .replace({
+                    height: 400,
+                    filebrowserUploadUrl: '/addAttractionAction/upload_ckeditor',
+                    filebrowserBrowseUrl: ''
+                });
+
+
+        </script>
+
+	<!-- inject:js -->
+	<script src="/js/coco/off-canvas.js"></script>
+	<script src="/js/coco/hoverable-collapse.js"></script>
+	<script src="/js/coco/template.js"></script>
+	<script src="/js/coco/settings.js"></script>
+	<script src="/js/coco/todolist.js"></script>
 </body>
+
 </html>
