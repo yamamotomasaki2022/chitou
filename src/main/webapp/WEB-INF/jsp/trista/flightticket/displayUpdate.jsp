@@ -13,6 +13,8 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <title>修改航班確認</title>
 </head>
 <body>
+	<%@include file="/WEB-INF/includes/Header.jsp"%>
+
 
 <h2>
 修改航班資料如下請確認

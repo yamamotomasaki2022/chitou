@@ -37,16 +37,10 @@ center;
 </head>
 
 <body>
-<header>
-   <nav class="navbar navbar-expand-md navbar-dark" style="background-color: lightblue">
-        <div>
-          <img src ="images/chitou.png" />
-                        <a>一起去Chitou</a>
-                    </div>
 
-                    
-              </nav>
- </header>
+
+	<%@include file="/WEB-INF/includes/Header.jsp"%>
+
 <form:form action="addFlightTicket" method="post" modelAttribute="flightTicket">
 <fieldset><legend>新增航班</legend>
 <div>

@@ -11,6 +11,8 @@ response.setContentType("text/html;charset=UTF-8");
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>完成刪除</title>
 </head>
+	<%@include file="/WEB-INF/includes/Header.jsp"%>
+
 <style>
 table{
 border:3px dashed black;
