@@ -44,7 +44,11 @@ button, .btn {
 </style>
 </head>
 <body>
-	<header> </header>
+
+
+	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
+
 	<br>
 	<form action="article.new" method="get">
 		<INPUT TYPE="SUBMIT" value="新增文章" name="newarticle" class="btn">
@@ -111,7 +115,7 @@ button, .btn {
 				<td class="centre"><%=bean.getTypeID()%></td>
 				<td><%=bean.getTitle()%></td>
 				<td class="centre"><%=bean.getDate()%></td>
-				<td><%=bean.getPhoto()%></td>
+				<td><img src= "images/georgia/picture/<%=bean.getPhoto()%>" alt="<%=(bean.getPhoto().length() ==0)?"":"圖片歪腰(｡•́︿•̀｡)"%>"  width="200"  /></td>
 				<td><%=bean.getContent()%><h7 style="color:gray">......</h7>
 					<h7 style="color:blue">查看詳細內文</h7></td>
 				<td class="centre">

@@ -43,9 +43,11 @@ table {
 </head>
 
 <body>
-<header>
 
-</header>
+
+	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
+
 <br>
 
 <INPUT TYPE="Button" value="返回" name="goBack" class="btn" onclick="back()"><br><br>
@@ -68,7 +70,7 @@ for (Article bean : list) {
 					<td name="typeID" class="centre"><%=bean.getTypeID() %></td>
 					<td name="title"><%=bean.getTitle() %></td>
 					<td name="date" class="centre"><%=bean.getDate() %></td>
-					<td name="photo"><%=bean.getPhoto() %></td>
+					<td><img src= "images/georgia/picture/<%=bean.getPhoto()%>" alt="<%=(bean.getPhoto().length() ==0)?"":"圖片歪腰(｡•́︿•̀｡)"%>"  width="200"  /></td>
 					<td name="content"><%=bean.getContent() %><h7 style="color:gray">......</h7><h7 style="color:blue">查看詳細內文</h7></td>
 				</tr>
 			<%

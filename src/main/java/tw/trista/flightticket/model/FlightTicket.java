@@ -8,46 +8,50 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "FlightTicket")
+@Table(name = "flightticket")
 @Component
 public class FlightTicket {
 	
 	public FlightTicket(Integer classID, String departureTime, String arrivalTime, String originID,
 			String destinationID) {
 		super();
-		this.classID = classID;
-		this.departureTime = departureTime;
-		this.arrivalTime = arrivalTime;
-		this.originID = originID;
-		this.destinationID = destinationID;
+		this.classid = classID;
+		this.departuretime = departureTime;
+		this.arrivaltime = arrivalTime;
+		this.originid = originID;
+		this.destinationid = destinationID;
 	}
 	
 	public FlightTicket(String flightID, Integer classID, String departureTime, String arrivalTime, Integer fare,
 			String airline, String originID, String destinationID) {
 		super();
-		this.flightID = flightID;
-		this.classID = classID;
-		this.departureTime = departureTime;
-		this.arrivalTime = arrivalTime;
+		this.flightid = flightID;
+		this.classid = classID;
+		this.departuretime = departureTime;
+		this.arrivaltime = arrivalTime;
 		this.fare = fare;
 		this.airline = airline;
-		this.originID = originID;
-		this.destinationID = destinationID;
+		this.originid = originID;
+		this.destinationid = destinationID;
 	}
 
+	public FlightTicket(String flightID, Integer fare) {
+		this.flightid = flightID;
+		this.fare = fare;
+	}
 	
 	@Id
-	@Column(name = "flightID")
-	private String flightID;
+	@Column(name = "flightid")
+	private String flightid;
 	
-	@Column(name = "classID")
-	private Integer classID;
+	@Column(name = "classid")
+	private Integer classid;
 	
-	@Column(name = "departureTime")
-	private String departureTime;
+	@Column(name = "departuretime")
+	private String departuretime;
 	
-	@Column(name = "arrivalTime")
-	private String arrivalTime;
+	@Column(name = "arrivaltime")
+	private String arrivaltime;
 	
 	@Column(name = "fare")
 	private Integer fare;
@@ -55,46 +59,46 @@ public class FlightTicket {
 	@Column(name = "airline")
 	private String airline;
 	
-	@Column(name = "originID")
-	private String originID;
+	@Column(name = "originid")
+	private String originid;
 	
-	@Column(name = "destinationID")
-	private String destinationID;
+	@Column(name = "destinationiD")
+	private String destinationid;
 	
 	public FlightTicket() {
 		
 	}
 
 	public String getFlightID() {
-		return flightID;
+		return flightid;
 	}
 
 	public void setFlightID(String flightID) {
-		this.flightID = flightID;
+		this.flightid = flightID;
 	}
 
 	public Integer getClassID() {
-		return classID;
+		return classid;
 	}
 
 	public void setClassID(Integer classID) {
-		this.classID = classID;
+		this.classid = classID;
 	}
 
 	public String getDepartureTime() {
-		return departureTime;
+		return departuretime;
 	}
 
 	public void setDepartureTime(String departureTime) {
-		this.departureTime = departureTime;
+		this.departuretime = departureTime;
 	}
 
 	public String getArrivalTime() {
-		return arrivalTime;
+		return arrivaltime;
 	}
 
 	public void setArrivalTime(String arrivalTime) {
-		this.arrivalTime = arrivalTime;
+		this.arrivaltime = arrivalTime;
 	}
 
 	public Integer getFare() {
@@ -114,19 +118,28 @@ public class FlightTicket {
 	}
 
 	public String getOriginID() {
-		return originID;
+		return originid;
 	}
 
 	public void setOriginID(String originID) {
-		this.originID = originID;
+		this.originid = originID;
 	}
 
 	public String getDestinationID() {
-		return destinationID;
+		return destinationid;
 	}
 
 	public void setDestinationID(String destinationID) {
-		this.destinationID = destinationID;
+		this.destinationid = destinationID;
 	}
+
+	@Override
+	public String toString() {
+		return "FlightTicket [flightID=" + flightid + ", classID=" + classid + ", departureTime=" + departuretime
+				+ ", arrivalTime=" + arrivaltime + ", fare=" + fare + ", airline=" + airline + ", originID=" + originid
+				+ ", destinationID=" + destinationid + "]";
+	}
+	
+	
 	
 }

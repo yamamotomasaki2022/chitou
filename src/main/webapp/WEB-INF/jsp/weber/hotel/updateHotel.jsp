@@ -60,7 +60,7 @@
     			success:function(data){
     				for(var i=1 ; i <= data ; i++){
 	    				$('#oldpics').empty();
-    					$('#oldpics').append('<img id="img" src="images/hotelPhotos/hotelNB${hotelID}/photo'+i+'.jpg" class="box">');
+    					$('#oldpics').append('<img id="img" src="images/weber/hotel/hotelNB${hotelID}/photo'+i+'.jpg" class="box">');
     				}
     			}
     		});

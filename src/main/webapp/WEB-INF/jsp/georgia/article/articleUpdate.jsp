@@ -33,20 +33,23 @@ button, .btn {
 </head>
 
 <body>
-<header>
 
-</header>
+
+	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
+
 <br>
 <%
 Article tt=(Article)request.getAttribute("findByIdBean");
 String articleCiassIDStr=Integer.toString(tt.getTypeID());
 int typeID = Integer.parseInt(articleCiassIDStr.substring(3));
 %> 
-<form action="article.update" method="post">
+<form action="article.update" method="post" enctype="multipart/form-data">
 <input type="hidden" name="_method" value="PUT">
 <INPUT TYPE="HIDDEN" NAME="postID" VALUE="<%= tt.getPostID() %>">
 <INPUT TYPE="HIDDEN" NAME="posterID" VALUE="<%= tt.getPosterID() %>">
 <INPUT TYPE="HIDDEN" NAME="date" VALUE="<%= tt.getDate() %>">
+<INPUT TYPE="HIDDEN" NAME="photo" value="<%= tt.getPhoto() %>">
 文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="<%= tt.getTitle() %>"><BR>
 <br> 選擇國家<select name="chooseCountry">
 			<optgroup label="亞洲">
@@ -85,7 +88,9 @@ int typeID = Integer.parseInt(articleCiassIDStr.substring(3));
 			</select> 
 		<br><br>
 發布日期: <%= tt.getDate() %><BR><BR>
-圖片上傳:  <BR><INPUT TYPE="TEXT" NAME="photo" VALUE="<%= (tt.getPhoto()==null)?"":tt.getPhoto() %>"><BR>
+圖片:<img src= "images/georgia/picture/<%=tt.getPhoto()%>" alt="<%=(tt.getPhoto().length() ==0)?"添加一張圖片看看↓":"圖片歪腰(｡•́︿•̀｡)請重新選擇上傳圖片"%>" width="300" /><BR><BR>
+選擇新的上傳圖片:<INPUT TYPE="FILE" NAME="photoRenew" ID=""><BR><BR>
+<!--圖片上傳:  <BR><INPUT TYPE="TEXT" NAME="photo" VALUE="<%= (tt.getPhoto()==null)?"":tt.getPhoto() %>">-->
 文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="<%= tt.getContent() %>"><BR>
 
 

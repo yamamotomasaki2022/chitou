@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8" session="false"%>
 <%@page import="java.util.*, javax.sql.*,tw.jacky.login.model.*"%>
 
+<%  int  status = (int) request.getSession().getAttribute("status"); %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -141,17 +144,13 @@
 			<%
 			}
 			%>
-
-
-
-
-
-
-
-
-			<table id="myTable2" class="display">
+			
+	</table>
+<div id='aaa'  >
+	<table id="myTable2" class="display" >
 				<hr>
-
+				
+			
 				<h1>管理員資料表</h1>
 				<div>一般管理員為 1， 主管為 2， 老闆為 3</div>
 
@@ -167,7 +166,6 @@
 
 					</tr>
 				</thead>
-
 
 				<tbody>
 
@@ -199,7 +197,6 @@
 								value="<%=bean.getPassword()%>"> <input type="hidden"
 								name="permission" value="<%=bean.getPermission()%>">
 
-
 							<td><input type=submit name="modifyfromadmin" value="更改"></td>
 						</form>
 					</tr>
@@ -212,7 +209,7 @@
 
 				</tbody>
 			</table>
-
+		
 			<hr>
 
 			<FORM ACTION="ToAdminCreateAdmin" method="post">
@@ -220,21 +217,16 @@
 				<input class="bot" type="submit" name="addnewmember" value="新增管理員資料">
 				<hr>
 			</form>
+</div>	
+
 
 			<hr>
 
-			<form action="adminlogin">
+			<form action="logout">
 				<button onclick="">返回登入界面</button>
 			</form>
 
 			<hr>
-
-			<h3>Upload</h3>
-			<form id="form1">
-				<p>Select File To Upload:<br /> <input type="file" name="myFile" /></p>
-				<button value="upload" onclick="upload()">Upload</button>
-			</form>
-
 
 
 			<script>
@@ -242,6 +234,20 @@
 					$('#myTable').DataTable();
 					$('#myTable2').DataTable();
 				});
+				
+				var status = ${status}
+				
+				if(status == 1 ){
+					alert("我是admin")
+					document.getElementById('aaa').setAttribute("style", "display : none")
+				}else if(status == 2){
+					alert("我是manager")
+					document.getElementById('aaa').setAttribute("style", "display : '' ")
+				}else{
+					alert("我是boss")
+					document.getElementById('aaa').setAttribute("style", "display : '' ")
+				}
+
 			</script>
 </body>
 </html>

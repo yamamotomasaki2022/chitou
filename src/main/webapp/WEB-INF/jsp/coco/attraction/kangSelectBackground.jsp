@@ -24,19 +24,10 @@ response.setCharacterEncoding("UTF-8");
 
 </head>
 <body BGCOLOR="#FDF5E6">
-	<header> <nav class="navbar navbar-expand-md navbar-dark"
-		style="background-color: lightblue">
-	<div>
-		<img src="images/chitou.png" /> <a
-			href="http://localhost:8080/ChiTou/kang-DisplayUser.jsp"
-			class="navbar-brand"> ChiTou </a>
-	</div>
 
-	<ul class="navbar-nav">
-		<li><a href="http://localhost:8080/ChiTou/kang-Index.jsp"
-			class="nav-link">景點</a></li>
-	</ul>
-	</nav> </header>
+
+	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
 	<br>
 
 	<div align="center">
