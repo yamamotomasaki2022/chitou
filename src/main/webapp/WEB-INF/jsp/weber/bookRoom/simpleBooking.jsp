@@ -40,18 +40,6 @@
 	    </form:form>
 	    <div id="picPreview"></div>
     <script>
-	    $('#upload').on('change',function(e){
-	    	$('#picPreview').empty();
-    		var photos = this.files;
-	    	for(let i=0;i<photos.length;i++){
-	    		var file = photos[i];
-	    		var fr = new FileReader();
-	    		fr.onload = function(e){
-	    			$('#picPreview').append('<img id="img" src="'+e.target.result+'" class="box">');
-	    		};
-	    		fr.readAsDataURL(file);
-	    	};
-	    });
     </script>
 </body>
 </html>

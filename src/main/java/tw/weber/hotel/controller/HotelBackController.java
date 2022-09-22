@@ -31,20 +31,28 @@ public class HotelBackController {
 	@Autowired
 	private HotelBackService hService;
 	
+	private String suffix = "weber/hotel/";
+	private String hotelmainPage = suffix + "HotelMain";  
+	private String returnHotel = "redirect:hotel" ;
+	private String toRoom = "redirect:room";
+	private String newHotel = suffix + "HotelInsert";
+	private String updateHotel = suffix +"HotelUpdate";
+	
+	
 	@GetMapping(path = "/hotel")
 	public String SearchAllHotel(Model model) {
 		List<Hotel> result = hService.findAll();
 		
 		model.addAttribute("result",result);
 		
-		return "weber/hotel/hotelMain";
+		return hotelmainPage;
 	}
 	
 	@GetMapping(path = "toRoomPage")
 	public String toRoomPage(@RequestParam("hotelID")int hotelID,Model model) {
 		Hotel result = hService.findById(hotelID);
 		model.addAttribute("hotelResult",result);
-		return "redirect:room";
+		return toRoom;
 	}
 	
 	@GetMapping(path = "/searchHotel")
@@ -54,14 +62,14 @@ public class HotelBackController {
 		model.addAttribute("result",result);
 		
 		
-		return "weber/hotel/hotelMain";
+		return hotelmainPage;
 	}	
 	
 	@GetMapping(path = "/insertHotelPage")
 	public String insertHotelPage(Model m) {
 		Hotel hotel = new Hotel();
 		m.addAttribute("hotel",hotel);
-		return "weber/hotel/newHotel";
+		return newHotel;
 	}
 	
 	@PostMapping(path = "/insertHotel")
@@ -75,7 +83,7 @@ public class HotelBackController {
 			System.out.println("沒有照片");
 		}
 		
-		return "redirect:hotel";
+		return returnHotel;
 	}
 	
 	@PostMapping(path = "/toUpdateHotel")
@@ -84,13 +92,13 @@ public class HotelBackController {
 		m.addAttribute("hotelID",hotelID);
 		m.addAttribute("result",result);
 		
-		return "weber/hotel/updateHotel";
+		return updateHotel;
 	}
 	
 	@DeleteMapping(path = "/deleteHotel")
 	public String deleteHotel(@RequestParam("hotelID")int hotelID) {
 		hService.delete(hotelID);
-		return "redirect:hotel" ;
+		return returnHotel ;
 	}
 	
 	@PutMapping(path = "/updateHotel")
@@ -104,10 +112,16 @@ public class HotelBackController {
 		
 		hService.update(hotel);
 		
-		return "redirect:hotel";
+		return returnHotel;
 	}
 
-	
+	@GetMapping(path = "/test/test")
+	public String testbootstrap(Model model) {
+		List<Hotel> result = hService.findAll();
+		model.addAttribute("result",result);
+		return suffix + "HotelTest";
+	}
+//-----------------------------------------廢案------------------------------------------------------------	
 //	@GetMapping(path = "/hotelAjax/{hotelID}")
 //	@ResponseBody
 //	public Hotel allDataForAjax(@PathVariable("hotelID")int hotelID) {
@@ -122,8 +136,4 @@ public class HotelBackController {
 		return Integer.toString(amount);
 	}
 	
-	@GetMapping(path = "/test/test")
-	public String test() {
-		return "coco/attraction/kangListView";
-	}
 }

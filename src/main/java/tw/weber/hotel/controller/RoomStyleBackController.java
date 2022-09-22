@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import tw.weber.hotel.model.Hotel;
 import tw.weber.hotel.model.RoomStyle;
 import tw.weber.hotel.model.RoomStyleBackService;
-import tw.weber.room.model.RoomBackService;
 
 
 

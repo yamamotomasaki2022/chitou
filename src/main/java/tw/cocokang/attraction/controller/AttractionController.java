@@ -25,7 +25,7 @@ import tw.cocokang.attraction.model.Hobbyclassification;
 import tw.cocokang.attraction.util.JSONFileUpload;
 import tw.cocokang.attraction.util.UploadFileHelper;
 
-//@Controller
+@Controller
 public class AttractionController implements ServletContextAware{
 	
 	private ServletContext servletContext;
