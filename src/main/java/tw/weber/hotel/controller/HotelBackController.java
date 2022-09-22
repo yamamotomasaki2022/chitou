@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import tw.weber.hotel.model.Hotel;
@@ -24,6 +25,7 @@ import tw.weber.hotel.model.HotelBackService;
 
 
 @Controller
+@SessionAttributes({"hotelResult"})
 public class HotelBackController {
 	
 	@Autowired
@@ -36,7 +38,14 @@ public class HotelBackController {
 		model.addAttribute("result",result);
 		
 		return "weber/hotel/hotelMain";
-	}	
+	}
+	
+	@GetMapping(path = "toRoomPage")
+	public String toRoomPage(@RequestParam("hotelID")int hotelID,Model model) {
+		Hotel result = hService.findById(hotelID);
+		model.addAttribute("hotelResult",result);
+		return "redirect:room";
+	}
 	
 	@GetMapping(path = "/searchHotel")
 	public String SearchByKey(@RequestParam("type")String type,@RequestParam("keyword")String keyword,Model model) {
@@ -81,8 +90,6 @@ public class HotelBackController {
 	@DeleteMapping(path = "/deleteHotel")
 	public String deleteHotel(@RequestParam("hotelID")int hotelID) {
 		hService.delete(hotelID);
-		boolean result = hService.deletePhotoFolder(hotelID);
-		System.out.println("刪除目錄結果:"+result);
 		return "redirect:hotel" ;
 	}
 	
@@ -99,6 +106,7 @@ public class HotelBackController {
 		
 		return "redirect:hotel";
 	}
+
 	
 //	@GetMapping(path = "/hotelAjax/{hotelID}")
 //	@ResponseBody

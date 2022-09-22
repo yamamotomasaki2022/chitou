@@ -3,6 +3,7 @@ package tw.weber.hotel.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,7 @@ public class Hotel implements Serializable {
 	private int averagePrice;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "hotel")
+	@OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE)
 	private List<RoomStyle> styles;
 	
 	public Hotel() {

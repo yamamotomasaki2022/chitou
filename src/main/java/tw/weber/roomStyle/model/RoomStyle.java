@@ -2,6 +2,7 @@ package tw.weber.roomStyle.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +18,6 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import tw.cocokang.attraction.model.Hobbyclassification;
 import tw.weber.hotel.model.Hotel;
 import tw.weber.room.model.Room;
 
@@ -38,9 +38,10 @@ public class RoomStyle {
 	
 	private String bed;
 	
-	private String photos;
-	
 	private String status;
+	
+	@Transient
+	private int roomAmount;
 	
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -48,7 +49,7 @@ public class RoomStyle {
 	private Hotel hotel;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "style")
+	@OneToMany(mappedBy = "style",cascade = CascadeType.REMOVE)
 	private List<Room> rooms;
 	
 	public RoomStyle() {
@@ -63,7 +64,7 @@ public class RoomStyle {
 		this.capacity = capacity;
 		this.price = price;
 		this.bed = bed;
-		this.photos = photos;
+//		this.photos = photos;
 		this.status = status;
 		this.hotel = hotel;
 		this.rooms = rooms;
@@ -109,13 +110,13 @@ public class RoomStyle {
 		this.bed = bed;
 	}
 
-	public String getPhotos() {
-		return photos;
-	}
-
-	public void setPhotos(String photos) {
-		this.photos = photos;
-	}
+//	public String getPhotos() {
+//		return photos;
+//	}
+//
+//	public void setPhotos(String photos) {
+//		this.photos = photos;
+//	}
 
 	public String getStatus() {
 		return status;
@@ -139,6 +140,14 @@ public class RoomStyle {
 
 	public void setRooms(List<Room> rooms) {
 		this.rooms = rooms;
+	}
+
+	public int getRoomAmount() {
+		return roomAmount;
+	}
+
+	public void setRoomAmount(int roomAmount) {
+		this.roomAmount = roomAmount;
 	}
 	
 	
