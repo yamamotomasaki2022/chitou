@@ -14,60 +14,68 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "attractionPlan")
+@Table(name = "ATTRACTIONPLAN")
 
 public class AttractionPlan_Luana implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "planID")
-	private Integer planId;
+	@Column(name = "PLANID")
+	private Integer planid;
 	
-	@Column(name = "attractionID")
-	private Integer attractionId; 
+	@Column(name = "ATTRACTIONID")
+	private Integer attractionid; 
 	
-	@Column(name = "planName")
-	private String planName;
+	@Column(name = "PLANNAME")
+	private String planname;
 	
-	@Column(name = "planFee")
-	private Integer planFee;
+	@Column(name = "PLANFEE")
+	private Integer planfee;
 	
 	
 	
 	public AttractionPlan_Luana() {
 	}
 
-	public Integer getPlanId() {
-		return planId;
+
+
+	public Integer getPlanid() {
+		return planid;
 	}
 
-	public void setPlanId(Integer planId) {
-		this.planId = planId;
+
+
+	public void setPlanid(Integer planid) {
+		this.planid = planid;
 	}
 
-	public Integer getAttractionId() {
-		return attractionId;
+
+
+	public Integer getAttractionid() {
+		return attractionid;
 	}
 
-	public void setAttractionId(Integer attractionId) {
-		this.attractionId = attractionId;
+	public void setAttractionid(Integer attractionid) {
+		this.attractionid = attractionid;
 	}
 
-	public String getPlanName() {
-		return planName;
+	public String getPlanname() {
+		return planname;
 	}
 
-	public void setPlanName(String planName) {
-		this.planName = planName;
+	public void setPlanname(String planname) {
+		this.planname = planname;
 	}
 
-	public Integer getPlanFee() {
-		return planFee;
+	public Integer getPlanfee() {
+		return planfee;
 	}
 
-	public void setPlanFee(Integer planFee) {
-		this.planFee = planFee;
+	public void setPlanfee(Integer planfee) {
+		this.planfee = planfee;
 	}
+
+	
 
 
 

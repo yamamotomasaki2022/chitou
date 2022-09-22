@@ -19,16 +19,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "attraction_Luana")
 
-
-
-
-
 public class Attraction_Luana implements Serializable {
 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "attractionID")
+	@Column(name = "ATTRACTIONID")
 	private Integer attractionId;
 	
 	@Column(name = "prefer_id")

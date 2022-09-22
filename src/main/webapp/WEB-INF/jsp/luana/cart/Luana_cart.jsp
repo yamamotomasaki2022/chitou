@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import= "tw.luana.cart.*" %>
+<%@page import= "tw.luana.*" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -49,18 +49,18 @@
                     <tbody>
                       	  <c:forEach var="Cart" items="${cartList}">
                         <tr>
-                            <td>${Cart.name}</td>
-                            <td>${Cart.planName}</td>
-                            <td>${Cart.planFee}</td>                     
+                            <td>${Cart.attractionname}</td>
+                            <td>${Cart.planname}</td>
+                            <td>${Cart.planfee}</td>                     
 							
                             <td>
                                 <form action="buyIt" method="post" class="form-inline">
-                                    <input type="hidden" name="attractionId" value="${Cart.attractionId}" class="form-input"/>
-                                    <input type="hidden" name="planId" value="${Cart.planId}" class="form-input"/>
-                                   <input type="hidden" name="attractionName" value="${Cart.name}" class="form-input">
-                                    <input type="hidden" name="planName" value="${Cart.planName}" class="form-input">
-                                     <input type="hidden" name="itemId" value="${Cart.itemId}" class="form-input"/>
-                                    <input type="hidden" name="planFee" value="${Cart.planFee}" class="form-input">                                    
+                                    <input type="hidden" name="attractionId" value="${Cart.attractionid}" class="form-input"/>
+                                    <input type="hidden" name="planId" value="${Cart.planid}" class="form-input"/>
+                                   <input type="hidden" name="attractionName" value="${Cart.attractionname}" class="form-input">
+                                    <input type="hidden" name="planName" value="${Cart.planname}" class="form-input">
+                                     <input type="hidden" name="itemId" value="${Cart.itemid}" class="form-input"/>
+                                    <input type="hidden" name="planFee" value="${Cart.planfee}" class="form-input">                                    
                                     <div class="form-group d-flex justify-content-between">
                                         <a class="btn bnt-sm btn-incre" href="AttractionServlet?action=inc&id=${Cart.quantity}"><i
                                                 class="fas fa-plus-square"></i></a> <input type="text" name="quantity"
@@ -73,7 +73,7 @@
                             </td>
                             <td>
                                 <form action="removeFromCart" method="post" class="form-inline" >
-                                    <input type="hidden" name="itemId" value="${Cart.itemId}" class="form-input"/>
+                                    <input type="hidden" name="itemId" value="${Cart.itemid}" class="form-input"/>
                                     <input type="submit"  class="btn btn-sm btn-danger" name="removeFromCart" value="Remove">
                   	      </form>
                             </td>

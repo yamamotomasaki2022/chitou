@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.sql.Connection"%>
-<%@page import= "tw.luana.order.*" %>
+<%@page import= "tw.luana.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.*"%>
 
@@ -42,10 +42,10 @@
 				
 					<tr>
 						<td>${order.orderdate}</td>
-						<td>${order.attractionName}</td>
-						<td>${order.planName}</td>
+						<td>${order.attractionname}</td>
+						<td>${order.planname}</td>
 						<td>${order.quantity}</td>
-						<td>${order.planFee}</td>
+						<td>${order.planfee}</td>
 						<c:choose>
 						<c:when test="${order.orderstatus == 1}"> 										
 						<td>處理中</td>
@@ -66,7 +66,7 @@
 							  <option value="2">已完成</option>
 							  <option value="3">已取消</option>
 						</select>
-						<input type="hidden" name="orderId" value="${order.orderId}" >
+						<input type="hidden" name="orderId" value="${order.orderid}" >
 						</td>
 						<td><input class="btn btn-sm btn-primary" type="submit" name="orderStatus" value="Update">
 						</td>

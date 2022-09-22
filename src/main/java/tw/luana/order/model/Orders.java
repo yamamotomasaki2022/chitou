@@ -10,88 +10,115 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "ORDERS")
 
 public class Orders implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "orderID")
-	private Integer orderId;
+	@Column(name = "ORDERID")
+	private Integer orderid;
 	
-	@Column(name = "attractionID")
-	private Integer attractionId;
-	@Column(name = "planID")
-	private Integer planId;
+	@Column(name = "ATTRACTIONID")
+	private Integer attractionid;
 	
-	@Column(name = "attractionName")
-	private String attractionName;
+	@Column(name = "PLANID")
+	private Integer planid;
 	
-	@Column(name = "planName")
-	private String planName;
+	@Column(name = "ATTRACTIONNAME")
+	private String attractionname;
 	
-	@Column(name = "planFee")
-	private Integer planFee;
+	@Column(name = "PLANNAME")
+	private String planname;
 	
-	@Column(name = "orderdate")
+	@Column(name = "PLANFEE")
+	private Integer planfee;
+	
+	@Column(name = "ORDERDATE")
 	private long orderdate;
 	
-	@Column(name = "orderstatus")
+	@Column(name = "ORDERSTATUS")
 	private Integer orderstatus;
 	
-	@Column(name = "quantity")
+	@Column(name = "QUANTITY")
 	private Integer quantity;
 	
 	public Orders() {
 	}
 
-	public Integer getOrderId() {
-		return orderId;
+	
+
+	public Integer getOrderid() {
+		return orderid;
 	}
 
-	public void setOrderId(Integer orderId) {
-		this.orderId = orderId;
+
+
+	public void setOrderid(Integer orderid) {
+		this.orderid = orderid;
 	}
 
-	public Integer getAttractionId() {
-		return attractionId;
+
+
+	public Integer getAttractionid() {
+		return attractionid;
 	}
 
-	public void setAttractionId(Integer attractionId) {
-		this.attractionId = attractionId;
+
+
+	public void setAttractionid(Integer attractionid) {
+		this.attractionid = attractionid;
 	}
 
-	public Integer getPlanId() {
-		return planId;
+
+
+	public Integer getPlanid() {
+		return planid;
 	}
 
-	public void setPlanId(Integer planId) {
-		this.planId = planId;
+
+
+	public void setPlanid(Integer planid) {
+		this.planid = planid;
 	}
 
-	public String getAttractionName() {
-		return attractionName;
+
+
+	public String getAttractionname() {
+		return attractionname;
 	}
 
-	public void setAttractionName(String attractionName) {
-		this.attractionName = attractionName;
+
+
+	public void setAttractionname(String attractionname) {
+		this.attractionname = attractionname;
 	}
 
-	public String getPlanName() {
-		return planName;
+
+
+	public String getPlanname() {
+		return planname;
 	}
 
-	public void setPlanName(String planName) {
-		this.planName = planName;
+
+
+	public void setPlanname(String planname) {
+		this.planname = planname;
 	}
 
-	public Integer getPlanFee() {
-		return planFee;
+
+
+	public Integer getPlanfee() {
+		return planfee;
 	}
 
-	public void setPlanFee(Integer planFee) {
-		this.planFee = planFee;
+
+
+	public void setPlanfee(Integer planfee) {
+		this.planfee = planfee;
 	}
+
+
 
 	public long getOrderdate() {
 		return orderdate;

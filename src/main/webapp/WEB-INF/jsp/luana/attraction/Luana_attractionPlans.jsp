@@ -1,7 +1,7 @@
 <%@page import="java.sql.Connection"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import= "tw.luana.attraction.*" %>
+<%@page import= "tw.luana.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html> 
@@ -27,8 +27,8 @@
 					
 						
 						<div class="card-body">
-							<h5 class="card-title">${AttractionPlan.planName}</h5>
-							<h6 class="category">${AttractionPlan.planFee}</h6>
+							<h5 class="card-title">${AttractionPlan.planname}</h5>
+							<h6 class="category">${AttractionPlan.planfee}</h6>
 							<h6 class="price"></h6>
 							<div class="mt-3 d-flex justify-content-between">
 								<div class="input-group mb-3">	
@@ -37,10 +37,10 @@
 										<input class="btn btn-primary" type="submit" name="addToCart" value="買">
 									</div>
 						  			<input type="text" name="quantity" value="1">
-						   			<input type="hidden" name="attractionId" value="${AttractionPlan.attractionId}">
-						   			<input type="hidden" name="planId" value="${AttractionPlan.planId}">
-						   			<input type="hidden" name="planName" value="${AttractionPlan.planName}">
-						   			<input type="hidden" name="planFee" value="${AttractionPlan.planFee}">
+						   			<input type="hidden" name="attractionId" value="${AttractionPlan.attractionid}">
+						   			<input type="hidden" name="planId" value="${AttractionPlan.planid}">
+						   			<input type="hidden" name="planName" value="${AttractionPlan.planname}">
+						   			<input type="hidden" name="planFee" value="${AttractionPlan.planfee}">
 									</form>
 								</div>
 							</div>

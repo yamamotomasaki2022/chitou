@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import tw.coco.model.Attraction;
 import tw.coco.model.AttractionService;
 
-@Controller
+//@Controller
 public class AttractionController {
 	
 	@Autowired
