@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="false"%>
-<%@ page import="chitou.trista.model.*,java.util.*, java.sql.*, javax.servlet.* , javax.naming.*, java.sql.*, javax.sql.*"%> 
+<%@ page import="tw.trista.flightticket.model.*,java.util.*, java.sql.*, javax.servlet.* , javax.naming.*, java.sql.*, javax.sql.*"%> 
 <%@ page import="java.util.List"%> 
 <%
 response.setContentType("text/html;charset=UTF-8");
@@ -24,7 +24,9 @@ color: #2894FF;
 <table>
 <%
 
-	FlightTicket i = (FlightTicket)request.getAttribute("searchflight");
+	List<FlightTicket> list = (List<FlightTicket>)request.getAttribute("searchflight");
+	for(FlightTicket i:list){
+		System.out.println(i.getFare());
 %>
 <tr>
 	<td><%= i.getFlightID()  %>
@@ -36,6 +38,9 @@ color: #2894FF;
 	<td><%= i.getOriginID()  %>
 	<td><%= i.getDestinationID()  %>
 </tr>	
+<%
+}
+%>	
 </table>
 <body>
 <h2>查詢成功</h2>
