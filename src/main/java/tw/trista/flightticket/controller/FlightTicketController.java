@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.trista.flightticket.model.FlightTicketService;
@@ -80,32 +79,12 @@ public class FlightTicketController {
 									  @RequestParam("departureTime")String departureTime,@RequestParam("arrivalTime")String arrivalTime,
 									  @RequestParam("classID")String classID,Model m) {
 		if(originID != null && destinationID != null && departureTime != null && arrivalTime != null && classID != null ) {
-			flightservice.queryFlightId(originID,destinationID,departureTime,arrivalTime,Integer.parseInt(classID));
+			flightservice.findByOriginidAndDestinationidAndDeparturetimeAndArrivaltimeAndClassid(originID, destinationID, departureTime, arrivalTime, Integer.parseInt(classID));
 		}
-		  FlightTicket list = flightservice.queryFlightId(originID,destinationID,departureTime,arrivalTime,Integer.parseInt(classID));
-		  m.addAttribute("searchflight", list);
-		  return"trista/flightticket/thanksRead";
-		 }
-	
-//	@PostMapping(path = "/searchFlightTicket")
-//	public String SearchByKey(@RequestParam("type")String type,@RequestParam("keyword")String keyword,Model m) {
-//		
-//		List<FlightTicket> result = flightservice.selectByKey(type,keyword);
-//		
-//		m.addAttribute("result",result);
-//		return "trista/flightticket/thanksRead";
-//	}
-	
-	@PostMapping(path = "/searchFlightTicket")
-	public String SearchByKey(@RequestParam("Originid")String Originid,@RequestParam("Destinationid")String Destinationid,@RequestParam("Departuretime")String Departuretime,@RequestParam("Arrivaltime")String Arrivaltime,@RequestParam("Classid")int Classid,Model m) {
-		List<FlightTicket> ft = flightservice.selectByFlight(Originid,Destinationid,Departuretime,Arrivaltime,Classid);
-//		List<FlightTicket> ft_2 = new FlightTicket(ft.getFlightID(), ft.getClassID(), ft.getDepartureTime(), ft.getArrivalTime(), fare, ft.getAirline(),
-//				ft.getOriginID(), ft.getDestinationID());
-		List<FlightTicket> selectAll = flightservice.selectAll();
-		m.addAttribute("updateflight",selectAll);
-		flightservice.selectByFlight(ft_2);
+		List<FlightTicket> list = flightservice.findByOriginidAndDestinationidAndDeparturetimeAndArrivaltimeAndClassid(originID, destinationID, departureTime, arrivalTime, Integer.parseInt(classID));
+		m.addAttribute("searchflight", list);
 		return "trista/flightticket/thanksRead";
-	}
+		 }
 	}
 
 

@@ -24,7 +24,9 @@ color: #2894FF;
 <table>
 <%
 
-	FlightTicket i = (FlightTicket)request.getAttribute("searchflight");
+	List<FlightTicket> list = (List<FlightTicket>)request.getAttribute("searchflight");
+	for(FlightTicket i:list){
+		System.out.println(i.getFare());
 %>
 <tr>
 	<td><%= i.getFlightID()  %>
@@ -36,6 +38,9 @@ color: #2894FF;
 	<td><%= i.getOriginID()  %>
 	<td><%= i.getDestinationID()  %>
 </tr>	
+<%
+}
+%>	
 </table>
 <body>
 <h2>查詢成功</h2>

@@ -1,15 +1,13 @@
 package tw.trista.flightticket.model;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import chitou.trista.model.FlightTicket;
-import tw.weber.hotel.model.Hotel;
+
+
 
 
 
@@ -65,11 +63,8 @@ public class FlightTicketService {
 //		}
 //		return null;
 //	}
-	
-	
-	public List<FlightTicket> selectByFlight(String Originid,String Destinationid,String Departuretime,String Arrivaltime,int Classid) {
-		return dao.findByOriginid(Originid,Destinationid,Departuretime,Arrivaltime,Classid);
-	}
-    
 
+    public List<FlightTicket> findByOriginidAndDestinationidAndDeparturetimeAndArrivaltimeAndClassid(String originid,String destinationid,String departuretime,String arrivaltime,int classid){
+    	return dao.findByOriginidAndDestinationidAndDeparturetimeAndArrivaltimeAndClassid(originid, destinationid, departuretime, arrivaltime, classid);
+    }
 }
