@@ -134,7 +134,6 @@ public class AttractionController implements ServletContextAware{
 		List<Attraction> attraction = aService.findAttractionsAction(attName);
 		m.addAttribute("attraction", attraction);
 		return path + "kangSelectBackground";
-
 	}
 
 
