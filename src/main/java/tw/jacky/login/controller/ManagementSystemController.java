@@ -1,7 +1,5 @@
 package tw.jacky.login.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,11 +11,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,34 +30,51 @@ public class ManagementSystemController {
 	@Autowired
 	private LoginService lservice;
 	
-	String adminlogin = "jacky/login/AdminLogin";
-	String adminhomepage= "jacky/login/AdminHomePage";
-	String memberlist = "memberlist";
-	String adminlist = "adminlist";
+//	------------------------------------------------------------------------------------------------------------------------------------------------------------
+//	路徑
 	
-	String piclocation= "images/jacky/login/";
-
+	String path_main_login = "jacky/login/";
+	String path_admin_login =  path_main_login + "adminlogin/";
+	String path_member_login =  path_main_login + "memberlogin/";
+	String image_admin_page = "images/jacky/";
+	String piclocation= image_admin_page + "login/";
+	
+	
+	
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Mapping方法
 
+	String method_memberlist = "memberlist";
+	String method_adminlist = "adminlist";
 	
+
+//	------------------------------------------------------------------------------------------------------------------------------------------------------------
+// 頁面
+	
+	String page_adminlogin =  path_admin_login + "AdminLogin";
+	String page_adminhomepage= path_admin_login +  "AdminHomePage";
+	
+	
+	
+	
+//	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	管理員登入界面
 	@RequestMapping(path = "/adminlogin", method=RequestMethod.GET)
 	public String processMainAction() {
-		return   adminlogin;
+		return   page_adminlogin;
 	}
 	
 	@RequestMapping(path = "/adminhomepage")
 	public String processAdminHomePage() {
-		return adminhomepage;
+		return page_adminhomepage;
 	}
-	
 	
 
 //	跳轉到 admin 新增 會員
 	@RequestMapping(path = "/ToAdminCreateMemberPage", method=RequestMethod.POST)
 	public String processToAdminCreateMemberPage() {
-		return   "jacky/login/AdminCreateMember" ;
+		return  path_admin_login + "AdminCreateMember" ;
 	}
 	
 //	跳轉到 admin 更新會員資料
@@ -70,12 +83,12 @@ public class ManagementSystemController {
 	public String processToAdminModifyMember(@RequestParam("memberid") int id, Model m) {
 		MemberBasicInfo modifymemberbean = lservice.findByMemberid(id);
 		m.addAttribute("modifymemberbean",modifymemberbean);
-		return "jacky/login/AdminModifyMemberPage";
+		return  path_admin_login + "AdminModifyMemberPage";
 	}
 //	跳轉到 admin 新增admin page
 	@PostMapping("/ToAdminCreateAdmin")
 	public  String processToAdminCreateAdmin() {
-		return "jacky/login/AdminCreateAdmin";
+		return  path_admin_login + "AdminCreateAdmin";
 	}
 	
 	
@@ -84,7 +97,7 @@ public class ManagementSystemController {
 	public String processToAdminModifyAdmin(@RequestParam("adminid") int id, Model m) {
 		AdminChitou modifyadminbean = lservice.findByAdminId(id);
 		m.addAttribute("modifyadminbean",modifyadminbean);
-		return "jacky/login/AdminModifyAdminPage";
+		return  path_admin_login + "AdminModifyAdminPage";
 	}
 	
 	
@@ -93,7 +106,7 @@ public class ManagementSystemController {
 	@RequestMapping(path = "/logout")
 	public String processToLogOut( SessionStatus status) {
 		status.setComplete();
-		return adminlogin;
+		return page_adminlogin;
 	}
 	
 	
@@ -104,7 +117,7 @@ public class ManagementSystemController {
 	public String Memberlist (Model m) {
 		List<MemberBasicInfo> memberlist = lservice.memberFindAll();
 		m.addAttribute("memberlist",memberlist);
-		return adminhomepage;
+		return page_adminhomepage;
 	}
 
 	
@@ -113,7 +126,7 @@ public class ManagementSystemController {
 	public String Adminlist (Model m) {
 		List<AdminChitou> adminlist = lservice.adminFindAll();
 		m.addAttribute("adminlist",adminlist);
-		return adminhomepage;
+		return page_adminhomepage;
 	}
 
 	
@@ -133,7 +146,7 @@ public class ManagementSystemController {
 		lservice.adminInsertMember(bean);
 		
 		
-		return "redirect:" + memberlist ;
+		return "redirect:" + method_memberlist ;
 	}
 	
 //	管理員刪除會員
@@ -141,7 +154,7 @@ public class ManagementSystemController {
 	public String processAdminDeleteMember(@RequestParam("td_memberid") int memberid) {
 		System.out.println("檢查刪除的ID：" + memberid);
 		lservice.adminDeleteMember(memberid);
-		return "redirect:" + memberlist;
+		return "redirect:" + method_memberlist;
 	}
 
 	
@@ -158,7 +171,7 @@ public class ManagementSystemController {
 		MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid,statusid,username,password,pic_locaiton,email);
 		lservice.adminModifyMember(memberBasicInfo);
 		
-		return "redirect:" + memberlist;
+		return "redirect:" + method_memberlist;
 	}
 	
 //	管理員查詢會員資料
@@ -167,7 +180,7 @@ public class ManagementSystemController {
 		String hql = lservice.mergeHql(column, value);
 		List<MemberBasicInfo> result = lservice.adminQeuryMember(hql);
 		m.addAttribute("result", result );
-		return "jacky/login/SearchPage";
+		return path_admin_login + "SearchPage";
 	}
 	
 	
@@ -193,7 +206,7 @@ public class ManagementSystemController {
 		}
 		
 		if(errors!=null && !errors.isEmpty()) {
-			return adminlogin;
+			return page_adminlogin;
 		}
 		
 		boolean result = lservice.checkAdminLogin(user, pwd);  
@@ -221,11 +234,11 @@ public class ManagementSystemController {
 			Memberlist(m);
 			Adminlist(m);
 			
-			return  adminhomepage;
+			return  page_adminhomepage;
 		}
 		
 		errors.put("msg","please input correct username or passward");
-		return  adminlogin;
+		return  page_adminlogin;
 	}
 	
 	
@@ -237,7 +250,7 @@ public class ManagementSystemController {
 		int adminstatus_int = Integer.parseInt(adminstatus);
 		AdminChitou adminChitou = new AdminChitou(adminstatus_int,username,password,true);
 		lservice.adminInsertAdmin(adminChitou);
-		return "redirect:" + adminlist;
+		return "redirect:" + method_adminlist;
 	}
 	
 //	管理員刪除管理員
@@ -245,7 +258,7 @@ public class ManagementSystemController {
 	public String processAdminDeleteAdmin(@RequestParam("td_memberid") String adminid) {
 		int adminid_int = Integer.parseInt(adminid);
 		lservice.adminDeleteAdmin(adminid_int);
-		return "redirect:" + adminlist;
+		return "redirect:" + method_adminlist;
 	}
 	
 //	管理員更新管理員基本咨詢
@@ -258,7 +271,7 @@ public class ManagementSystemController {
 		
 		AdminChitou adminChitou = new AdminChitou(adminid_int,adminstatus_int,username,password,permission_boolean);
 		lservice.adminInsertAdmin(adminChitou);
-		return "redirect:" + adminlist;
+		return "redirect:" + method_adminlist;
 	}
 	
 	
