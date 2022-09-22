@@ -121,6 +121,13 @@ public class HotelBackController {
 		model.addAttribute("result",result);
 		return suffix + "HotelTest";
 	}
+	
+	@GetMapping(path = "/boot")
+	public String test3(Model model) {
+//		List<Hotel> result = hService.findAll();
+//		model.addAttribute("result",result);
+		return suffix + "new";
+	}
 //-----------------------------------------廢案------------------------------------------------------------	
 //	@GetMapping(path = "/hotelAjax/{hotelID}")
 //	@ResponseBody
