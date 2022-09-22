@@ -1,4 +1,4 @@
-package tw.weber.room.controller;
+package tw.weber.hotel.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import tw.weber.roomStyle.model.RoomStyleBackService;
 import tw.weber.hotel.model.Hotel;
+import tw.weber.hotel.model.RoomStyle;
+import tw.weber.hotel.model.RoomStyleBackService;
 import tw.weber.room.model.RoomBackService;
-import tw.weber.roomStyle.model.RoomStyle;
 
 
 

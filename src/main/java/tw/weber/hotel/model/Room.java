@@ -1,4 +1,4 @@
-package tw.weber.room.model;
+package tw.weber.hotel.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +13,6 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import tw.cocokang.attraction.model.Hobbyclassification;
-import tw.weber.hotel.model.Hotel;
-import tw.weber.roomStyle.model.RoomStyle;
 
 @Entity
 @Table(name = "room")

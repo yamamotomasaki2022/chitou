@@ -1,4 +1,4 @@
-package tw.weber.room.model;
+package tw.weber.hotel.model;
 
 import java.util.List;
 

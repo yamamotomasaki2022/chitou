@@ -1,4 +1,4 @@
-package tw.weber.roomStyle.model;
+package tw.weber.hotel.model;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,10 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
-import tw.weber.hotel.model.Hotel;
-import tw.weber.room.model.Room;
-import tw.weber.room.model.RoomRepository;
 
 
 @Service
@@ -89,7 +85,6 @@ public class RoomStyleBackService {
 			for(int i = 1; i <= count;i++) {
 				Room room = new Room();
 				room.setStyle(style);
-//				originalRoomList.add(room);
 				roomRepo.save(room);
 			}
 		}else if(count < 0) {

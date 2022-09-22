@@ -1,4 +1,4 @@
-package tw.cocokang.attraction.entities;
+package tw.cocokang.attraction.util;
 
 import java.io.Serializable;
 
