@@ -14,8 +14,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import tw.weber.roomStyle.model.RoomStyle;
-
 @Entity
 @Table(name = "hotel")
 

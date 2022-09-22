@@ -1,4 +1,4 @@
-package tw.weber.roomStyle.model;
+package tw.weber.hotel.model;
 
 import java.util.List;
 
@@ -17,9 +17,6 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import tw.weber.hotel.model.Hotel;
-import tw.weber.room.model.Room;
 
 @Entity
 @Table(name = "roomstyle")

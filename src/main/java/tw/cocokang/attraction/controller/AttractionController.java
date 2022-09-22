@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
-import tw.cocokang.attraction.entities.JSONFileUpload;
-import tw.cocokang.attraction.helpers.UploadFileHelper;
 import tw.cocokang.attraction.model.Attraction;
 import tw.cocokang.attraction.model.AttractionService;
 import tw.cocokang.attraction.model.Hobbyclassification;
+import tw.cocokang.attraction.util.JSONFileUpload;
+import tw.cocokang.attraction.util.UploadFileHelper;
 
-@Controller
+//@Controller
 public class AttractionController implements ServletContextAware{
 	
 	private ServletContext servletContext;
@@ -134,7 +134,6 @@ public class AttractionController implements ServletContextAware{
 		List<Attraction> attraction = aService.findAttractionsAction(attName);
 		m.addAttribute("attraction", attraction);
 		return path + "kangSelectBackground";
-
 	}
 
 

@@ -21,6 +21,9 @@ color: #2894FF;
 }
 
 </style>
+
+	<%@include file="/WEB-INF/includes/Header.jsp"%>
+
 <table>
 <%
 

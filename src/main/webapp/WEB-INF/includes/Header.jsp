@@ -28,7 +28,7 @@
 					href="listAttractions"
 					class="nav-link">景點功能</a></li>
 				<li><a
-					href="flightTicket"
+					href="flightticket.main"
 					class="nav-link">機票功能</a></li>
 				<li><a
 					href="hotel"

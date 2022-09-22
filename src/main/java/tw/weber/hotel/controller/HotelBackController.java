@@ -121,5 +121,9 @@ public class HotelBackController {
 		int amount = hService.loadPhoto(hotelID);
 		return Integer.toString(amount);
 	}
-
+	
+	@GetMapping(path = "/test/test")
+	public String test() {
+		return "coco/attraction/kangListView";
+	}
 }
