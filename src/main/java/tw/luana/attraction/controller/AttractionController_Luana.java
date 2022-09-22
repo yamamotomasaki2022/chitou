@@ -22,21 +22,21 @@ public class AttractionController_Luana {
 	private HttpSession session;
 	
 	
-	@RequestMapping(path = "/index", method = RequestMethod.GET)
+	@RequestMapping(path = "/Luana_index", method = RequestMethod.GET)
 	public String processMainAction() {
 		return "Luana_index";
 	}	
 	
 	//顯示所有景點
-	@RequestMapping(path = "allAttractions", method = RequestMethod.GET)
+	@RequestMapping(path = "Luana_allAttractions", method = RequestMethod.GET)
 	public String showAllAttraction(Model m) {
 		m.addAttribute("allAttractions",attractionService.showAllAttractions());
 		return "Luana_allAttractions";
 	}
 	
 	//搜尋景點
-	@RequestMapping(path = "searchAttractionReasults",params = {"attraction"}, method = RequestMethod.POST)
-	public String searchResults(@RequestParam("attraction") String attraction,Model m)
+	@RequestMapping(path = "searchAttractionReasults",params = {"Luana_attraction"}, method = RequestMethod.POST)
+	public String searchResults(@RequestParam("Luana_attraction") String attraction,Model m)
 			 {
 		
 		m.addAttribute("searchReasults",attractionService.searchAttraction(attraction));		

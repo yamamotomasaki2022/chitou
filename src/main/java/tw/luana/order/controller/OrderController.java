@@ -23,18 +23,6 @@ public class OrderController {
 	private HttpSession session;
 	
 	
-<<<<<<< HEAD
-	@RequestMapping(path = "/index", method = RequestMethod.GET)
-	public String processMainAction() {
-		return "Luana_index";
-	}	
-=======
-//	@RequestMapping(path = "/index", method = RequestMethod.GET)
-//	public String processMainAction() {
-//		return "Luana_index";
-//	}	
->>>>>>> 283df392b435169ca0ac78e0c10a3c9a4da9f87d
-	
 	//查看訂單
 	@RequestMapping(path = "order", method = RequestMethod.GET)
 	public String showOrders(Model m) {

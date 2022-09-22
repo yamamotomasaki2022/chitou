@@ -30,14 +30,7 @@ public class CartController {
 	private HttpSession session;
 	
 	
-<<<<<<< HEAD
-	@RequestMapping(path = "/index", method = RequestMethod.GET)
-	public String processMainAction() {
-		return "Luana_index";
-	}	
-	
-=======
->>>>>>> 283df392b435169ca0ac78e0c10a3c9a4da9f87d
+
 	//商品加入購物車
 	@RequestMapping(path = "addToCart",method = RequestMethod.POST)
 	public String addToCart(@RequestParam("planName") String planName,
