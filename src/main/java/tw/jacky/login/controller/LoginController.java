@@ -1,5 +1,7 @@
 package tw.jacky.login.controller;
 
+import java.nio.file.Path;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,17 +18,28 @@ public class LoginController {
 	@Autowired
 	private LoginService lservice;
 	
-	String adminlogin = "jacky/login/AdminLogin";
-	String adminhomepage= "jacky/login/AdminHomePage";
-	String memberlist = "memberlist";
-	String adminlist = "adminlist";
+	String path_main_login = "jacky/login/";
+	String path_admin_login =  path_main_login + "adminlogin/";
+	String path_member_login =  path_main_login + "memberlogin/";
+	String image_admin_page = "images/jacky/";
+	String piclocation= image_admin_page + "login/";
 	
-	String piclocation= "images/jacky/login/";
 	
-	
+	@RequestMapping(path="/toAdminLoginPage")
+	public String toAdminLoginPage() {
+		return path_admin_login + "AdminLogin";
+	}
 
 	
+	@RequestMapping(path="/toMemberLoginPage")
+	public String toMemberLoginPage() {
+		return path_member_login + "MemberLogin";
+	}
 	
+	@RequestMapping(path="/loginpage")
+	public String toMainLoginPage() {
+		return path_main_login + "MainLoginPage";
+	}
 	
 
 }

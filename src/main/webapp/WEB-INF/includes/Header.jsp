@@ -34,7 +34,7 @@
 					href="hotel"
 					class="nav-link">行程表</a></li>
 								<li><a
-					href="index"
+					href="allAttractions"
 					class="nav-link">購物車與訂單</a></li>	
 			</ul>
 		</nav>
