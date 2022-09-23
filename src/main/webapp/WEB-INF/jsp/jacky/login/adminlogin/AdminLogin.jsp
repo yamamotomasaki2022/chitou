@@ -35,16 +35,12 @@ legend {
 }
 </style>
 
-	<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 
 </head>
 <body>
 
 
-	<%@ include file="/WEB-INF/includes/Header.jsp"%>
 
-
-<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 	<FORM ACTION="adminchecklogin" method="post">
 		<fieldset class="container col-md-5">
@@ -79,7 +75,7 @@ legend {
 
 
 
-<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js">
