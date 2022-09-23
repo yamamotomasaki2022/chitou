@@ -40,7 +40,7 @@ public class RoomStyleBackService {
 	}
 	
 	public List<RoomStyle> selectByKey(String type,String keyword){
-		if(type.equals("hotelID")) {
+		if(type.equals("styleID")) {
 			return styleRepo.findAllByRoomStyleIDContaining(keyword);
 		}else if(type.equals("name")) {
 			return styleRepo.findAllByNameContaining(keyword);
