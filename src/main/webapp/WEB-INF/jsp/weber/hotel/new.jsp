@@ -5,94 +5,91 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>測試</title>
-	<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+<title>測試能不能用</title>
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
-	<div class="container-scroller">
-		<%@ include file="/WEB-INF/includes/TopNavBar.jsp"%>
-		<div class="container-fluid page-body-wrapper">
-			<%@ include file="/WEB-INF/includes/ThemeBar.jsp"%>
-			<%@ include file="/WEB-INF/includes/ToDoListBar.jsp"%>
-			<%@ include file="/WEB-INF/includes/ManageBar.jsp"%>
-			<!-- 中間欄位 -->
-			<div class="main-panel">
-				<div class="content-wrapper">
-					<div class="row">
-						<div class="col-lg-12 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title text-primary">&nbsp;飯店管理</h4>
-									<p class="card-description" href="addAttraction">
-										<button type="button" class="btn btn-inverse-primary btn-fw">
-											<i class="ti-plus"></i>&nbsp;新增飯店
-										</button>
-									</p>
-									<div class="table-responsive">
-										<table class="table table-hover">
-											<thead>
-												<tr>
-													<th>圖片</th>
-													<th>飯店ID</th>
-													<th>飯店名稱</th>
-													<th>地址</th>
-													<th>類型</th>
-													<th>介紹</th>
-													<th>國家</th>
-													<th>電話</th>
-													<th>狀態</th>
-													<th>可容納人次</th>
-													<th>業主名稱</th>
-													<th>平均房價</th>
-													<th>操作</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="bean" items="${result}">
-													<tr>
-														<form action="updateAttraction" method="get">
-															<td></td>
-															<td><c:out value="${bean.hotelID}" /></td>
-															<td><c:out
-																	value="${bean.name}" /></td>
-															<td><c:out value="${bean.address}" /></td>
-															<td><c:out value="${bean.type}" /></td>
-															<td><c:out
-																	value="${bean.intro}" /></td>
-															<td><c:out value="${bean.country}" /></td>
-															<td><c:out value="${bean.phone}" /></td>
-															<td><c:out value="${bean.status}" /></td>
-															<td><c:out value="${bean.capacity}" /></td>
-															<td><c:out value="${bean.owner}" /></td>
-															<td><c:out value="${bean.averagePrice}" /></td>
-															<td>
-
-																<button type="submit" name="update"
-																	class="btn btn-inverse-success btn-icon">
-																	<i class="ti-pencil-alt"></i>
-																</button> &nbsp; &nbsp;
-																 <!-- 刪除 -->
-																<button 
-																	href="deleteAttraction?attid="
-																	class="btn btn-inverse-danger btn-icon">
-																	<i class="ti-trash"></i>
-																</button></td>
-														</form>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- partial -->
-					</div>
-					<!-- main-panel ends -->
-				</div>
-				<!-- page-body-wrapper ends -->
+	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+	<!--標頭開始-->
+	<h4 class="card-title text-primary">&nbsp;新增景點</h4>
+	<p class="card-description">請輸入您要新增的景點</p>
+	<!--form開始-->
+	<form action="yeeee" class="forms-sample">
+		<div class="form-group">
+			<label>景點圖片:</label> <input type="file" name="img[]"
+				class="file-upload-default">
+			<div class="input-group col-xs-12">
+				<input type="text" class="form-control file-upload-info" disabled
+					placeholder="Upload Image"> <span
+					class="input-group-append">
+					<button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+				</span>
 			</div>
 		</div>
-	</div>
+
+		<div class="form-group">
+			<label path="attid">景點編號:</label> <input type="text" path="attid"
+				class="form-control" id="" placeholder="請輸入新增的景點ID">
+		</div>
+		<div class="form-group">
+			<label path="preferid" path="preferid">方案編號:</label> <select
+				class="form-control">
+				<option>1</option>
+				<option>2</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label>景點名稱:</label> <input type="" class="form-control" id=""
+				placeholder="請輸入新增的景點名稱">
+		</div>
+		<div class="form-group">
+			<label path="preferid">方案編號:</label> <input type="" path="preferid"
+				class="form-control" id="" placeholder="請輸入新增的方案編號">
+		</div>
+
+		<div class="form-group">
+			<label>景點位置:</label> <input type="" class="form-control" id=""
+				placeholder="請選擇新增的景點位置">
+		</div>
+
+		<div class="form-group">
+			<label> 景點說明: </label>
+			<div>
+				<textarea id="editor1" name="yee"></textarea>
+			</div>
+		</div>
+		<br>
+
+
+
+
+
+		<div class="form-group">
+			<label for="exampleTextarea1">Textarea</label>
+			<div>
+				<textarea class="form-control" id="editor2" rows="4"></textarea>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary mr-2">送出</button>
+		<button class="btn btn-light">返回</button>
+	</form>
+
+	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
+	<script src="/js/coco/ckeditor.js"></script>
+	<script>
+	ClassicEditor
+	   .create(document.querySelector('#editor1'))
+	      .then(editor => {
+	          console.log(editor);
+	      });
+	     ClassicEditor
+	      .create(document.querySelector('#editor2'))
+	      .then(editor => {
+	          console.log(editor);
+	      });
+        </script>
 </body>
 </html>

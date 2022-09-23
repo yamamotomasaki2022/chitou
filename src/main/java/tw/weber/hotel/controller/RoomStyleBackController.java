@@ -36,7 +36,7 @@ public class RoomStyleBackController {
 		System.err.println("hotelID:"+hotel.getHotelID());
 		List<RoomStyle> result = styleService.findAllByHotelID(hotel.getHotelID());
 		model.addAttribute("result",result);
-		return "weber/room/roomStyleMain";
+		return "weber/room/RoomStyleMain";
 	}	
 	
 	@GetMapping(path = "/searchRoom")
@@ -45,14 +45,14 @@ public class RoomStyleBackController {
 		
 		model.addAttribute("result",result);
 		
-		return "weber-room";
+		return "weber/room/RoomStyleMain";
 	}	
 	
 	@GetMapping(path = "/insertStylePage")
 	public String insertRoomPage(Model m) {
 		RoomStyle style = new RoomStyle();
 		m.addAttribute("style",style);
-		return "weber/room/newRoomStyle";
+		return "weber/room/RoomStyleInsert";
 	}
 	
 	@PostMapping(path = "/insertStyle")
@@ -82,7 +82,7 @@ public class RoomStyleBackController {
 		result.setRoomAmount(roomCount);
 		m.addAttribute("style",result);
 		m.addAttribute("photoCount",count);
-		return "weber/room/updateRoomStyle";
+		return "weber/room/RoomStyleUpdate";
 	}
 	
 	@PutMapping(path = "/updateStyle")

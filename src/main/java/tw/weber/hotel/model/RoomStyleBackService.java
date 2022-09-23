@@ -40,29 +40,19 @@ public class RoomStyleBackService {
 	}
 	
 	public List<RoomStyle> selectByKey(String type,String keyword){
-//		if(type.equals("hotelID")) {
-//			return rRepo.findAllByHotelIDContaining(keyword);
-//		}else if(type.equals("name")) {
-//			return rRepo.findAllByNameContaining(keyword);
-//		}else if(type.equals("address")) {
-//			return rRepo.findAllByAddressContaining(keyword);
-//		}else if(type.equals("type")) {
-//			return rRepo.findAllByTypeContaining(keyword);
-//		}else if(type.equals("intro")) {
-//			return rRepo.findAllByIntroContaining(keyword);
-//		}else if(type.equals("country")) {
-//			return rRepo.findAllByCountryContaining(keyword);
-//		}else if(type.equals("phone")) {
-//			return rRepo.findAllByPhoneContaining(keyword);
-//		}else if(type.equals("status")) {
-//			return rRepo.findAllByStatusContaining(keyword);
-//		}else if(type.equals("capacity")) {
-//			return rRepo.findAllByCapacity(keyword);
-//		}else if(type.equals("owner")) {
-//			return rRepo.findAllByOwnerContaining(keyword);
-//		}else if(type.equals("averagePrice")) {
-//			return rRepo.findAllByAveragePriceContaining(keyword);
-//		}
+		if(type.equals("hotelID")) {
+			return styleRepo.findAllByRoomStyleIDContaining(keyword);
+		}else if(type.equals("name")) {
+			return styleRepo.findAllByNameContaining(keyword);
+		}else if(type.equals("capacity")) {
+			return styleRepo.findAllByCapacityContaining(keyword);
+		}else if(type.equals("price")) {
+			return styleRepo.findAllByPriceContaining(keyword);
+		}else if(type.equals("bed")) {
+			return styleRepo.findAllByBedContaining(keyword);
+		}else if(type.equals("status")) {
+			return styleRepo.findAllByStatusContaining(keyword);
+		}
 		return null;
 	}
 	
