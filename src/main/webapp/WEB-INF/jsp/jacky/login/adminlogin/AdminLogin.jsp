@@ -35,6 +35,7 @@ legend {
 }
 </style>
 
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 
 </head>
 <body>
@@ -63,6 +64,8 @@ legend {
 			</table>
 		</fieldset>
 	</Form>
+	
+	<!--  
 
 	<FORM ACTION="./Project2Servlet" method="post">
 		<div class="btnfloat">
@@ -74,7 +77,7 @@ legend {
 	</FORM>
 
 
-
+-->
 
 
 

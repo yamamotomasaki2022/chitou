@@ -53,7 +53,7 @@ label.error {
 
 
 
-<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+
 
 
 	<H1>老闆創建管理員</H1>
