@@ -32,10 +32,13 @@ td {
 </style>
 
 
+	<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 </head>
 <body>
 
-<%@include file="/WEB-INF/includes/Header.jsp" %>
+
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 	<hr>
 	<br>
@@ -71,5 +74,8 @@ td {
 	<form action="adminhomepage">
 		<button onclick="">返回登入界面</button>
 	</form>
+	
+	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+	
 </body>
 </html>

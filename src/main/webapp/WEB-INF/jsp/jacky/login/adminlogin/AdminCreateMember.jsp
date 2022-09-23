@@ -46,13 +46,14 @@ label.error {
 	}
 </script>
 
+	<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 
 
 </head>
 
 <body>
 
-	<%@include file="/WEB-INF/includes/Header.jsp"%>
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 	<H1>管理員創建會員</H1>
 
@@ -113,7 +114,7 @@ $('#myfile').on('change', function(e){
 
 </script>
 
-
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
 
 </body>

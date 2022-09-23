@@ -40,12 +40,15 @@ table {
 		 text-align: center;
 		 }
 </style>
+
+
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 </head>
 
 <body>
 
-
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
 <br>
@@ -76,6 +79,9 @@ for (Article bean : list) {
 			<%
 }
 %>
+
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
 <script>
 function back(){
 	history.back();

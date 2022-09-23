@@ -10,7 +10,6 @@ response.setContentType("text/html;charset=UTF-8");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>完成查詢</title>
-</head>
 
 <style>
 table{
@@ -22,7 +21,17 @@ color: #2894FF;
 
 </style>
 
-	<%@include file="/WEB-INF/includes/Header.jsp"%>
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
+</head>
+
+
+
+<body>
+
+
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+
 
 <table>
 <%
@@ -45,7 +54,11 @@ color: #2894FF;
 }
 %>	
 </table>
-<body>
+
+
 <h2>查詢成功</h2>
+
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
 </body>
 </html>

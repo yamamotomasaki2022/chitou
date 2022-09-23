@@ -195,6 +195,10 @@ public class ManagementSystemController {
 	@PostMapping(path = "/adminchecklogin")
 	public String processAdminCheckLogin(@RequestParam("loginuserid")String user,@RequestParam("loginpw")String pwd,Model m) {
 		Map<String, String> errors = new HashMap<String, String>();
+		
+		int adminCheckStatus;
+		
+		
 		m.addAttribute("errors",errors);
 		
 		if(user == null || user.length()==0) {
@@ -211,14 +215,22 @@ public class ManagementSystemController {
 		
 		boolean result = lservice.checkAdminLogin(user, pwd);  
 		System.out.println("檢查賬號密碼的結果是 ：" +result);
-		AdminChitou statusBean = lservice.findByAdminUersname(user);
-		int adminCheckStatus = statusBean.getAdminstatus();
+		
+		try {
+			AdminChitou statusBean = lservice.findByAdminUersname(user);
+			
+			adminCheckStatus = statusBean.getAdminstatus();
+			
+		} catch (Exception e) {
+			
+			adminCheckStatus = 10000;
+		}
+		
 		
 		
 		if(result) {
 			m.addAttribute("user",user);
 			m.addAttribute("pwd",pwd);
-			
 //			將管理員分級
 			if (adminCheckStatus == 1) {
 				System.out.println("我的權限是: regular admin");
@@ -226,10 +238,11 @@ public class ManagementSystemController {
 			}else if (adminCheckStatus == 2) {
 				System.out.println("我的權限是: manager");
 				m.addAttribute("status", 2);
-			}else{
+			}else if (adminCheckStatus == 3) {
 				System.out.println("我的權限是: boss");
 				m.addAttribute("status", 3);
 			}
+			
 			
 			Memberlist(m);
 			Adminlist(m);

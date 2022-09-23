@@ -14,21 +14,26 @@ response.setContentType("text/html;charset=UTF-8");
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
+
   </head>
   <body>
-  <%@ include file="/WEB-INF/includes/Header.jsp"  %>
-    <h2 align="center">飯店查詢</h2>
-    <div align="center">
-	    <form action="searchHotel" method="get" >
-	    <select id="type" name="type">
-	    </select>
-	    <input type="text" name="keyword">
-	    <input type="submit" name="search" value="搜尋">
-	    </form>
-	</div>
+
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+
+    <h4 class="card-title text-primary">&nbsp;飯店管理</h4>
+<!--     <div align="center"> -->
+<!-- 	    <form action="searchHotel" method="get" > -->
+<!-- 	    <select id="type" name="type"> -->
+<!-- 	    </select> -->
+<!-- 	    <input type="text" name="keyword"> -->
+<!-- 	    <input type="submit" name="search" value="搜尋"> -->
+<!-- 	    </form> -->
+<!-- 	</div> -->
 	<div>
-		<div align="center">
-	    	<table id="table" class="display">
+		<div class="table-responsive">
+	    	<table class="table table-hover">
 	    		<thead>
 	              <tr id="tableHead">
 	              </tr>
@@ -80,6 +85,9 @@ response.setContentType("text/html;charset=UTF-8");
 			</form>
 		</div>
 	</div>
+	
+		<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+	
 		<script>
 		var type = ["hotelID","name","address","type","intro","country","phone","status","capacity","owner","averagePrice","photos"];
 		var typeName = ["飯店ID","飯店名","地址","類型","介紹","國家","電話","狀態","可容納人數","業主名稱","平均房價","照片"];
@@ -92,8 +100,7 @@ response.setContentType("text/html;charset=UTF-8");
 	        	let tr =  '<th>'+typeName[i]+'</th>';
 	        	$('#tableHead').append(tr);
 	        }
-			$('#tableHead').append('<th></th><th></th><th></th>');	        
-	        $('#table').DataTable();
+			$('#tableHead').append('<th>操作</th>');	        
 	    }); 
 	    $('.delete').on('click',function(){
 	    	console.log($(this).val());

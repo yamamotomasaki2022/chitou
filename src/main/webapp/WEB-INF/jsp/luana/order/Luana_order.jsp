@@ -13,13 +13,12 @@
 <title>訂單結果</title>
 <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
 
-<%@ include file="../Luana_include/head.jsp" %>
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
-
-<%@ include file="../Luana_include/navbar.jsp" %>   
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 <div class="container">
 		<div class="card-header my-3">All Orders 
@@ -84,7 +83,7 @@
 	</div>
 
 
-<%@ include file="../Luana_include/footer.jsp" %>
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%> 
 
    
 </body>

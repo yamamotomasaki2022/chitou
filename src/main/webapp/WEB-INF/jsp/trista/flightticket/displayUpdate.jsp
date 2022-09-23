@@ -11,9 +11,18 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>修改航班確認</title>
+
+
+
 </head>
+
+
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 <body>
-	<%@include file="/WEB-INF/includes/Header.jsp"%>
+
+
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
 <h2>
@@ -38,5 +47,9 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <input type="button" name="rollback" value="回上一頁" >
 
 </form>
+
+
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
 </body>
 </html>

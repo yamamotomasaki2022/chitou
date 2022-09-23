@@ -42,20 +42,24 @@ button, .btn {
 	text-align: center;
 }
 </style>
+
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 </head>
 <body>
 
 
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+
 
 
 	<br>
 	<form action="article.new" method="get">
 		<INPUT TYPE="SUBMIT" value="新增文章" name="newarticle" class="btn">
 	</form>
-	
-		<br>
-		<form action="article.read" method="post">
+
+	<br>
+	<form action="article.read" method="post">
 		選擇國家<select name="chooseCountry">
 			<optgroup label="亞洲">
 				<option value=101>台灣</option>
@@ -82,103 +86,111 @@ button, .btn {
 			<optgroup label="非洲">
 				<option value=501>埃及</option>
 			</optgroup>
-		</select> 
-		選擇文章類型<select name="chooseType">
+		</select> 選擇文章類型<select name="chooseType">
 			<option value="">全部</option>
 			<option value=91>遊記</option>
 			<option value=92>食記</option>
 			<option value=93>資訊</option>
 			<option value=94>問題</option>
 			<option value=95>攻略</option>
-		</select> 
-		<INPUT TYPE="SUBMIT" value="查詢" name="chooseArticle" class="btn"><br>
+		</select> <INPUT TYPE="SUBMIT" value="查詢" name="chooseArticle" class="btn"><br>
 		<br>
-</form>
-		<table border="1">
-			<th width=3.55%>會員ID</th>
-			<th width=3.55%>國家編號</th>
-			<th width=6.35%>文章類型編號</th>
-			<th width=25%>文章標題</th>
-			<th width=5.55%>發布日期</th>
-			<th width=8%>圖片上傳</th>
-			<th>文章內文</th>
-			<th width=6%>文章管理</th>
+	</form>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead id="tableHead">
+				<tr>
+					<th width=3.55%>會員ID</th>
+					<th width=3.55%>國家編號</th>
+					<th width=6.35%>文章類型編號</th>
+					<th width=25%>文章標題</th>
+					<th width=5.55%>發布日期</th>
+					<th width=8%>圖片上傳</th>
+					<th>文章內文</th>
+					<th width=6%>文章管理</th>
+				</tr>
+			</thead>
+			<tbody>
 
-			<%
-			List<Article> list=(List)request.getAttribute("list");
-			for (Article bean : list) {
-			%>
+				<%
+				List<Article> list = (List) request.getAttribute("list");
+				for (Article bean : list) {
+				%>
 
-			<tr>
-				<td class="centre"><%=bean.getPosterID()%></td>
-				<td class="centre"><%=bean.getCountryID()%></td>
-				<td class="centre"><%=bean.getTypeID()%></td>
-				<td><%=bean.getTitle()%></td>
-				<td class="centre"><%=bean.getDate()%></td>
-				<td><img src= "images/georgia/picture/<%=bean.getPhoto()%>" alt="<%=(bean.getPhoto().length() ==0)?"":"圖片歪腰(｡•́︿•̀｡)"%>"  width="200"  /></td>
-				<td><%=bean.getContent()%><h7 style="color:gray">......</h7>
-					<h7 style="color:blue">查看詳細內文</h7></td>
-				<td class="centre">
+				<tr>
+					<td class="centre"><%=bean.getPosterID()%></td>
+					<td class="centre"><%=bean.getCountryID()%></td>
+					<td class="centre"><%=bean.getTypeID()%></td>
+					<td><%=bean.getTitle()%></td>
+					<td class="centre"><%=bean.getDate()%></td>
+					<td><img src="images/georgia/picture/<%=bean.getPhoto()%>"
+						alt="<%=(bean.getPhoto().length() == 0) ? "" : "圖片歪腰(｡•́︿•̀｡)"%>"
+						width="200" /></td>
+					<td><%=bean.getContent()%><h7 style="color:gray">......</h7> <h7
+							style="color:blue">查看詳細內文</h7></td>
+					<td class="centre">
 
-					<form action="article.renew" method="post" style="">
-						<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
-						<INPUT TYPE="HIDDEN" value=<%=bean.getPosterID()%> name="posterID"> 
-						<INPUT TYPE="HIDDEN" value=<%=bean.getCountryID()%> name="countryID"> 
-						<INPUT TYPE="HIDDEN" value=<%=bean.getTypeID()%> name="typeID"> 
-						<INPUT TYPE="HIDDEN" value=<%=bean.getTitle()%> name="title"> 
-						<INPUT TYPE="HIDDEN" value=<%=bean.getDate()%> name="articleDate"> 
-						<INPUT TYPE="HIDDEN" value=<%=bean.getPhoto()%> name="photo"> 
-						<INPUT TYPE="HIDDEN" value=<%=bean.getContent()%> name="content">
-						<input type="submit" name="update" value="修改" class="btn" id="update">
-					</form>
+						<form action="article.renew" method="post" style="">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getPosterID()%>
+								name="posterID"> <INPUT TYPE="HIDDEN"
+								value=<%=bean.getCountryID()%> name="countryID"> <INPUT
+								TYPE="HIDDEN" value=<%=bean.getTypeID()%> name="typeID">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getTitle()%> name="title">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getDate()%> name="articleDate">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getPhoto()%> name="photo">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getContent()%> name="content">
+							<input type="submit" name="update" value="修改" class="btn"
+								id="update">
+						</form>
 
-					<form action="article.delete" method="post" style="">
-						<input type="hidden" name="_method" value="DELETE">
-						<input type="hidden" name="postID" value=<%=bean.getPostID()%>>
-						<input type="submit" name="delete" value="刪除" class="btn"
-							id="check">
-					</form>
+						<form action="article.delete" method="post" style="">
+							<input type="hidden" name="_method" value="DELETE"> <input
+								type="hidden" name="postID" value=<%=bean.getPostID()%>>
+							<input type="submit" name="delete" value="刪除" class="btn"
+								id="check">
+						</form>
 
 
-				</td>
-			</tr>
-			<%
-			}
-			%>
-					
-		
+					</td>
+				</tr>
+				<%
+				}
+				%>
+			</tbody>
 		</table>
+		</div>
 
-	
+		<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
-	<script>
-	$(function() {
-		$('form').on('click', ':submit', function () {
-			console.log('button click')
-            return check($(this).val());
-        });
-		
-        function check(action) {
-            let msg = '';
-            if (action === '刪除') {
-            	return message('確定刪除嗎?');
-            } else if (action === '修改') {
-            	return message('確定更新嗎?');
-            }else{
-            	return true;
-            }
-        }
-        
-        function message(msg) {
-        	if (confirm(msg)) {
-            	return true
-            } else {
-                return false
-            }
-        }
-            
-	})
-	</script>
+		<script>
+			$(function() {
+				$('form').on('click', ':submit', function() {
+					console.log('button click')
+					return check($(this).val());
+				});
+
+				function check(action) {
+					let msg = '';
+					if (action === '刪除') {
+						return message('確定刪除嗎?');
+					} else if (action === '修改') {
+						return message('確定更新嗎?');
+					} else {
+						return true;
+					}
+				}
+
+				function message(msg) {
+					if (confirm(msg)) {
+						return true
+					} else {
+						return false
+					}
+				}
+
+			})
+		</script>
 </body>
 </html>
 

@@ -34,12 +34,15 @@ center;
 }
 
 </style>
+
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 </head>
 
 <body>
 
 
-	<%@include file="/WEB-INF/includes/Header.jsp"%>
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 <form:form action="addFlightTicket" method="post" modelAttribute="flightTicket">
 <fieldset><legend>新增航班</legend>
@@ -194,5 +197,9 @@ center;
 </center>
 
 </form>
+
+
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
 </body>
 </html>

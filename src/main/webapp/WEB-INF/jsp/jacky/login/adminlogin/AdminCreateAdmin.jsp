@@ -44,13 +44,17 @@ label.error {
 	}
 </script>
 
-
+	<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 
 </head>
 
 <body>
 
-<%@include file="/WEB-INF/includes/Header.jsp" %>
+
+
+
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+
 
 	<H1>老闆創建管理員</H1>
 
@@ -93,7 +97,7 @@ label.error {
 
 
 
-
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
 
 

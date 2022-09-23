@@ -20,7 +20,12 @@ color: #2894FF;
 }
 </style>
 
-	<%@include file="/WEB-INF/includes/Header.jsp"%>
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
+
+<body>
+
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 <table> 
 <%
@@ -44,7 +49,11 @@ for(FlightTicket i:list){
 }
 %>
 </table>
-<body>
+
+
 <h2>修改成功</h2>
+
+
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 </body>
 </html>

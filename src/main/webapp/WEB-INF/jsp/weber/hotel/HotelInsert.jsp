@@ -16,9 +16,14 @@
 		margin: 10px;
 	}
 </style>
+
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 </head>
 <body>
-<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+
 	<div align="center">
 	    <form:form action="insertHotel" method="post" modelAttribute="hotel" enctype="multipart/form-data">
 	        飯店名稱:
@@ -46,6 +51,9 @@
 	    	<input type="submit" name="insert" value="加入一筆資料">
 	    </form:form>
 	    <div id="picPreview"></div>
+	    
+	    	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+	    
     <script>
 	    $('#upload').on('change',function(e){
 	    	$('#picPreview').empty();
