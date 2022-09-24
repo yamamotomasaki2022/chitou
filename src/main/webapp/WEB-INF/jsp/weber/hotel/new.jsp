@@ -80,16 +80,26 @@
 
 	<script src="/js/coco/ckeditor.js"></script>
 	<script>
+	var ckeditorConfig = {
+	    ckfinder: {
+	        uploadUrl: '/paaa'
+	    },
+	}
+	
 	ClassicEditor
-	   .create(document.querySelector('#editor1'))
-	      .then(editor => {
-	          console.log(editor);
-	      });
-	     ClassicEditor
-	      .create(document.querySelector('#editor2'))
-	      .then(editor => {
-	          console.log(editor);
-	      });
+	   .create(document.querySelector('#editor1'),{
+		    ckfinder: {
+		        uploadUrl: '/ckUploadGeorgia'
+		    },
+		}).then(editor => {
+	    	  console.log("editor1 success");
+	   });
+// 	     ClassicEditor
+// 	      .create(document.querySelector('#editor2'))
+// 	      .then(editor => {
+// 	    	  console.log("editor2 success");
+// 	          console.log(editor);
+// 	      });
         </script>
 </body>
 </html>
