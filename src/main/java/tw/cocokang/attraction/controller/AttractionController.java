@@ -41,13 +41,20 @@ public class AttractionController implements ServletContextAware{
 //		return path + "kangListBackground";
 		return path + "kangListView";
 	}
+	
+	//test home background home page
+	@GetMapping("/homeAttractions")
+	public String AttractionListAction2(Model m) {
+		m.addAttribute("homeAttractions", aService.getAll());
+		return "BackgroundHomePage";
+	}
+	
 
 //	insert
 	@GetMapping("/addAttraction")
 	public String insertview(Model m) {
 		Attraction attraction = new Attraction();
 		m.addAttribute("attraction", attraction);
-//		return path + "kangInsertAttractionBackground";
 		return path + "kangNEWInsertAttractionBackground";
 	}
 
@@ -63,7 +70,7 @@ public class AttractionController implements ServletContextAware{
 
 		List<Attraction> attractionAll = aService.getAll();
 		m.addAttribute("listAttraction", attractionAll);
-		return path + "kangListBackground";
+		return path + "kangListView";
 	}
 	
 	// Upload Image
@@ -97,7 +104,7 @@ public class AttractionController implements ServletContextAware{
 		Attraction selectByAttid = aService.selectByAttid(attid);
 		m.addAttribute("selectByAttid", selectByAttid);
 //		System.out.println("selectByAttid"+selectByAttid.getAttid());
-		return path + "kangUpdateAttractionBackground";
+		return path + "kangNEWUpdateAttractionBackground";
 	}
 
 	@PostMapping("/updateAttraction")
@@ -113,7 +120,7 @@ public class AttractionController implements ServletContextAware{
 
 		List<Attraction> attractionAll = aService.getAll();
 		m.addAttribute("listAttraction", attractionAll);
-		return path + "kangListBackground";
+		return path + "kangListView";
 	}
 
 	// delete
@@ -124,7 +131,7 @@ public class AttractionController implements ServletContextAware{
 		}
 		List<Attraction> attractionAll = aService.getAll();
 		m.addAttribute("listAttraction", attractionAll);
-		return path + "kangListBackground";
+		return path + "kangListView";
 	}
 
 	// Get Attraction By attName
