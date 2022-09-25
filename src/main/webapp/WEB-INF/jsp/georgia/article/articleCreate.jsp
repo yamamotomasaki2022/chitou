@@ -74,7 +74,8 @@ button, .btn {
 <!--  發布日期: <BR><INPUT TYPE="TEXT" NAME="articleDate" VALUE="" id="articleDateInput"><BR>-->
 選擇上傳的圖片:<INPUT TYPE="FILE" NAME="photo" ID=""><BR>
 <!--圖片上傳:  <BR><INPUT TYPE="TEXT" NAME="photo" VALUE="" id="photoInput"><BR>-->
-文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="" id="contentInput"><BR>
+<!-- 文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="" id="contentInput"><BR> -->
+文章內文：<BR><textarea id="contentInput" name="content"></textarea><BR>
 <INPUT TYPE="SUBMIT" value="發表文章" name="sentarticle" class="btn">
 </form>
 <button id="fastInput">一鍵輸入</button>
@@ -93,8 +94,16 @@ $('#fastInput').click(function(){
 	$('#contentInput').val('求分享，求推薦');
 })
 </script>
-
-
-
+<script src="/js/coco/ckeditor.js"></script>
+<script>
+ClassicEditor
+.create(document.querySelector('#contentInput'),{
+	    ckfinder: {
+	        uploadUrl: '/ckUploadGeorgia'
+	    },
+	}).then(editor => {
+ 	  console.log("editor1 success");
+});
+</script>
 </body>
 </html>

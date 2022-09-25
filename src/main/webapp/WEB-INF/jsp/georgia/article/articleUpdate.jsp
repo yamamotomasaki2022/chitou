@@ -94,8 +94,8 @@ int typeID = Integer.parseInt(articleCiassIDStr.substring(3));
 圖片:<img src= "images/georgia/picture/<%=tt.getPhoto()%>" alt="<%=(tt.getPhoto().length() ==0)?"添加一張圖片看看↓":"圖片歪腰(｡•́︿•̀｡)請重新選擇上傳圖片"%>" width="300" /><BR><BR>
 選擇新的上傳圖片:<INPUT TYPE="FILE" NAME="photoRenew" ID=""><BR><BR>
 <!--圖片上傳:  <BR><INPUT TYPE="TEXT" NAME="photo" VALUE="<%= (tt.getPhoto()==null)?"":tt.getPhoto() %>">-->
-文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="<%= tt.getContent() %>"><BR>
-
+<%-- 文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="<%= tt.getContent() %>"><BR> --%>
+<textarea id="contentInput" name="content"><%= tt.getContent() %></textarea>
 
 <INPUT TYPE="SUBMIT" value="更新文章" name="updateArticle" class="btn">
 </form>

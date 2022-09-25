@@ -139,7 +139,7 @@ button, .btn {
 							<INPUT TYPE="HIDDEN" value=<%=bean.getTitle()%> name="title">
 							<INPUT TYPE="HIDDEN" value=<%=bean.getDate()%> name="articleDate">
 							<INPUT TYPE="HIDDEN" value=<%=bean.getPhoto()%> name="photo">
-							<INPUT TYPE="HIDDEN" value=<%=bean.getContent()%> name="content">
+							<INPUT TYPE="HIDDEN" value='<%=bean.getContent()%>' name="content">
 							<input type="submit" name="update" value="修改" class="btn"
 								id="update">
 						</form>
