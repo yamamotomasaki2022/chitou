@@ -6,7 +6,6 @@
   <head>
     <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
     <title>飯店後台管理</title>
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
   </head>
@@ -15,13 +14,18 @@
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 	
     	<h4 class="card-title text-primary">&nbsp;飯店管理</h4>
-    <div>
+    <div style="display:inline-block;float:left;">
 	    <form action="searchHotel" method="get" >
 	    	<select id="type" name="type">
 	    	</select>
 	    	<input type="text" name="keyword">
 	    	<input type="submit" class="btn btn-primary mr-2" name="search" value="搜尋">
 	    </form>
+	</div>
+	<div style="display:inline-block;float:right;">
+		<form action="insertHotelPage" method="get">
+			<input type="submit" class="btn btn-primary mr-2" name="add" value="新增">
+		</form>
 	</div>
 	<div>
 		<div class="table-responsive">
@@ -46,36 +50,37 @@
 			                <td>${bean.owner}</td>
 			                <td>${bean.averagePrice}</td>
 			                <td>
-			            		<form action="toUpdateHotel" method="post">
-			            			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
-			                		<button type="submit" class="btn btn-inverse-success btn-icon" name="toUpdatePage">
-		                			<i class="ti-pencil-alt"></i>
-		                			</button>
-		                		</form>
-		                	</td>
-		                	<td>
-		                		<form action="deleteHotel" method="post">
-									<input type="hidden" name="_method" value="DELETE"/>
-			                		<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
-			                		<button type="submit" class="btn btn-inverse-danger btn-icon" name="delete">
-			                		<i class="ti-trash"></i>
-			                		</button>
-			            		</form>
+			                	<div style="float:left;">
+			            			<form action="toUpdateHotel" method="post">
+			            				<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
+			                			<button type="submit" class="btn btn-inverse-success btn-icon" style="width:30px;height:30px;" name="toUpdatePage">
+		                					<i class="ti-pencil-alt"></i>
+		                				</button>
+		                			</form>
+		                		</div>
+								<div>
+		                			<form action="deleteHotel" method="post">
+										<input type="hidden" name="_method" value="DELETE"/>
+			                			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
+			                			<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" name="delete">
+			                				<i class="ti-trash"></i>
+			                			</button>
+			            			</form>
+			            		</div>
 			            	</td>
 			            	<td>
-			            		<form action="toRoomPage" method="get">
-			            			<input type="hidden" name="name" value="${bean.name}">
-			            			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
-			                		<input type="submit" class="btn btn-primary mr-2"  value="房間">
-			            		</form>
+			            		<div>
+			            			<form action="toRoomPage" method="get">
+			            				<input type="hidden" name="name" value="${bean.name}">
+			            				<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
+			                			<input type="submit" class="btn btn-primary mr-2" value="房間">
+			            			</form>
+			            		</div>
 			            	</td>
 		              	</tr>
 		            </c:forEach>
 				</tbody>
 			</table>
-			<form action="insertHotelPage" method="get">
-				<input type="submit" class="btn btn-primary mr-2" name="add" value="新增">
-			</form>
 		</div>
 	</div>
 	
@@ -93,7 +98,7 @@
 	        	let tr =  '<th>'+typeName[i]+'</th>';
 	        	$('#tableHead').append(tr);
 	        }
-			$('#tableHead').append('<th></th><th>操作</th><th></th>');	        
+			$('#tableHead').append('<th>操作</th><th></th>');	        
 	    }); 
 	</script>
   </body>
