@@ -71,14 +71,11 @@ button, .btn {
 		<br><br>
 <!--國家編號:  <BR><INPUT TYPE="TEXT" NAME="bigClassID" VALUE="" id="bigClassIDInput"><BR>-->
 <!--文章類型編號:  <BR><INPUT TYPE="TEXT" NAME="articleClassID" VALUE="" id="articleClassIDInput"><BR>-->
-<!--  發布日期: <BR><INPUT TYPE="TEXT" NAME="articleDate" VALUE="" id="articleDateInput"><BR>-->
-選擇上傳的圖片:<INPUT TYPE="FILE" NAME="photo" ID=""><BR>
-<!--圖片上傳:  <BR><INPUT TYPE="TEXT" NAME="photo" VALUE="" id="photoInput"><BR>-->
 <!-- 文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="" id="contentInput"><BR> -->
 文章內文：<BR><textarea id="contentInput" name="content"></textarea><BR>
-<INPUT TYPE="SUBMIT" value="發表文章" name="sentarticle" class="btn">
+<INPUT TYPE="SUBMIT" value="發表文章" name="sentarticle" class="btn btn-primary mr-2">
 </form>
-<button id="fastInput">一鍵輸入</button>
+<button id="fastInput" class="btn btn-light">一鍵輸入</button>
 
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
@@ -87,10 +84,6 @@ button, .btn {
 $('#fastInput').click(function(){
 	$('#posterIDInput').val('2222');
 	$('#titleInput').val('中壢哪裡有好玩的地方?');
-	//$('#bigClassIDInput').val('101');
-	//$('#articleClassIDInput').val('10194');
-	//$('#articleDateInput').val('20220822');
-	//$('#photoInput').val('nowhere.jpg');
 	$('#contentInput').val('求分享，求推薦');
 })
 </script>

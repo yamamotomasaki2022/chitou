@@ -19,16 +19,13 @@
 }
 
 table {
-	border: 2px solid black;
+	
 	width: 100%;
 	height: 50px;
 	margin: 10 auto;
 	border-radius: 5px;
 }
 
-th {
-	border: 1px solid black;
-}
 
 button, .btn {
 	background-color: #FFFDD0;
@@ -55,7 +52,7 @@ button, .btn {
 
 	<br>
 	<form action="article.new" method="get">
-		<INPUT TYPE="SUBMIT" value="新增文章" name="newarticle" class="btn">
+		<INPUT TYPE="SUBMIT" value="新增文章" name="newarticle" class="btn btn-primary mr-2">
 	</form>
 
 	<br>
@@ -93,21 +90,20 @@ button, .btn {
 			<option value=93>資訊</option>
 			<option value=94>問題</option>
 			<option value=95>攻略</option>
-		</select> <INPUT TYPE="SUBMIT" value="查詢" name="chooseArticle" class="btn"><br>
+		</select> <INPUT TYPE="SUBMIT" value="查詢" name="chooseArticle" class="btn btn-primary mr-2"><br>
 		<br>
 	</form>
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<thead id="tableHead">
 				<tr>
-					<th width=3.55%>會員ID</th>
-					<th width=3.55%>國家編號</th>
-					<th width=6.35%>文章類型編號</th>
-					<th width=25%>文章標題</th>
-					<th width=5.55%>發布日期</th>
-					<th width=8%>圖片上傳</th>
-					<th>文章內文</th>
-					<th width=6%>文章管理</th>
+					<th class="card-title text-primary">會員ID</th>
+					<th class="card-title text-primary">國家</th>
+					<th class="card-title text-primary">文章類型</th>
+					<th class="card-title text-primary">文章標題</th>
+					<th class="card-title text-primary">發布日期</th>
+					<th class="card-title text-primary">文章內文</th>
+					<th class="card-title text-primary">文章管理</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -115,17 +111,15 @@ button, .btn {
 				<%
 				List<Article> list = (List) request.getAttribute("list");
 				for (Article bean : list) {
+					int title=bean.getTitle().length();
 				%>
 
 				<tr>
 					<td class="centre"><%=bean.getPosterID()%></td>
 					<td class="centre"><%=bean.getCountryID()%></td>
 					<td class="centre"><%=bean.getTypeID()%></td>
-					<td><%=bean.getTitle()%></td>
+					<td><%=(title<6)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,6)%></td>
 					<td class="centre"><%=bean.getDate()%></td>
-					<td><img src="images/georgia/picture/<%=bean.getPhoto()%>"
-						alt="<%=(bean.getPhoto().length() == 0) ? "" : "圖片歪腰(｡•́︿•̀｡)"%>"
-						width="200" /></td>
 					<td><%=bean.getContent()%><h7 style="color:gray">......</h7> <h7
 							style="color:blue">查看詳細內文</h7></td>
 					<td class="centre">
@@ -138,16 +132,15 @@ button, .btn {
 								TYPE="HIDDEN" value=<%=bean.getTypeID()%> name="typeID">
 							<INPUT TYPE="HIDDEN" value=<%=bean.getTitle()%> name="title">
 							<INPUT TYPE="HIDDEN" value=<%=bean.getDate()%> name="articleDate">
-							<INPUT TYPE="HIDDEN" value=<%=bean.getPhoto()%> name="photo">
 							<INPUT TYPE="HIDDEN" value='<%=bean.getContent()%>' name="content">
-							<input type="submit" name="update" value="修改" class="btn"
+							<input type="submit" name="update" value="修改" class="btn btn-primary mr-2"
 								id="update">
 						</form>
 
 						<form action="article.delete" method="post" style="">
 							<input type="hidden" name="_method" value="DELETE"> <input
 								type="hidden" name="postID" value=<%=bean.getPostID()%>>
-							<input type="submit" name="delete" value="刪除" class="btn"
+							<input type="submit" name="delete" value="刪除" class="btn btn-light"
 								id="check">
 						</form>
 
