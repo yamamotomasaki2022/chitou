@@ -22,7 +22,6 @@ response.setCharacterEncoding("UTF-8");
 font-size: 102%;
 }
 table {
-            border: 2px solid black;
             width: 100%;
             height: 50px;
             margin: 10 auto;
@@ -53,33 +52,39 @@ table {
 
 <br>
 
-<INPUT TYPE="Button" value="返回" name="goBack" class="btn" onclick="back()"><br><br>
-<table border="1" >
-    <th width=3.55%>會員ID</th>
-    <th width=3.55%>國家編號</th> 
-    <th width=6.35%>文章類型編號</th>
-    <th width=25%>文章標題</th> 
-    <th width=5.55%>發布日期</th>
-    <th width=15%>圖片上傳</th> 
-    <th>文章內文</th>
-    
+<INPUT TYPE="Button" value="返回" name="goBack" class="btn btn-primary mr-2" onclick="back()"><br><br>
+<div class="table-responsive">
+<table class="table table-hover" >
+    <thead id="tableHead">
+	<tr>
+    <th class="card-title text-primary">會員ID</th>
+	<th class="card-title text-primary">國家</th>
+	<th class="card-title text-primary">文章類型</th>
+	<th class="card-title text-primary">文章標題</th>
+	<th class="card-title text-primary">發布日期</th>
+	<th class="card-title text-primary">文章內文</th>
+	</tr>
+	</thead>
+	<tbody>
 <%
 List<Article> list=(List)request.getAttribute("searchBean");
 for (Article bean : list) {
+	int title=bean.getTitle().length();
 		%>
 				<tr>
 					<td name="posterID" class="centre"><%=bean.getPosterID() %></td>
 					<td name="countryID" class="centre"><%=bean.getCountryID() %></td>
 					<td name="typeID" class="centre"><%=bean.getTypeID() %></td>
-					<td name="title"><%=bean.getTitle() %></td>
+					<td><%=(title<6)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,6)%></td>
 					<td name="date" class="centre"><%=bean.getDate() %></td>
-					<td><img src= "images/georgia/picture/<%=bean.getPhoto()%>" alt="<%=(bean.getPhoto().length() ==0)?"":"圖片歪腰(｡•́︿•̀｡)"%>"  width="200"  /></td>
 					<td name="content"><%=bean.getContent() %><h7 style="color:gray">......</h7><h7 style="color:blue">查看詳細內文</h7></td>
 				</tr>
 			<%
 }
 %>
-
+</tbody>
+		</table>
+		</div>
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
 <script>

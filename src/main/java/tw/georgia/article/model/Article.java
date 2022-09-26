@@ -36,26 +36,23 @@ public class Article {
 	@Column(name = "date")
 	private String date;
 	
-	@Column(name = "photo")
-	private String photo;
-	
+
 	public Article() {
 	}
 
 
-	public Article(Integer posterID, Integer countryID, Integer typeID, String title, String content, String date, String photo) {
+	public Article(Integer posterID, Integer countryID, Integer typeID, String title, String content, String date) {
 		this.posterid = posterID;
 		this.countryid = countryID;
 		this.typeid = typeID;
 		this.title = title;
 		this.content = content;
 		this.date = date;
-		this.photo = photo;
 	}
 	
 
 	public Article(Integer postID, Integer posterID, Integer countryID, Integer typeID, String title, String content,
-			String date, String photo) {
+			String date) {
 		super();
 		this.postid = postID;
 		this.posterid = posterID;
@@ -64,7 +61,6 @@ public class Article {
 		this.title = title;
 		this.content = content;
 		this.date = date;
-		this.photo = photo;
 	}
 
 
@@ -136,19 +132,6 @@ public class Article {
 	public void setArticleDate(String date) {
 		this.date = date;
 	}
-
-
-	public String getPhoto() {
-		return photo;
-	}
-
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
-	
-	
-	
 
 }
 
