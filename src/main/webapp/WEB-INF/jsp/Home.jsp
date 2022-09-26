@@ -55,7 +55,7 @@
 					<li><a href="article.main">評論區</a></li>
 					<li class="has-children"><a href="">個人</a>
 						<ul class="dropdown">
-							<li><a href="Jacky-AdminLogin.jsp">會員專區</a></li>
+							<li><a href="adminlogin">會員專區</a></li>
 							<!-- <li><a href="weber-journeyMain.jsp">我的行程</a></li> -->
 							<li><a href="index">個人購物車</a></li>
 						</ul>

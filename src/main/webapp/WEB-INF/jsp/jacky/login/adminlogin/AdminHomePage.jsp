@@ -3,7 +3,7 @@
 <%@page import="java.util.*, javax.sql.*,tw.jacky.login.model.*"%>
 
 <%
-int status = (int) request.getSession().getAttribute("status");
+int sessio_status = (int) request.getSession().getAttribute("session_status");
 %>
 
 
@@ -255,7 +255,7 @@ int status = (int) request.getSession().getAttribute("status");
 	
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
-		var status = ${status}
+		var status = "${status}";
 
 		if (status == 1) {
 			Swal.fire(
@@ -266,16 +266,60 @@ int status = (int) request.getSession().getAttribute("status");
 			document.getElementById('aaa').setAttribute("style",
 					"display : none")
 		} else if (status == 2) {
-			alert("我是manager")
+			Swal.fire(
+					  'Welcome!',
+					  'Manager!',
+					  'success'
+					)
 			document.getElementById('aaa').setAttribute("style",
 					"display : '' ")
 		} else if (status == 3) {
-			alert("我是boss")
+			Swal.fire(
+					  'Welcome!',
+					  'Boss!',
+					  'success'
+					)
 			document.getElementById('aaa').setAttribute("style",
 					"display : '' ")
 		} else {
 			
 		}
 	</script>
+	
+	<script>
+	var crud = ${crud};
+	
+	console.log(crud)
+	
+	if (crud == 1) {
+		Swal.fire(
+				  '讚！',
+				  '新增成功',
+				  'success'
+				)
+	} else if (crud == 2) {
+		Swal.fire(
+				  '',
+				  'Manager!',
+				  'success'
+				)
+	} else if (crud == 3) {
+		Swal.fire(
+				  '讚!',
+				  '更新成功!',
+				  'success'
+				)
+	} else if (crud == 4) {
+		Swal.fire(
+				  '讚！',
+				  '刪除成功！',
+				  'success'
+				)
+	}else {
+		
+	}
+	</script>
+	
+	
 </body>
 </html>

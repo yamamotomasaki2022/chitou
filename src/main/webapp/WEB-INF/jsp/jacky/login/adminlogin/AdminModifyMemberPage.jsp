@@ -63,7 +63,7 @@ td {
 					type="text" name="password" value="<%=bean.getPassword()%>"><br>
 				<p>
 					Photo:<br/> 
-					<img id="img1" alt="" src=" <%=bean.getPhoto() %>"><br> 
+					<img id="img1" alt="" src=" <%=bean.getPhoto() %>" ><br> 
 
 					<input id="myfile2" class="myfile" type="file" name="myFile" />
 
@@ -97,13 +97,6 @@ td {
 			// 使用 readAsDataURL 將圖片轉成 Base64
 			fr.readAsDataURL(file);
 		});
-		
-		
-		if($('#myfile2').val().length != 0){
-			console.log("111")
-		}else{
-			$('#img1').attr('src', <%= bean.getPhoto() %>);
-		}
 		
 	</script>
 	
