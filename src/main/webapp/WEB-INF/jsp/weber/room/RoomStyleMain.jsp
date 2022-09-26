@@ -76,12 +76,12 @@ response.setContentType("text/html;charset=UTF-8");
 			            			</form>
 		                		</div>
 				            </td>
-			            	<td>
-			            		<form action="addRoom" method="get">
-				            		<input type="hidden" name="styleID" value="${bean.styleID}">
-				                	<input type="submit" class="btn btn-primary mr-2" name="addRoom" value="增加房間">
-				            	</form>
-				            </td>
+<!-- 			            	<td> -->
+<!-- 			            		<form action="addRoom" method="get"> -->
+<%-- 				            		<input type="hidden" name="styleID" value="${bean.styleID}"> --%>
+<!-- 				                	<input type="submit" class="btn btn-primary mr-2" name="addRoom" value="增加房間"> -->
+<!-- 				            	</form> -->
+<!-- 				            </td> -->
 		              	</tr>
 		            </c:forEach>
 				</tbody>
@@ -102,7 +102,7 @@ response.setContentType("text/html;charset=UTF-8");
 	        	let tr =  '<th>'+typeName[i]+'</th>';
 	        	$('#tableHead').append(tr);
 	        }
-	        $('#tableHead').append('<th>操作</th><th></th>');
+	        $('#tableHead').append('<th>操作</th>');
 
 	    });
 		

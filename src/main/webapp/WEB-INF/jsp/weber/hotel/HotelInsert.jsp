@@ -6,7 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
 <title>加入飯店資料</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <style type="text/css">
 	.box {
 		width: 100px;
@@ -43,11 +45,11 @@
 		        <label>狀態:</label>
 		        <form:input type="text" path="status" class="form-control" name="status" id="status" placeholder="ex.開放中、整修中"/><br>
 		        <label>可容納人數:</label>
-		        <form:input type="text" path="capacity" class="form-control" name="capacity" id="capacity"/><br>
+		        <form:input type="number" path="capacity" class="form-control" name="capacity" id="capacity"/><br>
 		        <label>業主名稱:</label>
 		        <form:input type="text" path="owner" class="form-control" name="owner" id="owner" placeholder="輸入景點名稱"/><br>
 		        <label>平均房價:</label>
-		        <form:input type="text" path="averagePrice" class="form-control" name="averagePrice" id="averagePrice"/><br>
+		        <form:input type="number" path="averagePrice" class="form-control" name="averagePrice" id="averagePrice"/><br>
 		    	<label>照片:</label>
 		    		<div class="input-group col-xs-12" >
 	<!-- 				<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">  -->
@@ -57,6 +59,7 @@
 					</div>
 	    	</div>
 	    	<input type="submit" name="insert" class="btn btn-primary mr-2" value="加入一筆資料">
+	    	<button type="button" class="btn btn-primary mr-2" id="fastInput">一鍵輸入</button>
 	    </form:form>
 	    <div id="picPreview"></div>
 	</div>    
@@ -74,6 +77,18 @@
 	    		};
 	    		fr.readAsDataURL(file);
 	    	};
+	    });
+	    $('#fastInput').click(function(){
+	    	$('#name').val('台北大倉久和大飯店');
+	    	$('#address').val('南京東路一段 9 號, 台北市, 10450');
+	    	$('#type').val('飯店');
+	    	$('#intro').val('台北大倉久和大飯店提供咖啡廳、乾洗/洗衣服務和酒吧/酒廊等設施服務，您可以多加利用。想要慰勞自己、放鬆一下嗎？不妨多加利用三溫暖或蒸氣室，也可以去做個美體療程、身體去角質或臉部療程。住宿有 3 間餐廳，提供中式料理。提供客房內免費無線上網，隨時掌握世界大小事，還有健身俱樂部和 24 小時商務中心等設施服務。');
+	    	$('#country').val('台灣');
+	    	$('#phone').val('02-2523-1111');
+	    	$('#status').val('營業中');
+	    	$('#capacity').val('2000');
+	    	$('#owner').val('大倉久和');
+	    	$('#averagePrice').val('2000');
 	    });
     </script>
 </body>
