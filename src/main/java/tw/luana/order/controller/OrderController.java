@@ -47,6 +47,10 @@ public class OrderController {
 	@Autowired
 	private HttpSession session;
 	
+	String path_Luana_Atttraction = "luana/attraction/";
+	String path_Luana_Cart = "luana/cart/";
+	String path_Luana_Order = "luana/order/";
+	
 	
 	//查看訂單
 	@RequestMapping(path = "order", method = RequestMethod.GET)
@@ -54,7 +58,7 @@ public class OrderController {
 
 		m.addAttribute("orders",orderService.showOrders());
 
-		return "luana/order/Luana_order";
+		return  path_Luana_Order + "Luana_order";
 		
 	}
 
@@ -67,7 +71,7 @@ public class OrderController {
 		orderService.updateOrderStatus(orderStatus, orderId);
 		m.addAttribute("orders",orderService.showOrders());
 
-		 return "luana/order/Luana_order";
+		return  path_Luana_Order + "Luana_order";
 	}
 	
 }

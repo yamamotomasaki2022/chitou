@@ -48,6 +48,12 @@ public class CartController {
 	private HttpSession session;
 	
 	
+	String path_Luana_Atttraction = "luana/attraction/";
+	String path_Luana_Cart = "luana/cart/";
+	String path_Luana_Order = "luana/order/";
+	
+	
+	
 	//商品加入購物車
 	@RequestMapping(path = "addToCart",method = RequestMethod.POST)
 	public String addToCart(@RequestParam("planName") String planName,
@@ -67,7 +73,7 @@ public class CartController {
 		cartService.addToCart(cart);
 		
 		m.addAttribute("planList",attractionService.showAttractionPlans(attractionId));
-		return "luana/attraction/Luana_attractionPlans";
+		return path_Luana_Atttraction + "Luana_attractionPlans";
 		
 	}
 	
@@ -77,7 +83,7 @@ public class CartController {
 
 		m.addAttribute("cartList",cartService.showCart());
 
-		return "luana/cart/Luana_cart";
+		return path_Luana_Cart + "Luana_cart";
 	}
 
 	//移除購物車商品
@@ -87,7 +93,7 @@ public class CartController {
 		cartService.removeCartItemfromcart(itemId);
 		m.addAttribute("cartList",cartService.showCart());
 		
-		return "luana/cart/Luana_cart";
+		return path_Luana_Cart + "Luana_cart";
 	}
 
 	//從購物車購買
@@ -109,7 +115,8 @@ public class CartController {
 		orderService.addToOrder(orders);
 		cartService.removeCartItemfromcart(itemId);
 		m.addAttribute("cartList",cartService.showCart());
-		return "luana/cart/Luana_cart";
+		
+		return path_Luana_Cart + "Luana_cart";
 	}
 	
 }

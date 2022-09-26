@@ -46,13 +46,17 @@ public class AttractionController_Luana {
 	
 	@Autowired
 	private HttpSession session;
+	
+	String path_Luana_Atttraction = "luana/attraction/";
+	String path_Luana_Cart = "luana/cart/";
+	String path_Luana_Order = "luana/order/";
 
 	
 	//顯示所有景點
 	@RequestMapping(path = "allAttractions", method = RequestMethod.GET)
 	public String showAllAttraction(Model m) {
 		m.addAttribute("allAttractions",attractionService.showAllAttractions());
-		return "luana/attraction/Luana_allAttractions";
+		return path_Luana_Atttraction + "Luana_allAttractions";
 	}
 	
 	//搜尋景點
@@ -61,7 +65,7 @@ public class AttractionController_Luana {
 			 {
 		
 		m.addAttribute("searchReasults",attractionService.searchAttraction(attraction));		
-		return "luana/attraction/Luana_searchAttractionReasults";
+		return path_Luana_Atttraction + "Luana_searchAttractionReasults";
 
 	}
 	
@@ -71,7 +75,7 @@ public class AttractionController_Luana {
 
 		m.addAttribute("planList",attractionService.showAttractionPlans(attractionId));
 
-		return "luana/attraction/Luana_attractionPlans";
+		return path_Luana_Atttraction+"Luana_attractionPlans";
 
 	}
 	
