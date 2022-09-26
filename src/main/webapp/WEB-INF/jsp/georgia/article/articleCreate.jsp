@@ -32,7 +32,7 @@ button, .btn {
 <br>
 <form action="article.insert" method="post" enctype="multipart/form-data">
 會員ID:  <BR><INPUT TYPE="TEXT" NAME="posterID" VALUE="" id="posterIDInput"><BR>
-文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="" id="titleInput"><BR>
+文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="" id="titleInput" style="width: 100%;"><BR>
 		<br> 選擇國家<select name="chooseCountry">
 			<optgroup label="亞洲">
 				<option value=101>台灣</option>
