@@ -30,6 +30,7 @@ response.setCharacterEncoding("UTF-8");
 
 	<br>
 
+	
 	<div align="center">
 		<h2>Search Result</h2>
 		<table border="1" class="table table-bordered" cellpadding="5">

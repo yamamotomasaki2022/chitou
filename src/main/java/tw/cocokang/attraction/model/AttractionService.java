@@ -1,6 +1,7 @@
 package tw.cocokang.attraction.model;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,10 @@ public class AttractionService {
 	
 	@Autowired
 	private AttractionRepository aRepo;
+	
 
 	//insert
-	public void insert(Attraction attraction) {
-		
+	public void insert(Attraction attraction,int preferid) {
 		aRepo.save(attraction);
 	}
 	//update

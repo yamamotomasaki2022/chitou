@@ -16,6 +16,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class Attraction {
 	
+	@Column(name = "photo")
+	private String photo;
+	
 	@Id
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "attraction_id")
@@ -38,9 +41,9 @@ public class Attraction {
 	@Column(name = "attraction_description")
 	private String attDescription;
 	
-	@Column(name = "attraction_notice")
-	private String attNotice;
-	
+//	@Column(name = "attraction_notice")
+//	private String attNotice;
+//	
 	public Attraction() {
 	}
 
@@ -51,7 +54,7 @@ public class Attraction {
 		  this.attName=attName;
 		  this.attLocation=attLocation;
 		  this.attDescription=attDescription;
-		  this.attNotice=attNotice;
+//		  this.attNotice=attNotice;
 		  
 	}
 
@@ -64,7 +67,7 @@ public class Attraction {
 		this.attName = attName;
 		this.attLocation = attLocation;
 		this.attDescription = attDescription;
-		this.attNotice = attNotice;
+//		this.attNotice = attNotice;
 	}
 
 	public Integer getAttid() {
@@ -117,14 +120,14 @@ public class Attraction {
 	}
 
 
-	public String getAttNotice() {
-		return attNotice;
-	}
-
-
-	public void setAttNotice(String attNotice) {
-		this.attNotice = attNotice;
-	}
+//	public String getAttNotice() {
+//		return attNotice;
+//	}
+//
+//
+//	public void setAttNotice(String attNotice) {
+//		this.attNotice = attNotice;
+//	}
 
 	public Integer getPreferid() {
 		return preferid;
@@ -132,6 +135,21 @@ public class Attraction {
 
 	public void setPreferid(Integer preferid) {
 		this.preferid = preferid;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	@Override
+	public String toString() {
+		return "Attraction [photo=" + photo + ", attid=" + attid + ", hobbyclassification=" + hobbyclassification
+				+ ", preferid=" + preferid + ", attName=" + attName + ", attLocation=" + attLocation
+				+ ", attDescription=" + attDescription + "]";
 	}
 
 }

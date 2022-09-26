@@ -19,8 +19,37 @@
 <body>
 
 
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+	<header> <nav class="navbar navbar-expand-md navbar-dark"
+		style="background-color: lightblue">
+	<div>
+		<img src="images/chitou.png" /> <a
+			href="http://localhost:8080/HibernateChiTou/Kang-list.jsp"
+			class="navbar-brand"> ChiTou </a>
+	</div>
 
+	<ul class="navbar-nav">
+		<li><a href="http://localhost:8080/HibernateChiTou/Kang-list.jsp"
+			class="nav-link">景點</a></li>
+	</ul>
+	</nav> </header>
+	<br>
+	<div class="row">
+		<div class="container">
+			<br>
+			<h3 class="text-center">
+				<b>景點項目</b>
+			</h3>
+			<hr>
+			<a href="addAttraction">
+				<button class="btn btn-success">新增專欄</button>
+			</a>
+			
+			<form action="searchAttraction" method="post" enctype="multipart/form-data">
+			<input type="text" name="search"> <input type="submit"
+				name="searchno" value="搜尋">
+				
+				
+			<form method="post" action="searchAttraction">
 
 	<br>
 	<div class="row">
