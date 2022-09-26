@@ -51,7 +51,7 @@ background-color: pink
 									height="auto" alt="logo" /><img src="/images/coco/logo2.png"
 									class="mr-2" alt="logo" /></a>
 							</div>
-							<form class="pt-3" ACTION="adminchecklogin" method="post">
+							<form class="pt-3" ACTION="MemberCheckLogin" method="post">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
 										id="uName" placeholder="Username" name="loginuserid">
@@ -64,7 +64,7 @@ background-color: pink
 								<div class="mt-3">
 									<button
 										class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-										type="submit" value="login">管理員登入</button>
+										type="submit" value="login">會員登入</button>
 									<span>${errors.msg}</span>
 								</div>
 								<div
@@ -92,8 +92,9 @@ background-color: pink
 										<i class="ti-google"></i>
 									</button>
 								</div>
-
-
+								<div class="text-center mt-4 font-weight-light">
+									還沒有帳號? <a href="register.html" class="text-primary">創建帳戶</a>
+								</div>
 								<hr>
 							</form>
 							<div >

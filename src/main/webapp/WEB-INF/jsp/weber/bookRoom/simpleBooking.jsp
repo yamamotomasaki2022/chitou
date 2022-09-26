@@ -6,29 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
 <title>簡易預定飯店</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<style type="text/css">
-.box {
-	width: 100px;
-	height: 100px;
-	border: 1px solid black;
-	overflow: hidden;
-	margin: 10px;
-}
-</style>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
-
 </head>
 <body>
-
-
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
-
-
 	<h3>這是簡易訂房系統</h3>
-	<div align="center">
+	<div>
 		<form:form action="insertStyle" method="post" modelAttribute="style"
 			enctype="multipart/form-data">
 	        請輸入房型名稱:
@@ -58,7 +42,7 @@
 		</form:form>
 		<div id="picPreview"></div>
 		<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
-
+	</div>
 		<script>
 			
 		</script>

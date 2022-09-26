@@ -25,6 +25,13 @@ public class LoginController {
 	String piclocation= image_admin_page + "login/";
 	
 	
+	@RequestMapping(path="/toHomepage")
+	public String toHomepage() {
+		return path_main_login + "Home";
+	}
+	
+
+	
 	@RequestMapping(path="/toAdminLoginPage")
 	public String toAdminLoginPage() {
 		return path_admin_login + "AdminLogin";
@@ -40,6 +47,9 @@ public class LoginController {
 	public String toMainLoginPage() {
 		return path_main_login + "MainLoginPage";
 	}
+	
+	
+	
 	
 
 }

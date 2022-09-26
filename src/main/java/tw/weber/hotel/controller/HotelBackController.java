@@ -33,13 +33,13 @@ public class HotelBackController {
 	
 	private String suffix = "weber/hotel/";
 	private String hotelmainPage = suffix + "HotelMain";  
-	private String returnHotel = "redirect:hotel" ;
+	private String returnHotel = "redirect:hotelBack" ;
 	private String toRoom = "redirect:room";
 	private String newHotel = suffix + "HotelInsert";
 	private String updateHotel = suffix +"HotelUpdate";
 	
 	
-	@GetMapping(path = "/hotel")
+	@GetMapping(path = "/hotelBack")
 	public String SearchAllHotel(Model model) {
 		List<Hotel> result = hService.findAll();
 		
