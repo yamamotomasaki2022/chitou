@@ -22,22 +22,23 @@ response.setCharacterEncoding("UTF-8");
 									<h4 class="card-title text-primary">&nbsp;修改景點</h4>
 									<p class="card-description">請輸入您要修改的景點</p>
 									<!--form開始-->
-									<form:form class="forms-sample" action="updateAttraction" method="post" modelAttribute="selectByAttid">
+									<form:form class="forms-sample" action="updateAttraction" method="post" modelAttribute="selectByAttid" enctype="multipart/form-data">
 									<form:input type="hidden" path="attid" value="${selectByAttid.attid}" class="form-control" />
-										
-										<div class="form-group">
-											<form:label path="">景點圖片:</form:label> 
-											<input type="file" name="img[]"
-												class="file-upload-default"/>
+									<div class="form-group">
+											<label >景點圖片:</label> 
+
 											<div class="input-group col-xs-12">
-												<input type="text" class="form-control file-upload-info"
-													disabled placeholder="Upload Image"> <span
-													class="input-group-append">
-													<button class="file-upload-browse btn btn-primary"
-														type="button">Upload</button>
+												<input name="photoo" type="file"  class="form-control file-upload-info"
+													 placeholder="Upload Image">
+													 <span class="input-group-append">
+<!-- 													<button class="file-upload-browse btn btn-primary" -->
+<!-- 														type="button">Upload</button> -->
 												</span>
+												
 											</div>
 										</div>
+										
+										
 										
 										
 										<div class="form-group">
@@ -60,29 +61,27 @@ response.setCharacterEncoding("UTF-8");
 
 										<div class="form-group">
 											<form:label path="attDescription"> 景點說明: </form:label>
-											<div id="editor1">
-										<form:textarea id="t1" rows="6" cols="50" path="attDescription" class="form-control" placeholder="請輸入修正的景點說明"></form:textarea>											</div>
-										<script>
-    									document.getElementById("t1").value=${selectByAttid.attDescription}
-   										</script>
+											<div >
+<%-- 										<form:textarea id="t1" rows="6" cols="50" path="attDescription" class="form-control" placeholder="請輸入修正的景點說明"></form:textarea>											</div> --%>
+										<form:textarea id="editor1" path="attDescription" rows="6" cols="50" class="form-control" placeholder="請輸入修正的景點說明"></form:textarea>											
+										</div>
 										</div>
 										
 										
 										
-										<div class="form-group">
-											<form:label path="attNotice"> 購票須知: </form:label>
-											<div id="editor2">
-										<form:textarea id="t2" rows="6" cols="50" path="attNotice" class="form-control" placeholder="請輸入修正的購票須知"></form:textarea>											</div>
-										<script>
-		    							document.getElementById("t2").value=${selectByAttid.attDescription}
-   										</script>
-										</div>
+<!-- 										<div class="form-group"> -->
+<%-- 											<form:label path="attNotice"> 購票須知: </form:label> --%>
+<!-- 											<div id="editor2"> -->
+<%-- 										<form:textarea id="t2" rows="6" cols="50" path="attNotice" class="form-control" placeholder="請輸入修正的購票須知"></form:textarea>											</div> --%>
+<!-- 										<script> -->
+<!--    										</script> -->
+<!-- 										</div> -->
 										
 										
 										<br>
 
 										<button type="submit" name="modify" class="btn btn-primary mr-2">修正</button>
-										<button class="btn btn-light">返回</button>
+										<a href="listAttractions"><button class="btn btn-light">返回</button></a>
                        				 </form:form>
 									</div>
 						<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
@@ -91,15 +90,13 @@ response.setCharacterEncoding("UTF-8");
 	<script>
 
 	ClassicEditor
-	   .create(document.querySelector('#editor1'))
-	      .then(editor => {
-	          console.log(editor);
-	      });
-	     ClassicEditor
-	      .create(document.querySelector('#editor2'))
-	      .then(editor => {
-	          console.log(editor);
-	      });
+	   .create(document.querySelector('#editor1'),{
+		    ckfinder: {
+		        uploadUrl: '/ckUploadCoco'
+		    },
+		}).then(editor => {
+	    	  console.log("editor1 success");
+	   });
 
 
         </script>

@@ -3,6 +3,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<% 
+response.setContentType("text/html;charset=UTF-8");
+response.setHeader("Cache-Control","no-cache"); // HTTP 1.1
+response.setHeader("Pragma","no-cache"); // HTTP 1.0
+response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
+%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,72 +37,67 @@
 									<h4 class="card-title text-primary">&nbsp;新增景點</h4>
 									<p class="card-description">請輸入您要新增的景點</p>
 									<!--form開始-->
-									<form class="forms-sample">
+									<form:form class="forms-sample" action="addAttractionAction" method="post" modelAttribute="attraction" enctype="multipart/form-data">
 										<div class="form-group">
-											<label>景點圖片:</label> <input type="file" name="img[]"
-												class="file-upload-default">
+											<label >景點圖片:</label> 
+
 											<div class="input-group col-xs-12">
-												<input type="text" class="form-control file-upload-info"
-													disabled placeholder="Upload Image"> <span
-													class="input-group-append">
-													<button class="file-upload-browse btn btn-primary"
-														type="button">Upload</button>
+												<input name="photoo" type="file"  class="form-control file-upload-info"
+													 placeholder="Upload Image">
+													 <span class="input-group-append">
+<!-- 													<button class="file-upload-browse btn btn-primary" -->
+<!-- 														type="button">Upload</button> -->
 												</span>
+												
 											</div>
 										</div>
 
 										<div class="form-group">
-											<label path="attid">景點編號:</label> <input type="text"
-												path="attid" class="form-control" id=""
-												placeholder="請輸入新增的景點ID">
+											<form:label path="attid">景點編號:</form:label> 
+											<form:input type="text"
+												path="attid" class="form-control"
+												placeholder="請輸入新增的景點ID" />
 										</div>
 										<div class="form-group">
-											<label path="preferid" path="preferid">方案編號:</label> <select
+											<form:label path="preferid">方案編號:</form:label>
+											 <select name="preferid"
 												class="form-control">
-												<option>1</option>
-												<option>2</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
 											</select>
 										</div>
 
 										<div class="form-group">
-											<label>景點名稱:</label> <input type="" class="form-control"
-												id="" placeholder="請輸入新增的景點名稱">
-										</div>
-										<div class="form-group">
-											<label path="preferid">方案編號:</label> <input type=""
-												path="preferid" class="form-control" id=""
-												placeholder="請輸入新增的方案編號">
+											<form:label path="attName">景點名稱:</form:label>
+											 <form:input type="text" class="form-control"
+												id="" path="attName" placeholder="請輸入新增的景點名稱"/>
 										</div>
 
 										<div class="form-group">
-											<label>景點位置:</label> <input type="" class="form-control"
-												id="" placeholder="請選擇新增的景點位置">
+											<form:label path="attLocation">景點位置:</form:label> 
+											<form:input type="text" path="attLocation" class="form-control"
+												id="" placeholder="請選擇新增的景點位置" />
 										</div>
 
 										<div class="form-group">
-											<label> 景點說明: </label>
+											<form:label path="attDescription"> 景點說明: </form:label>
 											<div >
-												<textarea id="editor1" placeholder="請輸入新增的景點說明"></textarea>
+												<form:textarea id="editor1" path="attDescription" placeholder="請輸入新增的景點說明"></form:textarea>
 											</div>
 										</div>
 										
-											<div class="form-group">
-											<label> 購票須知: </label>
-											<div >
-												<textarea id="editor2" placeholder="請輸入新增的購票須知"></textarea>
-											</div>
-										</div>
-										
-<!-- 										<div class="form-group"> -->
-<!--                                                 <label for="exampleTextarea1">購票須知:</label> -->
-<!--                                                 <textarea class="form-control" id="exampleTextarea1" -->
-<!--                                                     rows="4"></textarea> -->
-<!--                                             </div> -->
+<!-- 											<div class="form-group"> -->
+<!-- 											<label> 購票須知: </label> -->
+<!-- 											<div > -->
+<!-- 												<textarea id="editor2" placeholder="請輸入新增的購票須知"></textarea> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+									
 										<br>
 
-										<button type="submit" class="btn btn-primary mr-2">新增</button>
-										<button class="btn btn-light">返回</button>
-									</form>
+										<button type="submit" name="submit" class="btn btn-primary mr-2">新增</button>
+										<a href="listAttractions"><button class="btn btn-light">返回</button></a>                        </form:form>
 							<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 					
 
@@ -103,18 +107,14 @@
 	<!-- ckeditor:js & function-->
 	<script src="/js/coco/ckeditor.js"></script>
 	<script>
-
-	ClassicEditor
-	   .create(document.querySelector('#editor1'))
-	      .then(editor => {
-	          console.log(editor);
-	      });
-	     ClassicEditor
-	      .create(document.querySelector('#editor2'))
-	      .then(editor => {
-	          console.log(editor);
-	      });
-
+	 	ClassicEditor
+		   .create(document.querySelector('#editor1'),{
+			    ckfinder: {
+			        uploadUrl: '/ckUploadCoco'
+			    },
+			}).then(editor => {
+		    	  console.log("editor1 success");
+		   });
         </script>
 
 </body>
