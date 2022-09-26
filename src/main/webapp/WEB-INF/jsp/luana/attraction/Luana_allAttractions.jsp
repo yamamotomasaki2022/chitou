@@ -10,11 +10,11 @@
 <title>景點</title>
 <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
 
-<%@ include file="../Luana_include/head.jsp"%>
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 	<div>
 		<%@ include file="../Luana_include/navbar.jsp"%>
@@ -52,6 +52,6 @@
 
 
 	</div>
-	<%@ include file="../Luana_include/footer.jsp"%>
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 </body>
 </html>

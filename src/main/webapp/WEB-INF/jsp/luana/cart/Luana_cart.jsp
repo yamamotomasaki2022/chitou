@@ -27,10 +27,13 @@
                 }
             </style> 
     </head>
+    
+    
+    <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+    
     <body>
     
-    	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
-        <%@ include file="../Luana_include/navbar.jsp" %>
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
        
             <div class="container">
                 <div class="d-flex py-3">
@@ -84,7 +87,7 @@
                     </tbody>
                 </table>
             </div>
-            <%@ include file="../Luana_include/footer.jsp" %>
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
     </body>
 
     </html>

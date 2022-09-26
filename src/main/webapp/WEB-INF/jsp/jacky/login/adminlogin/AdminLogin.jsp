@@ -1,4 +1,5 @@
-<%@ page language="java"  contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,34 +35,37 @@ legend {
 }
 </style>
 
-
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 
 </head>
 <body>
 
 
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
 
 	<FORM ACTION="adminchecklogin" method="post">
 		<fieldset class="container col-md-5">
 			<legend>管理員登入界面</legend>
-		<table>
-			<tr>
-				<td>UserName:</td>
-				<td><input type="text" name="loginuserid"></td>
-				<td>${errors.name}</td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" name="loginpw"></td>
-				<td>${errors.pwd}</td>
-			</tr>
-			<tr>
-			<td><button type="submit" value="login">Login</button>
-			<td>${errors.msg}</td>
-			</tr>
-		</table>
+			<table>
+				<tr>
+					<td>UserName:</td>
+					<td><input type="text" name="loginuserid"></td>
+					<td>${errors.name}</td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" name="loginpw"></td>
+					<td>${errors.pwd}</td>
+				</tr>
+				<tr>
+					<td><button type="submit" value="login">Login</button>
+					<td>${errors.msg}</td>
+				</tr>
+			</table>
+		</fieldset>
 	</Form>
+	
+	<!--  
 
 	<FORM ACTION="./Project2Servlet" method="post">
 		<div class="btnfloat">
@@ -73,8 +77,7 @@ legend {
 	</FORM>
 
 
-
-
+-->
 
 
 
@@ -92,8 +95,5 @@ legend {
 			$('.logininfo').hide();
 		});
 	</script>
-
-	</fieldset>
-
 </body>
 </html>

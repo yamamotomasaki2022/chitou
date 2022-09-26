@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
+import tw.chitou.util.CkResponse;
+import tw.chitou.util.UploadFileHelper;
 import tw.cocokang.attraction.model.Attraction;
 import tw.cocokang.attraction.model.AttractionService;
 import tw.cocokang.attraction.model.Hobbyclassification;
-import tw.cocokang.attraction.util.JSONFileUpload;
-import tw.cocokang.attraction.util.UploadFileHelper;
 
 @Controller
 public class AttractionController implements ServletContextAware{
@@ -82,12 +82,12 @@ public class AttractionController implements ServletContextAware{
 		@RequestMapping(value = "upload_ckeditor", method= RequestMethod.POST,produces = {
 				MimeTypeUtils.APPLICATION_JSON_VALUE
 		} )
-		public ResponseEntity<JSONFileUpload> UploadCKEditor(@RequestParam("upload")MultipartFile upload){
+		public ResponseEntity<CkResponse> UploadCKEditor(@RequestParam("upload")MultipartFile upload){
 			try {
 				String fileName= UploadFileHelper.upload(servletContext, upload);
-				return new ResponseEntity<JSONFileUpload>(new JSONFileUpload("/WEB-INF/resources/images/coco/"+fileName), HttpStatus.OK);
+				return new ResponseEntity<CkResponse>(new CkResponse("/WEB-INF/resources/images/coco/"+fileName), HttpStatus.OK);
 			} catch (Exception e) {
-			return new ResponseEntity<JSONFileUpload>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<CkResponse>(HttpStatus.BAD_REQUEST);
 			}
 		}
 		

@@ -1,4 +1,4 @@
-package tw.cocokang.attraction.util;
+package tw.chitou.util;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

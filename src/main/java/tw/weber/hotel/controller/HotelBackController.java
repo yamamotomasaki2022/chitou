@@ -126,8 +126,15 @@ public class HotelBackController {
 	public String test3(Model model) {
 //		List<Hotel> result = hService.findAll();
 //		model.addAttribute("result",result);
+		model.addAttribute("yee","ya");
+		return suffix + "testnew";
+	}
+	
+	@GetMapping(path = "/ck")
+	public String ckEditor() {
 		return suffix + "new";
 	}
+	
 //-----------------------------------------廢案------------------------------------------------------------	
 //	@GetMapping(path = "/hotelAjax/{hotelID}")
 //	@ResponseBody

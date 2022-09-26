@@ -10,14 +10,76 @@
 <meta charset="UTF-8">
 <title>ChiTou後台管理系統-景點總覽</title>
 <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+<style>
+    div.loadingdiv {
+        height: 100%;
+        width: 100%;
+        /*100%覆蓋網頁內容, 避免user在loading時進行其他操作*/
+        position: fixed;
+        z-index: 99999;
+        /*須大於網頁內容*/
+        top: 0;
+        left: 0;
+        display: block;
+        background: #000;
+        opacity: 0.6;
+        text-align: center;
+    }
+
+    div.loadingdiv img {
+        position: relative;
+        vertical-align: middle;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 50vh;
+    }
+
+    
+</style>
+<script type="text/javascript">
+$(function(){
+	
+	$("#receive").click(function(){
+		$.ajax({
+	          beforeSend: function () {
+	             //將div顯示
+	             $('#loading').css("display", "");
+	          },
+	          type: 'GET',
+	          async: false,
+	          url: 'coco/attraction/kangNEWInsertAttractionBackground',
+	          success: function (data) {
+	               //do something
+	          },
+	          complete: function () {
+	              //再次隱藏
+	              $('#loading').css("display", "none"); 
+	              
+	              //測試可利用setTimeout 讓loading效果明顯
+	              //setTimeout(function () { $('#loading').css("display", "none"); }, 3000);
+	              
+	          }
+	       
+	      })
+		
+	})
+	
+	
+});
+
+	</script>
 </head>
+
 <body>
+ <div class="loadingdiv" id="loading" style="display: none">
+        <img src="/images/coco/loading/loading1.gif" />     
+ </div>
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 	<h4 class="card-title text-primary">&nbsp;景點總覽</h4>
 	<p class="card-description" href="addAttraction">
 		<a href="addAttraction">
-			<button type="button" class="btn btn-inverse-primary btn-fw">
+			<button id="receive" type="button" class="btn btn-inverse-primary btn-fw">
 				<i class="ti-plus"></i>&nbsp;新增景點
 			</button>
 		</a>

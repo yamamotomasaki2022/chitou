@@ -20,11 +20,14 @@ button, .btn {
 	font-size: 150%;
 }
 </style>
+
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 </head>
 <body>
 
 
-<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 <br>
 <form action="article.insert" method="post" enctype="multipart/form-data">
@@ -75,6 +78,10 @@ button, .btn {
 <INPUT TYPE="SUBMIT" value="發表文章" name="sentarticle" class="btn">
 </form>
 <button id="fastInput">一鍵輸入</button>
+
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
+
 <script>
 $('#fastInput').click(function(){
 	$('#posterIDInput').val('2222');
@@ -86,5 +93,8 @@ $('#fastInput').click(function(){
 	$('#contentInput').val('求分享，求推薦');
 })
 </script>
+
+
+
 </body>
 </html>

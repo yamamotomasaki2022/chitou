@@ -33,11 +33,13 @@ td {
 </style>
 
 
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 </head>
 <body>
 
 
-	<%@include file="/WEB-INF/includes/Header.jsp"%>
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 	<hr>
 	<br>
@@ -94,7 +96,7 @@ td {
 			fr.readAsDataURL(file);
 		});
 	</script>
-
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
 </body>
 </html>

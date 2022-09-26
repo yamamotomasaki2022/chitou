@@ -30,12 +30,15 @@ button, .btn {
 	font-size: 150%;
 }
 </style>
+
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 </head>
 
 <body>
 
 
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
 <br>
@@ -96,6 +99,9 @@ int typeID = Integer.parseInt(articleCiassIDStr.substring(3));
 
 <INPUT TYPE="SUBMIT" value="更新文章" name="updateArticle" class="btn">
 </form>
+
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
 <script type="text/javascript">
 
 </script>
