@@ -10,7 +10,7 @@ public interface MemberBasicInfoRepository extends JpaRepository<MemberBasicInfo
 	
 	
 	public MemberBasicInfo findByMemberid (int id);
-	
+	public MemberBasicInfo findByUsername (String username);
 	
 	
 	

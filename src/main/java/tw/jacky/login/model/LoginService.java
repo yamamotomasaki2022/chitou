@@ -210,5 +210,43 @@ public class LoginService {
 
 	
 	
+//	------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	
+	public boolean checkMemberLogin(String username, String pw) {
+		
+		String check_username = takeMemberUsername(username);
+		String check_pw = takeMemberPassword(username);
+		
+		if(check_username != null) {
+			if (!pw.equals(check_pw)) {
+				return false;				
+			}else {
+				return true;				
+			}
+		}else {
+			return false;
+		}	
+	}
+	
+	
+	public String takeMemberUsername(String username) {
+		MemberBasicInfo memberbasicbean = mbrepo.findByUsername(username);
+		
+		if(memberbasicbean != null) {
+			return memberbasicbean.getUsername();
+		}
+		return null;
+	}
+	
+	public String takeMemberPassword(String username) {
+		MemberBasicInfo memberbasicbean = mbrepo.findByUsername(username);
+		
+		if (memberbasicbean !=null) {			
+			return memberbasicbean.getPassword();
+		}
+		return null;
+	}
+	
 
 }

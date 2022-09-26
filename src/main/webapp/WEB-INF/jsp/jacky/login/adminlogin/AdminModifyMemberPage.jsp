@@ -62,7 +62,7 @@ td {
 				密碼<input
 					type="text" name="password" value="<%=bean.getPassword()%>"><br>
 				<p>
-					Photo:<br /> 
+					Photo:<br/> 
 					<img id="img1" alt="" src=" <%=bean.getPhoto() %>"><br> 
 
 					<input id="myfile2" class="myfile" type="file" name="myFile" />
@@ -82,6 +82,8 @@ td {
 		<button onclick="">返回登入界面</button>
 	</form>
 
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp" %>
+
 	<script>
 		$('.myfile').on('change', function(e) {
 			const file = this.files[0];//將上傳檔案轉換為base64字串
@@ -95,8 +97,17 @@ td {
 			// 使用 readAsDataURL 將圖片轉成 Base64
 			fr.readAsDataURL(file);
 		});
+		
+		
+		if($('#myfile2').val().length != 0){
+			console.log("111")
+		}else{
+			$('#img1').attr('src', <%= bean.getPhoto() %>);
+		}
+		
 	</script>
-<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+	
+
 
 </body>
 </html>

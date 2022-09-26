@@ -231,16 +231,16 @@ int status = (int) request.getSession().getAttribute("status");
 
 			<hr>
 
-			<FORM ACTION="ToAdminCreateAdmin" method="post">
+	<FORM ACTION="ToAdminCreateAdmin" method="post">
 
 				<input class="bot" type="submit" name="addnewmember" value="新增管理員資料">
 				<hr>
-			</form>
+	</form>
 		</div>
 	</div>
 
 
-	<hr>
+
 
 	<form action="logout">
 		<button onclick="">返回登入界面</button>
@@ -253,12 +253,16 @@ int status = (int) request.getSession().getAttribute("status");
 
 	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 	
-	
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
 		var status = ${status}
 
 		if (status == 1) {
-			alert("我是admin")
+			Swal.fire(
+					  'Welcome!',
+					  'Admin!',
+					  'success'
+					)
 			document.getElementById('aaa').setAttribute("style",
 					"display : none")
 		} else if (status == 2) {
