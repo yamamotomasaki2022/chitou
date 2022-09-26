@@ -24,7 +24,7 @@ import tw.jacky.login.model.LoginService;
 import tw.jacky.login.model.MemberBasicInfo;
 
 @Controller
-@SessionAttributes({ "memberlist", "adminlist", "session_status" })
+@SessionAttributes({ "memberlist", "adminlist", "session_status", "crud" })
 public class ManagementSystemController {
 
 	@Autowired
