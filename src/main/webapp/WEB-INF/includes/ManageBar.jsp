@@ -51,7 +51,7 @@
 		</a>
 			<div class="collapse" id="tables">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="/hotel">飯店管理</a></li>
+					<li class="nav-item"><a class="nav-link" href="/hotelBack">飯店管理</a></li>
 				</ul>
 			</div></li>
 
