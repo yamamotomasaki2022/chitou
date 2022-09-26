@@ -103,12 +103,12 @@ img {center;
 					<center>
 						<form:button name="submit" class="btn btn-success">新增</form:button>
 						<form:button name="reset" class="btn btn-danger">清除</form:button>
+				<button type="button" id="fastInput" class="btn btn-light">一鍵輸入</button>
 
 					</center>
 				</div>
 			</form:form>
 			<center>
-				<button id="fastInput" class="btn btn-light">一鍵輸入</button>
 			</center>
 	</fieldset>
 

@@ -6,11 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
-
-
-
 @Service
 @Transactional
 public class FlightTicketService {
@@ -40,29 +35,9 @@ public class FlightTicketService {
 	}
 	
 	//查詢部分
-//	public FlightTicket queryFlightId(String originID,String destinationID,String departureTime,String arrivalTime,int classID) {
-//		Optional <FlightTicket> optional = dao.findById(originID, destinationID, departureTime, arrivalTime, classID);
-//		return optional.get();
-//	}
-	
     public FlightTicket selectByFlightid(String flightID){  
     return dao.findById(flightID).get();  
     }
-	
-//	public List<FlightTicket> selectByKey(String originID,String destinationID,String departureTime,String arrivalTime,int classID){
-//		if(type.equals("originID")) {
-//			return dao.findByOriginid(originID);
-//		}else if(type.equals("destinationID")) {
-//			return dao.findByDestinationid(destinationID);
-//		}else if(type.equals("departureTime")) {
-//			return dao.findByDeparturetime(departureTime);
-//		}else if(type.equals("arrivalTime")) {
-//			return dao.findByArrivaltime(arrivalTime);
-//		}else if(type.equals("classID")) {
-//			return dao.findByClassid(classID);
-//		}
-//		return null;
-//	}
 
     public List<FlightTicket> findByOriginidAndDestinationidAndDeparturetimeAndArrivaltimeAndClassid(String originid,String destinationid,String departuretime,String arrivaltime,int classid){
     	return dao.findByOriginidAndDestinationidAndDeparturetimeAndArrivaltimeAndClassid(originid, destinationid, departuretime, arrivaltime, classid);
