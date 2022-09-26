@@ -29,6 +29,11 @@ public class LoginController {
 	public String toAdminLoginPage() {
 		return path_admin_login + "AdminLogin";
 	}
+	
+	@RequestMapping(path="/toAdminLoginPage2")
+	public String toAdminLoginPage2() {
+		return path_admin_login + "AdminLogin2";
+	}
 
 	
 	@RequestMapping(path="/toMemberLoginPage")
@@ -40,6 +45,9 @@ public class LoginController {
 	public String toMainLoginPage() {
 		return path_main_login + "MainLoginPage";
 	}
+	
+	
+	
 	
 
 }
