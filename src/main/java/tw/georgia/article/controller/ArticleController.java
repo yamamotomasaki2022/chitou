@@ -140,4 +140,15 @@ public class ArticleController {
 		return "georgia/article/articleRead";
 	}
 	
+	
+//	*********查詢*************************************************
+	@RequestMapping(path = "/article.show",method = RequestMethod.POST)
+	public String showArticle(@RequestParam("postID") int postID,
+								Model m) {
+		Article findByID = articleService.findByID(postID);
+		m.addAttribute("findByID", findByID);
+		
+		return "georgia/article/article";
+	}
+	
 }
