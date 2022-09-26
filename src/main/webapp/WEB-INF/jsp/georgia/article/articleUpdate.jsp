@@ -52,7 +52,7 @@ int typeID = Integer.parseInt(articleCiassIDStr.substring(3));
 <INPUT TYPE="HIDDEN" NAME="postID" VALUE="<%= tt.getPostID() %>">
 <INPUT TYPE="HIDDEN" NAME="posterID" VALUE="<%= tt.getPosterID() %>">
 <INPUT TYPE="HIDDEN" NAME="date" VALUE="<%= tt.getDate() %>">
-文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="<%= tt.getTitle() %>"><BR>
+文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="<%= tt.getTitle() %>" style="width: 100%;"><BR>
 <br> 選擇國家<select name="chooseCountry">
 			<optgroup label="亞洲">
 				<option value=101 <%= (tt.getCountryID()==101)?"selected":"" %>>台灣</option>
