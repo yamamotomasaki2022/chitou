@@ -73,7 +73,7 @@
 						<td><input class="btn btn-sm btn-primary" type="submit" name="orderStatus" value="Update">
 						</td>
 						<td>
-						<input class="btn btn-sm btn-danger" type="submit" name="deleteOrder" value="Delete"></td>
+						<input class="btn btn-sm btn-danger" type="submit" name="deleteOrder" value="Detail"></td>
 						</td>
 						</form>
 					</tr>
