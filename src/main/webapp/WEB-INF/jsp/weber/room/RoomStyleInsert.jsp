@@ -6,8 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
 <title>加入飯店資料</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <style type="text/css">
 	.box {
 		width: 100px;
@@ -16,8 +14,13 @@
 		overflow: hidden;
 		margin: 10px;
 	}
+	.error{
+		color:red;
+	}
 </style>
 <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
@@ -72,7 +75,33 @@
 	    	$('#price').val('4481');
 	    	$('#roomAmount').val('5');
 	    });
-	    
+	    $(function() {
+	    	$('#style').validate({
+	    		onkeyup : function(element, event) {
+	    			var value = this.elementValue(element).replace(/^\s+/g, "");
+	    			$(element).val(value);
+	    			},
+	    		rules : {
+	    			name : {required : true},
+					capacity : {required : true},
+	    			price : {required : true},
+	    			bed : {required : true},
+	    			status : {required : true},
+	    			roomAmount : {required : true},
+	   				},
+	 			messages : {
+	 				name : {required : '必填'},
+	  				capacity : {required : '必填'},
+	    			price : {required : '必填'},
+	    			bed : {required : '必填'},
+	    			status : {required : '必填'},
+	    			roomAmount : {required : '必填'},
+	    			},
+	    		submitHandler : function(form) {
+	    			form.submit();
+	   				}
+	   			});
+	 	   });
     </script>
 </body>
 </html>
