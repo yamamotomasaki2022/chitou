@@ -92,7 +92,7 @@ label.error {
 
 	</form>
 	<br>
-	<FORM ACTION="AdminHomePage" method="post">
+	<FORM ACTION="ShowTableInHomePage" method="get">
 		<button onclick="">返回</button>
 	</form>
 
