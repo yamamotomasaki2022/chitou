@@ -22,7 +22,6 @@ response.setCharacterEncoding("UTF-8");
 font-size: 102%;
 }
 table {
-            border: 2px solid black;
             width: 100%;
             height: 50px;
             margin: 10 auto;
@@ -40,46 +39,180 @@ table {
 		 text-align: center;
 		 }
 </style>
+
+
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 </head>
 
 <body>
 
-
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
 <br>
 
-<INPUT TYPE="Button" value="返回" name="goBack" class="btn" onclick="back()"><br><br>
-<table border="1" >
-    <th width=3.55%>會員ID</th>
-    <th width=3.55%>國家編號</th> 
-    <th width=6.35%>文章類型編號</th>
-    <th width=25%>文章標題</th> 
-    <th width=5.55%>發布日期</th>
-    <th width=15%>圖片上傳</th> 
-    <th>文章內文</th>
-    
+<INPUT TYPE="Button" value="返回" name="goBack" class="btn btn-primary mr-2" onclick="back()"><br><br>
+<div class="table-responsive">
+<table class="table table-hover" >
+    <thead id="tableHead">
+	<tr>
+    <th class="card-title text-primary">會員ID</th>
+	<th class="card-title text-primary">國家</th>
+	<th class="card-title text-primary">文章類型</th>
+	<th class="card-title text-primary">文章標題</th>
+	<th class="card-title text-primary">發布日期</th>
+	<th class="card-title text-primary">文章內文</th>
+	<th class="card-title text-primary">文章管理</th>
+	</tr>
+	</thead>
+	<tbody>
 <%
 List<Article> list=(List)request.getAttribute("searchBean");
 for (Article bean : list) {
+	int title=bean.getTitle().length();
+	String country="";
+	String type="";
+	
+	switch(bean.getCountryID()){
+	case 101:
+		country="台灣";
+		break;
+	case 102:
+		country="日本";
+		break;
+	case 103:
+		country="韓國";
+		break;
+	case 108:
+		country="新加坡";
+		break;
+	case 109:
+		country="印尼";
+		break;
+	case 201:
+		country="美國";
+		break;
+	case 202:
+		country="加拿大";
+		break;
+	case 301:
+		country="英國";
+		break;
+	case 302:
+		country="法國";
+		break;
+	case 304:
+		country="義大利";
+		break;
+	case 307:
+		country="土耳其";
+		break;
+	case 308:
+		country="聖托里尼";
+		break;
+	case 309:
+		country="阿爾巴尼亞";
+		break;
+	case 401:
+		country="澳洲";
+		break;
+	case 501:
+		country="埃及";
+		break;
+	};
+	String typeID=Integer.toString(bean.getTypeID()).substring(3);
+switch(typeID){
+	case "91":
+		type="遊記";
+		break;
+	case "92":
+		type="食記";
+		break;
+	case "93":
+		type="資訊";
+		break;
+	case "94":
+		type="問題";
+		break;
+	case "95":
+		type="攻略";
+		break;
+};
 		%>
 				<tr>
 					<td name="posterID" class="centre"><%=bean.getPosterID() %></td>
-					<td name="countryID" class="centre"><%=bean.getCountryID() %></td>
-					<td name="typeID" class="centre"><%=bean.getTypeID() %></td>
-					<td name="title"><%=bean.getTitle() %></td>
+					<td name="countryID" class="centre"><%=country%></td>
+					<td name="typeID" class="centre"><%=type%></td>
+					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%></td>
 					<td name="date" class="centre"><%=bean.getDate() %></td>
-					<td><img src= "images/georgia/picture/<%=bean.getPhoto()%>" alt="<%=(bean.getPhoto().length() ==0)?"":"圖片歪腰(｡•́︿•̀｡)"%>"  width="200"  /></td>
-					<td name="content"><%=bean.getContent() %><h7 style="color:gray">......</h7><h7 style="color:blue">查看詳細內文</h7></td>
+					<td><form action="article.show" method="post">
+					<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
+					<input type="submit" name="toShow" value="查看詳細內文" class="btn btn-light">
+					</form></td>
+					<td class="centre">
+
+						<form action="article.renew" method="post" style="">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getPosterID()%>
+								name="posterID"> <INPUT TYPE="HIDDEN"
+								value=<%=bean.getCountryID()%> name="countryID"> <INPUT
+								TYPE="HIDDEN" value=<%=bean.getTypeID()%> name="typeID">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getTitle()%> name="title">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getDate()%> name="articleDate">
+							<INPUT TYPE="HIDDEN" value='<%=bean.getContent()%>' name="content">
+							<input type="submit" name="update" value="修改" class="btn btn-primary mr-2"
+								id="update">
+						</form>
+
+						<form action="article.delete" method="post" style="">
+							<input type="hidden" name="_method" value="DELETE"> <input
+								type="hidden" name="postID" value=<%=bean.getPostID()%>>
+							<input type="submit" name="delete" value="刪除" class="btn btn-light"
+								id="check">
+						</form>
+
+
+					</td>
 				</tr>
 			<%
 }
 %>
+</tbody>
+		</table>
+		</div>
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
 <script>
 function back(){
 	history.back();
 }
+$(function() {
+	$('form').on('click', ':submit', function() {
+		console.log('button click')
+		return check($(this).val());
+	});
+
+	function check(action) {
+		let msg = '';
+		if (action === '刪除') {
+			return message('確定刪除嗎?');
+		} else if (action === '修改') {
+			return message('確定更新嗎?');
+		} else {
+			return true;
+		}
+	}
+
+	function message(msg) {
+		if (confirm(msg)) {
+			return true
+		} else {
+			return false
+		}
+	}
+
+})
 
 </script>
 </body>

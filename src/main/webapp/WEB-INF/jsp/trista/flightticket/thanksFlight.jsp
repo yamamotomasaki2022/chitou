@@ -11,7 +11,7 @@ response.setContentType("text/html;charset=UTF-8");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>完成新增</title>
-</head>
+
 <style>
 table{
 border:3px dashed black;
@@ -21,7 +21,14 @@ color: #2894FF;
 }
 </style>
 
-	<%@include file="/WEB-INF/includes/Header.jsp"%>
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
+</head>
+
+<body>
+
+
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 <table> 
 <%
@@ -45,7 +52,8 @@ color: #2894FF;
 %>
 </table>
 
-<body>
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
 <h2>新增成功</h2>
 </body>
 </html>

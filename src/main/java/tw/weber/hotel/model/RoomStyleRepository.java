@@ -13,18 +13,14 @@ public interface RoomStyleRepository extends JpaRepository<RoomStyle, Integer> {
 	
 	public List<RoomStyle> findAllByHotel(Hotel hotel);
 	
-//	@Query("from Hotel where HotelID like concat('%',?1,'%')")
-//	public List<Room> findAllByRoomIDIDContaining(String keyword);
-//	public List<Room> findAllByNameContaining(String keyword);
-//	public List<Room> findAllByAddressContaining(String keyword);
-//	public List<Room> findAllByTypeContaining(String keyword);
-//	public List<Room> findAllByIntroContaining(String keyword);
-//	public List<Room> findAllByCountryContaining(String keyword);
-//	public List<Room> findAllByPhoneContaining(String keyword);
-//	public List<Room> findAllByStatusContaining(String keyword);
-//	@Query("from Hotel where Capacity like concat('%',?1,'%')")
-//	public List<Room> findAllByCapacity(String keyword);
-//	public List<Room> findAllByOwnerContaining(String keyword);
-//	@Query("from Hotel where AveragePrice like concat('%',?1,'%')")
-//	public List<Room> findAllByAveragePriceContaining(String keyword);
+	@Query("from RoomStyle where StyleID like concat('%',?1,'%')")
+	public List<RoomStyle> findAllByRoomStyleIDContaining(String keyword);
+	public List<RoomStyle> findAllByNameContaining(String keyword);
+	public List<RoomStyle> findAllByCapacityContaining(String keyword);
+	public List<RoomStyle> findAllByStatusContaining(String keyword);
+	@Query("from RoomStyle where Price like concat('%',?1,'%')")
+	public List<RoomStyle> findAllByPriceContaining(String keyword);
+	public List<RoomStyle> findAllByBedContaining(String keyword);
+	
+	//找時間寫搜索特定旅館限制
 }

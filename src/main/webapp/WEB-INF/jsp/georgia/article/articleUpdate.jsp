@@ -30,12 +30,15 @@ button, .btn {
 	font-size: 150%;
 }
 </style>
+
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
 </head>
 
 <body>
 
 
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
 <br>
@@ -49,8 +52,7 @@ int typeID = Integer.parseInt(articleCiassIDStr.substring(3));
 <INPUT TYPE="HIDDEN" NAME="postID" VALUE="<%= tt.getPostID() %>">
 <INPUT TYPE="HIDDEN" NAME="posterID" VALUE="<%= tt.getPosterID() %>">
 <INPUT TYPE="HIDDEN" NAME="date" VALUE="<%= tt.getDate() %>">
-<INPUT TYPE="HIDDEN" NAME="photo" value="<%= tt.getPhoto() %>">
-文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="<%= tt.getTitle() %>"><BR>
+文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="<%= tt.getTitle() %>" style="width: 100%;"><BR>
 <br> 選擇國家<select name="chooseCountry">
 			<optgroup label="亞洲">
 				<option value=101 <%= (tt.getCountryID()==101)?"selected":"" %>>台灣</option>
@@ -88,16 +90,25 @@ int typeID = Integer.parseInt(articleCiassIDStr.substring(3));
 			</select> 
 		<br><br>
 發布日期: <%= tt.getDate() %><BR><BR>
-圖片:<img src= "images/georgia/picture/<%=tt.getPhoto()%>" alt="<%=(tt.getPhoto().length() ==0)?"添加一張圖片看看↓":"圖片歪腰(｡•́︿•̀｡)請重新選擇上傳圖片"%>" width="300" /><BR><BR>
-選擇新的上傳圖片:<INPUT TYPE="FILE" NAME="photoRenew" ID=""><BR><BR>
-<!--圖片上傳:  <BR><INPUT TYPE="TEXT" NAME="photo" VALUE="<%= (tt.getPhoto()==null)?"":tt.getPhoto() %>">-->
-文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="<%= tt.getContent() %>"><BR>
+<%-- 文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="<%= tt.getContent() %>"><BR> --%>
+<textarea id="contentInput" name="content"><%= tt.getContent() %></textarea>
 
-
-<INPUT TYPE="SUBMIT" value="更新文章" name="updateArticle" class="btn">
+<INPUT TYPE="SUBMIT" value="更新文章" name="updateArticle" class="btn btn-primary mr-2">
 </form>
-<script type="text/javascript">
 
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
+<script type="text/javascript"></script>
+<script src="/js/coco/ckeditor.js"></script>
+<script>
+ClassicEditor
+.create(document.querySelector('#contentInput'),{
+	    ckfinder: {
+	        uploadUrl: '/ckUploadGeorgia'
+	    },
+	}).then(editor => {
+ 	  console.log("editor1 success");
+});
 </script>
 </body>
 </html>

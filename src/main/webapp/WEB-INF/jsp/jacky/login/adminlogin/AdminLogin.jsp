@@ -1,99 +1,133 @@
-<%@ page language="java"  contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
+<!DOCTYPE html>
+<html lang="en">
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
 <head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Login</title>
 
-<title>LoginPage</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="https://img.onl/DOO7l" rel="icon" type="images/chitou.png" />
-<style>
-span {
-	color: red;
-	display: flex;
-	justify-content: center
+<!-- plugins:css -->
+<link rel="stylesheet" href="/css/coco/feather.css">
+<link rel="stylesheet" href="/css/coco/themify-icons.css">
+<link rel="stylesheet" href="/css/coco/vendor.bundle.base.css">
+<link rel="stylesheet" href="/css/coco/materialdesignicons.min.css">
+<!-- endinject -->
+<!-- Plugin css for this page -->
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet" href="/css/coco/vertical-layout-light/style.css">
+<link rel="shortcut icon" href="/images/coco/favicon.png" />
+
+<style type="text/css">
+
+#auth_button{
+
+background-color: pink
+
 }
 
-.btnfloat {
-	float: left;
-	margin-left: 45%;
-	padding: 10px
-}
 
-.tworows {
-	margin-left: 30%;
-}
-
-legend {
-	margin-left: 45%;
-}
 </style>
 
-
-
 </head>
+
 <body>
 
+	<div class="container-scroller">
+		<div class="container-fluid page-body-wrapper full-page-wrapper">
+			<div class="content-wrapper d-flex align-items-center auth px-0">
+				<div class="row w-100 mx-">
+					<div class="col-lg-4 mx-auto">
+						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
+							<div class="brand-logo">
+								<!-- <img src="../../images/logo1.png" alt="logo"> -->
+								<a class="navbar-brand brand-logo mr-5" href="index.html"><img
+									src="/images/coco/logo3.png" class="mr-6" width="auto"
+									height="auto" alt="logo" /><img src="/images/coco/logo2.png"
+									class="mr-2" alt="logo" /></a>
+							</div>
+							<form class="pt-3" ACTION="adminchecklogin" method="post">
+								<div class="form-group">
+									<input type="text" class="form-control form-control-lg"
+										id="uName" placeholder="Username" name="loginuserid">
+									<span>${errors.name}</span>
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control form-control-lg"
+										id="uPass" placeholder="Password" name="loginpw"> <span>${errors.pwd}</span>
+								</div>
+								<div class="mt-3">
+									<button
+										class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+										type="submit" value="login">管理員登入</button>
+									<span>${errors.msg}</span>
+								</div>
+								<div
+									class="my-2 d-flex justify-content-between align-items-center">
+									<div class="form-check">
+										<label class="form-check-label text-muted"> <input
+											type="checkbox" class="form-check-input"> 記住我的認證
+										</label>
+									</div>
+									<a href="#" class="auth-link .text-primary">忘記密碼</a>
+								</div>
+								<div class="mb-2">
+									<button type="button"
+										class="btn btn-social-icon btn-outline-facebook">
+										<i class="ti-facebook"></i>
+									</button>
 
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+									<button type="button"
+										class="btn btn-social-icon btn-outline-google">
+										<i class="ti-google"></i>
+									</button>
 
-	<FORM ACTION="adminchecklogin" method="post">
-		<fieldset class="container col-md-5">
-			<legend>管理員登入界面</legend>
-		<table>
-			<tr>
-				<td>UserName:</td>
-				<td><input type="text" name="loginuserid"></td>
-				<td>${errors.name}</td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" name="loginpw"></td>
-				<td>${errors.pwd}</td>
-			</tr>
-			<tr>
-			<td><button type="submit" value="login">Login</button>
-			<td>${errors.msg}</td>
-			</tr>
-		</table>
-	</Form>
+									<button type="button"
+										class="btn btn-social-icon btn-outline-google">
+										<i class="ti-google"></i>
+									</button>
+								</div>
 
-	<FORM ACTION="./Project2Servlet" method="post">
-		<div class="btnfloat">
-			<input class="btn btn-success" type="submit" name="register"
-				value="注冊">
 
+								<hr>
+							</form>
+							<div >
+								<form action="toMemberLoginPage" >
+									<input type="submit" class="btn btn-primary mr-2" value="會員" style="float:left ; background-color: #2AAC16">
+								</form>
+								<form action="toAdminLoginPage" >
+									<input type="submit" class="btn btn-primary mr-2" value="管理員" style="float:right;background-color: #2AAC16">
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- content-wrapper ends -->
 		</div>
+		<!-- page-body-wrapper ends -->
+	</div>
+	<!-- container-scroller -->
+	<!-- plugins:js -->
+	<script src="/js/coco/vendor.bundle.base.js"></script>
 
-	</FORM>
-
-
-
-
-
-
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js">
-		
-	</script>
-
-
-	<script>
-		$('#loginuserid').on('focus', function() {
-			$('.logininfo').hide();
-		});
-
-		$('#loginpw').on('focus', function() {
-			$('.logininfo').hide();
-		});
-	</script>
-
-	</fieldset>
-
+	<!-- endinject -->
+	<!-- Plugin js for this page -->
+	<!-- End plugin js for this page -->
+	<!-- inject:js -->
+	<script src="/js/coco/off-canvas.js"></script>
+	<script src="/js/coco/hoverable-collapse.js"></script>
+	<script src="/js/coco/template.js"></script>
+	<script src="/js/coco/settings.js"></script>
+	<script src="/js/coco/todolist.js"></script>
+	<!-- endinject -->
 </body>
+
 </html>
+

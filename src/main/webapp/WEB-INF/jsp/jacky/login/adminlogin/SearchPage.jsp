@@ -31,11 +31,15 @@ border: 2px solid;
 }
 </style>
 
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 
 </head>
 <body>
 
 <%@include file="/WEB-INF/includes/Header.jsp" %>
+
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+
 
 
 	<FORM ACTION="./Project2Servlet" method="post">
@@ -114,6 +118,9 @@ for(MemberBasicInfo bean:result) { %>
 <form action="adminhomepage">
 <button onclick="">返回管理員主頁面</button>
 </form>
+
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
 
 </body>
 </html>

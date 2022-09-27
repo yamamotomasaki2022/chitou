@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<!-- 顔色功能 (右上角) -->
 <div class="theme-setting-wrapper">
 				<div id="settings-trigger">
 					<i class="ti-settings"></i>

@@ -46,13 +46,14 @@ label.error {
 	}
 </script>
 
+	<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 
 
 </head>
 
 <body>
 
-	<%@include file="/WEB-INF/includes/Header.jsp"%>
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 	<H1>管理員創建會員</H1>
 
@@ -91,11 +92,15 @@ label.error {
 
 	</form>
 	<br>
-	<FORM ACTION="AdminHomePage" method="post">
+	<FORM ACTION="ShowTableInHomePage" method="get">
 		<button onclick="">返回</button>
 	</form>
 
 
+<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
 <script>
 
@@ -114,6 +119,65 @@ $('#myfile').on('change', function(e){
 </script>
 
 
+
+<script>
+//jQuery的寫法 ： https://www.minwt.com/webdesign-dev/js/21536.html
+$(function() {
+	$('#form').validate(
+			{
+				/* 常用檢測屬性
+				required:必填
+				noSpace:空白
+				minlength:最小長度
+				maxlength:最大長度
+				email:信箱格式
+				number:數字格式
+				url:網址格式https://www.minwt.com
+				 */
+				onkeyup : function(element, event) {
+					//去除左側空白
+					var value = this.elementValue(element).replace(
+							/^\s+/g, "");
+					$(element).val(value);
+				},
+				rules : {
+					username : {
+						required : true
+					},
+					password : {
+						required : true
+					},
+					email : {
+						required : true,
+						email : true
+					}
+				},
+
+				messages : {
+
+					username : {
+						required : '必填'
+					},
+					password : {
+						required : '必填'
+					},
+
+					email : {
+						required : '必填',
+						email : 'Email格式不正確'
+					},
+					url : '網址格式不正確'
+				},
+				submitHandler : function(form) {
+					form.submit();
+				}
+			});
+});
+
+</script>
+
+
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
 
 </body>

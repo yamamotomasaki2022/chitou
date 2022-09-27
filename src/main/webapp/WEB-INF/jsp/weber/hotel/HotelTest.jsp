@@ -43,9 +43,9 @@
 															<td></td>
 															<td>${bean.hotelID}</td>
 															<td>${bean.name}</td>
-															<td>${bean.address}</td>
+															<td>${bean.address.substring(0,5)}</td>
 															<td>${bean.type}</td>
-															<td>${bean.intro}</td>
+															<td>${bean.intro.substring(0,5)}</td>
 															<td>${bean.country}</td>
 															<td>${bean.phone}</td>
 															<td>${bean.status}</td>

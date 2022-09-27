@@ -69,21 +69,21 @@ public class ArticleController {
 								@RequestParam("title") String title,
 								@RequestParam("chooseCountry") String chooseCountry,
 								@RequestParam("chooseType") String chooseType,
-								@RequestParam("photo") MultipartFile mf,
+//								@RequestParam("photo") MultipartFile mf,
 								@RequestParam("content") String content) throws IllegalStateException, IOException {
 		int typeID = Integer.parseInt(chooseCountry+chooseType);
 		int countryID = Integer.parseInt(chooseCountry);
 		
-		String photo = mf.getOriginalFilename();
-		System.out.println(photo);
-		String saveFileDir = staticPath;
-        File saveFilePath = new File(saveFileDir, photo);
-        mf.transferTo(saveFilePath);
+//		String photo = mf.getOriginalFilename();
+//		System.out.println(photo);
+//		String saveFileDir = staticPath;
+//        File saveFilePath = new File(saveFileDir, photo);
+//        mf.transferTo(saveFilePath);
 		
 		String date =DateTimeFormatter.ofPattern("yyyy/MM/dd").format(LocalDateTime.now());
 		
 		//int posterID, int countryID, int typeID, String title, String content, String date, String photo
-		Article insertBean = new Article(posterID,countryID,typeID,title,content,date,photo);
+		Article insertBean = new Article(posterID,countryID,typeID,title,content,date);
 		
 		articleService.insert(insertBean);
 		return "redirect:"+mainUrl;
@@ -106,27 +106,12 @@ public class ArticleController {
 								@RequestParam("chooseType") String chooseType,
 								@RequestParam("title") String title,
 								@RequestParam("content") String content,
-								@RequestParam("date") String date,
-								@RequestParam("photo") String photoDefault,
-								@RequestParam("photoRenew") MultipartFile mf) throws IllegalStateException, IOException {
+								@RequestParam("date") String date) throws IllegalStateException, IOException {
 		int typeID = Integer.parseInt(chooseCountry+chooseType);
 		int countryID = Integer.parseInt(chooseCountry);
 
-		System.out.println("*************************************************************************");
-		System.out.println(mf.getOriginalFilename());
-		if (mf.getOriginalFilename().length()==0) {
-			String photo=photoDefault;
-			Article updateBean = new Article(postID,posterID,countryID,typeID,title,content,date,photo);
-			articleService.update(updateBean);
-		}else {
-			String photo = mf.getOriginalFilename();
-			String saveFileDir = staticPath;
-	        File saveFilePath = new File(saveFileDir, photo);
-	        mf.transferTo(saveFilePath);
-	        Article updateBean = new Article(postID,posterID,countryID,typeID,title,content,date,photo);
-			articleService.update(updateBean);
-		}
-		
+		Article updateBean = new Article(postID,posterID,countryID,typeID,title,content,date);
+		articleService.update(updateBean);
 		return "redirect:"+mainUrl;
 	}
 	
@@ -153,6 +138,17 @@ public class ArticleController {
 			m.addAttribute("searchBean", searchBean);
 		}
 		return "georgia/article/articleRead";
+	}
+	
+	
+//	*********查詢*************************************************
+	@RequestMapping(path = "/article.show",method = RequestMethod.POST)
+	public String showArticle(@RequestParam("postID") int postID,
+								Model m) {
+		Article findByID = articleService.findByID(postID);
+		m.addAttribute("findByID", findByID);
+		
+		return "georgia/article/article";
 	}
 	
 }

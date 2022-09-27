@@ -7,9 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.trista.flightticket.model.FlightTicketService;
@@ -30,7 +31,7 @@ public class FlightTicketController {
 	
 	//http://localhost:8080/flightticket.main;
 	
-	@GetMapping(path = "/flightticket.main")
+	@RequestMapping(path = "/flightticket.main",method = RequestMethod.GET)
 	public String processActionMain(Model m) {
 		FlightTicket fly1 = new FlightTicket();
 		m.addAttribute("flightTicket",fly1);
@@ -38,7 +39,7 @@ public class FlightTicketController {
 	} 
 	
 	//新增航班
-	@PostMapping(path = "/addFlightTicket")
+	@RequestMapping(path = "/addFlightTicket",method = RequestMethod.POST)
 	public String processInsertAction(@ModelAttribute("flightticket") FlightTicket fly, BindingResult result, Model m) {
 		m.addAttribute("flightticket",fly);
 		flightservice.insert(fly);
@@ -48,7 +49,6 @@ public class FlightTicketController {
 		m.addAttribute("insertflight", list);
 		return "trista/flightticket/thanksFlight";
 	}
-	
 	
 	//修改航班
 	@PostMapping(path = "/updateFlightTicket")
@@ -74,7 +74,7 @@ public class FlightTicketController {
 	 }
 		
 	//查詢航班
-	@PostMapping(path = "/searchFlightTicket")
+	@RequestMapping(path = "/searchFlightTicket",method = RequestMethod.POST)
 	public String processSearchAction(@RequestParam("originID")String originID,@RequestParam("destinationID")String destinationID,
 									  @RequestParam("departureTime")String departureTime,@RequestParam("arrivalTime")String arrivalTime,
 									  @RequestParam("classID")String classID,Model m) {
