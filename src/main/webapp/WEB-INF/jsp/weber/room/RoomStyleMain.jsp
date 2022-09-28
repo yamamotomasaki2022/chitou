@@ -18,15 +18,15 @@ response.setContentType("text/html;charset=UTF-8");
     
     <h4 class="card-title text-primary">&nbsp;${hotelResult.name}</h4>
     <div style="display:inline-block;float:left;">
-	    <form action="searchRoom" method="get" >
+	    <form action="/background/searchRoom" method="get" >
 	    	<select id="type" name="type">
 	    	</select>
 	    	<input type="text" name="keyword">
-	    	<input type="submit" class="btn btn-primary mr-2" name="search" value="搜尋">
+	    	<input type="submit" class="btn btn-primary mr-2" value="搜尋">
 	    </form>
 	</div>
 	<div style="display:inline-block;float:right;">
-		<form action="insertStylePage" method="get">
+		<form action="/background/insertStylePage" method="get">
 			<input type="submit" class="btn btn-primary mr-2" name="add" value="新增">
 		</form>
 	</div>
@@ -59,7 +59,7 @@ response.setContentType("text/html;charset=UTF-8");
 			            	</td>
 			            	<td>
 			            		<div style="float:left;">
-			            			<form action="toUpdateStyle" method="post">
+			            			<form action="/background/toUpdateStyle" method="post">
 			            				<input type="hidden" name="styleID" value="${bean.styleID}">
 			                			<button type="submit" class="btn btn-inverse-success btn-icon" style="width:30px;height:30px;" name="toUpdatePage">
 		                					<i class="ti-pencil-alt"></i>
@@ -67,7 +67,7 @@ response.setContentType("text/html;charset=UTF-8");
 		                			</form>
 		                		</div>
 			            		<div>
-			                		<form action="deleteStyle" method="post">
+			                		<form action="/background/deleteStyle" method="post">
 										<input type="hidden" name="_method" value="DELETE"/>
 				                		<input type="hidden" name="styleID" value="${bean.styleID}">
 				                		<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" name="delete">

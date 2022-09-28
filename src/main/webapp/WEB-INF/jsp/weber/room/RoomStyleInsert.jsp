@@ -26,7 +26,7 @@
 <%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 		<div>
-	    	<form:form action="insertStyle" method="post" modelAttribute="style" enctype="multipart/form-data" class="forms-sample">
+	    	<form:form action="/background/insertStyle" method="post" modelAttribute="style" enctype="multipart/form-data" class="forms-sample">
 		    	<div class="form-group">
 			        <label>請輸入房型名稱:</label>
 			        <form:input type="text" path="name" class="form-control"  name="name" id="name"/><br>
