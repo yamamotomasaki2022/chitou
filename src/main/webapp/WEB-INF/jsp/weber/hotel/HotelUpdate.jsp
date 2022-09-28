@@ -22,7 +22,9 @@
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 	<h4 class="card-title text-primary">&nbsp;飯店修改</h4>
 	<div>
-		<form:form action="insertHotel" method="post" modelAttribute="result" enctype="multipart/form-data" class="forms-sample">
+		<form:form action="updateHotel" method="post" modelAttribute="result" enctype="multipart/form-data" class="forms-sample">
+		    <form:input type="hidden" path="hotelID" class="form-control"/><br>
+			<input type="hidden" name="_method" value="PUT">
 	        <div class="form-group">
 		        <label>飯店名稱:</label>
 		        <form:input type="text" path="name" class="form-control" name="name" id="name" placeholder="輸入景點名稱"/><br>
@@ -66,34 +68,28 @@
 	<script>
 		$(function() {
 			$.ajax({
-						url : "/loadHotelPhotoAjax/${hotelID}",
-						data : "hotelNB${hotelID}",
-						success : function(data) {
-							for (var i = 1; i <= data; i++) {
-								$('#oldpics').empty();
-								$('#oldpics').append(
-												'<img id="img" src="images/weber/hotel/hotelNB${hotelID}/photo'+i+'.jpg" class="box">');
-							}
-						}
-					});
+				url : "/loadHotelPhotoAjax/${hotelID}",
+				data : "hotelNB${hotelID}",
+				success : function(data) {
+						$('#oldpics').empty();
+					for (var i = 1; i <= data; i++) {
+						$('#oldpics').append('<img id="img" src="images/weber/hotel/hotelNB${hotelID}/photo'+i+'.jpg" class="box">');
+					}
+				}
+			});
 		});
-
-		$('#upload')
-				.on(
-						'change',
-						function(e) {
-							$('#newpics').empty();
-							var photos = this.files;
-							for (let i = 0; i < photos.length; i++) {
-								var file = photos[i];
-								var fr = new FileReader();
-								fr.onload = function(e) {
-									$('#newpics').append(
-													'<img id="img" src="'+e.target.result+'" class="box">');
-								};
-								fr.readAsDataURL(file);
-							};
-						});
+		$('#upload').on('change',function(e) {
+			$('#newpics').empty();
+			var photos = this.files;
+			for (let i = 0; i < photos.length; i++) {
+				var file = photos[i];
+				var fr = new FileReader();
+				fr.onload = function(e) {
+					$('#newpics').append('<img id="img" src="'+e.target.result+'" class="box">');
+				};
+				fr.readAsDataURL(file);
+			};
+		});
 	</script>
 </body>
 </html>

@@ -4,6 +4,12 @@
 
 <%
 int sessio_status = (int) request.getSession().getAttribute("session_status");
+
+if(request.getAttribute("crud") !=null){
+	int crud = (int)request.getAttribute("crud");
+}else{
+	int crud = 0;
+}
 %>
 
 
@@ -284,10 +290,14 @@ int sessio_status = (int) request.getSession().getAttribute("session_status");
 		} else {
 			
 		}
+		
 	</script>
 	
+	
 	<script>
-	var crud = ${crud};
+	
+	
+	var crud = "${crud}";
 	
 	console.log(crud)
 	
@@ -318,6 +328,9 @@ int sessio_status = (int) request.getSession().getAttribute("session_status");
 	}else {
 		
 	}
+	
+	
+	
 	</script>
 	
 	
