@@ -45,8 +45,6 @@ public class ArticleController {
 		return path;
 	}
 	
-
-
 //	**********文章首頁********************************************
 	@RequestMapping(path = "/article.main",method = RequestMethod.GET)
 	public String articleMain(Model m) {
@@ -141,14 +139,14 @@ public class ArticleController {
 	}
 	
 	
-//	*********查詢*************************************************
+//	*********顯示文章頁面*************************************************
 	@RequestMapping(path = "/article.show",method = RequestMethod.POST)
 	public String showArticle(@RequestParam("postID") int postID,
 								Model m) {
 		Article findByID = articleService.findByID(postID);
 		m.addAttribute("findByID", findByID);
 		
-		return "georgia/article/article";
+		return "georgia/article/articleDetail";
 	}
 	
 }
