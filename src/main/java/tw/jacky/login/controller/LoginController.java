@@ -12,6 +12,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import tw.jacky.login.model.LoginService;
 
 @Controller
+@RequestMapping(path = "/admin")
 public class LoginController {
 	
 	

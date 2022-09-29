@@ -25,6 +25,7 @@ import tw.jacky.login.model.MemberBasicInfo;
 
 @Controller
 @SessionAttributes({ "memberlist", "adminlist", "session_status", "crud" })
+@RequestMapping(path = "/admin")
 public class ManagementSystemController {
 
 	@Autowired
