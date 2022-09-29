@@ -29,6 +29,8 @@ public class ManagementSystemController {
 
 	@Autowired
 	private LoginService lservice;
+	
+//	 測試Merge后版本
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	路徑
@@ -120,6 +122,8 @@ public class ManagementSystemController {
 //		return page_adminhomepage;
 //	}
 	
+	
+//	顯示所有table
 	@GetMapping(path="/ShowTableInHomePage")
 	public String processShowTableInHomePage(Model m) {
 		List<AdminChitou> adminlist = lservice.adminFindAll();
@@ -128,6 +132,9 @@ public class ManagementSystemController {
 		m.addAttribute("adminlist", adminlist);
 		return page_adminhomepage;
 	}
+	
+
+	
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 
