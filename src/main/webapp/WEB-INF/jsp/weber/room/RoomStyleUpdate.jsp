@@ -22,7 +22,7 @@
 <%@ include file="/WEB-INF/includes/SuperTop.jsp"  %>
 	<h4 class="card-title text-primary">&nbsp;修改房間</h4>
 	<div>
-	    <form:form action="updateStyle" method="post" modelAttribute="style" enctype="multipart/form-data" class="forms-sample">
+	    <form:form action="/background/updateStyle" method="post" modelAttribute="style" enctype="multipart/form-data" class="forms-sample">
 	    	<div class="form-group">
 		    	<input type="hidden" name="_method" value="PUT">
 		    	<form:input type="hidden" path="styleID" name="styleID"/>

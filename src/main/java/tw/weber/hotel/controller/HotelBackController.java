@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -26,20 +27,21 @@ import tw.weber.hotel.model.HotelBackService;
 
 @Controller
 @SessionAttributes({"hotelResult"})
+@RequestMapping(path = "/background")
 public class HotelBackController {
 	
 	@Autowired
 	private HotelBackService hService;
 	
 	private String suffix = "weber/hotel/";
-	private String hotelmainPage = suffix + "HotelMain";  
-	private String returnHotel = "redirect:hotelBack" ;
-	private String toRoom = "redirect:room";
+	private String hotelmainPage = suffix + "HotelBackMain";  
+	private String returnHotel = "redirect:/background/hotel" ;
+	private String toRoom = "redirect:/background/room";
 	private String newHotel = suffix + "HotelInsert";
 	private String updateHotel = suffix +"HotelUpdate";
 	
 	
-	@GetMapping(path = "/hotelBack")
+	@GetMapping(path = "/hotel")
 	public String SearchAllHotel(Model model) {
 		List<Hotel> result = hService.findAll();
 		
@@ -117,23 +119,14 @@ public class HotelBackController {
 
 	@GetMapping(path = "/test/test")
 	public String testbootstrap(Model model) {
-		List<Hotel> result = hService.findAll();
-		model.addAttribute("result",result);
-		return suffix + "HotelTest";
+		return suffix + "Home";
 	}
 	
-	@GetMapping(path = "/boot")
+	@GetMapping(path = "/test2")
 	public String test3(Model model) {
-//		List<Hotel> result = hService.findAll();
-//		model.addAttribute("result",result);
-		model.addAttribute("yee","ya");
-		return suffix + "testnew";
+		return suffix + "BackgroundHomePage";
 	}
 	
-	@GetMapping(path = "/ck")
-	public String ckEditor() {
-		return suffix + "new";
-	}
 	
 //-----------------------------------------廢案------------------------------------------------------------	
 //	@GetMapping(path = "/hotelAjax/{hotelID}")
