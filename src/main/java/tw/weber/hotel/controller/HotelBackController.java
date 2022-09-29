@@ -27,7 +27,7 @@ import tw.weber.hotel.model.HotelBackService;
 
 @Controller
 @SessionAttributes({"hotelResult"})
-@RequestMapping(path = "/background")
+@RequestMapping(path = "/admin")
 public class HotelBackController {
 	
 	@Autowired
@@ -35,8 +35,8 @@ public class HotelBackController {
 	
 	private String suffix = "weber/hotel/";
 	private String hotelmainPage = suffix + "HotelBackMain";  
-	private String returnHotel = "redirect:/background/hotel" ;
-	private String toRoom = "redirect:/background/room";
+	private String returnHotel = "redirect:/admin/hotel" ;
+	private String toRoom = "redirect:/admin/room";
 	private String newHotel = suffix + "HotelInsert";
 	private String updateHotel = suffix +"HotelUpdate";
 	
@@ -50,7 +50,7 @@ public class HotelBackController {
 		return hotelmainPage;
 	}
 	
-	@GetMapping(path = "toRoomPage")
+	@GetMapping(path = "/toRoomPage")
 	public String toRoomPage(@RequestParam("hotelID")int hotelID,Model model) {
 		Hotel result = hService.findById(hotelID);
 		model.addAttribute("hotelResult",result);
@@ -119,7 +119,7 @@ public class HotelBackController {
 
 	@GetMapping(path = "/test/test")
 	public String testbootstrap(Model model) {
-		return suffix + "Home";
+		return "weber/Home";
 	}
 	
 	@GetMapping(path = "/test2")

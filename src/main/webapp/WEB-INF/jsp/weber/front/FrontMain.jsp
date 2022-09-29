@@ -42,7 +42,7 @@
 		$('#dateEnd').val(date);
     }); 
     $("#date").daterangepicker({
-    	"minDate": new Date(),
+//     	"minDate": new Date(),
     	locale:{
     		applyLabel:"確定",
     		cancelLabel: "取消",

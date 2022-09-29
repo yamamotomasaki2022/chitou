@@ -26,7 +26,7 @@ import tw.weber.hotel.model.RoomStyleBackService;
 
 @Controller
 @SessionAttributes({"hotelResult"})
-@RequestMapping(path = "/background")
+@RequestMapping(path = "/admin")
 public class RoomStyleBackController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class RoomStyleBackController {
 	
 	private String suffix = "weber/room/";
 	private String roomMainPage = suffix + "RoomStyleMain";  
-	private String returnRoom = "redirect:/background/room" ;
+	private String returnRoom = "redirect:/admin/room" ;
 	private String insertPage = suffix + "RoomStyleInsert";
 	private String updatePage = suffix +"RoomStyleUpdate";
 	

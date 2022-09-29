@@ -26,12 +26,12 @@
 <%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 		<div>
-	    	<form:form action="/background/insertStyle" method="post" modelAttribute="style" enctype="multipart/form-data" class="forms-sample">
+	    	<form:form action="/admin/insertStyle" method="post" modelAttribute="style" enctype="multipart/form-data" class="forms-sample">
 		    	<div class="form-group">
 			        <label>請輸入房型名稱:</label>
 			        <form:input type="text" path="name" class="form-control"  name="name" id="name"/><br>
 			        <label>容納人數:</label>
-			        <form:input type="text" path="capacity" class="form-control"  name="capacity" id="capacity"/><br>
+			        <form:input type="number" path="capacity" class="form-control"  name="capacity" id="capacity"/><br>
 			        <label>床位:</label>
 			        <form:input type="text" path="bed" class="form-control"  name="bed" id="bed"/><br>
 			        <label>狀態:</label>
@@ -69,7 +69,7 @@
 	    });
 	    $('#fastInput').click(function(){
 	    	$('#name').val('菁英客房二小床');
-	    	$('#capacity').val('最多可入住 4 人 (含所有額外成人與孩童)');
+	    	$('#capacity').val('4');
 	    	$('#bed').val('2 張單人床');
 	    	$('#status').val('開放');
 	    	$('#price').val('4481');

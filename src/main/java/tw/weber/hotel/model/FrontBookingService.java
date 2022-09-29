@@ -12,11 +12,14 @@ public class FrontBookingService {
 	@Autowired
 	private RoomRepository rRepo;
 	
+	@Autowired
+	private HSearchRepository hsRepo;
+	
 	public List<Room> find(){
 		return rRepo.find();
 	}
 	
-	public List<Room> crazy(){
-		return rRepo.crazy();
+	public List<HotelforSearch> crazy(String dateStart,String dateEnd,String destination,int number){
+		return hsRepo.crazy(dateStart,dateEnd,destination,number);
 	}
 }
