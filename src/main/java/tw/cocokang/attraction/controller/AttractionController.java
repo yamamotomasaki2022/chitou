@@ -28,18 +28,13 @@ public class AttractionController {
 
 	public String path = "coco/attraction/";
 
+	
+	 //--------------------Attraction
+	//總覽
 	@GetMapping("/listAttractions")
 	public String AttractionListAction(Model m) {
 		m.addAttribute("listAttraction", aService.getAll());
 		return path + "kangListView";
-	}
-//	寫絕對路徑辦法(圖片)
-	private String getStaticPath() {
-		String path = this.getClass().getClassLoader().getResource("").getPath();
-		path = path.substring(1).replace("target", "src").replaceAll("classes", "main") + "webapp" + File.separator + "WEB-INF"
-				+ File.separator + "resources" + File.separator + "images" + File.separator + "coco" + File.separator + "attractionpicture";
-		path = path.replaceAll("/", Matcher.quoteReplacement(File.separator));
-		return path;
 	}
 	
 	//test home background home page
@@ -53,16 +48,17 @@ public class AttractionController {
 		m.addAttribute("homeAttractions", aService.getAll());
 		return "Home";
 	}
-	
-	//詳細內文
-	@RequestMapping(path ="/showView",method = RequestMethod.GET )
-	public String showDescription(@RequestParam("attid") Integer attid,Model m) {
-		Attraction selectByAttid =aService.selectByAttid(attid);
-		m.addAttribute("selectByAttid", attid);
-		return path + "kangshowDescription";
+
+	//	寫絕對路徑辦法(圖片)
+	private String getStaticPath() {
+		String path = this.getClass().getClassLoader().getResource("").getPath();
+		path = path.substring(1).replace("target", "src").replaceAll("classes", "main") + "webapp" + File.separator + "WEB-INF"
+				+ File.separator + "resources" + File.separator + "images" + File.separator + "coco" + File.separator + "attractionpicture";
+		path = path.replaceAll("/", Matcher.quoteReplacement(File.separator));
+		return path;
 	}
 	
-
+	
 //	insert Attraction
 	@GetMapping("/addAttraction")
 	public String insertview(Model m) {
@@ -151,10 +147,25 @@ public class AttractionController {
 	}
 
 
+	//詳細內文
+	@RequestMapping(path ="/showView",method = RequestMethod.GET )
+	public String showDescription(@RequestParam("attid") Integer attid,Model m) {
+		Attraction selectByAttid =aService.selectByAttid(attid);
+		m.addAttribute("selectByAttid", attid);
+		return path + "kangshowDescription";
+	}
+	
+	 //--------------------Pricing plan
 
+	//顯示景點內方案
+	@RequestMapping(path = "showAttractionPlans",params = {"attractionid"}, method = RequestMethod.POST)
+	public String attractionPlans(@RequestParam("attractionid") Integer attractionid ,Model m){
 
+		m.addAttribute("planList",aService.showPricingplans(attractionid));
+		return path + "";
+//		return "luana/attraction/Luana_attractionPlans";
 
-
+	}
 	
 
 }
