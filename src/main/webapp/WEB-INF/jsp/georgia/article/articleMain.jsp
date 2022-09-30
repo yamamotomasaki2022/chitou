@@ -117,8 +117,8 @@ button, .btn {
 
 				<tr>
 					<td class="centre"><%=bean.getPosterID()%></td>
-					<td class="centre"><%=bean.getPosterID()%></td>
-					<td class="centre"><%=bean.getCountryID()%></td>
+					<td class="centre"><%=bean.getCategory().getCountry()%></td>
+					<td class="centre"><%=bean.getCategory().getType()%></td>
 					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%></td>
 					<td class="centre"><%=bean.getDate()%></td>
 					<td><form action="article.show" method="post">
@@ -129,13 +129,6 @@ button, .btn {
 
 						<form action="article.renew" method="post" style="">
 							<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
-							<INPUT TYPE="HIDDEN" value=<%=bean.getPosterID()%>
-								name="posterID"> <INPUT TYPE="HIDDEN"
-								value=<%=bean.getCountryID()%> name="countryID"> <INPUT
-								TYPE="HIDDEN" value=<%=bean.getTypeID()%> name="typeID">
-							<INPUT TYPE="HIDDEN" value=<%=bean.getTitle()%> name="title">
-							<INPUT TYPE="HIDDEN" value=<%=bean.getDate()%> name="articleDate">
-							<INPUT TYPE="HIDDEN" value='<%=bean.getContent()%>' name="content">
 							<input type="submit" name="update" value="修改" class="btn btn-primary mr-2"
 								id="update">
 						</form>

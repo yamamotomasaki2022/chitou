@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tw.georgia.article.model.Article;
 import tw.georgia.article.model.ArticleService;
+import tw.georgia.article.model.Category;
 
 
 @Controller
@@ -60,28 +61,38 @@ public class ArticleController {
 	public String newArticle() {
 		return "georgia/article/articleCreate";
 	}
+//	**********前往新增文章*********************************************
+	@RequestMapping(path = "/article.test",method = RequestMethod.GET)
+	public String test() {
+		return "georgia/article/NewFile";
+	}
 	
 //	*********新增文章*************************************************
 	@PostMapping(path = "/article.insert")
-	public String insertArticle(@RequestParam("posterID") int posterID,
+	public String insertArticle(
 								@RequestParam("title") String title,
+								@RequestParam("subtitle") String subtitle,
 								@RequestParam("chooseCountry") String chooseCountry,
 								@RequestParam("chooseType") String chooseType,
-//								@RequestParam("photo") MultipartFile mf,
+								@RequestParam("photo") MultipartFile mf,
 								@RequestParam("content") String content) throws IllegalStateException, IOException {
-		int typeID = Integer.parseInt(chooseCountry+chooseType);
-		int countryID = Integer.parseInt(chooseCountry);
-		
-//		String photo = mf.getOriginalFilename();
-//		System.out.println(photo);
-//		String saveFileDir = staticPath;
-//        File saveFilePath = new File(saveFileDir, photo);
-//        mf.transferTo(saveFilePath);
+		int categoryID = Integer.parseInt(chooseCountry+chooseType);
+//		int countryID = Integer.parseInt(chooseCountry);
+//		System.out.println(countryID);
+		String photo = mf.getOriginalFilename();
+		System.out.println(photo);
+		String saveFileDir = staticPath;
+        File saveFilePath = new File(saveFileDir, photo);
+        mf.transferTo(saveFilePath);
 		
 		String date =DateTimeFormatter.ofPattern("yyyy/MM/dd").format(LocalDateTime.now());
+
+		Category category = new Category();
+		category.setCategoryID(categoryID);
+//		category.setCountryID(countryID);
 		
-		//int posterID, int countryID, int typeID, String title, String content, String date, String photo
-		Article insertBean = new Article(posterID,countryID,typeID,title,content,date);
+//		Category category, Integer posterID, String title, String subtitle, String photo, String content,String date		
+		Article insertBean = new Article(category,title,subtitle,photo,content,date);
 		
 		articleService.insert(insertBean);
 		return "redirect:"+mainUrl;
@@ -100,15 +111,27 @@ public class ArticleController {
 	@PutMapping(path = "/article.update")
 	public String updateArticle(@RequestParam("postID") int postID,
 								@RequestParam("posterID") int posterID,
+								@RequestParam("title") String title,
+								@RequestParam("subtitle") String subtitle,
 								@RequestParam("chooseCountry") String chooseCountry,
 								@RequestParam("chooseType") String chooseType,
-								@RequestParam("title") String title,
+								@RequestParam("photo") MultipartFile mf,
 								@RequestParam("content") String content,
 								@RequestParam("date") String date) throws IllegalStateException, IOException {
-		int typeID = Integer.parseInt(chooseCountry+chooseType);
-		int countryID = Integer.parseInt(chooseCountry);
-
-		Article updateBean = new Article(postID,posterID,countryID,typeID,title,content,date);
+		int categoryID = Integer.parseInt(chooseCountry+chooseType);
+//		int countryID = Integer.parseInt(chooseCountry);
+		
+		Category category = new Category();
+		category.setCategoryID(categoryID);
+//		category.setCountryID(countryID);
+		
+		String photo = mf.getOriginalFilename();
+		System.out.println(photo);
+		String saveFileDir = staticPath;
+        File saveFilePath = new File(saveFileDir, photo);
+        mf.transferTo(saveFilePath);
+		
+		Article updateBean = new Article(category,postID,posterID,title,subtitle,photo,content,date);
 		articleService.update(updateBean);
 		return "redirect:"+mainUrl;
 	}
@@ -131,8 +154,8 @@ public class ArticleController {
 			List<Article> searchBean = articleService.findCountry(countryID);
 			m.addAttribute("searchBean", searchBean);
 		}else {
-			int typeID = Integer.parseInt(chooseCountry+chooseType);
-			List<Article> searchBean = articleService.findType(typeID);
+			int categoryID = Integer.parseInt(chooseCountry+chooseType);
+			List<Article> searchBean = articleService.findType(categoryID);
 			m.addAttribute("searchBean", searchBean);
 		}
 		return "georgia/article/articleRead";

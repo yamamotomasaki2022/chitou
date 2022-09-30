@@ -38,27 +38,8 @@ response.setCharacterEncoding("UTF-8");
 <div class="table-responsive">
 <%
 Article tt=(Article)request.getAttribute("findByID");
-String type="";
-String typeID=Integer.toString(tt.getTypeID()).substring(3);
-switch(typeID){
-	case "91":
-		type="遊記";
-		break;
-	case "92":
-		type="食記";
-		break;
-	case "93":
-		type="資訊";
-		break;
-	case "94":
-		type="問題";
-		break;
-	case "95":
-		type="攻略";
-		break;
-};
 %> 
-<h1>【<%=type %>】<%=tt.getTitle() %></h1>
+<h1>【<%=tt.getCategory().getType().trim()%>】<%=tt.getTitle() %></h1>
 <hr>
 <p style="color:gray;font-size: 5px;"><%=tt.getDate() %> 發布</p>
 <%=tt.getContent() %>
