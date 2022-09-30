@@ -33,11 +33,11 @@
 	    <select id="destination" name="destination">
 	    </select>
 	    入住日期
-	    <input type="text" id="date" name="date" value="${dateStart} - ${dateEnd}">
-	    <input type="hidden" id="dateStart" name="dateStart" value="${dateStart}">
-	    <input type="hidden" id="dateEnd" name="dateEnd" value="${dateEnd}">
+	    <input type="text" id="date" name="date">
+	    <input type="hidden" id="dateStart" name="dateStart">
+	    <input type="hidden" id="dateEnd" name="dateEnd">
 	    人數
-	    <input type="number" name="number" style="width:50px;" value="${number}">人
+	    <input type="number" name="number" style="width:50px;">人
 	    <button type="button" id="search">搜尋</button>
 	    </form>
 	</div>
@@ -47,9 +47,7 @@
 						<c:forEach var="bean" items="${result}">
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<div class="single-awesome-project">
-								<a href="images/weber/hotel/hotelNB${bean.hotelID}/photo1.jpg" class="img"> <img
-									src="images/weber/hotel/hotelNB${bean.hotelID}/photo1.jpg" alt="Image" class="img-fluid">
-								</a>
+								<img src="images/weber/hotel/hotelNB${bean.hotelID}/photo1.jpg" alt="Image" class="img-fluid">
 
 								<div class="project-dec-2">
 									<div>
@@ -64,7 +62,7 @@
 											</span>
 										</div>
 
-										<a href="" class="btn btn-primary py-2 px-3"
+										<a href="/hotelPage?dateStart=${dateStart}&dateEnd=${dateEnd}&number=${number}&hotelID=${bean.hotelID}" class="btn btn-primary py-2 px-3"
 											style="background-color: lightblue">詳細</a>
 										<span style="color:blue">還剩${bean.amount}間房</span>
 									</div>

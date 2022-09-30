@@ -1,12 +1,7 @@
 /**
  * 
  */
-var des = ["台灣", "日本", "澳洲", "英國", "法國"];
 $(document).ready(function () {
-    for (var i = 0; i < des.length; i++) {
-        let option = '"<option value="' + des[i] + '">' + des[i] + '</option>"';
-        $('#destination').append(option);
-    };
     let date = new Date().toISOString().split('T')[0];
     $('#dateStart').val(date);
     $('#dateEnd').val(date);
@@ -32,12 +27,11 @@ $("#search").on('click', function (e) {
     var formData = new FormData(e.target.closest('form'));
     var dateStart = 'dateStart=' + formData.get('dateStart');
     var dateEnd = '&dateEnd=' + formData.get('dateEnd');
-    var destination = '&destination=' + formData.get('destination');
     var number = '&number=' + formData.get('number');
     console.log(formData);
     $.ajax({
         type: 'get',
-        url: '/searchAjax?' + dateStart + dateEnd + destination + number,
+        url: '/searchRoomAjax?' + dateStart + dateEnd + destination + number,
         dataType: 'JSON',
         contentType: 'application/json',
         success: function (data) {
