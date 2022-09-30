@@ -62,13 +62,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		導入的login界面
 		.formLogin().loginPage("/toAdminLoginPage")
 //		.loginProcessingUrl("/testout")
+		.defaultSuccessUrl("/admin/testpage")
 		.successHandler(loginSucessHandler)
-		.failureHandler(loginFailureHandler);
-//		.defaultSuccessUrl("/admin/testpage")
 //		.failureUrl("/login.html?error=true");
+		.failureHandler(loginFailureHandler);
 		
 		
 		http.logout()
+		.logoutUrl("/logout")
+		.invalidateHttpSession(true)
 		.deleteCookies("JSESSIONID");
 		
 	}

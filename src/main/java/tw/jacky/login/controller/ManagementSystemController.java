@@ -27,6 +27,7 @@ import tw.jacky.login.model.MemberBasicInfo;
 
 @Controller
 @SessionAttributes({ "memberlist", "adminlist", "session_status", "crud" })
+@RequestMapping(path="/admin")
 public class ManagementSystemController {
 
 	@Autowired
@@ -63,7 +64,7 @@ public class ManagementSystemController {
 		return page_adminlogin;
 	}
 
-	@RequestMapping(path = "admin/adminhomepage")
+	@RequestMapping(path = "/adminhomepage")
 	public String processAdminHomePage(Model m) {
 		processShowTableInHomePage(m);
 		return page_adminhomepage;
@@ -333,7 +334,7 @@ public class ManagementSystemController {
 	
 	
 	
-	@RequestMapping(path="/admin/testpage")
+	@RequestMapping(path="/testpage")
 	@ResponseBody
 	public String test() {
 		return "test sesssion sucess!!!";
