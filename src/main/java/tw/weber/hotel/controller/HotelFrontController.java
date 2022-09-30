@@ -38,8 +38,10 @@ public class HotelFrontController {
 								@RequestParam("number")int number,Model model) {
 		List<HotelforSearch> result = fService.crazy(dateStart,dateEnd,destination,number);
 		model.addAttribute("result",result);
-		int[] yee = new int[8];
-		model.addAttribute("yee",yee);
+		model.addAttribute("dateStart",dateStart);
+		model.addAttribute("dateEnd",dateEnd);
+		model.addAttribute("destination",destination);
+		model.addAttribute("number",number);
 		return searchPage;
 	}
 }

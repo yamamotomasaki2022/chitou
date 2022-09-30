@@ -38,11 +38,11 @@
 	    <select id="destination" name="destination">
 	    </select>
 	    入住日期
-	    <input type="text" id="date" name="date">
-	    <input type="hidden" id="dateStart" name="dateStart">
-	    <input type="hidden" id="dateEnd" name="dateEnd">
+	    <input type="text" id="date" name="date" value="${dateStart} - ${dateEnd}">
+	    <input type="hidden" id="dateStart" name="dateStart" value="${dateStart}">
+	    <input type="hidden" id="dateEnd" name="dateEnd" value="${dateEnd}">
 	    人數
-	    <input type="number" name="number" style="width:50px">人
+	    <input type="number" name="number" style="width:50px;" value="${number}">人
 	    <input type="submit" value="搜尋">
 	    </form>
 	</div>
