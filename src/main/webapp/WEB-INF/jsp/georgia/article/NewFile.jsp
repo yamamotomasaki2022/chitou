@@ -42,35 +42,43 @@ height:15rem;
     <h4>2</h4>
   </div>
   <div class="item">
-  <img alt="" src="images/georgia/picture/chihuahua.jpg">
+  <img alt="" src="images/georgia/picture/japan-3.jpg">
     <h4>3</h4>
   </div>
   <div class="item">
-  <img alt="" src="images/georgia/picture/japan-3.jpg">
+  <img alt="" src="images/georgia/picture/chihuahua.jpg">
     <h4>4</h4>
   </div>
   <div class="item">
+  <img alt="" src="images/georgia/picture/usa-3.jpg">
     <h4>5</h4>
   </div>
   <div class="item">
+  <img alt="" src="images/georgia/picture/usa-2.jpg">
     <h4>6</h4>
   </div>
   <div class="item">
+  <img alt="" src="images/georgia/picture/usa-1.jpg">
     <h4>7</h4>
   </div>
   <div class="item">
+  <img alt="" src="images/georgia/picture/dog-1.jpg">
     <h4>8</h4>
   </div>
   <div class="item">
+  <img alt="" src="images/georgia/picture/cat2.jpg">
     <h4>9</h4>
   </div>
   <div class="item">
+  <img alt="" src="images/georgia/picture/PZk9iuah.jpg">
     <h4>10</h4>
   </div>
   <div class="item">
+  <img alt="" src="images/georgia/picture/354617.jpg">
     <h4>11</h4>
   </div>
   <div class="item">
+  <img alt="" src="images/georgia/picture/20161028204251-a3e603f2.jpg">
     <h4>12</h4>
   </div>
 </div>
@@ -78,20 +86,13 @@ height:15rem;
 
 <script>
 $(".owl-carousel").owlCarousel({
-	  loop: true, // 循環播放
-	  margin: 10, // 外距 10px
-	  nav: true, // 顯示點點
-	  responsive: {
-	    0: {
-	      items: 1 // 螢幕大小為 0~600 顯示 1 個項目
-	    },
-	    600: {
-	      items: 3 // 螢幕大小為 600~1000 顯示 3 個項目
-	    },
-	    1000: {
-	      items: 4 // 螢幕大小為 1000 以上 顯示 5 個項目
-	    }
-	  }
+	 //items:4,
+	    loop:true,
+	    margin:10,
+	    autoplay:true,
+	    autoplayTimeout:1000,
+	    autoplayHoverPause:true,
+	    autoWidth:true
 	});
 </script>
 </body>
