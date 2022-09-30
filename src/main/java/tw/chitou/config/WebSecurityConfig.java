@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import tw.chitou.handler.LoginFailureHandler;
+import tw.chitou.handler.LoginSucessHandler;
 import tw.jacky.login.model.AuthUserDetailsService;
 
 //import tw.leonchen.controller.AuthUserDetailsService;
@@ -20,6 +22,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AuthUserDetailsService auds;
+	
+	@Autowired
+	private LoginSucessHandler loginSucessHandler;
+	
+	@Autowired
+	private LoginFailureHandler loginFailureHandler;
+	
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -38,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeHttpRequests() // 定義哪些url需要被保護
 //		表示get方法之下，路徑之下的所有文件夾都要驗證 ，path= 我要限制的網址： (localhost:8080/admin/...)之下都要驗證 
 //		網址(/admin/**) 表示admin之下的的所有路徑
-		.antMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority("admin","manager","boss");
+		.antMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority("admin","manager","boss777")
 		.antMatchers(HttpMethod.GET).permitAll()
 		.antMatchers(HttpMethod.POST,"/admin/**").authenticated()
 		.antMatchers(HttpMethod.POST).permitAll()
@@ -53,8 +62,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		導入的login界面
 		.formLogin().loginPage("/toAdminLoginPage")
 //		.loginProcessingUrl("/testout")
-		.defaultSuccessUrl("/admin/testpage")
-		.failureUrl("/login.html?error=true");
+		.successHandler(loginSucessHandler)
+		.failureHandler(loginFailureHandler);
+//		.defaultSuccessUrl("/admin/testpage")
+//		.failureUrl("/login.html?error=true");
 		
 		
 		http.logout()

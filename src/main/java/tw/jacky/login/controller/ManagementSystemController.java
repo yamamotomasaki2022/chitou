@@ -222,7 +222,7 @@ public class ManagementSystemController {
 
 //	檢查賬號密碼是否正確
 	@PostMapping(path = "/adminchecklogin")
-	public String processAdminCheckLogin(@RequestParam("loginuserid") String user, @RequestParam("loginpw") String pwd,
+	public String processAdminCheckLogin(@RequestParam("username") String user, @RequestParam("password") String pwd,
 			Model m) {
 		Map<String, String> errors = new HashMap<String, String>();
 
