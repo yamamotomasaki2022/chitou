@@ -22,7 +22,7 @@
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 	<h4 class="card-title text-primary">&nbsp;飯店修改</h4>
 	<div>
-		<form:form action="updateHotel" method="post" modelAttribute="result" enctype="multipart/form-data" class="forms-sample">
+		<form:form action="/admin/updateHotel" method="post" modelAttribute="result" enctype="multipart/form-data" class="forms-sample">
 		    <form:input type="hidden" path="hotelID" class="form-control"/><br>
 			<input type="hidden" name="_method" value="PUT">
 	        <div class="form-group">

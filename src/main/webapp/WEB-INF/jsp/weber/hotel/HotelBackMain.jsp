@@ -15,15 +15,15 @@
 	
     	<h4 class="card-title text-primary">&nbsp;飯店管理</h4>
     <div style="display:inline-block;float:left;">
-	    <form action="searchHotel" method="get" >
+	    <form action="/admin/searchHotel" method="get" >
 	    	<select id="type" name="type">
 	    	</select>
 	    	<input type="text" name="keyword">
-	    	<input type="submit" class="btn btn-primary mr-2" name="search" value="搜尋">
+	    	<input type="submit" class="btn btn-primary mr-2" value="搜尋">
 	    </form>
 	</div>
 	<div style="display:inline-block;float:right;">
-		<form action="insertHotelPage" method="get">
+		<form action="/admin/insertHotelPage" method="get">
 			<input type="submit" class="btn btn-primary mr-2" name="add" value="新增">
 		</form>
 	</div>
@@ -51,7 +51,7 @@
 			                <td>${bean.averagePrice}</td>
 			                <td>
 			                	<div style="float:left;">
-			            			<form action="toUpdateHotel" method="post">
+			            			<form action="/admin/toUpdateHotel" method="post">
 			            				<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
 			                			<button type="submit" class="btn btn-inverse-success btn-icon" style="width:30px;height:30px;" name="toUpdatePage">
 		                					<i class="ti-pencil-alt"></i>
@@ -59,7 +59,7 @@
 		                			</form>
 		                		</div>
 								<div>
-		                			<form action="deleteHotel" method="post">
+		                			<form action="/admin/deleteHotel" method="post">
 										<input type="hidden" name="_method" value="DELETE"/>
 			                			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
 			                			<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" name="delete">
@@ -70,7 +70,7 @@
 			            	</td>
 			            	<td>
 			            		<div>
-			            			<form action="toRoomPage" method="get">
+			            			<form action="/admin/toRoomPage" method="get">
 			            				<input type="hidden" name="name" value="${bean.name}">
 			            				<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
 			                			<input type="submit" class="btn btn-primary mr-2" value="房間">
