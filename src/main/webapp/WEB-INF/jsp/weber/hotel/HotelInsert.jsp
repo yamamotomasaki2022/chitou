@@ -33,7 +33,7 @@
 	<h4 class="card-title text-primary">&nbsp;新增飯店</h4>
 	<p class="card-description">輸入新增的飯店內容</p>
 	<div>
-		<form:form action="insertHotel" method="post" modelAttribute="hotel"
+		<form:form action="/admin/insertHotel" method="post" modelAttribute="hotel"
 			enctype="multipart/form-data" class="forms-sample">
 			<div class="form-group">
 				<label>飯店名稱:</label>
