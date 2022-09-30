@@ -33,7 +33,7 @@
 <%@ include file="/WEB-INF/includes/Header.jsp"  %>
 	<br>
 	<div align="center">
-	    <form action="/searchHotel" method="get" >
+	    <form>
 	    前往
 	    <select id="destination" name="destination">
 	    </select>
@@ -43,12 +43,12 @@
 	    <input type="hidden" id="dateEnd" name="dateEnd" value="${dateEnd}">
 	    人數
 	    <input type="number" name="number" style="width:50px;" value="${number}">人
-	    <input type="submit" value="搜尋">
+	    <button type="button" id="search">搜尋</button>
 	    </form>
 	</div>
 	<br>
-	<div class="container">
-					<div class="row">
+		<div class="container">
+					<div class="row" id="searchResult">
 						<c:forEach var="bean" items="${result}">
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<div class="single-awesome-project">
@@ -107,6 +107,27 @@
     	let date = $(this).val().replace(" ","").replace(" ","").split('-');
 		$('#dateStart').val(date[0]);
 		$('#dateEnd').val(date[1]);
+    });
+    $("#search").on('click',function(e){
+    	var formData = new FormData(e.target.closest('form'));
+    	var dateStart = 'dateStart=' + formData.get('dateStart');
+    	var dateEnd = '&dateEnd=' + formData.get('dateEnd');
+    	var destination = '&destination=' + formData.get('destination');
+    	var number = '&number=' + formData.get('number');
+    	$.ajax({
+    		type:'get',
+			url:'/searchAjax?'+ dateStart + dateEnd + destination + number,
+			dataType:'JSON',
+			contentType:'application/json',
+			success:function(data){
+				$('#searchResult').empty();
+				var result = '';
+				$.each(data,function(index,ele){
+					result += 
+						
+				});
+			}
+    	});
     });
 	</script>
 </body>
