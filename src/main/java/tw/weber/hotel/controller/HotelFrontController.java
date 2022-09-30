@@ -3,11 +3,15 @@ package tw.weber.hotel.controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,5 +45,15 @@ public class HotelFrontController {
 		int[] yee = new int[8];
 		model.addAttribute("yee",yee);
 		return searchPage;
+	}
+	
+	@GetMapping(path = "searchAjax")
+	@ResponseBody
+	private List<HotelforSearch> searchAjax(@RequestParam("dateStart")String dateStart,
+											@RequestParam("dateEnd")String dateEnd,
+											@RequestParam("destination")String destination,
+											@RequestParam("number")int number,Model model){
+		
+		return fService.crazy(dateStart, dateEnd, destination, number);
 	}
 }
