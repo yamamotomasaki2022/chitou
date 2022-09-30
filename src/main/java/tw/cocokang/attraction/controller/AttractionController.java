@@ -43,10 +43,21 @@ public class AttractionController {
 		m.addAttribute("homeAttractions", aService.getAll());
 		return "BackgroundHomePage";
 	}
-	@GetMapping("/beforehomeAttractions")
+	@GetMapping("/newhomeAttractions")
 	public String AttractionListAction2(Model m) {
 		m.addAttribute("homeAttractions", aService.getAll());
+		return "NewHome";
+	}
+	@GetMapping("/beforehome")
+	public String AttractionListAction3(Model m) {
+		m.addAttribute("homeAttractions", aService.getAll());
 		return "Home";
+	}
+	//weihan
+	@GetMapping("/newHotelsStyle")
+	public String AttractionListActionwei(Model m) {
+		m.addAttribute("homeAttractions", aService.getAll());
+		return "Hotelstyle";
 	}
 
 	//	寫絕對路徑辦法(圖片)
