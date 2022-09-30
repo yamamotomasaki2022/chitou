@@ -20,7 +20,6 @@ public class Attraction {
 	private String photo;
 	
 	@Id
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "attraction_id")
 	private Integer attid;
 	
@@ -151,5 +150,10 @@ public class Attraction {
 				+ ", preferid=" + preferid + ", attName=" + attName + ", attLocation=" + attLocation
 				+ ", attDescription=" + attDescription + "]";
 	}
+//	@Override
+//	public String toString() {
+//		return "Attraction [photo=" + photo + ", attid=" + attid + ", attName=" + attName + ", attLocation=" + attLocation
+//				+ ", attDescription=" + attDescription + "]";
+//	}
 
 }

@@ -12,31 +12,31 @@ import org.springframework.stereotype.Component;
 @Component
 public class FlightTicket {
 	
-	public FlightTicket(Integer classID, String departureTime, String arrivalTime, String originID,
-			String destinationID) {
+	public FlightTicket(Integer classid, String departuretime, String arrivaltime, String originid,
+			String destinationid) {
 		super();
-		this.classid = classID;
-		this.departuretime = departureTime;
-		this.arrivaltime = arrivalTime;
-		this.originid = originID;
-		this.destinationid = destinationID;
+		this.classid = classid;
+		this.departuretime = departuretime;
+		this.arrivaltime = arrivaltime;
+		this.originid = originid;
+		this.destinationid = destinationid;
 	}
 	
-	public FlightTicket(String flightID, Integer classID, String departureTime, String arrivalTime, Integer fare,
-			String airline, String originID, String destinationID) {
+	public FlightTicket(String flightid, Integer classid, String departuretime, String arrivaltime, Integer fare,
+			String airline, String originid, String destinationid) {
 		super();
-		this.flightid = flightID;
-		this.classid = classID;
-		this.departuretime = departureTime;
-		this.arrivaltime = arrivalTime;
+		this.flightid = flightid;
+		this.classid = classid;
+		this.departuretime = departuretime;
+		this.arrivaltime = arrivaltime;
 		this.fare = fare;
 		this.airline = airline;
-		this.originid = originID;
-		this.destinationid = destinationID;
+		this.originid = originid;
+		this.destinationid = destinationid;
 	}
 
-	public FlightTicket(String flightID, Integer fare) {
-		this.flightid = flightID;
+	public FlightTicket(String flightid, Integer fare) {
+		this.flightid = flightid;
 		this.fare = fare;
 	}
 	
@@ -62,43 +62,43 @@ public class FlightTicket {
 	@Column(name = "originid")
 	private String originid;
 	
-	@Column(name = "destinationiD")
+	@Column(name = "destinationid")
 	private String destinationid;
 	
 	public FlightTicket() {
 		
 	}
 
-	public String getFlightID() {
+	public String getFlightid() {
 		return flightid;
 	}
 
-	public void setFlightID(String flightID) {
-		this.flightid = flightID;
+	public void setFlightid(String flightid) {
+		this.flightid = flightid;
 	}
 
-	public Integer getClassID() {
+	public Integer getClassid() {
 		return classid;
 	}
 
-	public void setClassID(Integer classID) {
-		this.classid = classID;
+	public void setClassid(Integer classid) {
+		this.classid = classid;
 	}
 
-	public String getDepartureTime() {
+	public String getDeparturetime() {
 		return departuretime;
 	}
 
-	public void setDepartureTime(String departureTime) {
-		this.departuretime = departureTime;
+	public void setDeparturetime(String departuretime) {
+		this.departuretime = departuretime;
 	}
 
-	public String getArrivalTime() {
+	public String getArrivaltime() {
 		return arrivaltime;
 	}
 
-	public void setArrivalTime(String arrivalTime) {
-		this.arrivaltime = arrivalTime;
+	public void setArrivaltime(String arrivaltime) {
+		this.arrivaltime = arrivaltime;
 	}
 
 	public Integer getFare() {
@@ -117,27 +117,27 @@ public class FlightTicket {
 		this.airline = airline;
 	}
 
-	public String getOriginID() {
+	public String getOriginid() {
 		return originid;
 	}
 
-	public void setOriginID(String originID) {
-		this.originid = originID;
+	public void setOriginid(String originid) {
+		this.originid = originid;
 	}
 
-	public String getDestinationID() {
+	public String getDestinationid() {
 		return destinationid;
 	}
 
-	public void setDestinationID(String destinationID) {
-		this.destinationid = destinationID;
+	public void setDestinationid(String destinationid) {
+		this.destinationid = destinationid;
 	}
 
 	@Override
 	public String toString() {
-		return "FlightTicket [flightID=" + flightid + ", classID=" + classid + ", departureTime=" + departuretime
-				+ ", arrivalTime=" + arrivaltime + ", fare=" + fare + ", airline=" + airline + ", originID=" + originid
-				+ ", destinationID=" + destinationid + "]";
+		return "FlightTicket [flightid=" + flightid + ", classid=" + classid + ", departuretime=" + departuretime
+				+ ", arrivaltime=" + arrivaltime + ", fare=" + fare + ", airline=" + airline + ", originid=" + originid
+				+ ", destinationid=" + destinationid + "]";
 	}
 	
 	

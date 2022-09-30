@@ -3,7 +3,12 @@
 <%@page import="java.util.*, javax.sql.*,tw.jacky.login.model.*"%>
 
 <%
-int sessio_status = (int) request.getSession().getAttribute("session_status");
+
+if(request.getSession().getAttribute("session_status") !=null){
+	int session_status = (int)request.getSession().getAttribute("session_status");
+}else{
+	int session_status = 0;
+};
 
 if(request.getAttribute("crud") !=null){
 	int crud = (int)request.getAttribute("crud");
@@ -306,7 +311,20 @@ if(request.getAttribute("crud") !=null){
 				  '讚！',
 				  '新增成功',
 				  'success'
+				).then((result) => 
+				$.ajax({
+				type:'get',
+				url:'/manager/crudBean',
+				success:function(data){
+					console.log(data);
+				}
+				
+				}
 				)
+				
+				
+				)
+				
 	} else if (crud == 2) {
 		Swal.fire(
 				  '',
