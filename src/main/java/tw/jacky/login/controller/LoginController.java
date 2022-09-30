@@ -7,11 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 
 import tw.jacky.login.model.LoginService;
 
 @Controller
+
 public class LoginController {
 	
 	
@@ -27,7 +29,7 @@ public class LoginController {
 	
 	@RequestMapping(path="/toHomepage")
 	public String toHomepage() {
-		return path_main_login + "Home";
+		return "Home";
 	}
 	
 
@@ -48,6 +50,12 @@ public class LoginController {
 		return path_main_login + "MainLoginPage";
 	}
 	
+	
+	@RequestMapping(path="/testpage")
+	@ResponseBody
+	public String test() {
+		return "test security sucessful";
+	}
 	
 	
 	

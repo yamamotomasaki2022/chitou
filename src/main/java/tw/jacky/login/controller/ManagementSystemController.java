@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +27,7 @@ import tw.jacky.login.model.MemberBasicInfo;
 
 @Controller
 @SessionAttributes({ "memberlist", "adminlist", "session_status", "crud" })
+@RequestMapping(path="/admin")
 public class ManagementSystemController {
 
 	@Autowired
@@ -62,7 +65,8 @@ public class ManagementSystemController {
 	}
 
 	@RequestMapping(path = "/adminhomepage")
-	public String processAdminHomePage() {
+	public String processAdminHomePage(Model m) {
+		processShowTableInHomePage(m);
 		return page_adminhomepage;
 	}
 
@@ -219,7 +223,7 @@ public class ManagementSystemController {
 
 //	檢查賬號密碼是否正確
 	@PostMapping(path = "/adminchecklogin")
-	public String processAdminCheckLogin(@RequestParam("loginuserid") String user, @RequestParam("loginpw") String pwd,
+	public String processAdminCheckLogin(@RequestParam("username") String user, @RequestParam("password") String pwd,
 			Model m) {
 		Map<String, String> errors = new HashMap<String, String>();
 
@@ -288,13 +292,15 @@ public class ManagementSystemController {
 
 		int adminstatus_int = Integer.parseInt(adminstatus);
 		AdminChitou adminChitou = new AdminChitou(adminstatus_int, username, password, true);
+		String encrpytAdminPassword = encrpytAdminPassword(adminChitou);
+		adminChitou = new AdminChitou(adminstatus_int, username, encrpytAdminPassword, true);
 		lservice.adminInsertAdmin(adminChitou);
 		m.addAttribute("crud", 1);
 		return "redirect:" + method_ShowTableInHomePage;
 	}
 
 //	管理員刪除管理員
-	@DeleteMapping(path = "AdminDeleteAdmin")
+	@DeleteMapping(path = "/AdminDeleteAdmin")
 	public String processAdminDeleteAdmin(@RequestParam("td_memberid") String adminid, Model m) {
 		int adminid_int = Integer.parseInt(adminid);
 		lservice.adminDeleteAdmin(adminid_int);
@@ -303,7 +309,7 @@ public class ManagementSystemController {
 	}
 
 //	管理員更新管理員基本咨詢
-	@PutMapping(path = "AdminModifyAdmin")
+	@PutMapping(path = "/AdminModifyAdmin")
 	public String processAdminModifyAdmin(@RequestParam("adminid") String adminid,
 			@RequestParam("adminstatus") String adminstatus, @RequestParam("username") String username,
 			@RequestParam("password") String password, @RequestParam("permission") String permission, Model m) {
@@ -315,6 +321,23 @@ public class ManagementSystemController {
 		lservice.adminInsertAdmin(adminChitou);
 		m.addAttribute("crud", 3);
 		return "redirect:" + method_ShowTableInHomePage;
+	}
+	
+	
+//	給密碼加密
+	
+	public String encrpytAdminPassword(AdminChitou admin) {
+//	    加密的方法 —> 將字串加密 在放入Javabean内
+		String beEncode = new BCryptPasswordEncoder().encode(admin.getPassword());
+		return beEncode;
+	}
+	
+	
+	
+	@RequestMapping(path="/testpage")
+	@ResponseBody
+	public String test() {
+		return "test sesssion sucess!!!";
 	}
 
 }
