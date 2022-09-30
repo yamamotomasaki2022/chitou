@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -25,10 +26,17 @@ import tw.weber.hotel.model.RoomStyleBackService;
 
 @Controller
 @SessionAttributes({"hotelResult"})
+@RequestMapping(path = "/admin")
 public class RoomStyleBackController {
 	
 	@Autowired
 	private RoomStyleBackService styleService;
+	
+	private String suffix = "weber/room/";
+	private String roomMainPage = suffix + "RoomStyleMain";  
+	private String returnRoom = "redirect:/admin/room" ;
+	private String insertPage = suffix + "RoomStyleInsert";
+	private String updatePage = suffix +"RoomStyleUpdate";
 	
 	@GetMapping(path = "/room")
 	public String SearchAllroom(Model model) {
@@ -36,7 +44,7 @@ public class RoomStyleBackController {
 		System.err.println("hotelID:"+hotel.getHotelID());
 		List<RoomStyle> result = styleService.findAllByHotelID(hotel.getHotelID());
 		model.addAttribute("result",result);
-		return "weber/room/RoomStyleMain";
+		return roomMainPage;
 	}	
 	
 	@GetMapping(path = "/searchRoom")
@@ -45,14 +53,14 @@ public class RoomStyleBackController {
 		
 		model.addAttribute("result",result);
 		
-		return "weber/room/RoomStyleMain";
+		return roomMainPage;
 	}	
 	
 	@GetMapping(path = "/insertStylePage")
 	public String insertRoomPage(Model m) {
 		RoomStyle style = new RoomStyle();
 		m.addAttribute("style",style);
-		return "weber/room/RoomStyleInsert";
+		return insertPage;
 	}
 	
 	@PostMapping(path = "/insertStyle")
@@ -69,7 +77,7 @@ public class RoomStyleBackController {
 			System.out.println("沒有照片");
 		}
 		
-		return "redirect:room";
+		return returnRoom;
 	}
 	
 	@PostMapping(path = "/toUpdateStyle")
@@ -82,7 +90,7 @@ public class RoomStyleBackController {
 		result.setRoomAmount(roomCount);
 		m.addAttribute("style",result);
 		m.addAttribute("photoCount",count);
-		return "weber/room/RoomStyleUpdate";
+		return updatePage;
 	}
 	
 	@PutMapping(path = "/updateStyle")
@@ -100,13 +108,13 @@ public class RoomStyleBackController {
 		
 		styleService.update(style);
 		
-		return "redirect:room";
+		return returnRoom;
 	}
 	
 	@DeleteMapping(path = "/deleteStyle")
 	public String deleteroom(@RequestParam("styleID")int styleID) {
 		styleService.delete(styleID);
-		return "redirect:room" ;
+		return returnRoom ;
 	}
 	
 	@GetMapping(path = "/ajax/roomData/{hotelID}")

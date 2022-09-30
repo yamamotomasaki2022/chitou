@@ -291,41 +291,46 @@ if(request.getAttribute("crud") !=null){
 			
 		}
 		
-		var crud = "${crud}";
+	</script>
+	
+	
+	<script>
+	
+	
+	var crud = "${crud}";
+	
+	console.log(crud)
+	
+	if (crud == 1) {
+		Swal.fire(
+				  '讚！',
+				  '新增成功',
+				  'success'
+				)
+	} else if (crud == 2) {
+		Swal.fire(
+				  '',
+				  'Manager!',
+				  'success'
+				)
+	} else if (crud == 3) {
+		Swal.fire(
+				  '讚!',
+				  '更新成功!',
+				  'success'
+				)
+	} else if (crud == 4) {
+		Swal.fire(
+				  '讚！',
+				  '刪除成功！',
+				  'success'
+				)
+	}else {
 		
-		console.log(crud)
-		
-		if (crud == 1) {
-			Swal.fire(
-					  '讚！',
-					  '新增成功',
-					  'success'
-					)
-		} else if (crud == 2) {
-			Swal.fire(
-					  '',
-					  'Manager!',
-					  'success'
-					)
-		} else if (crud == 3) {
-			Swal.fire(
-					  '讚!',
-					  '更新成功!',
-					  'success'
-					)
-		} else if (crud == 4) {
-			Swal.fire(
-					  '讚！',
-					  '刪除成功！',
-					  'success'
-					)
-		}else {
-			
-		}
-		
-		
-		
-		
+	}
+	
+	
+	
 	</script>
 	
 	

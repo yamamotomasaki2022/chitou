@@ -82,8 +82,8 @@ button, .btn {
 
 <script>
 $('#fastInput').click(function(){
-	$('#posterIDInput').val('2222');
-	$('#titleInput').val('中壢哪裡有好玩的地方?');
+	$('#posterIDInput').val('6666');
+	$('#titleInput').val('中壢必吃牛排店');
 	$('#contentInput').val('求分享，求推薦');
 })
 </script>

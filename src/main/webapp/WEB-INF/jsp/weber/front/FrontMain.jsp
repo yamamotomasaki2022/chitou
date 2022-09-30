@@ -17,13 +17,17 @@
 <%@ include file="/WEB-INF/includes/Header.jsp"  %>
 	<h2 align="center">您想去哪裡?</h2>
     <div align="center">
-	    <form action="searchHotelFront" method="get" >
+	    <form action="/searchHotel" method="get" >
 	    目的地
-	    <select id="destination" name="type">
-	    </select>
-	    <input type="text" id="date" name="date">
-	    <input type="text" name="keyword">
-	    <input type="submit" name="search" value="搜尋">
+	    <select id="destination" name="destination">
+	    </select><br><br>
+	    日期
+	    <input type="text" id="date" name="date"><br><br>
+	    <input type="hidden" id="dateStart" name="dateStart">
+	    <input type="hidden" id="dateEnd" name="dateEnd">
+	    旅客
+	    <input type="number" name="number" style="width:50px">人<br><br>
+	    <input type="submit" value="搜尋">
 	    </form>
 	</div>
 	<script>
@@ -32,9 +36,13 @@
         for(var i=0;i<des.length;i++){
         	let option = '"<option value="'+des[i]+'">'+des[i]+'</option>"';
         	$('#destination').append(option);
-        }
+        };
+        let date = new Date().toISOString().split('T')[0];
+        $('#dateStart').val(date);
+		$('#dateEnd').val(date);
     }); 
     $("#date").daterangepicker({
+//     	"minDate": new Date(),
     	locale:{
     		applyLabel:"確定",
     		cancelLabel: "取消",
@@ -46,11 +54,10 @@
     	}
     });
     $("#date").on('change',function(){
-    	let date = $(this).val();
-    	let newdate = date.replace(" ","").replace(" ","");
-    	let newnewdate = newdate.split('-');
-    	$.each()
-    })
+    	let date = $(this).val().replace(" ","").replace(" ","").split('-');
+		$('#dateStart').val(date[0]);
+		$('#dateEnd').val(date[1]);
+    });
 	</script>
 </body>
 </html>
