@@ -6,7 +6,7 @@
 <html>
   <head>
     <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
-    <title>Chitou</title>
+    <title>找飯店</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="/js/weber/daterangepicker/moment.min.js"></script>
 	<script type="text/javascript" src="/js/weber/daterangepicker/daterangepicker.min.js"></script>

@@ -58,4 +58,12 @@ public class HotelFrontController {
 		
 		return fService.crazy(dateStart, dateEnd, destination, number);
 	}
+	
+	@GetMapping(path = "displayHotel")
+	private String displayHotelPage(@RequestParam("dateStart")String dateStart,
+									@RequestParam("dateEnd")String dateEnd,
+									@RequestParam("number")int number,
+									@RequestParam("hotelID")int hotelID,Model model) {
+		return "yee";
+	}
 }
