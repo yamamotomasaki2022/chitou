@@ -51,9 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeHttpRequests() // 定義哪些url需要被保護
 //		表示get方法之下，路徑之下的所有文件夾都要驗證 ，path= 我要限制的網址： (localhost:8080/admin/...)之下都要驗證 
 //		網址(/admin/**) 表示admin之下的的所有路徑
-		.antMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority("manager","boss777")
+		.antMatchers(HttpMethod.GET,"/manager/**").hasAnyAuthority("manager","boss777")
 		.antMatchers(HttpMethod.GET).permitAll()
-		.antMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority("manager","boss777")
+		.antMatchers(HttpMethod.POST,"/manager/**").hasAnyAuthority("manager","boss777")
 		.antMatchers(HttpMethod.POST).permitAll()
 		.anyRequest().authenticated()
 //		and 加上另外的功能
@@ -81,7 +81,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.logoutUrl("/logout")
 		.invalidateHttpSession(true)
 		.deleteCookies("JSESSIONID");
-		
 	}
 	
 }

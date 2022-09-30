@@ -27,7 +27,7 @@ import tw.jacky.login.model.MemberBasicInfo;
 
 @Controller
 @SessionAttributes({ "memberlist", "adminlist", "session_status", "crud" })
-@RequestMapping(path="/admin")
+@RequestMapping(path="/manager")
 public class ManagementSystemController {
 
 	@Autowired
@@ -56,6 +56,19 @@ public class ManagementSystemController {
 
 	String page_adminlogin = path_admin_login + "AdminLogin";
 	String page_adminhomepage = path_admin_login + "AdminHomePage";
+	
+	
+	
+//	------------------------------------------------------------------------------------------------------------------------------------------------------------
+//  ajax controller
+	
+	@GetMapping(path="/crudBean")
+	@ResponseBody
+	public String crudBean(Model m) {
+		System.out.println("進來了");
+		m.addAttribute("crud",0);
+		return "delete crud_Bean";
+	}
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	管理員登入界面

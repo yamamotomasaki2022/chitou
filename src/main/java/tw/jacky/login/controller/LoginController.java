@@ -57,7 +57,7 @@ public class LoginController {
 		return "test security sucessful";
 	}
 	
-	
+
 	
 
 }

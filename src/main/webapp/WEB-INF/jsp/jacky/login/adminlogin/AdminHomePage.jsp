@@ -311,7 +311,20 @@ if(request.getAttribute("crud") !=null){
 				  '讚！',
 				  '新增成功',
 				  'success'
+				).then((result) => 
+				$.ajax({
+				type:'get',
+				url:'/manager/crudBean',
+				success:function(data){
+					console.log(data);
+				}
+				
+				}
 				)
+				
+				
+				)
+				
 	} else if (crud == 2) {
 		Swal.fire(
 				  '',
