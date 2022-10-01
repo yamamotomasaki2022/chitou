@@ -32,9 +32,14 @@ public class LoginService {
 	@Autowired
 	private MemberBasicInfoRepository mbrepo;
 	@Autowired
+	private MemberDetailInfoRepository mdirepo;
+	@Autowired
 	private  AdminChitouRepository acrepo;
 	@Autowired
 	private MemberBasicInfoDAO mDao;
+	
+	
+	
 	
 	private String staticPath = getStaticPath();
 	
@@ -55,11 +60,22 @@ public class LoginService {
 		return mbrepo.findAll();
 	}
 	
-//	查詢單個會員(ID)
+//	查詢單個會員的基本資料(ID)
 	
 	public MemberBasicInfo findByMemberid(int id) {
 		return mbrepo.findByMemberid(id);
 	}
+	
+	public MemberBasicInfo findBasicInfobyUsername(String username) {
+		return mbrepo.findByUsername(username);
+	}
+		
+	
+//	尋找會員詳細資料
+	public MemberDetailInfo findDetailByMemberid(int id) {
+		return mdirepo.findByMemberid(id);
+	}
+	
 	
 //	管理員新增會員
 	public MemberBasicInfo adminInsertMember(MemberBasicInfo mb) {
@@ -68,8 +84,8 @@ public class LoginService {
 	
 //	管理員刪除會員
 	public void adminDeleteMember(int id) {
-		MemberBasicInfo bean = findByMemberid(id);
-		mbrepo.delete(bean);
+		MemberDetailInfo findDetailByMemberid = findDetailByMemberid(id);
+		mdirepo.delete(findDetailByMemberid);
 	}
 	
 //	管理員更新會員

@@ -336,13 +336,33 @@ if(request.getAttribute("crud") !=null){
 				  '讚!',
 				  '更新成功!',
 				  'success'
-				)
+				).then((result) => 
+				$.ajax({
+					type:'get',
+					url:'/manager/crudBean',
+					success:function(data){
+						console.log(data);
+					}
+					
+					}
+					)
 	} else if (crud == 4) {
 		Swal.fire(
 				  '讚！',
 				  '刪除成功！',
 				  'success'
 				)
+				.then((result) => 
+				$.ajax({
+				type:'get',
+				url:'/manager/crudBean',
+				success:function(data){
+					console.log(data);
+				}
+				
+				}
+				)
+				
 	}else {
 		
 	}

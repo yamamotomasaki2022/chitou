@@ -1,8 +1,11 @@
 package tw.jacky.login.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -40,7 +43,17 @@ public class MemberDetailInfo {
 	@Column(name="modifytime")
 	private String modifytime;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name= "memberid")
+	private MemberBasicInfo memberBasicInfo;
 	
+	
+	
+	public MemberDetailInfo() {
+		
+	}
+	
+
 	public MemberDetailInfo(int memberid, String name, String phone, String address, String nickname,
 			String nationality, String brith, String gender, String createtime, String modifytime) {
 		super();
@@ -117,8 +130,15 @@ public class MemberDetailInfo {
 	public void setModifytime(String modifytime) {
 		this.modifytime = modifytime;
 	}
+	public MemberBasicInfo getMemberBasicInfo() {
+		return memberBasicInfo;
+	}
+	public void setMemberBasicInfo(MemberBasicInfo memberBasicInfo) {
+		this.memberBasicInfo = memberBasicInfo;
+	}
 
-
+	
+	
 
 	@Override
 	public String toString() {
