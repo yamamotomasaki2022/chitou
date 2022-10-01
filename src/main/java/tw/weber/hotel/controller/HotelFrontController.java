@@ -19,6 +19,7 @@ import tw.weber.hotel.model.FrontBookingService;
 import tw.weber.hotel.model.Hotel;
 import tw.weber.hotel.model.HotelforSearch;
 import tw.weber.hotel.model.Room;
+import tw.weber.hotel.model.RoomStyle;
 
 @Controller
 public class HotelFrontController {
@@ -29,6 +30,7 @@ public class HotelFrontController {
 	private String suffix = "weber/front/";
 	private String main = suffix + "FrontMain";
 	private String searchPage = suffix + "SearchResult";
+	private String hotelPage = suffix + "DisplayHotel";
 	
 	@GetMapping(path = "hotel")
 	private String frontPage() {
@@ -54,8 +56,47 @@ public class HotelFrontController {
 	private List<HotelforSearch> searchAjax(@RequestParam("dateStart")String dateStart,
 											@RequestParam("dateEnd")String dateEnd,
 											@RequestParam("destination")String destination,
-											@RequestParam("number")int number,Model model){
+											@RequestParam("number")int number){
 		
 		return fService.crazy(dateStart, dateEnd, destination, number);
+	}
+	
+	@GetMapping(path = "searchRoomAjax")
+	@ResponseBody
+	private List<RoomStyle> searchRoomAjax(@RequestParam("dateStart")String dateStart,
+												@RequestParam("dateEnd")String dateEnd,
+												@RequestParam("hotelID")int hotelID,
+												@RequestParam("number")int number){
+		List<RoomStyle> list = fService.selectRoom(dateStart, dateEnd, hotelID, number);
+		return list;
+	}
+	
+	@GetMapping(path = "hotelPage")
+	private String displayHotelPage(@RequestParam("dateStart")String dateStart,
+									@RequestParam("dateEnd")String dateEnd,
+									@RequestParam("number")int number,
+									@RequestParam("hotelID")int hotelID,Model model) {
+		model.addAttribute("dateStart",dateStart);
+		model.addAttribute("dateEnd",dateEnd);
+		model.addAttribute("number",number);
+		model.addAttribute("hotelID",hotelID);
+		Hotel hotel = fService.selectHotel(hotelID);
+		model.addAttribute("hotel",hotel);
+		return hotelPage;
+	}
+	
+	@GetMapping(path = "display")
+	private String display() {
+		return "Hotelstyle";
+	}
+	
+	@GetMapping(path = "yee")
+	private String yee() {
+		return "NewHome";
+	}
+	@GetMapping(path = "test/test")
+	@ResponseBody
+	private Hotel test() {
+		return fService.selectHotel(6);
 	}
 }

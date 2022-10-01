@@ -25,18 +25,19 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
 //	public List<Room> crazy(String dateStart,String dateEnd,String destination,int number);
 	
 	
-	@Query(value = "select * from "
-			+ "(select * from room where roomID not in  "
-			+ "(select roomID from reservation "
-			+ "where checkInDate between ?1 and ?2 or checkoutdate between ?1 and ?2)) "
-			+ "as a JOIN roomstyle as b on a.roomStyleID = b.styleID "
-			+ "JOIN hotel as c on b.hotelID = c.hotelID "
-			+ "where c.country = ?3 and b.capacity > ?4 "
-			+ "order by b.hotelID",nativeQuery = true)
-	public List<Room> crazy(String dateStart,String dateEnd,String destination,int number);
-	//我為什麼要寫這種東西
+//	@Query(value = "select a.* from "
+//			+ "(select * from room where roomID not in  "
+//			+ "(select roomID from reservation "
+//			+ "where checkInDate between ?1 and ?2 or checkoutdate between ?1 and ?2)) "
+//			+ "as a JOIN roomstyle as b on a.roomStyleID = b.styleID "
+//			+ "JOIN hotel as c on b.hotelID = c.hotelID "
+//			+ "where c.hotelID = ?3 and b.capacity > ?4 ",nativeQuery = true)
+//	public List<Room> crazyFind(String dateStart,String dateEnd,int hotelID,int number);
+//	//我為什麼要寫這種東西
 	
 	public List<Room> findAllByStyle(RoomStyle style);
+	
+	
 	
 //	@Query(value = "select c.name,c.address,c.averagePrice from (select * from room where roomID not in  (select roomID from reservation where checkInDate between ?1 and ?2 or checkoutdate between ?1 and ?2)) as a JOIN roomstyle as b on a.roomStyleID = b.styleID JOIN hotel as c on b.hotelID = c.hotelID where c.country = ?3 and b.capacity > ?4 group by c.name,c.address,c.averagePrice",nativeQuery = true)
 //	public List<Room> crazy(String dateStart,String dateEnd,String destination,int number);
