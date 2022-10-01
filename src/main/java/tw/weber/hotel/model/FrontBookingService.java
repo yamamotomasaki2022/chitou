@@ -18,7 +18,11 @@ public class FrontBookingService {
 	@Autowired
 	private HotelRepository hRepo;
 	
-	@Autowired RoomStyleRepository rsRepo;
+	@Autowired 
+	private RoomStyleRepository rsRepo;
+	
+	@Autowired
+	private RSSearchRepository rssRepo;
 	
 	public List<Room> find(){
 		return rRepo.find();
@@ -32,8 +36,8 @@ public class FrontBookingService {
 		return hRepo.findById(hotelID).get();
 	}
 	
-	public List<RoomStyle> selectRoom(String dateStart,String dateEnd,int hotelID,int number) {
-		return rsRepo.crazyFind(dateStart, dateEnd, hotelID, number);
+	public List<RoomStyleforSearch> getRoomStyle(String dateStart,String dateEnd,int hotelID,int number) {
+		return rssRepo.crazy(dateStart, dateEnd, hotelID, number);
 	}
 	
 }

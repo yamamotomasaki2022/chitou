@@ -23,53 +23,50 @@ $("#date").on('change', function () {
     $('#dateStart').val(date[0]);
     $('#dateEnd').val(date[1]);
 });
-$("#search").on('click', function (e) {
+$("#searchRoom").on('click', function (e) {
     var formData = new FormData(e.target.closest('form'));
     var dateStart = 'dateStart=' + formData.get('dateStart');
     var dateEnd = '&dateEnd=' + formData.get('dateEnd');
+    var hotelID = '&hotelID=' + formData.get('hotelID');
     var number = '&number=' + formData.get('number');
     console.log(formData);
     $.ajax({
         type: 'get',
-        url: '/searchRoomAjax?' + dateStart + dateEnd + destination + number,
+        url: '/searchHotelRoomAjax?' + dateStart + dateEnd + hotelID + number,
         dataType: 'JSON',
         contentType: 'application/json',
         success: function (data) {
-            $('#searchResult').empty();
+            $('.custom-accordion').empty();
             var result = '';
+            var collapse = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen'];
             $.each(data, function (index, ele) {
                 result +=
                     `
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        <div class="single-awesome-project">
-                            <a href="images/weber/hotel/hotelNB${ele.hotelID}/photo1.jpg" class="img"> 
-                            <img src="images/weber/hotel/hotelNB${ele.hotelID}/photo1.jpg" alt="Image" class="img-fluid">
-                            </a>
+                    <div class="accordion-item">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${collapse[index]}" aria-expanded="false" aria-controls="collapse${collapse[index]}">${ele.name}</button>
+                        </h2>
 
-                            <div class="project-dec-2">
-                                <div>
-                                    <span class="d-block mb-2 text-black-50">
-                                    <i class="fa-solid fa-location-dot"></i> ${ele.name}
-                                    </span> 
-                                    <span class="city d-block mb-3">${ele.address}</span>
-                                    <div class="specs d-flex mb-4">
-                                        <span class="d-block d-flex align-items-center me-3">
-                                            <span class="icon-bed me-2"></span> 
-                                            <span class="caption">
-                                                平均房價:${ele.averagePrice}
-                                            </span>
-                                        </span>
-                                    </div>
-
-                                    <a href="/hotelPage?dateStart=${dateStart}&dateEnd=${dateEnd}&number=${number}&hotelID=${ele.hotelID}" class="btn btn-primary py-2 px-3" style="background-color: lightblue">詳細</a>
-                                    <span style="color:blue">還剩${ele.amount}間房</span>
+                        <div id="collapse${collapse[index]}" class="collapse" aria-labelledby="heading${collapse[index]}" data-parent="#accordion_1">
+                            <div class="accordion-body">
+                                ・容納人數: ${ele.capacity}人
+                                <br>
+                                ・床位: ${ele.bed}
+                                <br>
+                                <div style="float:left;">
+                                    <h3>&nbsp;&nbsp;NT$ ${ele.price}</h3>
                                 </div>
+                                <div style="float:left;">
+                                    <h3 style="color:red;">&nbsp;&nbsp;還剩 ${ele.roomAmount} 間房間</h3>
+                                </div>
+                                <a href="#" style="float:right;" class="btn btn-primary text-white py-2 px-2">馬上訂房</a>
+                                <br>
                             </div>
                         </div>
                     </div>
                     `
             });
-            $('#searchResult').append(result);
+            $('.custom-accordion').append(result);
         }
     });
 });

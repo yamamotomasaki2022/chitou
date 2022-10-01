@@ -204,7 +204,7 @@
 	    <input type="hidden" id="dateEnd" name="dateEnd">
 	    人數
 	    <input type="number" name="number" style="width:50px;">人
-	    <button type="button" id="search">搜尋房間</button>
+	    <button type="button" id="searchRoom">搜尋房間</button>
 	    </form>
 	</div>
 

@@ -20,6 +20,7 @@ import tw.weber.hotel.model.Hotel;
 import tw.weber.hotel.model.HotelforSearch;
 import tw.weber.hotel.model.Room;
 import tw.weber.hotel.model.RoomStyle;
+import tw.weber.hotel.model.RoomStyleforSearch;
 
 @Controller
 public class HotelFrontController {
@@ -61,14 +62,14 @@ public class HotelFrontController {
 		return fService.crazy(dateStart, dateEnd, destination, number);
 	}
 	
-	@GetMapping(path = "searchRoomAjax")
+	@GetMapping(path = "searchHotelRoomAjax")
 	@ResponseBody
-	private List<RoomStyle> searchRoomAjax(@RequestParam("dateStart")String dateStart,
+	private List<RoomStyleforSearch> searchHotelAjax(@RequestParam("dateStart")String dateStart,
 												@RequestParam("dateEnd")String dateEnd,
 												@RequestParam("hotelID")int hotelID,
 												@RequestParam("number")int number){
-		List<RoomStyle> list = fService.selectRoom(dateStart, dateEnd, hotelID, number);
-		return list;
+		System.err.println("阿斯");
+		return fService.getRoomStyle(dateStart, dateEnd, hotelID, number);
 	}
 	
 	@GetMapping(path = "hotelPage")
@@ -97,6 +98,7 @@ public class HotelFrontController {
 	@GetMapping(path = "test/test")
 	@ResponseBody
 	private Hotel test() {
-		return fService.selectHotel(6);
+		return fService.selectHotel(1);
 	}
+	
 }
