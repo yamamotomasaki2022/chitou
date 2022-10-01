@@ -32,6 +32,7 @@ public class HotelFrontController {
 	private String main = suffix + "FrontMain";
 	private String searchPage = suffix + "SearchResult";
 	private String hotelPage = suffix + "DisplayHotel";
+	private String bookingPage = suffix + "orderHotel";
 	
 	@GetMapping(path = "hotel")
 	private String frontPage() {
@@ -84,6 +85,11 @@ public class HotelFrontController {
 		Hotel hotel = fService.selectHotel(hotelID);
 		model.addAttribute("hotel",hotel);
 		return hotelPage;
+	}
+	
+	@GetMapping(path = "bookingPage")
+	private String bookingPage() {
+		return bookingPage;
 	}
 	
 	@GetMapping(path = "display")

@@ -18,9 +18,6 @@ public class FrontBookingService {
 	@Autowired
 	private HotelRepository hRepo;
 	
-	@Autowired 
-	private RoomStyleRepository rsRepo;
-	
 	@Autowired
 	private RSSearchRepository rssRepo;
 	
