@@ -169,7 +169,12 @@ public class ManagementSystemController {
 		MemberBasicInfo bean = new MemberBasicInfo(4, username, password, pic_locaiton, email);
 		bean.setPassword(encrpytMemberPassword(bean));
 		System.out.println(bean.getPassword());
-		lservice.adminInsertMember(bean);
+		MemberBasicInfo adminInsertMember = lservice.adminInsertMember(bean);
+		
+//		生成一個memberdetail的bean
+		lservice.adminInsertMemberDetailInfo(adminInsertMember);
+	
+		
 //		1為create
 		m.addAttribute("crud", 1);
 		return "redirect:" + method_ShowTableInHomePage;

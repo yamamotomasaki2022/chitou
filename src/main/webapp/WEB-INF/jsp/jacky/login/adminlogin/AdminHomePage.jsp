@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
 <%@page import="java.util.*, javax.sql.*,tw.jacky.login.model.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
 
@@ -251,11 +252,15 @@ if(request.getAttribute("crud") !=null){
 	</div>
 
 
-
+	<a href="<c:url value="/logout" />">Logout</a>
+<!--  
 
 	<form action="logout">
 		<button onclick="">返回登入界面</button>
 	</form>
+
+-->
+
 
 	<hr>
 
@@ -366,9 +371,6 @@ if(request.getAttribute("crud") !=null){
 	}else {
 		
 	}
-	
-	
-	
 	</script>
 	
 	

@@ -70,6 +70,11 @@ public class MemberController {
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	
+	@RequestMapping(path="/membertest")
+	@ResponseBody
+	public  String membertest() {
+		return "成功進入會員界面";
+	}
 	
 	
 	

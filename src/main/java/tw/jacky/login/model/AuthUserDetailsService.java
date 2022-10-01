@@ -50,7 +50,6 @@ public class AuthUserDetailsService implements UserDetailsService {
 			
 			if(statusid==4) {
 				role="unverified_member";
-				System.out.println("是否進入if:" + role);
 				return new User(memberbean.getUsername(), memberbean.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(role));
 			}
 		}

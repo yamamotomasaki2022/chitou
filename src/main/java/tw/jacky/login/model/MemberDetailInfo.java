@@ -70,6 +70,15 @@ public class MemberDetailInfo {
 	}
 	
 	
+	
+	
+	
+	public MemberDetailInfo(int memberid) {
+		super();
+		this.memberid = memberid;
+	}
+
+
 	public int getMemberid() {
 		return memberid;
 	}

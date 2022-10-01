@@ -31,14 +31,26 @@ public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHa
 		UserDetails userDetails   =(UserDetails)authentication.getPrincipal();
 //		outcome : [authorities]
 		Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
-		String username = userDetails.getUsername();
-		System.out.println(authorities.toString());
-		System.out.println("登入成功的賬號:" + username);
 		
+		System.out.println("成功的進入了sucesshandler");
+
+//		判斷權限用
+//		System.out.println(authorities.toString().equals("[unverified_member]"));
 		
-		
+		if (authorities.toString().equals("[unverified_member]")) {
+			System.out.println("成功的進入了sucesshandler的if判斷内");
+			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/hihi.jsp").forward(request, response);
+		}else if(authorities.toString().equals("[boss777]")) {
+			System.out.println("成功的進入了sucesshandler的if判斷内");
+			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/hihiBoss.jsp").forward(request, response);
+			
+		}
 		super.onAuthenticationSuccess(request, response, authentication);
+		
+		System.out.println("跳到auth判斷公式之外");
 	}
+	
+	
 	
 	
 

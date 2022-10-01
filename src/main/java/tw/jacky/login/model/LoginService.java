@@ -77,10 +77,18 @@ public class LoginService {
 	}
 	
 	
-//	管理員新增會員
+//	管理員新增會員基本資料
 	public MemberBasicInfo adminInsertMember(MemberBasicInfo mb) {
 		return mbrepo.save(mb);
 	}
+	
+//	管理員新增會員詳細資料(銜接會員基本資料)
+	public MemberDetailInfo adminInsertMemberDetailInfo(MemberBasicInfo mb) {
+		MemberDetailInfo memberDetailInfo = new MemberDetailInfo(mb.getMemberid());
+		return mdirepo.save(memberDetailInfo);
+	}
+	
+	
 	
 //	管理員刪除會員
 	public void adminDeleteMember(int id) {
