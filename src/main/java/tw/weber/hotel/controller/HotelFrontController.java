@@ -12,9 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import tw.jacky.login.model.MemberBasicInfo;
 import tw.weber.hotel.model.FrontBookingService;
 import tw.weber.hotel.model.Hotel;
 import tw.weber.hotel.model.HotelforSearch;
@@ -23,6 +26,8 @@ import tw.weber.hotel.model.RoomStyle;
 import tw.weber.hotel.model.RoomStyleforSearch;
 
 @Controller
+@SessionAttributes("memberBean")
+@RequestMapping(path = "/member")
 public class HotelFrontController {
 
 	@Autowired
@@ -90,6 +95,12 @@ public class HotelFrontController {
 	@GetMapping(path = "bookingPage")
 	private String bookingPage() {
 		return bookingPage;
+	}
+	
+	@GetMapping(path = "getAccountProfile")
+	@ResponseBody
+	private MemberBasicInfo getAccountProfile(Model model) {
+		return (MemberBasicInfo)model.getAttribute("memberBean");
 	}
 	
 	@GetMapping(path = "display")

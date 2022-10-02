@@ -141,7 +141,15 @@
     
     <script>
     	$('#accountProfile').on('click',function(e){
-    		console.log(e.target);
+    		$.ajax({
+    			type:'get',
+    			url:'/getAccountProfile',
+    			dataType:'JSON',
+    			contentType:'application/json',
+    			success:function(data){
+    				console.log(data.memberid);
+    			};
+    		});
     	});
     </script>
 </body>
