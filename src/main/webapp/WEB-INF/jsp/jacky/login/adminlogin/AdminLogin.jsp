@@ -71,7 +71,7 @@ background-color: pink
 									class="my-2 d-flex justify-content-between align-items-center">
 									<div class="form-check">
 										<label class="form-check-label text-muted"> <input
-											type="checkbox" class="form-check-input" name="rememberme"> 記住我的認證
+											type="checkbox" class="form-check-input" name="jacky-rememberme"> 記住我的認證
 										</label>
 									</div>
 									<a href="#" class="auth-link .text-primary">忘記密碼</a>

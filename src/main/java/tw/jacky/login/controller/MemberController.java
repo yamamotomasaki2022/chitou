@@ -1,6 +1,8 @@
 package tw.jacky.login.controller;
 
 import java.util.HashMap;
+
+
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +25,8 @@ import tw.jacky.login.model.AdminChitou;
 import tw.jacky.login.model.LoginService;
 import tw.jacky.login.model.MemberBasicInfo;
 @Controller
-@SessionAttributes({"memberlist","adminlist","status"} )
+@SessionAttributes({"memberbean","adminlist"} )
+@RequestMapping("/member")
 public class MemberController {
 	
 	
@@ -46,8 +49,6 @@ public class MemberController {
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Mapping方法
 
-	String method_memberlist = "memberlist";
-	String method_adminlist = "adminlist";
 	
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -62,56 +63,22 @@ public class MemberController {
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	會員登入界面
-	@RequestMapping(path = "/memberlogin", method=RequestMethod.GET)
-	public String processMainAction() {
-		return   page_memberlogin;
-	}
+
 	
-	@RequestMapping(path = "/memberhomepage")
-	@ResponseBody
-	public String processmemberhomepage() {
-		return "welcome to 前端界面";
-	}
 	
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	
-	@RequestMapping(path="MemberCheckLogin")
-	public String processMemberCheckLogin(@RequestParam("loginuserid")String user,@RequestParam("loginpw")String pwd,Model m) {
-		Map<String, String> errors = new HashMap<String, String>();
-		
-		
-		m.addAttribute("errors",errors);
-		
-		if(user == null || user.length()==0) {
-			errors.put("name","name is required");
-		}
-		
-		if(pwd==null||pwd.length()==0) {
-			errors.put("pwd","password is required");
-		}
-		
-		if(errors!=null && !errors.isEmpty()) {
-			return page_memberlogin;
-		}
-		
-		boolean result = lservice.checkMemberLogin(user, pwd);  
-		System.out.println("檢查賬號密碼的結果是 ：" +result);
-		
-		
-		
-		if(result) {
-			m.addAttribute("user",user);
-			m.addAttribute("pwd",pwd);
-			
-			
-			return  "redirect:" + "memberhomepage"  ;
-		}
-		
-		errors.put("msg","please input correct username or passward");
-		return  page_memberlogin;
+	@RequestMapping(path="/membertest")
+	@ResponseBody
+	public  String membertest() {
+		return "成功進入會員界面";
 	}
+	
+	
+	
+	
 	
 	
 

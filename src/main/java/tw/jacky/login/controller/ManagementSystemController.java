@@ -149,9 +149,6 @@ public class ManagementSystemController {
 		m.addAttribute("adminlist", adminlist);
 		return page_adminhomepage;
 	}
-	
-
-	
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -166,8 +163,14 @@ public class ManagementSystemController {
 		String pic_locaiton = piclocation + photo;
 
 //		會員預設權力為 1
-		MemberBasicInfo bean = new MemberBasicInfo(1, username, password, pic_locaiton, email);
-		lservice.adminInsertMember(bean);
+		MemberBasicInfo bean = new MemberBasicInfo(4, username, password, pic_locaiton, email);
+		bean.setPassword(encrpytMemberPassword(bean));
+		System.out.println(bean.getPassword());
+		MemberBasicInfo adminInsertMember = lservice.adminInsertMember(bean);
+		
+//		生成一個memberdetail的bean
+		lservice.adminInsertMemberDetailInfo(adminInsertMember);
+		
 //		1為create
 		m.addAttribute("crud", 1);
 		return "redirect:" + method_ShowTableInHomePage;
@@ -212,9 +215,6 @@ public class ManagementSystemController {
 						email);
 				lservice.adminModifyMember(memberBasicInfo);
 			}
-			
-		
-
 		m.addAttribute("crud", 3);
 
 		return "redirect:" + method_ShowTableInHomePage;
@@ -229,6 +229,17 @@ public class ManagementSystemController {
 		m.addAttribute("result", result);
 		return path_admin_login + "SearchPage";
 	}
+	
+	
+//	給管理員密碼加密
+//	有重複的辦法
+	public String encrpytMemberPassword(MemberBasicInfo member) {
+//	    加密的方法 —> 將字串加密 在放入Javabean内
+		String beEncode = new BCryptPasswordEncoder().encode(member.getPassword());
+		return beEncode;
+	}
+	
+	
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -337,20 +348,13 @@ public class ManagementSystemController {
 	}
 	
 	
-//	給密碼加密
-	
+//	給管理員密碼加密
+//	有重複的辦法
 	public String encrpytAdminPassword(AdminChitou admin) {
 //	    加密的方法 —> 將字串加密 在放入Javabean内
 		String beEncode = new BCryptPasswordEncoder().encode(admin.getPassword());
 		return beEncode;
 	}
 	
-	
-	
-	@RequestMapping(path="/testpage")
-	@ResponseBody
-	public String test() {
-		return "test sesssion sucess!!!";
-	}
 
 }

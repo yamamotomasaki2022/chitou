@@ -54,12 +54,12 @@ background-color: pink
 							<form class="pt-3" ACTION="MemberCheckLogin" method="post">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="uName" placeholder="Username" name="loginuserid">
+										id="uName" placeholder="Username" name="username">
 									<span>${errors.name}</span>
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-lg"
-										id="uPass" placeholder="Password" name="loginpw"> <span>${errors.pwd}</span>
+										id="uPass" placeholder="Password" name="password"> <span>${errors.pwd}</span>
 								</div>
 								<div class="mt-3">
 									<button

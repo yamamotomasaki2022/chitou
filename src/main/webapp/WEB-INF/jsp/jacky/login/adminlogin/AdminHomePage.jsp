@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
 <%@page import="java.util.*, javax.sql.*,tw.jacky.login.model.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
 
@@ -71,14 +72,14 @@ if(request.getAttribute("crud") !=null){
 	<hr>
 	<hr>
 
-	<FORM ACTION="ToAdminCreateMemberPage" method="post">
+	<FORM ACTION="manager/ToAdminCreateMemberPage" method="post">
 
 		<input class="bot" type="submit" name="addnewmember" value="新增會員資料">
 		<hr>
 
 	</form>
 
-	<FORM ACTION="AdminQueryMember" method="get">
+	<FORM ACTION="manager/AdminQueryMember" method="get">
 		<select name="searchinfo">
 			<option value="memberid">會員編號</option>
 			<option value="username">賬號</option>
@@ -130,7 +131,7 @@ if(request.getAttribute("crud") !=null){
 				%>
 
 				<tr>
-					<form action="AdminDeleteMember" method="post">
+					<form action="manager/AdminDeleteMember" method="post">
 						<input type="hidden" name="_method" value="DELETE">
 						<td><input type="hidden" name="td_memberid"
 							value="<%=bean.getMemberid()%>"><%=bean.getMemberid()%></td>
@@ -149,7 +150,7 @@ if(request.getAttribute("crud") !=null){
 						</td>
 					</form>
 
-					<form action="ToAdminModifyMember" method="post">
+					<form action="manager/ToAdminModifyMember" method="post">
 						<input type="hidden" name="memberid"
 							value="<%=bean.getMemberid()%>"> <input type="hidden"
 							name="statusid" value="<%=bean.getStatusid()%>"> <input
@@ -205,7 +206,7 @@ if(request.getAttribute("crud") !=null){
 					%>
 
 					<tr>
-						<form action="AdminDeleteAdmin" method="post">
+						<form action="manager/AdminDeleteAdmin" method="post">
 							<input type="hidden" name="_method" value="DELETE">
 							<td><input type="hidden" name="td_memberid"
 								value="<%=bean.getAdminid()%>"><%=bean.getAdminid()%></td>
@@ -218,7 +219,7 @@ if(request.getAttribute("crud") !=null){
 							<td><input type=submit name="deletefromadmin" value="刪除"></td>
 						</form>
 
-						<form action="ToAdminModifyAdmin" method="post">
+						<form action="manager/ToAdminModifyAdmin" method="post">
 							<input type="hidden" name="adminid"
 								value="<%=bean.getAdminid()%>"> <input type="hidden"
 								name="adminstatus" value="<%=bean.getAdminstatus()%>"> <input
@@ -242,7 +243,7 @@ if(request.getAttribute("crud") !=null){
 
 			<hr>
 
-	<FORM ACTION="ToAdminCreateAdmin" method="post">
+	<FORM ACTION="manager/ToAdminCreateAdmin" method="post">
 
 				<input class="bot" type="submit" name="addnewmember" value="新增管理員資料">
 				<hr>
@@ -251,11 +252,15 @@ if(request.getAttribute("crud") !=null){
 	</div>
 
 
-
+	<a href="<c:url value="/logout" />">Logout</a>
+<!--  
 
 	<form action="logout">
 		<button onclick="">返回登入界面</button>
 	</form>
+
+-->
+
 
 	<hr>
 
@@ -336,19 +341,36 @@ if(request.getAttribute("crud") !=null){
 				  '讚!',
 				  '更新成功!',
 				  'success'
-				)
+				).then((result) => 
+				$.ajax({
+					type:'get',
+					url:'/manager/crudBean',
+					success:function(data){
+						console.log(data);
+					}
+					
+					}
+					)
 	} else if (crud == 4) {
 		Swal.fire(
 				  '讚！',
 				  '刪除成功！',
 				  'success'
 				)
+				.then((result) => 
+				$.ajax({
+				type:'get',
+				url:'/manager/crudBean',
+				success:function(data){
+					console.log(data);
+				}
+				
+				}
+				)
+				
 	}else {
 		
 	}
-	
-	
-	
 	</script>
 	
 	
