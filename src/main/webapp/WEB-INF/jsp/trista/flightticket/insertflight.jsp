@@ -47,13 +47,13 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 		</div>
 		<div class="form-group">
 			<form:label path="flightid">班機編號:</form:label>
-			<form:input type="text" class="form-control" id="" path="flightid"
-				placeholder="請輸入班機的編號" />
+			<form:input type="text" class="form-control" id="flightid"
+				path="flightid" placeholder="請輸入班機的編號" />
 		</div>
 
 		<div class="form-group">
 			<form:label path="originid">出發機場:</form:label>
-			<select name="originid" class="form-control">
+			<select name="originid" class="form-control" id="originid">
 				<optgroup label="亞洲">
 					<option value="松山TSA">松山TSA</option>
 					<option value="桃機TPE">桃機TPE</option>
@@ -67,12 +67,12 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 		<div class="form-group">
 			<form:label path="departuretime">出發日期:</form:label>
 			<form:input type="date" path="departuretime" class="form-control"
-				id="" placeholder="請輸入出發的日期" />
+				id="departuretime" placeholder="請輸入出發的日期" />
 		</div>
 
 		<div class="form-group">
 			<form:label path="destinationid"> 降落機場: </form:label>
-			<select name="destinationid" class="form-control">
+			<select name="destinationid" class="form-control" id="destinationid">
 				<optgroup label="亞洲">
 					<option value="松山TSA">松山TSA</option>
 					<option value="桃機TPE">桃機TPE</option>
@@ -86,13 +86,13 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 
 		<div class="form-group">
 			<form:label path="arrivaltime">降落日期:</form:label>
-			<form:input type="date" path="arrivaltime" class="form-control" id=""
-				placeholder="請輸入降落的日期" />
+			<form:input type="date" path="arrivaltime" class="form-control"
+				id="arrivaltime" placeholder="請輸入降落的日期" />
 		</div>
 
 		<div class="form-group">
 			<form:label path="classid"> 艙等: </form:label>
-			<select name="classid" class="form-control">
+			<select name="classid" class="form-control" id="classid">
 				<option value="1">頭等艙</option>
 				<option value="2">商務艙</option>
 				<option value="3">經濟艙</option>
@@ -101,7 +101,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 
 		<div class="form-group">
 			<form:label path="fare">票價:</form:label>
-			<form:input type="number" path="fare" class="form-control" id=""
+			<form:input type="number" path="fare" class="form-control" id="fare"
 				placeholder="請輸入票價" />
 		</div>
 
