@@ -16,6 +16,10 @@ if(request.getAttribute("crud") !=null){
 }else{
 	int crud = 0;
 }
+
+
+
+
 %>
 
 
@@ -72,14 +76,14 @@ if(request.getAttribute("crud") !=null){
 	<hr>
 	<hr>
 
-	<FORM ACTION="manager/ToAdminCreateMemberPage" method="post">
+	<FORM ACTION="/manager/ToAdminCreateMemberPage" method="post">
 
 		<input class="bot" type="submit" name="addnewmember" value="新增會員資料">
 		<hr>
 
 	</form>
 
-	<FORM ACTION="manager/AdminQueryMember" method="get">
+	<FORM ACTION="/manager/AdminQueryMember" method="get">
 		<select name="searchinfo">
 			<option value="memberid">會員編號</option>
 			<option value="username">賬號</option>
@@ -131,15 +135,15 @@ if(request.getAttribute("crud") !=null){
 				%>
 
 				<tr>
-					<form action="manager/AdminDeleteMember" method="post">
+					<form action="/manager/AdminDeleteMember" method="post">
 						<input type="hidden" name="_method" value="DELETE">
 						<td><input type="hidden" name="td_memberid"
 							value="<%=bean.getMemberid()%>"><%=bean.getMemberid()%></td>
 						<!--  <td><%=bean.getStatusid()%></td>-->
 						<td><%=bean.getUsername()%></td>
 						<td><%=bean.getPassword()%></td>
-						<td><img width="300px" height="300px"
-							src="<%=bean.getPhoto()%>"></td>
+						<td><img width="500px" height="500px"
+							src="/<%=bean.getPhoto()%>"></td>
 						<td><%=bean.getEmail()%></td>
 
 						<td>
@@ -150,7 +154,7 @@ if(request.getAttribute("crud") !=null){
 						</td>
 					</form>
 
-					<form action="manager/ToAdminModifyMember" method="post">
+					<form action="/manager/ToAdminModifyMember" method="post">
 						<input type="hidden" name="memberid"
 							value="<%=bean.getMemberid()%>"> <input type="hidden"
 							name="statusid" value="<%=bean.getStatusid()%>"> <input
@@ -158,7 +162,7 @@ if(request.getAttribute("crud") !=null){
 						<input type="hidden" name="userid" value="<%=bean.getUsername()%>">
 						<input type="hidden" name="password"
 							value="<%=bean.getPassword()%>"> <input type="hidden"
-							name="photo" value="<%=bean.getPhoto()%>"> <input
+							name="photo" value=" /<%=bean.getPhoto()%>"> <input
 							type="hidden" name="email" value="<%=bean.getEmail()%>">
 
 						<td>
@@ -206,7 +210,7 @@ if(request.getAttribute("crud") !=null){
 					%>
 
 					<tr>
-						<form action="manager/AdminDeleteAdmin" method="post">
+						<form action="/manager/AdminDeleteAdmin" method="post">
 							<input type="hidden" name="_method" value="DELETE">
 							<td><input type="hidden" name="td_memberid"
 								value="<%=bean.getAdminid()%>"><%=bean.getAdminid()%></td>
@@ -219,7 +223,7 @@ if(request.getAttribute("crud") !=null){
 							<td><input type=submit name="deletefromadmin" value="刪除"></td>
 						</form>
 
-						<form action="manager/ToAdminModifyAdmin" method="post">
+						<form action="/manager/ToAdminModifyAdmin" method="post">
 							<input type="hidden" name="adminid"
 								value="<%=bean.getAdminid()%>"> <input type="hidden"
 								name="adminstatus" value="<%=bean.getAdminstatus()%>"> <input
@@ -243,7 +247,7 @@ if(request.getAttribute("crud") !=null){
 
 			<hr>
 
-	<FORM ACTION="manager/ToAdminCreateAdmin" method="post">
+	<FORM ACTION="/manager/ToAdminCreateAdmin" method="post">
 
 				<input class="bot" type="submit" name="addnewmember" value="新增管理員資料">
 				<hr>
@@ -252,7 +256,7 @@ if(request.getAttribute("crud") !=null){
 	</div>
 
 
-	<a href="<c:url value="/logout" />">Logout</a>
+	<a href="<c:url value="/logout" />">管理員登出</a>
 <!--  
 
 	<form action="logout">
@@ -271,9 +275,8 @@ if(request.getAttribute("crud") !=null){
 	
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
-		var status = "${status}";
-
-		if (status == 1) {
+		var session_status = "${session_status}";
+		if (session_status == 1) {
 			Swal.fire(
 					  'Welcome!',
 					  'Admin!',
@@ -281,7 +284,7 @@ if(request.getAttribute("crud") !=null){
 					)
 			document.getElementById('aaa').setAttribute("style",
 					"display : none")
-		} else if (status == 2) {
+		} else if (session_status == 2) {
 			Swal.fire(
 					  'Welcome!',
 					  'Manager!',
@@ -289,7 +292,7 @@ if(request.getAttribute("crud") !=null){
 					)
 			document.getElementById('aaa').setAttribute("style",
 					"display : '' ")
-		} else if (status == 3) {
+		} else if (session_status == 3) {
 			Swal.fire(
 					  'Welcome!',
 					  'Boss!',

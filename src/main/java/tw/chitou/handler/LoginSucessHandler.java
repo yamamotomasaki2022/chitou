@@ -41,6 +41,7 @@ public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHa
 //		判斷權限用
 //		System.out.println(authorities.toString().equals("[unverified_member]"));
 		
+		
 		if (authorities.toString().equals("[unverified_member]")) {
 			System.out.println("成功的進入了sucesshandler的if判斷内");
 			String username = request.getParameter("username");
@@ -48,15 +49,27 @@ public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHa
 			MemberDetailInfo memberdetailinfo = lService.findDetailByMemberid(memberbasicinfo.getMemberid());
 			request.getSession().setAttribute("memberbasicinfo", memberbasicinfo);
 			request.getSession().setAttribute("memberdetailinfo", memberdetailinfo);
-			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/hihi.jsp").forward(request, response);
-		}else if(authorities.toString().equals("[boss777]")) {
-			System.out.println("成功的進入了sucesshandler的if判斷内");
+			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/MemberHomePage.jsp").forward(request, response);
+		}
+		else if(authorities.toString().equals("[boss777]")) {
+			System.out.println("成功的進入了sucesshandler的if判斷内的boss");
 			List<AdminChitou> adminlist = lService.adminFindAll();
 			List<MemberBasicInfo> memberlist = lService.memberFindAll();
 			request.getSession().setAttribute("adminlist", adminlist);
 			request.getSession().setAttribute("memberlist", memberlist);
-			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);			
+			request.getSession().setAttribute("session_status", 3);
+//			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);			
 		}
+		else if(authorities.toString().equals("[admin]")){
+			System.out.println("成功的進入了sucesshandler的if判斷内的 admin");
+			List<AdminChitou> adminlist = lService.adminFindAll();
+			List<MemberBasicInfo> memberlist = lService.memberFindAll();
+			request.getSession().setAttribute("adminlist", adminlist);
+			request.getSession().setAttribute("memberlist", memberlist);
+			request.getSession().setAttribute("session_status", 1);
+//			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
+		}
+		
 		super.onAuthenticationSuccess(request, response, authentication);
 		
 		System.out.println("跳到auth判斷公式之外");
