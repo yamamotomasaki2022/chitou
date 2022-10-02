@@ -70,12 +70,18 @@ public class MemberController {
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	
-	@RequestMapping(path="/membertest")
-	@ResponseBody
-	public  String membertest() {
-		return "成功進入會員界面";
+
+	@RequestMapping(path= "toMemberHomePage")
+	public String MemberHomePage() {
+		return path_member_login + "MemberHomePage";
 	}
 	
+	
+	@RequestMapping(path="/MemberUpdateMemberInfo")
+	public String processMemberUpdateMemberInfo() {	
+	}
+	
+	@RequestMapping(path="/MemberUpdatePassword")
 	
 	
 	
