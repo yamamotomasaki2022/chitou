@@ -26,7 +26,7 @@ import tw.weber.hotel.model.RoomStyle;
 import tw.weber.hotel.model.RoomStyleforSearch;
 
 @Controller
-@SessionAttributes("memberBean")
+@SessionAttributes({"memberbasicinfo","memberdetailinfo"})
 @RequestMapping(path = "/member")
 public class HotelFrontController {
 
@@ -100,7 +100,7 @@ public class HotelFrontController {
 	@GetMapping(path = "getAccountProfile")
 	@ResponseBody
 	private MemberBasicInfo getAccountProfile(Model model) {
-		return (MemberBasicInfo)model.getAttribute("memberBean");
+		return (MemberBasicInfo)model.getAttribute("memberbasicinfo");
 	}
 	
 	@GetMapping(path = "display")

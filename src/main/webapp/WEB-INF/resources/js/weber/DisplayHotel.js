@@ -32,7 +32,7 @@ $("#searchRoom").on('click', function (e) {
     console.log(formData);
     $.ajax({
         type: 'get',
-        url: '/searchHotelRoomAjax?' + dateStart + dateEnd + hotelID + number,
+        url: 'searchHotelRoomAjax?' + dateStart + dateEnd + hotelID + number,
         dataType: 'JSON',
         contentType: 'application/json',
         success: function (data) {
@@ -59,7 +59,7 @@ $("#searchRoom").on('click', function (e) {
                                 <div style="float:left;">
                                     <h3 style="color:red;">&nbsp;&nbsp;還剩 ${ele.roomAmount} 間房間</h3>
                                 </div>
-                                <a href="#" style="float:right;" class="btn btn-primary text-white py-2 px-2">馬上訂房</a>
+                                <a href="bookingPage" style="float:right;" class="btn btn-primary text-white py-2 px-2">馬上訂房</a>
                                 <br>
                             </div>
                         </div>

@@ -62,7 +62,7 @@
 											</span>
 										</div>
 
-										<a href="/hotelPage?dateStart=${dateStart}&dateEnd=${dateEnd}&number=${number}&hotelID=${bean.hotelID}" class="btn btn-primary py-2 px-3"
+										<a href="hotelPage?dateStart=${dateStart}&dateEnd=${dateEnd}&number=${number}&hotelID=${bean.hotelID}" class="btn btn-primary py-2 px-3"
 											style="background-color: lightblue">詳細</a>
 										<span style="color:blue">還剩${bean.amount}間房</span>
 									</div>

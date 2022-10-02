@@ -49,39 +49,23 @@
         <fieldset>
             <legend>基本資料</legend>
             <button type="button" id="accountProfile">會員資料填入</button>
+            <input type="hidden" name="accountID" value="${memberbasicinfo.memberid}">
             <div class="st1">
                 <label for="account1" class="t1">姓名:</label>
                 <input type="text" id="account1" name="account" size="10" autofocus placeholder="guest"
-                    autocomplete="off">
-            </div>
-            <div class="st1">
-                <label for="" class="t1">性別:</label>
-                <label for="">
-                    <input type="radio" name="gender" value="male" id="">男
-                </label>
-                <label for="">
-                    <input type="radio" name="gender" value="female" id="">女
-                </label>
-            </div>
-            <div class="st1">
-                <label for="account1" class="t1">密碼:</label>
-                <input type="password" id="account1" name="pwd" maxlength="6">
-            </div>
-            <div class="st1">
-                <label for="" class="t1">生日:</label>
-                <input type="date" name="birth" id="">
+                    autocomplete="off" value="${memberbasicinfo.username}">
             </div>
             <div class="st1">
                 <label for="" class="t1">E-Mail</label>
-                <input type="email" name="mail1" id="">
+                <input type="email" name="mail1" id="" value="${memberbasicinfo.email}">
             </div>
             <div class="st1">
-                <label for="" class="t1">身分證字號</label>
-                <input type="text" name="idcode" id="" maxlength="10" pattern="[a-z,A-Z]{1}[1-2,8-9]{1}\d{8}">
+                <label for="" class="t1">電話</label>
+                <input type="text" name="phone" value="${memberdetailinfo.phone}">
             </div>
         </fieldset>
         <fieldset>
-            <legend>個人資料二</legend>
+            <legend>預定房間資訊</legend>
             <div class="st1">
                 <label for="" class="t1">縣市:</label>
                 <select name="add1" size="5" multiple>
@@ -143,12 +127,12 @@
     	$('#accountProfile').on('click',function(e){
     		$.ajax({
     			type:'get',
-    			url:'/getAccountProfile',
+    			url:'getAccountProfile',
     			dataType:'JSON',
     			contentType:'application/json',
     			success:function(data){
-    				console.log(data.memberid);
-    			};
+    				$('#account1').val(data.username);
+    			}
     		});
     	});
     </script>
