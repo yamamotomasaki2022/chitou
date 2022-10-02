@@ -149,9 +149,6 @@ public class ManagementSystemController {
 		m.addAttribute("adminlist", adminlist);
 		return page_adminhomepage;
 	}
-	
-
-	
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -173,7 +170,6 @@ public class ManagementSystemController {
 		
 //		生成一個memberdetail的bean
 		lservice.adminInsertMemberDetailInfo(adminInsertMember);
-	
 		
 //		1為create
 		m.addAttribute("crud", 1);
@@ -219,9 +215,6 @@ public class ManagementSystemController {
 						email);
 				lservice.adminModifyMember(memberBasicInfo);
 			}
-			
-		
-
 		m.addAttribute("crud", 3);
 
 		return "redirect:" + method_ShowTableInHomePage;
@@ -363,12 +356,5 @@ public class ManagementSystemController {
 		return beEncode;
 	}
 	
-	
-	
-	@RequestMapping(path="/testpage")
-	@ResponseBody
-	public String test() {
-		return "test sesssion sucess!!!";
-	}
 
 }

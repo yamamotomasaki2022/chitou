@@ -2,6 +2,7 @@ package tw.chitou.handler;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import tw.jacky.login.model.AdminChitou;
 import tw.jacky.login.model.LoginService;
+import tw.jacky.login.model.MemberBasicInfo;
+import tw.jacky.login.model.MemberDetailInfo;
 
 
 @Component
@@ -39,11 +43,19 @@ public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHa
 		
 		if (authorities.toString().equals("[unverified_member]")) {
 			System.out.println("成功的進入了sucesshandler的if判斷内");
+			String username = request.getParameter("username");
+			MemberBasicInfo memberbasicinfo = lService.findBasicInfobyUsername(username);
+			MemberDetailInfo memberdetailinfo = lService.findDetailByMemberid(memberbasicinfo.getMemberid());
+			request.getSession().setAttribute("memberbasicinfo", memberbasicinfo);
+			request.getSession().setAttribute("memberdetailinfo", memberdetailinfo);
 			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/hihi.jsp").forward(request, response);
 		}else if(authorities.toString().equals("[boss777]")) {
 			System.out.println("成功的進入了sucesshandler的if判斷内");
-			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/hihiBoss.jsp").forward(request, response);
-			
+			List<AdminChitou> adminlist = lService.adminFindAll();
+			List<MemberBasicInfo> memberlist = lService.memberFindAll();
+			request.getSession().setAttribute("adminlist", adminlist);
+			request.getSession().setAttribute("memberlist", memberlist);
+			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);			
 		}
 		super.onAuthenticationSuccess(request, response, authentication);
 		
