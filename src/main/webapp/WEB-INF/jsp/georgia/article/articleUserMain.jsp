@@ -1,0 +1,203 @@
+<%@page import="tw.georgia.article.model.ArticleService"%>
+<%@page import="javax.management.MBeanAttributeInfo"%>
+<%@page
+	import="java.sql.Connection, java.util.*, javax.sql.*, javax.servlet.*,  javax.naming.*,java.io.*,java.sql.* ,tw.georgia.article.model.*,tw.georgia.article.controller.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" session="false"%>
+<!DOCTYPE html>
+<html>
+<head>
+<!--meta charset="UTF-8"  -->
+<title>ChiTou文章管理</title>
+
+<link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript"></script>
+<style>
+* {
+	font-size: 102%;
+}
+
+table {
+	
+	width: 100%;
+	height: 50px;
+	margin: 10 auto;
+	border-radius: 5px;
+}
+
+
+button, .btn {
+	background-color: #FFFDD0;
+	border-color: #FFFDD0;
+	color: #265D7E;
+	border-radius: 25px;
+	font-size: 150%;
+}
+
+.centre {
+	text-align: center;
+}
+
+#BackTop	{
+				position:fixed;				
+				bottom:90px;
+				right:31px;
+				}
+.jiantou	{
+				width: 2.7rem;
+				height: 2.7rem;
+				color:rgb(75,73,172);
+				}
+</style>
+
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
+</head>
+<body>
+
+
+	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+
+
+
+	<br>
+	<form action="article.new" method="get">
+		<INPUT TYPE="SUBMIT" value="新增文章" name="newarticle" class="btn btn-primary mr-2">
+	</form>
+
+	<br>
+	<form action="article.read" method="post">
+		選擇國家<select name="chooseCountry">
+			<optgroup label="亞洲">
+				<option value=101>台灣</option>
+				<option value=102>日本</option>
+				<option value=103>韓國</option>
+				<option value=108>新加坡</option>
+				<option value=109>印尼</option>
+			</optgroup>
+			<optgroup label="美洲">
+				<option value=201>美國</option>
+				<option value=202>加拿大</option>
+			</optgroup>
+			<optgroup label="歐洲">
+				<option value=301>英國</option>
+				<option value=302>法國</option>
+				<option value=304>義大利</option>
+				<option value=307>土耳其</option>
+				<option value=308>聖托里尼</option>
+				<option value=309>阿爾巴尼亞</option>
+			</optgroup>
+			<optgroup label="大洋洲">
+				<option value=401>澳洲</option>
+			</optgroup>
+			<optgroup label="非洲">
+				<option value=501>埃及</option>
+			</optgroup>
+		</select> 選擇文章類型<select name="chooseType">
+			<option value="">全部</option>
+			<option value=91>遊記</option>
+			<option value=92>食記</option>
+			<option value=93>資訊</option>
+			<option value=94>問題</option>
+			<option value=95>攻略</option>
+		</select> <INPUT TYPE="SUBMIT" value="查詢" name="chooseArticle" class="btn btn-primary mr-2"><br>
+		<br>
+	</form>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead id="tableHead">
+				<tr>
+					<th class="card-title text-primary">會員ID</th>
+					<th class="card-title text-primary">國家</th>
+					<th class="card-title text-primary">文章類型</th>
+					<th class="card-title text-primary">文章標題</th>
+					<th class="card-title text-primary">發布日期</th>
+					<th class="card-title text-primary">文章內文</th>
+					<th class="card-title text-primary">文章管理</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<%
+				List<Article> list = (List) request.getAttribute("list");
+				for (Article bean : list) {
+					int title=bean.getTitle().length();
+					
+				%>
+
+				<tr>
+					<td class="centre"><%=bean.getPosterID()%></td>
+					<td class="centre"><%=bean.getCategory().getCountry()%></td>
+					<td class="centre"><%=bean.getCategory().getType()%></td>
+					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%></td>
+					<td class="centre"><%=bean.getDate()%></td>
+					<td><form action="article.show" method="post">
+					<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
+					<input type="submit" name="toShow" value="查看詳細內文" class="btn btn-light">
+					</form></td>
+					<td class="centre">
+
+						<form action="article.renew" method="post" style="">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
+							<input type="submit" name="update" value="修改" class="btn btn-primary mr-2"
+								id="update">
+						</form>
+
+						<form action="article.delete" method="post" style="">
+							<input type="hidden" name="_method" value="DELETE"> <input
+								type="hidden" name="postID" value=<%=bean.getPostID()%>>
+							<input type="submit" name="delete" value="刪除" class="btn btn-light"
+								id="check">
+						</form>
+
+
+					</td>
+				</tr>
+				<%
+				}
+				%>
+			</tbody>
+		</table>
+		</div>
+		
+<svg type="button" id="BackTop" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill jiantou" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+</svg>
+
+		<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+		<script>
+			$(function() {
+				$('#BackTop').click(function(){ 
+					$('html,body').animate({scrollTop:0}, 333);
+				});
+				
+				$('form').on('click', ':submit', function() {
+					console.log('button click')
+					return check($(this).val());
+				});
+
+				function check(action) {
+					let msg = '';
+					if (action === '刪除') {
+						return message('確定刪除嗎?');
+					} else if (action === '修改') {
+						return message('確定更新嗎?');
+					} else {
+						return true;
+					}
+				}
+
+				function message(msg) {
+					if (confirm(msg)) {
+						return true
+					} else {
+						return false
+					}
+				}
+
+			})
+		</script>
+</body>
+</html>
+

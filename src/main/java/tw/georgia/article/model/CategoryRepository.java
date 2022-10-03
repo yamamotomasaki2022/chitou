@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-public interface ArticleRepository extends JpaRepository<Article, Integer> {
-
-	@Query("from Article where categoryID= :categoryID")
-	public List<Article> findByCategoryID(int categoryID);
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
+	
+	@Modifying
+	@Query("from Category where countryID= :countryID")
+	public List<Category> findByCountryid(int countryID);
+	
 }
