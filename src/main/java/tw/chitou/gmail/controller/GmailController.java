@@ -58,18 +58,32 @@ public class GmailController {
 			return  new ResponseEntity<Object>(mp,st);
 		}
 		
-//		嘗試發送email 跳轉到想要的jsp界面
+//		嘗試發送email 跳轉到想要的html界面
 		@GetMapping("/mail_test2")
+		@ResponseBody
 		public String sendEmail2(){
 //			寄信的人
 			String fromEmail = "eeit49group1chitou@gmail.com";
 //			群發到不同的人身上
 			List<String> toEmaiList = new ArrayList<String>();
+			toEmaiList.add("learningma0926@gmail.com");
 			String subject="Jacky的模板測試信";
-//			
-			String html= "sss";
+//			輸入html文本格式
+			String html= "<!DOCTYPE html>\r\n"
+					+ "<html>\r\n"
+					+ "<head>\r\n"
+					+ "<meta charset=\"UTF-8\">\r\n"
+					+ "<title>Insert title here</title>\r\n"
+					+ "</head>\r\n"
+					+ "<body>\r\n"
+					+ "\r\n"
+					+ "\r\n"
+					+ "<h1>測試是否能運行</h1>\r\n"
+					+ "\r\n"
+					+ "</body>\r\n"
+					+ "</html>";
 			gmailService.mimemail(fromEmail, toEmaiList, subject, html);
-			return "jsp界面";
+			return "傳送email成功";
 			
 		}
 		

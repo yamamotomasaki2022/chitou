@@ -30,6 +30,7 @@ public class GmailService {
 			for (String to : toList) {
 				messageHelper.addTo(to);
 				messageHelper.setSubject(subject);
+//				解析成html
 				messageHelper.setText(html, true);
 				javaMailSender.send(message);
 			}
