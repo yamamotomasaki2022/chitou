@@ -31,7 +31,7 @@ import tw.weber.hotel.model.RoomStyle;
 import tw.weber.hotel.model.RoomStyleforSearch;
 
 @Controller
-@SessionAttributes({"memberbasicinfo","memberdetailinfo"})
+@SessionAttributes({"memberbasicinfo","memberdetailinfo","roomForCheckout"})
 //@RequestMapping(path = "/member")
 public class HotelFrontController {
 
@@ -43,6 +43,7 @@ public class HotelFrontController {
 	private String searchPage = suffix + "SearchResult";
 	private String hotelPage = suffix + "DisplayHotel";
 	private String bookingPage = suffix + "orderHotel";
+	private String finishOrderPage = suffix + "ShowOrderContent";
 	
 	@GetMapping(path = "hotel")
 	private String frontPage() {
@@ -98,7 +99,18 @@ public class HotelFrontController {
 	}
 	
 	@GetMapping(path = "bookingPage")
-	private String bookingPage() {
+	private String bookingPage(@RequestParam("roomStyleID")int roomstyleID,
+							   @RequestParam("hotelID")int hotelID,
+							   @RequestParam("dateStart")String dateStart,
+							   @RequestParam("dateEnd")String dateEnd,
+							   @RequestParam("number")int number,Model model) {
+		Hotel hotel = fService.selectHotel(hotelID);
+		RoomStyle style = fService.findRoomData(roomstyleID);
+		model.addAttribute("hotel",hotel);
+		model.addAttribute("style",style);
+		model.addAttribute("checkInDate",dateStart);
+		model.addAttribute("checkOutDate",dateEnd);
+		model.addAttribute("number",number);
 		return bookingPage;
 	}
 	
@@ -125,23 +137,37 @@ public class HotelFrontController {
 	
 	@PostMapping(path = "getECPay")
 	@ResponseBody
-	private String getECPay(@RequestParam("MerchantTradeNo")String merchantTradeNo,
-							@RequestParam("TotalAmount")String totalAmount,
+	private String getECPay(@RequestParam("TotalAmount")String totalAmount,
 							@RequestParam("ItemName")String itemName) {
 		AllInOne all = new AllInOne("");
 		AioCheckOutOneTime creditCardPay = new AioCheckOutOneTime();
+		String merchantTradeNo = "HotelBooking" + System.currentTimeMillis();
 		creditCardPay.setMerchantTradeNo(merchantTradeNo);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		creditCardPay.setMerchantTradeDate(dtf.format(LocalDateTime.now()));
 		creditCardPay.setTotalAmount(totalAmount);
 		creditCardPay.setTradeDesc("test Description");
 		creditCardPay.setItemName(itemName);
+		creditCardPay.setClientBackURL("http://localhost:8080/returnAfterSuccess");
 		creditCardPay.setReturnURL("http://211.23.128.214:5000");
 		creditCardPay.setNeedExtraPaidInfo("N");
-		creditCardPay.setRedeem("Y");
-		String form = all.aioCheckOut(creditCardPay, null);
-		return form;
+//		creditCardPay.setOrderResultURL("http://localhost:8080/home");
+		creditCardPay.setRedeem("N");
+		String checkoutPage = all.aioCheckOut(creditCardPay, null);
+		return checkoutPage;
 	}
+	
+	@GetMapping(path = "returnAfterSuccess")
+	private String success() {
+		return finishOrderPage;
+	}
+	
+//	@PostMapping(path="CheckMacValueForEC")
+//	@ResponseBody
+//	private String checkMacValue() {
+//		System.out.println("被檢查了");
+//		return "1|OK";
+//	}
 	
 //	@GetMapping(path = "getECpay")
 //	@ResponseBody

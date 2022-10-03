@@ -45,86 +45,56 @@
     </style>
 </head>
 <body>
-<form action="https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5" method="post" enctype="application/x-www-form-urlencoded" id="form">
-		<input hidden="MerchantID" value="3002607">
-		<input hidden="MerchantTradeNo" value="A85132465bbb">
-		<input hidden="MerchantTradeDate" value="2022/10/03 00:00:00">
-		<input hidden="PaymentType" value="aio">
-		<input hidden="TotalAmount" value="3000">
-		<input hidden="TradeDesc" value="ohmygod">
-		<input hidden="ItemName" value="room">
-		<input hidden="ReturnURL" value="servlet">
-		<input hidden="ChoosePayment" value="Credit">
-		<input hidden="CheckMacValue" value="">
+<div align="center">
+	<form action="getECPay" id="form" method="post">
         <fieldset>
             <legend>基本資料</legend>
-            <button type="button" id="accountProfile">會員資料填入</button>
-            <input type="hidden" name="accountID" value="${memberbasicinfo.memberid}">
+            <button type="button" id="accountProfile" style="float:right;">會員資料填入</button><br>
+            <input type="hidden" name="memberID" value="${memberbasicinfo.memberid}">
             <div class="st1">
                 <label for="account1" class="t1">姓名:</label>
-                <input type="text" id="account1" name="account" size="10" autofocus placeholder="guest"
-                    autocomplete="off" value="${memberbasicinfo.username}">
+                <input type="text" id="account1" name="booker" size="10" autofocus autocomplete="off"><br>
+            請輸入旅客的英文姓名，必須與護照或其他身分證明文件相同。
             </div>
             <div class="st1">
                 <label for="" class="t1">E-Mail</label>
-                <input type="email" name="mail1" id="" value="${memberbasicinfo.email}">
+                <input type="email" name="email">
             </div>
             <div class="st1">
                 <label for="" class="t1">電話</label>
-                <input type="text" name="phone" value="${memberdetailinfo.phone}">
+                <input type="text" name="phone">
             </div>
         </fieldset>
         <fieldset>
-            <legend>預定房間資訊</legend>
+            <legend>客房資訊</legend>
             <div class="st1">
-                <label for="" class="t1">縣市:</label>
-                <select name="add1" size="5" multiple>
-                    <option value="Tpe">台北市</option>
-                    <option value="Tph" selected>新北市</option>
-                    <option value="Tyu">桃園市</option>
-                    <option value="Hsc">新竹市</option>
-                    <option value="Fuji">富士山</option>
-                    <option value="Zumu">珠穆朗瑪峰</option>
-                </select>
+                <label for="" class="t1">飯店名稱</label>
+                <label>${hotel.name}</label>
             </div>
             <div class="st1">
-                <label for="" class="t1">完整地址: </label>
-                <input type="text" name="add2" size="30">
+                <label for="" class="t1">地址</label>
+                <label>${hotel.address}</label>
             </div>
             <div class="st1">
-                <label for="" class="t1">照片:</label>
-                <input type="file" name="file1" id="">
+                <label for="" class="t1">房間</label>
+                <input type="hidden" name="roomID" value="${style.styleID}">
+                <label>${style.name}</label>
             </div>
             <div class="st1">
-                <label for="" class="t1">Blog:</label>
-                <input type="url" name="hplist" id="" list="urllist">
-                <datalist id="urllist">
-                    <option value="http://www.google.com.tw">google</option>
-                    <option value="http://www.facebook.com"></option>
-                    <option value="http://www.pchome.com.tw"></option>
-                    <option value=""></option>
-                </datalist>
+                <label for="" class="t1">人數</label>
+                <label>${number}</label>
             </div>
             <div class="st1">
-                <label for="" class="t1">興趣:</label>
-                <label>
-                    <input type="checkbox" name="hobby" id="" value="movie">電影
-                </label>
-                <label>
-                    <input type="checkbox" name="hobby" id="" value="music">音樂</label>
-                <label>
-                    <input type="checkbox" name="hobby" id="" value="sport">運動
-                </label>
-                <label>
-                    <input type="checkbox" name="sport" value="travel" id="">旅遊
-                </label>
+                <label for="" class="t1">入住時間</label>
+                <label>${checkInDate}</label>
             </div>
-        </fieldset>
-        <fieldset>
-            <legend>意見</legend>
             <div class="st1">
-                <label for="comment1" class="t1">意見:</label><textarea name="comment" id="comment1" cols="40" rows="5"
-                    disabled></textarea>
+                <label for="" class="t1">退房時間</label>
+                <label>${checkOutDate}</label>
+            </div>
+            <div class="st1">
+                <label for="comment1" class="t1">有其他需求嗎?</label>
+                <textarea name="comment" id="comment1" cols="40" rows="5"></textarea>
             </div>
             <div class="sub">
                 <button type="button" id="toEC">送出</button>
@@ -132,7 +102,7 @@
             </div>
         </fieldset>
     </form>
-    
+</div>    
     <script type="text/javascript" src="/js/weber/ecPay.js"></script>
 </body>
 </html>

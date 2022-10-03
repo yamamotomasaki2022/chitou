@@ -21,6 +21,9 @@ public class FrontBookingService {
 	@Autowired
 	private RSSearchRepository rssRepo;
 	
+	@Autowired
+	private RoomStyleRepository rsRepo;
+	
 	public List<Room> find(){
 		return rRepo.find();
 	}
@@ -37,4 +40,7 @@ public class FrontBookingService {
 		return rssRepo.crazy(dateStart, dateEnd, hotelID, number);
 	}
 	
+	public RoomStyle findRoomData(int roomStyleID) {
+		return rsRepo.findById(roomStyleID).get();
+	}
 }
