@@ -45,7 +45,17 @@
     </style>
 </head>
 <body>
-<form action="#" method="get" enctype="multipart/form-data">
+<form action="https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5" method="post" enctype="application/x-www-form-urlencoded" id="form">
+		<input hidden="MerchantID" value="3002607">
+		<input hidden="MerchantTradeNo" value="A85132465bbb">
+		<input hidden="MerchantTradeDate" value="2022/10/03 00:00:00">
+		<input hidden="PaymentType" value="aio">
+		<input hidden="TotalAmount" value="3000">
+		<input hidden="TradeDesc" value="ohmygod">
+		<input hidden="ItemName" value="room">
+		<input hidden="ReturnURL" value="servlet">
+		<input hidden="ChoosePayment" value="Credit">
+		<input hidden="CheckMacValue" value="">
         <fieldset>
             <legend>基本資料</legend>
             <button type="button" id="accountProfile">會員資料填入</button>
@@ -117,24 +127,12 @@
                     disabled></textarea>
             </div>
             <div class="sub">
-                <input type="submit" value="送出">
+                <button type="button" id="toEC">送出</button>
                 <input type="reset" value="清除" disabled>
             </div>
         </fieldset>
     </form>
     
-    <script>
-    	$('#accountProfile').on('click',function(e){
-    		$.ajax({
-    			type:'get',
-    			url:'getAccountProfile',
-    			dataType:'JSON',
-    			contentType:'application/json',
-    			success:function(data){
-    				$('#account1').val(data.username);
-    			}
-    		});
-    	});
-    </script>
+    <script type="text/javascript" src="/js/weber/ecPay.js"></script>
 </body>
 </html>

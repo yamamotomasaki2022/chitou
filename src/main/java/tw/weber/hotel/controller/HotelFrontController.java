@@ -1,7 +1,10 @@
 package tw.weber.hotel.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import ecpay.payment.integration.AllInOne;
+import ecpay.payment.integration.domain.AioCheckOutOneTime;
 import tw.jacky.login.model.MemberBasicInfo;
 import tw.weber.hotel.model.FrontBookingService;
 import tw.weber.hotel.model.Hotel;
@@ -27,7 +32,7 @@ import tw.weber.hotel.model.RoomStyleforSearch;
 
 @Controller
 @SessionAttributes({"memberbasicinfo","memberdetailinfo"})
-@RequestMapping(path = "/member")
+//@RequestMapping(path = "/member")
 public class HotelFrontController {
 
 	@Autowired
@@ -103,9 +108,9 @@ public class HotelFrontController {
 		return (MemberBasicInfo)model.getAttribute("memberbasicinfo");
 	}
 	
-	@GetMapping(path = "display")
+	@GetMapping(path = "form")
 	private String display() {
-		return "Hotelstyle";
+		return suffix+"form";
 	}
 	
 	@GetMapping(path = "yee")
@@ -117,5 +122,42 @@ public class HotelFrontController {
 	private Hotel test() {
 		return fService.selectHotel(1);
 	}
+	
+	@PostMapping(path = "getECPay")
+	@ResponseBody
+	private String getECPay(@RequestParam("MerchantTradeNo")String merchantTradeNo,
+							@RequestParam("TotalAmount")String totalAmount,
+							@RequestParam("ItemName")String itemName) {
+		AllInOne all = new AllInOne("");
+		AioCheckOutOneTime creditCardPay = new AioCheckOutOneTime();
+		creditCardPay.setMerchantTradeNo(merchantTradeNo);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		creditCardPay.setMerchantTradeDate(dtf.format(LocalDateTime.now()));
+		creditCardPay.setTotalAmount(totalAmount);
+		creditCardPay.setTradeDesc("test Description");
+		creditCardPay.setItemName(itemName);
+		creditCardPay.setReturnURL("http://211.23.128.214:5000");
+		creditCardPay.setNeedExtraPaidInfo("N");
+		creditCardPay.setRedeem("Y");
+		String form = all.aioCheckOut(creditCardPay, null);
+		return form;
+	}
+	
+//	@GetMapping(path = "getECpay")
+//	@ResponseBody
+//	private String getECPay() {
+//		AllInOne all = new AllInOne("");
+//		AioCheckOutOneTime creditCardPay = new AioCheckOutOneTime();
+//		creditCardPay.setMerchantTradeNo("testCompany0009");
+//		creditCardPay.setMerchantTradeDate("2017/01/01 08:05:23");
+//		creditCardPay.setTotalAmount("50");
+//		creditCardPay.setTradeDesc("test Description");
+//		creditCardPay.setItemName("TestItem");
+//		creditCardPay.setReturnURL("http://211.23.128.214:5000");
+//		creditCardPay.setNeedExtraPaidInfo("N");
+//		creditCardPay.setRedeem("Y");
+//		String form = all.aioCheckOut(creditCardPay, null);
+//		return form;
+//	}
 	
 }
