@@ -24,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 import tw.jacky.login.model.AdminChitou;
 import tw.jacky.login.model.LoginService;
 import tw.jacky.login.model.MemberBasicInfo;
+
+
 @Controller
 @SessionAttributes({"memberbean","adminlist"} )
 @RequestMapping("/member")
@@ -77,11 +79,11 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(path="/MemberUpdateMemberInfo")
-	public String processMemberUpdateMemberInfo() {	
-	}
-	
-	@RequestMapping(path="/MemberUpdatePassword")
+//	@RequestMapping(path="/MemberUpdateMemberInfo")
+//	public String processMemberUpdateMemberInfo() {	
+//	}
+//	
+//	@RequestMapping(path="/MemberUpdatePassword")
 	
 	
 	
