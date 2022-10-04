@@ -38,6 +38,16 @@ table {
 		 .centre{
 		 text-align: center;
 		 }
+		 #BackTop	{
+				position:fixed;				
+				bottom:90px;
+				right:31px;
+				}
+.jiantou	{
+				width: 2.7rem;
+				height: 2.7rem;
+				color:rgb(75,73,172);
+				}
 </style>
 
 
@@ -60,6 +70,7 @@ table {
     <th class="card-title text-primary">會員ID</th>
 	<th class="card-title text-primary">國家</th>
 	<th class="card-title text-primary">文章類型</th>
+	<th class="card-title text-primary">預覽縮圖</th>
 	<th class="card-title text-primary">文章標題</th>
 	<th class="card-title text-primary">發布日期</th>
 	<th class="card-title text-primary">文章內文</th>
@@ -77,7 +88,8 @@ for (Article bean : list) {
 					<td name="posterID" class="centre"><%=bean.getPosterID() %></td>
 					<td name="countryID" class="centre"><%=bean.getCategory().getCountry()%></td>
 					<td name="typeID" class="centre"><%=bean.getCategory().getType()%></td>
-					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%></td>
+					<td class=""><img id="img" src="images/georgia/picture/<%=bean.getPhoto()%>" class="box" style="width:100px;height:100px"></td>
+					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%><HR><%=bean.getSubtitle()%></td>
 					<td name="date" class="centre"><%=bean.getDate() %></td>
 					<td><form action="article.show" method="post">
 					<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
@@ -107,6 +119,9 @@ for (Article bean : list) {
 </tbody>
 		</table>
 		</div>
+		<svg type="button" id="BackTop" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill jiantou" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+</svg>
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
 <script>
@@ -114,6 +129,10 @@ function back(){
 	history.back();
 }
 $(function() {
+	
+	$('#BackTop').click(function(){ 
+		$('html,body').animate({scrollTop:0}, 333);
+	});
 	$('form').on('click', ':submit', function() {
 		console.log('button click')
 		return check($(this).val());
