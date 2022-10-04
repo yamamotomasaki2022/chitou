@@ -1,3 +1,5 @@
+<%@page import="tw.jacky.login.model.MemberDetailInfo"%>
+<%@page import="tw.jacky.login.model.MemberBasicInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -24,97 +26,35 @@
 <link rel="shortcut icon" href="/images/coco/favicon.png" />
 
 <style type="text/css">
-
-#auth_button{
-
-background-color: pink
-
+#auth_button {
+	background-color: pink
 }
-
-
 </style>
 
 </head>
 
 <body>
 
-<h1> 你搞什麽啊！</h1>
+	<h1>會員個人資料</h1>
 
-	<div class="container-scroller">
-		<div class="container-fluid page-body-wrapper full-page-wrapper">
-			<div class="content-wrapper d-flex align-items-center auth px-0">
-				<div class="row w-100 mx-">
-					<div class="col-lg-4 mx-auto">
-						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
-							<div class="brand-logo">
-								<!-- <img src="../../images/logo1.png" alt="logo"> -->
-								<a class="navbar-brand brand-logo mr-5" href="index.html"><img
-									src="/images/coco/logo3.png" class="mr-6" width="auto"
-									height="auto" alt="logo" /><img src="/images/coco/logo2.png"
-									class="mr-2" alt="logo" /></a>
-							</div>
-							<form class="pt-3" ACTION="" method="post">
-								<div class="form-group">
-									<input type="text" class="form-control form-control-lg"
-										id="uName" placeholder="Username" name="username">
-									<span>${errors.name}</span>
-								</div>
-								<div class="form-group">
-									<input type="password" class="form-control form-control-lg"
-										id="uPass" placeholder="Password" name="password"> <span>${errors.pwd}</span>
-								</div>
-								<div class="mt-3">
-									<button
-										class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-										type="submit" value="login">登入</button>
-									<span>${errors.msg}</span>
-								</div>
-								<div
-									class="my-2 d-flex justify-content-between align-items-center">
-									<div class="form-check">
-										<label class="form-check-label text-muted"> <input
-											type="checkbox" class="form-check-input" name="jacky-rememberme"> 記住我的認證
-										</label>
-									</div>
-									<a href="#" class="auth-link .text-primary">忘記密碼</a>
-								</div>
-								<div class="mb-2">
-									<button type="button"
-										class="btn btn-social-icon btn-outline-facebook">
-										<i class="ti-facebook"></i>
-									</button>
+	<%
+	MemberBasicInfo bean = (MemberBasicInfo) request.getSession().getAttribute("memberbasicinfo");
+	MemberDetailInfo bean1 = (MemberDetailInfo) request.getSession().getAttribute("memberdetailinfo");
+	%>
 
-									<button type="button"
-										class="btn btn-social-icon btn-outline-google">
-										<i class="ti-google"></i>
-									</button>
-
-									<button type="button"
-										class="btn btn-social-icon btn-outline-google">
-										<i class="ti-google"></i>
-									</button>
-								</div>
+	<img width="300px" height="300px" src="/<%=bean.getPhoto()%>">
+	<div><%=bean1.getName()%></div>
+	<div><%=bean.getEmail() %></div>
+	<div><%=bean1.getPhone() %></div>
+	<div><%=bean1.getAddress() %></div>
+	<div><%=bean1.getNickname() %></div>
+	<div><%=bean1.getNationality()%></div>
+	<div><%=bean1.getBrith() %></div>
+	<div><%=bean1.getGender()%></div>
+	<div><%=bean1.getCreatetime()%></div>
+	<div><%=bean1.getModifytime()%></div>
 
 
-								<hr>
-							</form>
-							<div >
-								<form action="toMemberLoginPage" >
-									<input type="submit" class="btn btn-primary mr-2" value="會員" style="float:left ; background-color: #2AAC16">
-								</form>
-								<form action="toAdminLoginPage" >
-									<input type="submit" class="btn btn-primary mr-2" value="管理員" style="float:right;background-color: #2AAC16">
-								</form>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- content-wrapper ends -->
-		</div>
-		<!-- page-body-wrapper ends -->
-	</div>
 	<!-- container-scroller -->
 	<!-- plugins:js -->
 	<script src="/js/coco/vendor.bundle.base.js"></script>

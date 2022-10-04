@@ -49,7 +49,7 @@ public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHa
 			MemberDetailInfo memberdetailinfo = lService.findDetailByMemberid(memberbasicinfo.getMemberid());
 			request.getSession().setAttribute("memberbasicinfo", memberbasicinfo);
 			request.getSession().setAttribute("memberdetailinfo", memberdetailinfo);
-			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/MemberHomePage.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/memberlogin/MemberHomePage.jsp").forward(request, response);
 		}
 		else if(authorities.toString().equals("[boss777]")) {
 			System.out.println("成功的進入了sucesshandler的if判斷内的boss");
