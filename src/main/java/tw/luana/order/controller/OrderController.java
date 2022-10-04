@@ -69,7 +69,7 @@ public class OrderController {
 		m1.addAttribute("orderList", orderService.showSingleOrderList(orderid));
 		m2.addAttribute("aOrderDetail",orderService.showAttractionOrders(orderid));
 		
-		return path_Luana_Order + "Luana_order3";
+		return path_Luana_Order + "Luana_orderDetail";
 		
 	}
 
