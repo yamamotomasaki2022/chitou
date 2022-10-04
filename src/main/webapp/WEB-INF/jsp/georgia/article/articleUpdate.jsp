@@ -54,8 +54,8 @@ Article tt=(Article)request.getAttribute("findByIdBean");
 <INPUT TYPE="HIDDEN" NAME="posterID" VALUE="<%= tt.getPosterID() %>">
 <INPUT TYPE="HIDDEN" NAME="date" VALUE="<%= tt.getDate() %>">
 文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="<%= tt.getTitle() %>" style="width: 100%;"><BR>
-文章副標題: <BR><INPUT TYPE="TEXT" NAME="subtitle" VALUE="" id="subtitleInput" style="width: 100%;"><BR><BR>
-選擇縮圖:<BR><INPUT TYPE="FILE" NAME="photo" ID="upload"><BR>
+文章副標題: <BR><INPUT TYPE="TEXT" NAME="subtitle" VALUE="<%= tt.getSubtitle() %>" id="subtitleInput" style="width: 100%;"><BR><BR>
+選擇縮圖:<BR><INPUT TYPE="FILE" NAME="photo" VALUE="<%= tt.getPhoto() %>" ID="upload"><BR>
 	   <div id="picPreview"></div><BR>
 <br> 選擇國家<select name="chooseCountry">
 			<optgroup label="亞洲">

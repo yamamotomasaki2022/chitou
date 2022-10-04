@@ -9,13 +9,15 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 request.setCharacterEncoding("UTF-8");
 response.setCharacterEncoding("UTF-8");
 %>  
-
+<%
+Article tt=(Article)request.getAttribute("findByID");
+%> 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>查詢文章</title>
+<title>【<%=tt.getCategory().getType().trim()%>】<%=tt.getTitle() %></title>
 <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
 <style>
 
@@ -36,10 +38,9 @@ response.setCharacterEncoding("UTF-8");
 <INPUT TYPE="Button" value="返回" name="goBack" class="btn btn-primary mr-2" onclick="back()"><br><br>
 
 <div class="table-responsive">
-<%
-Article tt=(Article)request.getAttribute("findByID");
-%> 
-<h1>【<%=tt.getCategory().getType().trim()%>】<%=tt.getTitle() %></h1>
+
+<h2>【<%=tt.getCategory().getType().trim()%>】<%=tt.getTitle() %></h2>
+<h4><%=tt.getSubtitle() %></h4>
 <hr>
 <p style="color:gray;font-size: 5px;"><%=tt.getDate() %> 發布</p>
 <%=tt.getContent() %>

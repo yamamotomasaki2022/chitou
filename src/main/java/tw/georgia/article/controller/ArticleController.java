@@ -4,7 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import tw.georgia.article.model.Article;
 import tw.georgia.article.model.ArticleService;
 import tw.georgia.article.model.Category;
+import tw.georgia.article.model.CategoryService;
 
 
 @Controller
@@ -29,6 +36,9 @@ public class ArticleController {
 	
 	@Autowired
 	private ArticleService articleService;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
 	
 	private String staticPath = getStaticPath();
@@ -65,6 +75,14 @@ public class ArticleController {
 	@RequestMapping(path = "/article.test",method = RequestMethod.GET)
 	public String test() {
 		return "georgia/article/NewFile";
+	}
+	
+	@RequestMapping(path = "/article.testcate",method = RequestMethod.POST)
+	public String testcate(@RequestParam("cate") int countryID,Model m) {
+
+		List<Category> findCountry = categoryService.findCountry(countryID);
+		m.addAttribute("findCountry",findCountry);
+		return "georgia/article/NewFile2";
 	}
 	
 //	*********新增文章*************************************************
@@ -110,7 +128,7 @@ public class ArticleController {
 //	*********更新文章*************************************************
 	@PutMapping(path = "/article.update")
 	public String updateArticle(@RequestParam("postID") int postID,
-								@RequestParam("posterID") int posterID,
+//								@RequestParam("posterID") int posterID,
 								@RequestParam("title") String title,
 								@RequestParam("subtitle") String subtitle,
 								@RequestParam("chooseCountry") String chooseCountry,
@@ -118,6 +136,7 @@ public class ArticleController {
 								@RequestParam("photo") MultipartFile mf,
 								@RequestParam("content") String content,
 								@RequestParam("date") String date) throws IllegalStateException, IOException {
+		System.out.println(chooseCountry);
 		int categoryID = Integer.parseInt(chooseCountry+chooseType);
 //		int countryID = Integer.parseInt(chooseCountry);
 		
@@ -131,7 +150,14 @@ public class ArticleController {
         File saveFilePath = new File(saveFileDir, photo);
         mf.transferTo(saveFilePath);
 		
-		Article updateBean = new Article(category,postID,posterID,title,subtitle,photo,content,date);
+		Article updateBean = articleService.findByID(postID);
+		updateBean.setCategory(category);
+		updateBean.setTitle(title);
+		updateBean.setSubtitle(subtitle);
+		updateBean.setPhoto(photo);
+		updateBean.setContent(content);
+//		Article updateBean = new Article(category,postID,posterID,title,subtitle,photo,content,date);
+//		articleService.updateArticle(title,subtitle,photo,categoryID,content,postID);
 		articleService.update(updateBean);
 		return "redirect:"+mainUrl;
 	}
@@ -149,17 +175,39 @@ public class ArticleController {
 	public String readArticle(@RequestParam("chooseCountry") String chooseCountry,
 								@RequestParam("chooseType") String chooseType,
 								Model m) {
+		List<Article> search = new LinkedList<Article>();
 		if (chooseType == "") {
 			int countryID = Integer.parseInt(chooseCountry);
-			List<Article> searchBean = articleService.findCountry(countryID);
-			m.addAttribute("searchBean", searchBean);
+			List<Category> cateList = categoryService.findCountry(countryID);
+			for(Category cateBean:cateList) {
+				Set<Article> articleSet = cateBean.getArticle();
+				for (Article article : articleSet) {
+					search.add(article);
+				}
+		        Collections.sort(search, new Comparator<Article>(){
+		        	public int compare(Article a1, Article a2) {
+		        		if(a1.getPostID() > a2.getPostID()){
+		                    return 1;
+		                }
+		                if(a1.getPostID() == a2.getPostID()){
+		                    return 0;
+		                }
+		                return -1;
+		            }
+		        }); 
+		        	}
+//				List<Article> search = articleService.findType(cateBean.getCategoryID());
+				m.addAttribute("search", search);
+//			List<Article> searchBean = articleService.findCountry(countryID);
+//			m.addAttribute("searchBean", searchBean);
 		}else {
 			int categoryID = Integer.parseInt(chooseCountry+chooseType);
-			List<Article> searchBean = articleService.findType(categoryID);
-			m.addAttribute("searchBean", searchBean);
+			List<Article> searchType = articleService.findType(categoryID);
+			m.addAttribute("search", searchType);
 		}
 		return "georgia/article/articleRead";
 	}
+
 	
 	
 //	*********顯示文章頁面*************************************************

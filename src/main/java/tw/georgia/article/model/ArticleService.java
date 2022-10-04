@@ -44,9 +44,9 @@ public class ArticleService {
 	}
 	
 //	**************查詢國家********************
-	public List<Article> findCountry(int countryID){
-		return articleRepository.findByCountryid(countryID);
-	}
+//	public List<Article> findCountry(int countryID){
+//		return articleRepository.findByCountryid(countryID);
+//	}
 	
 //	*************查詢分類*********************
 	public List<Article> findType(int categoryID){
