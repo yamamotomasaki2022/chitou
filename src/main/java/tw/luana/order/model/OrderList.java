@@ -11,12 +11,13 @@ import javax.persistence.Table;
 @Table(name = "ORDERLIST")
 public class OrderList implements Serializable {
 
+
 	@Id
 	@Column(name = "ORDERID")
 	private String orderid;
 	
 	@Column(name = "ORDERTYPE")
-	private Integer ordertype;
+	private String ordertype;
 	
 	@Column(name = "ORDERDATE")
 	private String orderdate;
@@ -49,13 +50,17 @@ public class OrderList implements Serializable {
 
 
 
-	public Integer getOrdertype() {
+	
+
+
+
+	public String getOrdertype() {
 		return ordertype;
 	}
 
 
 
-	public void setOrdertype(Integer ordertype) {
+	public void setOrdertype(String ordertype) {
 		this.ordertype = ordertype;
 	}
 
