@@ -15,7 +15,9 @@ import org.hibernate.query.Query;
 import org.springframework.beans.Mergeable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.AbstractAuditable_;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -146,33 +148,7 @@ public class LoginService {
 	}
 	
 
-	
-	
-////	賬號密碼確認
-//	public boolean checkAdminLogin(AdminChitou bean) {
-//		Session session = sessionFactory.openSession();
-////		javabean的東西 而不是資料庫的東西
-//		String hqlstr="from AdminChitou where username = :user and password = :pwd";
-//		
-//		try {			
-//			Query<AdminChitou> query = session.createQuery(hqlstr,AdminChitou.class);
-//			query.setParameter("user", bean.getUsername());
-//			
-//			query.setParameter("pwd", bean.getPassword());
-//			
-//			
-////		把hibernate的query物件在轉型成 bean的物件->去利用
-//			AdminChitou resultBean = query.uniqueResult();
-//			session.close();
-//			
-//			if(resultBean!=null) {
-//				return true;
-//			}
-//			return false;
-//		} catch (Exception e) {
-//			return false;
-//		}
-//	}
+
 	
 	public boolean checkAdminLogin(String username, String pw) {
 		
@@ -209,9 +185,12 @@ public class LoginService {
 	}
 
 	
+
+	
+	
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// 會員
 	
 	public boolean checkMemberLogin(String username, String pw) {
 		

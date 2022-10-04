@@ -117,15 +117,6 @@ public class HotelBackController {
 		return returnHotel;
 	}
 
-	@GetMapping(path = "/test/test")
-	public String testbootstrap(Model model) {
-		return "weber/Home";
-	}
-	
-	@GetMapping(path = "/test2")
-	public String test3(Model model) {
-		return suffix + "BackgroundHomePage";
-	}
 	
 	
 //-----------------------------------------廢案------------------------------------------------------------	

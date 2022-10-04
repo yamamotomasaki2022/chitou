@@ -78,7 +78,7 @@ td {
 
 	</div>
 	<hr>
-	<form action="adminlist">
+	<form action="ShowTableInHomePage">
 		<button onclick="">返回登入界面</button>
 	</form>
 

@@ -49,8 +49,8 @@ public class ArticleService {
 	}
 	
 //	*************查詢分類*********************
-	public List<Article> findType(int typeID){
-		return articleRepository.findByTypeid(typeID);
+	public List<Article> findType(int categoryID){
+		return articleRepository.findByCategoryID(categoryID);
 	}
 	
 }
