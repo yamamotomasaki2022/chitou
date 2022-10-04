@@ -57,8 +57,9 @@ public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHa
 			List<MemberBasicInfo> memberlist = lService.memberFindAll();
 			request.getSession().setAttribute("adminlist", adminlist);
 			request.getSession().setAttribute("memberlist", memberlist);
-			request.getSession().setAttribute("session_status", 3);
-//			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);			
+			request.setAttribute("status", 3);
+			request.getSession(true).setAttribute("s", 3);
+			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);			
 		}
 		else if(authorities.toString().equals("[admin]")){
 			System.out.println("成功的進入了sucesshandler的if判斷内的 admin");
@@ -67,10 +68,10 @@ public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHa
 			request.getSession().setAttribute("adminlist", adminlist);
 			request.getSession().setAttribute("memberlist", memberlist);
 			request.getSession().setAttribute("session_status", 1);
-//			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
+			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
 		}
 		
-		super.onAuthenticationSuccess(request, response, authentication);
+//		super.onAuthenticationSuccess(request, response, authentication);
 		
 		System.out.println("跳到auth判斷公式之外");
 	}

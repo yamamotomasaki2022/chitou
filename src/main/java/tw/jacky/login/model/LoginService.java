@@ -88,6 +88,10 @@ public class LoginService {
 		return mdirepo.save(memberDetailInfo);
 	}
 	
+	public MemberDetailInfo adminInsertMemberDetailInfo(MemberDetailInfo md) {
+		return mdirepo.save(md);
+	}
+	
 	
 	
 //	管理員刪除會員

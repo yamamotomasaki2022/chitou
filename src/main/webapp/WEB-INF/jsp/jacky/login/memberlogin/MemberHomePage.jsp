@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Login</title>
+<title>會員主頁</title>
 
 <!-- plugins:css -->
 <link rel="stylesheet" href="/css/coco/feather.css">
@@ -37,6 +37,8 @@ background-color: pink
 </head>
 
 <body>
+
+<h1> 你搞什麽啊！</h1>
 
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">

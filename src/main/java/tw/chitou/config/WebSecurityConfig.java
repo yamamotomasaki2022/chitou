@@ -78,8 +78,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		.accessDeniedPage("/accessDenied.jsp");
 		.accessDeniedHandler(accessDenialHandler);
 		
-		
-		
 		http
 		.logout()
 		.logoutUrl("/logout")

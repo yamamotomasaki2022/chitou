@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tw.chitou.gmail.model.GmailService;
+import tw.chitou.gmail.model.TemplateServices;
 
 @Controller
 public class GmailController {
@@ -27,6 +28,9 @@ public class GmailController {
 	 	
 	 	@Autowired
 	 	GmailService gmailService;
+	 	
+	 	@Autowired
+	 	TemplateServices templateService;
 	 	
 	 	String path_main_login = "jacky/login/";
 	 	
@@ -99,29 +103,16 @@ public class GmailController {
 			List<String> toEmaiList = new ArrayList<String>();
 			toEmaiList.add("learningma0926@gmail.com");
 			String subject="Jacky的模板測試信";
+			Map<String,String> params= new HashMap<>();
+//			有什麽參數就放進來
+			params.put("name", "新傑");
 //			輸入html文本格式
-			String html= "<!DOCTYPE html>\r\n"
-					+ "<html>\r\n"
-					+ "<head>\r\n"
-					+ "<meta charset=\"UTF-8\">\r\n"
-					+ "<title>Insert title here</title>\r\n"
-					+ "</head>\r\n"
-					+ "<body>\r\n"
-					+ "\r\n"
-					+ "\r\n"
-					+ "<h1>測試是否能運行</h1>\r\n"
-					+ "\r\n"
-					+ "</body>\r\n"
-					+ "</html>";
+			String html = templateService.render("test", params);
+			System.out.println(html);
 			gmailService.mimemail(fromEmail, toEmaiList, subject, html);
 			return  "jacky/SendEmailPage";
 		}
-//		test for thyleaf
-		@GetMapping(path="/th")
-		public String tryout() {
-			return "test";
-		}
-		
+
 		
 
 }

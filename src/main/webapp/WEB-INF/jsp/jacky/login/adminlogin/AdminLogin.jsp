@@ -24,14 +24,9 @@
 <link rel="shortcut icon" href="/images/coco/favicon.png" />
 
 <style type="text/css">
-
-#auth_button{
-
-background-color: pink
-
+#auth_button {
+	background-color: pink
 }
-
-
 </style>
 
 </head>
@@ -54,8 +49,7 @@ background-color: pink
 							<form class="pt-3" ACTION="" method="post">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="uName" placeholder="Username" name="username">
-									<span>${errors.name}</span>
+										id="uName" placeholder="Username" name="username"> <span>${errors.name}</span>
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-lg"
@@ -71,7 +65,8 @@ background-color: pink
 									class="my-2 d-flex justify-content-between align-items-center">
 									<div class="form-check">
 										<label class="form-check-label text-muted"> <input
-											type="checkbox" class="form-check-input" name="jacky-rememberme"> 記住我的認證
+											type="checkbox" class="form-check-input"
+											name="jacky-rememberme"> 記住我的認證
 										</label>
 									</div>
 									<a href="#" class="auth-link .text-primary">忘記密碼</a>
@@ -96,13 +91,25 @@ background-color: pink
 
 								<hr>
 							</form>
-							<div >
-								<form action="toMemberLoginPage" >
-									<input type="submit" class="btn btn-primary mr-2" value="會員" style="float:left ; background-color: #2AAC16">
+							<div>
+								<form action="toMemberLoginPage">
+									<input type="submit" class="btn btn-primary mr-2" value="會員"
+										style="float: left; background-color: #2AAC16">
 								</form>
-								<form action="toAdminLoginPage" >
-									<input type="submit" class="btn btn-primary mr-2" value="管理員" style="float:right;background-color: #2AAC16">
+								<form action="toAdminLoginPage">
+									<input type="submit" class="btn btn-primary mr-2" value="管理員"
+										style="float: right; background-color: #2AAC16">
 								</form>
+							</div>
+							
+							
+							
+							<div>
+								<form action="toMemberRegisterPage">
+									<input type="submit" class="btn btn-primary mr-2" value="注冊"
+										style="" background-color:#2AAC16">
+								</form>
+
 							</div>
 
 						</div>

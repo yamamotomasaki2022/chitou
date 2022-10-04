@@ -5,18 +5,20 @@
 
 <%
 
-if(request.getSession().getAttribute("session_status") !=null){
-	int session_status = (int)request.getSession().getAttribute("session_status");
-}else{
-	int session_status = 0;
-};
+// if(request.getAttribute("status") !=null){
+//  	int status1 = (int)request.getAttribute("status");
+	
+//  	System.out.println(status1);
+// }else{
+// 	int status1 = 0;
+// 	System.out.println(status1);
+// };
 
 if(request.getAttribute("crud") !=null){
 	int crud = (int)request.getAttribute("crud");
 }else{
 	int crud = 0;
 }
-
 
 
 
@@ -72,6 +74,10 @@ if(request.getAttribute("crud") !=null){
 
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
+
+	<h1>${status}</h1>
+	<h1>${sessionScope.s}</h1>
+	
 	<h1>管理員界面</h1>
 	<hr>
 	<hr>
@@ -275,8 +281,9 @@ if(request.getAttribute("crud") !=null){
 	
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
-		var session_status = "${session_status}";
-		if (session_status == 1) {
+		let status = "${status}";
+
+		if (status == 1) {
 			Swal.fire(
 					  'Welcome!',
 					  'Admin!',
@@ -284,7 +291,7 @@ if(request.getAttribute("crud") !=null){
 					)
 			document.getElementById('aaa').setAttribute("style",
 					"display : none")
-		} else if (session_status == 2) {
+		} else if (status == 2) {
 			Swal.fire(
 					  'Welcome!',
 					  'Manager!',
@@ -292,7 +299,7 @@ if(request.getAttribute("crud") !=null){
 					)
 			document.getElementById('aaa').setAttribute("style",
 					"display : '' ")
-		} else if (session_status == 3) {
+		} else if (status == 3) {
 			Swal.fire(
 					  'Welcome!',
 					  'Boss!',
@@ -312,7 +319,7 @@ if(request.getAttribute("crud") !=null){
 	
 	var crud = "${crud}";
 	
-	console.log(crud)
+	console.log("crud:" +crud)
 	
 	if (crud == 1) {
 		Swal.fire(
