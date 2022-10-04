@@ -62,9 +62,9 @@ button, .btn {
 
 
 	<br>
-	<form action="article.new" method="get">
+	<!--  <form action="article.new" method="get">
 		<INPUT TYPE="SUBMIT" value="新增文章" name="newarticle" class="btn btn-primary mr-2">
-	</form>
+	</form>-->
 
 	<br>
 	<form action="article.read" method="post">
@@ -109,11 +109,12 @@ button, .btn {
 			<thead id="tableHead">
 				<tr>
 					<th class="card-title text-primary">會員ID</th>
-					<th class="card-title text-primary">國家</th>
-					<th class="card-title text-primary">文章類型</th>
+					<th class="card-title text-primary">國家<BR>文章類型</th>
+					<th class="card-title text-primary">預覽縮圖</th>
 					<th class="card-title text-primary">文章標題</th>
 					<th class="card-title text-primary">發布日期</th>
 					<th class="card-title text-primary">文章內文</th>
+					<th class="card-title text-primary">文章狀態</th>
 					<th class="card-title text-primary">文章管理</th>
 				</tr>
 			</thead>
@@ -123,31 +124,43 @@ button, .btn {
 				List<Article> list = (List) request.getAttribute("list");
 				for (Article bean : list) {
 					int title=bean.getTitle().length();
+					String status="";
+					if(bean.getUserDelete()==1){
+						status="會員自行刪除";
+					}else if(bean.getManageHidden()==1){
+						status="文章已隱藏";
+					}else{
+						status="文章上架中";
+					}
+					
 					
 				%>
 
 				<tr>
-					<td class="centre"><%=bean.getPosterID()%></td>
-					<td class="centre"><%=bean.getCategory().getCountry()%></td>
-					<td class="centre"><%=bean.getCategory().getType()%></td>
-					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%></td>
-					<td class="centre"><%=bean.getDate()%></td>
-					<td><form action="article.show" method="post">
+					<td class=""><%=bean.getPosterID()%></td>
+					<td class=""><%=bean.getCategory().getCountry()%><HR><%=bean.getCategory().getType()%></td>
+					<td class=""><img id="img" src="images/georgia/picture/<%=bean.getPhoto()%>" class="box" style="width:80px;height:80px"></td>
+					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%><HR><%=bean.getSubtitle()%></td>
+					<td class=""><%=bean.getDate()%></td>
+					<td>
+					<form action="article.show" method="post">
 					<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
 					<input type="submit" name="toShow" value="查看詳細內文" class="btn btn-light">
-					</form></td>
-					<td class="centre">
+					</form>
+					</td>
+					<td class=""><%=status%></td>
+					<td class="">
 
 						<form action="article.renew" method="post" style="">
 							<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
-							<input type="submit" name="update" value="修改" class="btn btn-primary mr-2"
+							<input type="submit" name="update" value="通知" class="btn btn-primary mr-2"
 								id="update">
 						</form>
 
-						<form action="article.delete" method="post" style="">
-							<input type="hidden" name="_method" value="DELETE"> <input
-								type="hidden" name="postID" value=<%=bean.getPostID()%>>
-							<input type="submit" name="delete" value="刪除" class="btn btn-light"
+						<form action="article.manageHidden" method="post" style="">
+							<!--  <input type="hidden" name="_method" value="DELETE"> -->
+							<input type="hidden" name="postID" value=<%=bean.getPostID()%>>
+							<input type="submit" name="" value="隱藏" class="btn btn-light"
 								id="check">
 						</form>
 

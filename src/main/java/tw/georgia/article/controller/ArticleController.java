@@ -44,7 +44,8 @@ public class ArticleController {
 	private String staticPath = getStaticPath();
 	
 	
-	String mainUrl="http://localhost:8080/article.main";
+	String userUrl="http://localhost:8080/article.user";
+	String adminUrl="http://localhost:8080/article.admin";
 	
 	
 //	寫絕對路徑辦法(圖片)
@@ -56,14 +57,47 @@ public class ArticleController {
 		return path;
 	}
 	
-//	**********文章首頁********************************************
-	@RequestMapping(path = "/article.main",method = RequestMethod.GET)
-	public String articleMain(Model m) {
+//	●測試
+//	--主頁輪播測試
+//	●會員
+//	--文章管理(會員)
+//	--前往新增文章
+//	--新增文章
+//	--前往更新文章
+//	--更新文章
+//	--查詢
+//	--會員刪除
+//	●管理
+//	--文章首頁(管理員)
+//	--管理隱藏
+//	●
+//	--顯示文章頁面
+	
+	//	**********主頁輪播測試*********************************************
+	@RequestMapping(path = "/article.test",method = RequestMethod.GET)
+	public String test() {
+		return "georgia/article/NewFile";
+	}
+	//	**********主頁輪播測試*********************************************
+	@RequestMapping(path = "/article.overview",method = RequestMethod.GET)
+	public String overviewMain() {
+		return "georgia/article/articleOverviewMain";
+	}
+	
+//	***************************************************************
+//	***       會員 會員 會員 會員 會員 會員 會員 會員 會員 會員              ***
+//	***       會員 會員 會員 會員 會員 會員 會員 會員 會員 會員              ***
+//	***       會員 會員 會員 會員 會員 會員 會員 會員 會員 會員              ***
+//	***************************************************************
+	
+//	**********文章管理(會員)********************************************
+	@RequestMapping(path = "/article.user",method = RequestMethod.GET)
+	public String articleUserMain(Model m) {
 
 		List<Article> list = articleService.findAll();
 		m.addAttribute("list", list);
 		//request.setAttribute("list",list);
-		return "georgia/article/articleMain";
+		return "georgia/article/articleUserMain";
 	}	
 	
 //	**********前往新增文章*********************************************
@@ -71,19 +105,7 @@ public class ArticleController {
 	public String newArticle() {
 		return "georgia/article/articleCreate";
 	}
-//	**********前往新增文章*********************************************
-	@RequestMapping(path = "/article.test",method = RequestMethod.GET)
-	public String test() {
-		return "georgia/article/NewFile";
-	}
-	
-	@RequestMapping(path = "/article.testcate",method = RequestMethod.POST)
-	public String testcate(@RequestParam("cate") int countryID,Model m) {
 
-		List<Category> findCountry = categoryService.findCountry(countryID);
-		m.addAttribute("findCountry",findCountry);
-		return "georgia/article/NewFile2";
-	}
 	
 //	*********新增文章*************************************************
 	@PostMapping(path = "/article.insert")
@@ -113,7 +135,7 @@ public class ArticleController {
 		Article insertBean = new Article(category,title,subtitle,photo,content,date);
 		
 		articleService.insert(insertBean);
-		return "redirect:"+mainUrl;
+		return "redirect:"+userUrl;
 	}
 	
 //	*********前往更新文章*************************************************
@@ -159,15 +181,7 @@ public class ArticleController {
 //		Article updateBean = new Article(category,postID,posterID,title,subtitle,photo,content,date);
 //		articleService.updateArticle(title,subtitle,photo,categoryID,content,postID);
 		articleService.update(updateBean);
-		return "redirect:"+mainUrl;
-	}
-	
-//	*********刪除文章*************************************************
-	@DeleteMapping(path = "/article.delete")
-	public String deleteArticle(@RequestParam("postID") int postID) {
-//		Article deleteBean=new Article();
-		articleService.delete(postID);
-		return "redirect:"+mainUrl;
+		return "redirect:"+userUrl;
 	}
 	
 //	*********查詢*************************************************
@@ -208,7 +222,53 @@ public class ArticleController {
 		return "georgia/article/articleRead";
 	}
 
+//	*****************會員刪除******************************************
+	@RequestMapping(path = "/article.userDelete",method = RequestMethod.POST)
+	public String userDelete(@RequestParam("postID") int postID,
+								Model m) {
+		Article bean = articleService.findByID(postID);
+		bean.setUserDelete(1);
+//		bean.setManageHidden(0);
+//		System.out.println(bean.getManageHidden());
+		
+		Article updateBean = articleService.update(bean);
+		
+		return "redirect:"+userUrl;
+	}
 	
+
+	
+	
+//	***************************************************************
+//	***       管理 管理 管理 管理 管理 管理 管理 管理 管理 管理 管理          ***
+//	***       管理 管理 管理 管理 管理 管理 管理 管理 管理 管理 管理          ***
+//	***       管理 管理 管理 管理 管理 管理 管理 管理 管理 管理 管理          ***
+//	***************************************************************
+	
+//	**********文章首頁(管理員)********************************************
+	@RequestMapping(path = "/article.admin",method = RequestMethod.GET)
+	public String articleAdminMain(Model m) {
+		
+		List<Article> list = articleService.findAll();
+		m.addAttribute("list", list);
+		//request.setAttribute("list",list);
+		return "georgia/article/articleAdminMain";
+	}	
+	
+//	*****************管理隱藏******************************************
+	@RequestMapping(path = "/article.manageHidden",method = RequestMethod.POST)
+	public String manageHidden(@RequestParam("postID") int postID,
+			Model m) {
+		Article bean = articleService.findByID(postID);
+		bean.setManageHidden(1);
+//		bean.setManageHidden(0);
+//		System.out.println(bean.getManageHidden());
+		
+		Article updateBean = articleService.update(bean);
+		
+		return "redirect:"+adminUrl;
+	}
+
 	
 //	*********顯示文章頁面*************************************************
 	@RequestMapping(path = "/article.show",method = RequestMethod.POST)
@@ -218,6 +278,29 @@ public class ArticleController {
 		m.addAttribute("findByID", findByID);
 		
 		return "georgia/article/articleDetail";
+	}
+//	******************************************
+//	**      預設 預設  預設  預設  預設            **
+//	**      預設 預設  預設  預設  預設            **
+//	**      預設 預設  預設  預設  預設            **
+//	******************************************	
+	
+//	**********文章預設首頁********************************************
+	@RequestMapping(path = "/article.default.main",method = RequestMethod.GET)
+	public String articleDefaultMain(Model m) {
+
+		List<Article> list = articleService.findAll();
+		m.addAttribute("list", list);
+		//request.setAttribute("list",list);
+		return "georgia/article/articleMain";
+	}	
+	
+//	*********刪除文章*************************************************
+	@DeleteMapping(path = "/article.delete")
+	public String deleteArticle(@RequestParam("postID") int postID) {
+//		Article deleteBean=new Article();
+		articleService.delete(postID);
+		return "redirect:";
 	}
 	
 }
