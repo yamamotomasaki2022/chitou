@@ -131,7 +131,7 @@ public class CartController {
 	@RequestMapping(path = "buyFromCart", method = RequestMethod.POST)
 	public String buyFromCart(@RequestParam("memberid") Integer memberid, @RequestParam("totalPrice") Integer totalprice, Model m,
 			OrderList orderList) {
-
+		String orderTypeName = "景點";
 		String orderType = "A";
 		String orderStatus = "1";
 		String orderId = orderType + Long.toHexString(System.currentTimeMillis());
@@ -140,7 +140,7 @@ public class CartController {
 		String OrderDay = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 		
 		//加入訂單總表
-		orderList.setOrdertype(1);
+		orderList.setOrdertype(orderTypeName);
 		orderList.setOrderid(orderId);
 		orderList.setOrderdate(OrderDay);
 		orderList.setOrderstatus(orderStatus);

@@ -22,49 +22,44 @@
 <%@ include file="../Luana_include/navbar.jsp" %>   
 
 <div class="container">
-		<div class="card-header my-3">All Orders 
+		<div class="card-header my-3">
+		訂單詳細資料
 		</div>
+	
 		<table class="table table-light">
 			<thead>
+				<c:forEach var="order" items="${orderList}">
 				<tr>
-					<th scope="col">Category</th>
-					<th scope="col">Date</th>
-					<th scope="col">Number</th>
-					<th scope="col">Price</th>
-					<th scope="col">Status</th>
-					<th scope="col"></th>
-					<th scope="col"></th>
-					<th scope="col"></th>
-				</tr>
-			</thead>
-	
-			<tbody>
-	<c:forEach var="order" items="${orders}">
-				
-					<tr>
-						<td>${order.ordertype}</td>
-						<td>${order.orderdate}</td>
-						<td>${order.orderid}</td>
-						<td>${order.totalprice}</td>
-						<c:choose>
+					<th scope="col">訂單編號：${order.orderid}</th>
+					<th scope="col">訂單類別：${order.ordertype}</th>
+					<th scope="col">下訂日：${order.orderdate}</th>
+					<th scope="col">總金額${order.totalprice}</th>
+					<c:choose>
 						<c:when test="${order.orderstatus == 1}"> 										
-						<td>處理中</td>
+						<th scope="col">訂單狀態：處理中</th>
 						</c:when>
 						<c:when test="${order.orderstatus == 2}" > 										
-						<td>已完成</td>
+						<th scope="col">訂單狀態：已完成</th>
 						</c:when>
 						<c:when test="${order.orderstatus == 3}" > 										
-						<td>已取消</td>						
+						<th scope="col">訂單狀態：已取消</th>>						
 						</c:when>
-						</c:choose>
+					</c:choose>
+				</tr>
+				</c:forEach>
+			</thead>
+			<tbody>
+	<c:forEach var="aOrder" items="${aOrderDetail}">
+				
+					<tr>
+						
+						<td>${aOrder.attractionname}</td>
+						<td>${aOrder.planname}</td>
+						<td>${aOrder.quantity}</td>
+						<td>${aOrder.price}</td>
 						
 						
-						<td>
-						<form action="orderDetail" method="post">							
-						<input type="hidden" name="orderid" value="${order.orderid}"/>
-						<input class="btn btn-sm btn-primary" type="submit" value="詳細">
-						</form>
-						</td>
+						
 					</tr>
 			</c:forEach>
 			</tbody>	
