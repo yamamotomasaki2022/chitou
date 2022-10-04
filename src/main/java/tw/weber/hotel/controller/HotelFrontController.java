@@ -16,11 +16,16 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ecpay.payment.integration.AllInOne;
 import ecpay.payment.integration.domain.AioCheckOutOneTime;
+import tw.chitou.util.ECPayHelper;
 import tw.jacky.login.model.MemberBasicInfo;
+import tw.jacky.login.model.MemberDetailInfo;
+import tw.luana.order.model.OrderList;
+import tw.luana.order.model.OrderService;
 import tw.weber.hotel.model.FrontBookingService;
 import tw.weber.hotel.model.Hotel;
 import tw.weber.hotel.model.HotelforSearch;
 import tw.weber.hotel.model.Reservation;
+import tw.weber.hotel.model.Room;
 import tw.weber.hotel.model.RoomStyle;
 import tw.weber.hotel.model.RoomStyleforSearch;
 
@@ -31,6 +36,9 @@ public class HotelFrontController {
 
 	@Autowired
 	private FrontBookingService fService;
+	
+	@Autowired
+	private OrderService oService;
 	
 	private String suffix = "weber/front/";
 	private String main = suffix + "FrontMain";
@@ -74,7 +82,7 @@ public class HotelFrontController {
 												@RequestParam("dateEnd")String dateEnd,
 												@RequestParam("hotelID")int hotelID,
 												@RequestParam("number")int number){
-		System.err.println("阿斯");
+		System.err.println("ajax搜尋房間");
 		return fService.getRoomStyle(dateStart, dateEnd, hotelID, number);
 	}
 	
@@ -99,9 +107,11 @@ public class HotelFrontController {
 							   @RequestParam("dateEnd")String dateEnd,
 							   @RequestParam("number")int number,Model model) {
 		Hotel hotel = fService.selectHotel(hotelID);
-		RoomStyle style = fService.findRoomData(roomstyleID);
+		RoomStyle style = fService.findStyle(dateStart,dateEnd,roomstyleID,number);
+		Room room = fService.findEmptyRoom(dateStart, dateEnd, roomstyleID);
 		model.addAttribute("hotel",hotel);
 		model.addAttribute("style",style);
+		model.addAttribute("room",room);
 		model.addAttribute("checkInDate",dateStart);
 		model.addAttribute("checkOutDate",dateEnd);
 		model.addAttribute("number",number);
@@ -114,82 +124,54 @@ public class HotelFrontController {
 		return (MemberBasicInfo)model.getAttribute("memberbasicinfo");
 	}
 	
-	@GetMapping(path = "form")
-	private String display() {
-		return suffix+"form";
+	@GetMapping(path = "getAccountDetail")
+	@ResponseBody
+	private MemberDetailInfo getAccountDetail(Model model) {
+		return (MemberDetailInfo)model.getAttribute("memberdetailinfo");
 	}
 	
 	@GetMapping(path = "yee")
 	private String yee() {
 		return "NewHome";
 	}
-	@GetMapping(path = "test/test")
-	@ResponseBody
-	private Hotel test() {
-		return fService.selectHotel(1);
-	}
 	
 	@PostMapping(path = "getECPay")
 	@ResponseBody
 	private String getECPay(@RequestBody Reservation reservation,Model model) {
+		String tradeNo = "B"+Long.toHexString(System.currentTimeMillis());
+		reservation.setOrderId(tradeNo);
 		model.addAttribute("CheckoutRoom",reservation);
-		AllInOne all = new AllInOne("");
-		AioCheckOutOneTime creditCardPay = new AioCheckOutOneTime();
-		String merchantTradeNo = "Booking" + System.currentTimeMillis();
-		creditCardPay.setMerchantTradeNo(merchantTradeNo);
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-		creditCardPay.setMerchantTradeDate(dtf.format(LocalDateTime.now()));
-		creditCardPay.setTotalAmount(reservation.getTotalAmount());
-		creditCardPay.setTradeDesc("test Description");
-		creditCardPay.setItemName(reservation.getRoomName());
-		creditCardPay.setClientBackURL("http://localhost:8080/returnAfterSuccess");
-		creditCardPay.setReturnURL("http://211.23.128.214:5000");
-		creditCardPay.setNeedExtraPaidInfo("N");
-//		creditCardPay.setOrderResultURL("http://localhost:8080/home");
-		creditCardPay.setRedeem("N");
-		String checkoutPage = all.aioCheckOut(creditCardPay, null);
+		ECPayHelper ecPayHelper = new ECPayHelper();
+		String clientBackUrl = "http://localhost:8080/returnAfterSuccess";
+		String checkoutPage = ecPayHelper.getECpayPage(tradeNo, reservation.getTotalAmount(), reservation.getRoomName(),clientBackUrl);
 		return checkoutPage;
 	}
-	
-//	@PostMapping(path = "getECPay")
-//	@ResponseBody
-//	private String getECPay(@RequestBody Reservation reservation) {
-//		System.out.println(reservation.toString());
-//		return reservation.toString();
-//	}
 	
 	@GetMapping(path = "returnAfterSuccess")
 	private String success(Model model) {
 		Reservation checkOutRoom = (Reservation)model.getAttribute("CheckoutRoom");
+		checkOutRoom.setOrderStatus("已付款");
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		checkOutRoom.setPaymentDate(dtf.format(LocalDateTime.now()));
-		Reservation result = fService.save(checkOutRoom);
+		Reservation result = fService.finalCheckOut(checkOutRoom);
+		OrderList orderList = new OrderList();
+		orderList.setMemberid(result.getMemberID());
+		orderList.setOrderdate(result.getPaymentDate());
+		orderList.setOrderid(result.getOrderId());
+		orderList.setOrderstatus(result.getOrderStatus());
+		orderList.setOrdertype("飯店");
+		orderList.setTotalprice(Integer.parseInt(result.getTotalAmount()));
+		oService.addToOrderList(orderList);
 		model.addAttribute("checkOutRoom",result);
 		return finishOrderPage;
 	}
 	
-//	@PostMapping(path="CheckMacValueForEC")
-//	@ResponseBody
-//	private String checkMacValue() {
-//		System.out.println("被檢查了");
-//		return "1|OK";
-//	}
+	@PostMapping(path="CheckMacValueForEC")
+	@ResponseBody
+	private String checkMacValue() {
+		System.out.println("被檢查了");
+		return "1|OK";
+	}
 	
-//	@GetMapping(path = "getECpay")
-//	@ResponseBody
-//	private String getECPay() {
-//		AllInOne all = new AllInOne("");
-//		AioCheckOutOneTime creditCardPay = new AioCheckOutOneTime();
-//		creditCardPay.setMerchantTradeNo("testCompany0009");
-//		creditCardPay.setMerchantTradeDate("2017/01/01 08:05:23");
-//		creditCardPay.setTotalAmount("50");
-//		creditCardPay.setTradeDesc("test Description");
-//		creditCardPay.setItemName("TestItem");
-//		creditCardPay.setReturnURL("http://211.23.128.214:5000");
-//		creditCardPay.setNeedExtraPaidInfo("N");
-//		creditCardPay.setRedeem("Y");
-//		String form = all.aioCheckOut(creditCardPay, null);
-//		return form;
-//	}
 	
 }

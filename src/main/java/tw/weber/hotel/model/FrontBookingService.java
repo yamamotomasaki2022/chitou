@@ -43,11 +43,15 @@ public class FrontBookingService {
 		return rssRepo.crazy(dateStart, dateEnd, hotelID, number);
 	}
 	
-	public RoomStyle findRoomData(int roomStyleID) {
-		return rsRepo.findById(roomStyleID).get();
+	public RoomStyle findStyle(String dateStart,String dateEnd,int roomStyleID,int number) {
+		return rsRepo.findEmptyRoom(dateStart, dateEnd, roomStyleID, number).get();
 	}
 	
-	public Reservation save(Reservation reservation) {
+	public Room findEmptyRoom(String dateStart,String dateEnd,int styleID) {
+		return rRepo.findEmptyRoom(dateStart, dateEnd, styleID).get();
+	}
+	
+	public Reservation finalCheckOut(Reservation reservation) {
 		return reRepo.save(reservation);
 	}
 }

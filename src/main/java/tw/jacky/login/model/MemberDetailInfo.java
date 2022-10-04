@@ -47,8 +47,6 @@ public class MemberDetailInfo {
 	@JoinColumn(name= "memberid")
 	private MemberBasicInfo memberBasicInfo;
 	
-	
-	
 	public MemberDetailInfo() {
 		
 	}

@@ -78,7 +78,7 @@
             </div>
             <div class="st1">
                 <label for="" class="t1">房間</label>
-                <input type="hidden" id="roomID" name="roomID" value="${style.styleID}">
+                <input type="hidden" id="roomID" name="roomID" value="${room.roomID}">
                 <input type="hidden" id="roomName" name="roomName" value="${style.name}">
                 <label>${style.name}</label>
             </div>

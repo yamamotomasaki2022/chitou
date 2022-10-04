@@ -9,9 +9,20 @@
         dataType:'JSON',
         contentType:'application/json',
         success:function(data){
-            $('#account1').val(data.username);
+            $('#booker').val(data.username);
+            $('#email').val(data.email);
         }
-    });
+    }).then(
+	$.ajax({
+        type:'get',
+        url:'getAccountDetail',
+        dataType:'JSON',
+        contentType:'application/json',
+        success:function(data){
+            $('#phone').val(data.phone);
+        }
+    })
+	)
 });
 
 $('#toEC').on('click',function(e){

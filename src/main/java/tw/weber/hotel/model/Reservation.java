@@ -17,6 +17,9 @@ public class Reservation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int reservationID;
 	
+	@Column(name = "orderid")
+	private String orderId;
+	
 	@Column(name = "memberid")
 	private int memberID;
 	
@@ -49,6 +52,9 @@ public class Reservation {
 	
 	@Column(name = "hotelname")
 	private String hotelName;
+	
+	@Column(name = "orderstatus")
+	private String orderStatus;
 	
 	@Transient
 	private String totalAmount;
@@ -187,15 +193,36 @@ public class Reservation {
 	public void setTotalAmount(String totalAmount) {
 		this.totalAmount = totalAmount;
 	}
+	
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 
 	@Override
 	public String toString() {
-		return "Reservation [reservationID=" + reservationID + ", memberID=" + memberID + ", booker=" + booker
-				+ ", email=" + email + ", phone=" + phone + ", roomID=" + roomID + ", roomName=" + roomName
-				+ ", checkInDate=" + checkInDate + ", checkOutDate=" + checkOutDate + ", paymentDate=" + paymentDate
-				+ ", addBed=" + addBed + ", numberOfPeople=" + numberOfPeople + ", hotelName=" + hotelName
-				+ ", totalAmount=" + totalAmount + "]";
+		return "Reservation [reservationID=" + reservationID + ", orderId=" + orderId + ", memberID=" + memberID
+				+ ", booker=" + booker + ", email=" + email + ", phone=" + phone + ", roomID=" + roomID + ", roomName="
+				+ roomName + ", checkInDate=" + checkInDate + ", checkOutDate=" + checkOutDate + ", paymentDate="
+				+ paymentDate + ", addBed=" + addBed + ", numberOfPeople=" + numberOfPeople + ", hotelName=" + hotelName
+				+ ", orderStatus=" + orderStatus + ", totalAmount=" + totalAmount + "]";
 	}
+
+	
+
+	
+	
 
 	
 	
