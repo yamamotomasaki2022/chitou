@@ -34,17 +34,8 @@
 					<th scope="col">訂單類別：${order.ordertype}</th>
 					<th scope="col">下訂日：${order.orderdate}</th>
 					<th scope="col">總金額${order.totalprice}</th>
-					<c:choose>
-						<c:when test="${order.orderstatus == 1}"> 										
-						<th scope="col">訂單狀態：處理中</th>
-						</c:when>
-						<c:when test="${order.orderstatus == 2}" > 										
-						<th scope="col">訂單狀態：已完成</th>
-						</c:when>
-						<c:when test="${order.orderstatus == 3}" > 										
-						<th scope="col">訂單狀態：已取消</th>>						
-						</c:when>
-					</c:choose>
+					<th scope="col">狀態：${order.orderstatus}</th>
+
 				</tr>
 				</c:forEach>
 			</thead>

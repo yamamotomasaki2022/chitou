@@ -46,17 +46,8 @@
 						<td>${order.orderdate}</td>
 						<td>${order.orderid}</td>
 						<td>${order.totalprice}</td>
-						<c:choose>
-						<c:when test="${order.orderstatus == 1}"> 										
-						<td>處理中</td>
-						</c:when>
-						<c:when test="${order.orderstatus == 2}" > 										
-						<td>已完成</td>
-						</c:when>
-						<c:when test="${order.orderstatus == 3}" > 										
-						<td>已取消</td>						
-						</c:when>
-						</c:choose>
+						<td>狀態：${order.orderstatus}</td>
+					
 						
 						
 						<td>
