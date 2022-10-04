@@ -2,12 +2,7 @@ package tw.weber.hotel.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -26,12 +20,12 @@ import tw.jacky.login.model.MemberBasicInfo;
 import tw.weber.hotel.model.FrontBookingService;
 import tw.weber.hotel.model.Hotel;
 import tw.weber.hotel.model.HotelforSearch;
-import tw.weber.hotel.model.Room;
+import tw.weber.hotel.model.Reservation;
 import tw.weber.hotel.model.RoomStyle;
 import tw.weber.hotel.model.RoomStyleforSearch;
 
 @Controller
-@SessionAttributes({"memberbasicinfo","memberdetailinfo","roomForCheckout"})
+@SessionAttributes({"memberbasicinfo","memberdetailinfo","CheckoutRoom"})
 //@RequestMapping(path = "/member")
 public class HotelFrontController {
 
@@ -43,7 +37,7 @@ public class HotelFrontController {
 	private String searchPage = suffix + "SearchResult";
 	private String hotelPage = suffix + "DisplayHotel";
 	private String bookingPage = suffix + "orderHotel";
-	private String finishOrderPage = suffix + "ShowOrderContent";
+	private String finishOrderPage = suffix + "CheckoutInfo";
 	
 	@GetMapping(path = "hotel")
 	private String frontPage() {
@@ -137,17 +131,17 @@ public class HotelFrontController {
 	
 	@PostMapping(path = "getECPay")
 	@ResponseBody
-	private String getECPay(@RequestParam("TotalAmount")String totalAmount,
-							@RequestParam("ItemName")String itemName) {
+	private String getECPay(@RequestBody Reservation reservation,Model model) {
+		model.addAttribute("CheckoutRoom",reservation);
 		AllInOne all = new AllInOne("");
 		AioCheckOutOneTime creditCardPay = new AioCheckOutOneTime();
-		String merchantTradeNo = "HotelBooking" + System.currentTimeMillis();
+		String merchantTradeNo = "Booking" + System.currentTimeMillis();
 		creditCardPay.setMerchantTradeNo(merchantTradeNo);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		creditCardPay.setMerchantTradeDate(dtf.format(LocalDateTime.now()));
-		creditCardPay.setTotalAmount(totalAmount);
+		creditCardPay.setTotalAmount(reservation.getTotalAmount());
 		creditCardPay.setTradeDesc("test Description");
-		creditCardPay.setItemName(itemName);
+		creditCardPay.setItemName(reservation.getRoomName());
 		creditCardPay.setClientBackURL("http://localhost:8080/returnAfterSuccess");
 		creditCardPay.setReturnURL("http://211.23.128.214:5000");
 		creditCardPay.setNeedExtraPaidInfo("N");
@@ -157,8 +151,20 @@ public class HotelFrontController {
 		return checkoutPage;
 	}
 	
+//	@PostMapping(path = "getECPay")
+//	@ResponseBody
+//	private String getECPay(@RequestBody Reservation reservation) {
+//		System.out.println(reservation.toString());
+//		return reservation.toString();
+//	}
+	
 	@GetMapping(path = "returnAfterSuccess")
-	private String success() {
+	private String success(Model model) {
+		Reservation checkOutRoom = (Reservation)model.getAttribute("CheckoutRoom");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		checkOutRoom.setPaymentDate(dtf.format(LocalDateTime.now()));
+		Reservation result = fService.save(checkOutRoom);
+		model.addAttribute("checkOutRoom",result);
 		return finishOrderPage;
 	}
 	

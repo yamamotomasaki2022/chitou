@@ -50,25 +50,26 @@
         <fieldset>
             <legend>基本資料</legend>
             <button type="button" id="accountProfile" style="float:right;">會員資料填入</button><br>
-            <input type="hidden" name="memberID" value="${memberbasicinfo.memberid}">
+            <input type="hidden" id="memberID" name="memberID" value="${memberbasicinfo.memberid}">
             <div class="st1">
                 <label for="account1" class="t1">姓名:</label>
-                <input type="text" id="account1" name="booker" size="10" autofocus autocomplete="off"><br>
+                <input type="text" id="booker" name="booker" size="10" autofocus autocomplete="off"><br>
             請輸入旅客的英文姓名，必須與護照或其他身分證明文件相同。
             </div>
             <div class="st1">
                 <label for="" class="t1">E-Mail</label>
-                <input type="email" name="email">
+                <input type="email" id="email" name="email">
             </div>
             <div class="st1">
                 <label for="" class="t1">電話</label>
-                <input type="text" name="phone">
+                <input type="text" id="phone" name="phone">
             </div>
         </fieldset>
         <fieldset>
             <legend>客房資訊</legend>
             <div class="st1">
                 <label for="" class="t1">飯店名稱</label>
+                <input type="hidden" id="hotelName" name="hotelName" value="${hotel.name}">
                 <label>${hotel.name}</label>
             </div>
             <div class="st1">
@@ -77,20 +78,43 @@
             </div>
             <div class="st1">
                 <label for="" class="t1">房間</label>
-                <input type="hidden" name="roomID" value="${style.styleID}">
+                <input type="hidden" id="roomID" name="roomID" value="${style.styleID}">
+                <input type="hidden" id="roomName" name="roomName" value="${style.name}">
                 <label>${style.name}</label>
             </div>
             <div class="st1">
                 <label for="" class="t1">人數</label>
+                <input type="hidden" id="numberOfPeople" name="number" value="${number}">
                 <label>${number}</label>
             </div>
             <div class="st1">
                 <label for="" class="t1">入住時間</label>
+                <input type="hidden" id="checkInDate" name="checkInDate" value="${checkInDate}">
                 <label>${checkInDate}</label>
             </div>
             <div class="st1">
                 <label for="" class="t1">退房時間</label>
+                <input type="hidden" id="checkOutDate" name="checkOutDate" value="${checkOutDate}">
                 <label>${checkOutDate}</label>
+            </div>
+            <div class="st1">
+                <label for="" class="t1">加床</label>
+                <select id="addBed">
+                <option value="不加床" selected>不加床</option>
+                <optgroup label="單人床">
+                <option value="1 張單人床">1 張單人床</option>
+                <option value="2 張單人床">2 張單人床</option>
+                </optgroup>
+                <optgroup label="雙人床">
+                <option value="1 張雙人床">1 張雙人床</option>
+                <option value="2 張單人床">2 張雙人床</option>
+                </optgroup>
+                </select>
+            </div>
+            <div class="st1">
+                <label for="" class="t1">總價格</label>
+                <input type="hidden" id="totalAmount" name="totalAmount" value="${style.price}">
+                <label>${style.price}</label>
             </div>
             <div class="st1">
                 <label for="comment1" class="t1">有其他需求嗎?</label>
@@ -104,5 +128,6 @@
     </form>
 </div>    
     <script type="text/javascript" src="/js/weber/ecPay.js"></script>
+    
 </body>
 </html>

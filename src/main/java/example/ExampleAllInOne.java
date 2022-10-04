@@ -27,7 +27,7 @@ public class ExampleAllInOne {
 	public static AllInOne all;
 	public static void main(String[] args) {
 		initial();
-		System.out.println("compare CheckMacValue method testing result: " + cmprChkMacValue());
+//		System.out.println("compare CheckMacValue method testing result: " + cmprChkMacValue());
 //		System.out.println("apple pay create order: " + postCreateServerOrder());
 //		System.out.println("doAction: " + postDoAction());
 //		System.out.println("queryTradeInfo: " + postQueryTradeInfo());
@@ -41,7 +41,7 @@ public class ExampleAllInOne {
 //		System.out.println("aioCheckOutCVS: " + genAioCheckOutCVS());
 //		System.out.println("aioCheckOutBARCODE: " + genAioCheckOutBARCODE());
 //		System.out.println("aioCheckOutDevide: " + genAioCheckOutDevide());
-//		System.out.println("aioCheckOutOneTime: " + genAioCheckOutOneTime());
+		System.out.println("aioCheckOutOneTime: " + genAioCheckOutOneTime());
 //		System.out.println("aioCheckOutPeriod: " + genAioCheckOutPeriod());
 //		System.out.println("aioCheckOutWebATM: " + genAioCheckOutWebATM());
 	}

@@ -24,6 +24,9 @@ public class FrontBookingService {
 	@Autowired
 	private RoomStyleRepository rsRepo;
 	
+	@Autowired
+	private ReservationRepository reRepo;
+	
 	public List<Room> find(){
 		return rRepo.find();
 	}
@@ -42,5 +45,9 @@ public class FrontBookingService {
 	
 	public RoomStyle findRoomData(int roomStyleID) {
 		return rsRepo.findById(roomStyleID).get();
+	}
+	
+	public Reservation save(Reservation reservation) {
+		return reRepo.save(reservation);
 	}
 }
