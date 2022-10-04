@@ -7,9 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
 
 @Entity
@@ -24,9 +22,11 @@ public class Cart implements Serializable {
 	@Column(name = "QUANTITY")
 	private Integer quantity;
 	
-	
 	@Column(name = "ATTRACTIONID")
 	private Integer attractionid;
+	
+	@Column(name = "PLANID")
+	private Integer planid;
 	
 	@Column(name = "ATTRACTIONNAME")
 	private String attractionname;
@@ -37,9 +37,9 @@ public class Cart implements Serializable {
 	@Column(name = "PLANFEE")
 	private Integer planfee;
 	
-	
-	@Column(name = "PLANID")
-	private Integer planid;
+	@Column(name = "MEMBERID")
+	private Integer memberid;
+		
 	
 	public Cart() {
 	}
@@ -98,6 +98,14 @@ public class Cart implements Serializable {
 
 	public void setPlanid(Integer planid) {
 		this.planid = planid;
+	}
+
+	public Integer getMemberid() {
+		return memberid;
+	}
+
+	public void setMemberid(Integer memberid) {
+		this.memberid = memberid;
 	}
 	
 
