@@ -68,8 +68,10 @@ table {
 	</thead>
 	<tbody>
 <%
-List<Article> list=(List)request.getAttribute("search");
-for (Article bean : list) {
+List<Category> list=(List)request.getAttribute("searchBean");
+for (Category bean : list) {
+	List<Article> searchBean = articleService.findType(bean.getCategoryID());
+//	for(Article searchBean:artiList) {
 	int title=bean.getTitle().length();
 	
 		%>

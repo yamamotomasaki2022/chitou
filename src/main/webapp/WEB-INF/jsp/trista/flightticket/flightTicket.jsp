@@ -47,7 +47,9 @@
 	</p>
 			<form action="searchFlightTicket" method="post" enctype="multipart/form-data">
 			<input type="text" name="search" class="form-control">
-			<input type="submit" name="searchno" class="btn btn-info" value="搜尋">
+			<button type="submit" name="searchno" class="btn btn-info">
+			<i class="ti-search"></i>
+			</button>
 			</form>
 			
 	<div class="table-responsive">
