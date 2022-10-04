@@ -28,6 +28,8 @@ public class GmailController {
 	 	@Autowired
 	 	GmailService gmailService;
 	 	
+	 	String path_main_login = "jacky/login/";
+	 	
 	 	
 	 	
 //		嘗試發送email
@@ -90,7 +92,6 @@ public class GmailController {
 		
 //		嘗試發送email 跳轉到想要的thymeleaf的html界面
 		@GetMapping("/mail_test3")
-		@ResponseBody
 		public String sendEmail3(){
 //			寄信的人
 			String fromEmail = "eeit49group1chitou@gmail.com";
@@ -113,12 +114,12 @@ public class GmailController {
 					+ "</body>\r\n"
 					+ "</html>";
 			gmailService.mimemail(fromEmail, toEmaiList, subject, html);
-			return "傳送email成功";
+			return  "jacky/SendEmailPage";
 		}
 //		test for thyleaf
 		@GetMapping(path="/th")
 		public String tryout() {
-			return "test.html";
+			return "test";
 		}
 		
 		
