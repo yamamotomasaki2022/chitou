@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,7 +61,7 @@ public class ArticleController {
 //	●測試
 //	--主頁輪播測試
 //	●會員
-//	--文章管理(會員)
+//	--文章管理主頁(會員)
 //	--前往新增文章
 //	--新增文章
 //	--前往更新文章
@@ -78,10 +79,19 @@ public class ArticleController {
 	public String test() {
 		return "georgia/article/NewFile";
 	}
-	//	**********主頁輪播測試*********************************************
-	@RequestMapping(path = "/article.overview",method = RequestMethod.GET)
-	public String overviewMain() {
-		return "georgia/article/articleOverviewMain";
+	
+	//***************期待成為主頁***************
+	@RequestMapping(path = "/article.main",method = RequestMethod.GET)
+	public String test2() {
+		return "georgia/article/NewFile2";
+	}
+	
+	//********************AJAX  TEST************************
+	@GetMapping(path = "/article.test3")
+	public String test3(Model m) {
+		List<Article> list = articleService.findAll();
+		m.addAttribute("list", list);
+		return "georgia/article/NewFile3";
 	}
 	
 //	***************************************************************
@@ -90,7 +100,7 @@ public class ArticleController {
 //	***       會員 會員 會員 會員 會員 會員 會員 會員 會員 會員              ***
 //	***************************************************************
 	
-//	**********文章管理(會員)********************************************
+//	**********文章管理主頁(會員)********************************************
 	@RequestMapping(path = "/article.user",method = RequestMethod.GET)
 	public String articleUserMain(Model m) {
 
