@@ -1,0 +1,1697 @@
+@charset "utf-8";
+/* CSS Document */
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+* {
+    -webkit-text-size-adjust: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+em {
+    /*font-style:normal;*/
+}
+
+fieldset,
+img {
+    border: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+abbr,
+acronym {
+    border: 0;
+}
+
+.CLEAR {
+    clear: both;
+    height: 0;
+    font-size: 0px;
+    line-height: 0;
+}
+
+
+/**
+ * Markup free clearing
+ * Details: http://perishablepress.com/press/2009/12/06/new-clearfix-hack
+ */
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* IE6 */
+
+* html .clearfix {
+    height: 1%;
+}
+
+/* IE7 */
+
+*:first-child+html .clearfix {
+    min-height: 1%;
+}
+
+@charset "utf-8";
+/* CSS Document */
+
+@import url(reset.css);
+@import url(fontawesome/css/font-awesome.min.css);
+
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+b,
+i,
+a,
+u,
+strong {
+    font-family: Arial, Helvetica, sans-serif, "微軟正黑體";
+    letter-spacing: 1px;
+}
+
+.wrap {
+    width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+body {}
+
+.outerWrap {
+    width: 100%;
+}
+
+
+/*==header==*/
+header {
+    width: 100%;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+header .wrap {
+    padding: 15px 0;
+}
+
+header h1 {
+    float: left;
+    width: 350px;
+    box-sizing: border-box;
+}
+
+header h1 a {
+    display: block;
+    width: 350px;
+    height: 80px;
+    background: url(../images/logo.png) no-repeat;
+    text-indent: -9999px;
+}
+
+header .topmenu {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1px 0 20px;
+}
+
+header .topmenu ul {
+    display: inline-block;
+}
+
+header .topmenu ul li {
+    float: left;
+}
+
+header .topmenu ul li a {
+    display: block;
+    padding: 0 40px;
+    color: #222;
+    font-size: 21px;
+    transition: all 0.4s ease;
+}
+
+header .topmenu ul li a:hover {
+    color: #ff8c3f;
+    font-weight: bold;
+}
+}
+
+
+
+/* 通用 */
+::-webkit-input-placeholder {
+    color: #ff8c3f;
+}
+
+::-moz-placeholder {
+    color: #ff8c3f;
+}
+
+/* firefox 19+ */
+:-ms-input-placeholder {
+    color: #ff8c3f;
+}
+
+/* ie */
+input:-moz-placeholder {
+    color: #ff8c3f;
+}
+
+
+header .topBox {
+    float: right;
+    padding-top: 5px;
+}
+
+header .topBox a {
+    display: inline-block;
+    font-size: 14px;
+    color: #ff8c3f;
+}
+
+header .topBox a:hover {
+    color: #ff8c3f;
+}
+
+
+/*==footer==*/
+#footer {
+    width: 100%;
+    background: #ff8c3f;
+    box-sizing: border-box;
+}
+
+footer .copy_m {
+    display: none;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer .copy_m p {
+    font-size: 14px;
+    color: #ff8c3f;
+    line-height: 1.8;
+}
+
+
+/*==手機板選單==*/
+.m_menu {
+    display: none;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(126, 126, 126, 0.68);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.mask {
+    display: none;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 60px;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.m_menu .controlBox {
+    background: #fff;
+    position: relative;
+    z-index: 99;
+}
+
+.m_menu .controlBox a.main {
+    display: block;
+    float: left;
+    margin-right: 5px;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    color: #ff8c3f;
+    line-height: 50px;
+    text-align: center;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.m_menu .controlBox a.main i {
+    line-height: 50px;
+}
+
+.m_menu .controlBox .m_logo {
+    float: left;
+}
+
+.m_menu .controlBox .m_logo img {
+    display: block;
+    width: 250px;
+    padding-top: 5px;
+}
+
+/*手機menu內容*/
+.m_menu .hideBox {
+    background: #fbfbfb;
+    width: 230px;
+    padding: 50px 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    position: fixed;
+    left: -230px;
+    top: 0;
+    bottom: 0;
+    z-index: 11;
+    transition: all 0.4s ease;
+    box-sizing: border-box;
+}
+
+.m_menu .hideBox.show {
+    left: 0;
+}
+
+.m_menu ul.nav {}
+
+.m_menu ul.nav li {
+    border-top: 1px #ddd solid;
+}
+
+.m_menu ul.nav li a {
+    display: block;
+    font-size: 15px;
+    color: #222;
+    text-align: center;
+    position: relative;
+    padding: 15px 0;
+}
+
+.m_menu ul.nav li a i {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin-top: -7px;
+}
+
+.m_menu ul.nav li .submenu {
+    display: none;
+}
+
+.m_menu ul.nav li .submenu a {
+    font-size: 14px;
+    color: #4672a8;
+    padding: 10px 0;
+    border-bottom: 1px #ff8c3f dotted;
+}
+
+.m_menu ul.nav li .submenu a>b {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    color: #888;
+}
+
+.m_menu .m_funBox {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 50px;
+}
+
+.m_menu .m_funBox a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 18px;
+    background: #ff8c3f;
+    color: #fff;
+    border-radius: 50%;
+    transition: all 0.4s ease;
+}
+
+.m_menu .m_funBox a.youtube i {
+    font-size: 24px;
+}
+
+.m_menu .m_funBox a i {
+    line-height: 35px;
+}
+
+.m_menu .m_funBox a:hover {
+    background: #ff8c3f;
+}
+
+
+/*==內頁共用==*/
+.insideWrap {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 0 80px 0;
+}
+
+.ins_bn {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.breadcrumb {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 0 0;
+    text-align: right;
+}
+
+.breadcrumb p {
+    font-size: 15px;
+    color: #ff8c3f;
+}
+
+.breadcrumb p a {
+    display: inline-block;
+    font-size: 15px;
+    color: #ff8c3f;
+    transition: all 0.4s ease;
+}
+
+.breadcrumb p a:hover {
+    color: #ff8c3f;
+}
+
+.breadcrumb p span {
+    padding: 0 10px;
+}
+
+.ins_titleBox {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0 20px;
+}
+
+.ins_titleBox h2 {
+    font-size: 26px;
+    color: #ff8c3f;
+}
+
+.ins_navBox {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0 20px;
+}
+
+.ins_navBox ul {
+    display: inline-block;
+}
+
+.ins_navBox ul li {
+    float: left;
+    padding: 0 15px;
+}
+
+.ins_navBox ul li a {
+    display: block;
+    font-size: 16px;
+    color: #001750;
+    font-weight: bold;
+    padding: 0 5px;
+    transition: all 0.4s ease;
+}
+
+.ins_navBox ul li a:hover {
+    color: #f65356;
+}
+
+.ins_navBox ul li a.active {
+    color: #f65356;
+    position: relative;
+}
+
+.ins_navBox ul li a.active:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100%;
+    height: 2px;
+    background: #f65356;
+}
+
+.ins_navBox ul li a.active:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -20px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #f65356 transparent transparent transparent;
+    margin-left: -10px;
+}
+
+.contentWrap {
+    width: 100%;
+    padding: 40px 0 0 0;
+}
+
+.contentWrap .wrap .backBox {
+    text-align: right;
+}
+
+.contentWrap .wrap .backBox a {
+    display: inline-block;
+    font-size: 14px;
+    color: #fff;
+    background: #4672a8;
+    padding: 5px 20px;
+    border-radius: 6px;
+    transition: all 0.4s ease;
+}
+
+.contentWrap .wrap .backBox a:hover {
+    background: #ff8c3f;
+}
+
+
+/*==頁碼==*/
+.pageBox {
+    width: 100%;
+    margin: 50px auto 0;
+    text-align: center;
+}
+
+.pageBox ul {
+    display: inline-block;
+}
+
+.pageBox ul li {
+    float: left;
+    padding: 0 2px;
+    box-sizing: border-box;
+}
+
+.pageBox ul li a {
+    display: inline-block;
+    color: #777;
+    font-size: 15px;
+    padding: 0 5px;
+    transition: all 0.4s ease;
+}
+
+.pageBox ul li a:hover {
+    color: #4672a8;
+}
+
+.pageBox ul li a.active {
+    color: #4672a8;
+}
+
+.pageBox ul li a.function {
+    font-size: 12px;
+    background: #ff8c3f;
+    color: #fff;
+    border-radius: 2px;
+    padding: 3px 5px;
+    text-transform: uppercase;
+}
+
+.pageBox ul li a.function:hover {
+    background: #ff8c3f;
+}
+
+
+
+/*手機板次選單*/
+.subNavWrap {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.subNav {
+    display: none;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.subNav a.main {
+    display: block;
+    font-size: 15px;
+    color: #fff;
+    background: #ff8c3f;
+    padding: 10px 20px;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+}
+
+.subNav a.main b {
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.subNav a.main i {
+    display: block;
+    color: #fff;
+    font-size: 15px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -6px;
+}
+
+.subNav ul {
+    display: none;
+    width: 100%;
+    background: #fff;
+    border: 1px #ddd solid;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 99;
+    box-sizing: border-box;
+    padding: 5px 0;
+    border-bottom: 2px #ddd solid;
+}
+
+.subNav ul li a {
+    display: block;
+    font-size: 15px;
+    color: #666;
+    padding: 5px 20px;
+    border-top: 1px #ddd solid;
+    transition: all 0.4s ease;
+}
+
+.subNav ul li a.active {
+    color: #f65356;
+    font-weight: bold;
+}
+
+.subNav ul li a:hover.active {
+    color: #ff8c3f;
+    padding: 5px 20px;
+}
+
+.subNav ul li:first-child a {
+    border-top: 0;
+}
+
+.subNav ul li a:hover {
+    color: #ff8c3f;
+    padding: 5px 25px;
+}
+
+@media (max-width:1200px) {
+    .wrap {
+        width: 100%;
+    }
+}
+
+@media (max-width:1090px) {
+    header nav.menu ul li {
+        padding-left: 20px;
+    }
+}
+
+@media (max-width:1034px) {
+    .wrap {
+        width: 100%;
+    }
+
+    header {
+        display: none;
+    }
+
+    .m_menu {
+        display: block;
+    }
+
+    .breadcrumb {
+        padding-right: 20px;
+    }
+
+    .insideWrap .ins_bn {
+        margin-top: 50px;
+    }
+
+}
+
+
+@media (max-width:980px) {
+    footer .wrap .navBox {
+        margin-left: 50px;
+    }
+}
+
+@media (max-width:768px) {
+    footer .copy_m {
+        display: block;
+    }
+
+    .ins_navBox {
+        display: none;
+    }
+
+    .subNav {
+        display: block;
+    }
+
+    .ins_titleBox {
+        padding: 10px 0 15px;
+    }
+}
+
+
+@media (max-width:640px) {}
+
+@media (max-width:480px) {
+    footer {
+        background: #FFF;
+    }
+
+    footer .wrap {
+        display: none;
+    }
+
+    footer .copy_m {
+        padding: 20px 0;
+    }
+
+
+    .breadcrumb {
+        display: none;
+    }
+
+    .ins_titleBox {
+        padding: 30px 0 10px;
+    }
+
+    .insideWrap .ins_bn {
+        height: 100px;
+    }
+
+    .subNavWrap {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width:420px) {
+    footer .copy_m p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width:375px) {
+    .ins_titleBox h2 {
+        font-size: 24px;
+    }
+
+    .subNavWrap {
+        padding: 0 10px;
+    }
+}
+
+@charset "utf-8";
+/* CSS Document */
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+* {
+    -webkit-text-size-adjust: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+em {
+    /*font-style:normal;*/
+}
+
+fieldset,
+img {
+    border: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+abbr,
+acronym {
+    border: 0;
+}
+
+.CLEAR {
+    clear: both;
+    height: 0;
+    font-size: 0px;
+    line-height: 0;
+}
+
+
+/**
+ * Markup free clearing
+ * Details: http://perishablepress.com/press/2009/12/06/new-clearfix-hack
+ */
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* IE6 */
+
+* html .clearfix {
+    height: 1%;
+}
+
+/* IE7 */
+
+*:first-child+html .clearfix {
+    min-height: 1%;
+}
+
+@charset "utf-8";
+/* CSS Document */
+
+@import url(reset.css);
+@import url(fontawesome/css/font-awesome.min.css);
+
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+b,
+i,
+a,
+u,
+strong {
+    font-family: Arial, Helvetica, sans-serif, "微軟正黑體";
+    letter-spacing: 1px;
+}
+
+.wrap {
+    width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+body {}
+
+.outerWrap {
+    width: 100%;
+}
+
+
+/*==header==*/
+header {
+    width: 100%;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+header .wrap {
+    padding: 15px 0;
+}
+
+header h1 {
+    float: left;
+    width: 350px;
+    box-sizing: border-box;
+}
+
+header h1 a {
+    display: block;
+    width: 350px;
+    height: 80px;
+    background: url(../images/logo.png) no-repeat;
+    text-indent: -9999px;
+}
+
+header .topmenu {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1px 0 20px;
+}
+
+header .topmenu ul {
+    display: inline-block;
+}
+
+header .topmenu ul li {
+    float: left;
+}
+
+header .topmenu ul li a {
+    display: block;
+    padding: 0 40px;
+    color: #222;
+    font-size: 21px;
+    transition: all 0.4s ease;
+}
+
+header .topmenu ul li a:hover {
+    color: #ff8c3f;
+    font-weight: bold;
+}
+}
+
+
+
+/* 通用 */
+::-webkit-input-placeholder {
+    color: #ff8c3f;
+}
+
+::-moz-placeholder {
+    color: #ff8c3f;
+}
+
+/* firefox 19+ */
+:-ms-input-placeholder {
+    color: #ff8c3f;
+}
+
+/* ie */
+input:-moz-placeholder {
+    color: #ff8c3f;
+}
+
+
+header .topBox {
+    float: right;
+    padding-top: 5px;
+}
+
+header .topBox a {
+    display: inline-block;
+    font-size: 14px;
+    color: #ff8c3f;
+}
+
+header .topBox a:hover {
+    color: #ff8c3f;
+}
+
+
+/*==footer==*/
+#footer {
+    width: 100%;
+    background: #ff8c3f;
+    box-sizing: border-box;
+}
+
+footer .copy_m {
+    display: none;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer .copy_m p {
+    font-size: 14px;
+    color: #ff8c3f;
+    line-height: 1.8;
+}
+
+
+/*==手機板選單==*/
+.m_menu {
+    display: none;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(126, 126, 126, 0.68);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.mask {
+    display: none;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 60px;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.m_menu .controlBox {
+    background: #fff;
+    position: relative;
+    z-index: 99;
+}
+
+.m_menu .controlBox a.main {
+    display: block;
+    float: left;
+    margin-right: 5px;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    color: #ff8c3f;
+    line-height: 50px;
+    text-align: center;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.m_menu .controlBox a.main i {
+    line-height: 50px;
+}
+
+.m_menu .controlBox .m_logo {
+    float: left;
+}
+
+.m_menu .controlBox .m_logo img {
+    display: block;
+    width: 250px;
+    padding-top: 5px;
+}
+
+/*手機menu內容*/
+.m_menu .hideBox {
+    background: #fbfbfb;
+    width: 230px;
+    padding: 50px 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    position: fixed;
+    left: -230px;
+    top: 0;
+    bottom: 0;
+    z-index: 11;
+    transition: all 0.4s ease;
+    box-sizing: border-box;
+}
+
+.m_menu .hideBox.show {
+    left: 0;
+}
+
+.m_menu ul.nav {}
+
+.m_menu ul.nav li {
+    border-top: 1px #ddd solid;
+}
+
+.m_menu ul.nav li a {
+    display: block;
+    font-size: 15px;
+    color: #222;
+    text-align: center;
+    position: relative;
+    padding: 15px 0;
+}
+
+.m_menu ul.nav li a i {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin-top: -7px;
+}
+
+.m_menu ul.nav li .submenu {
+    display: none;
+}
+
+.m_menu ul.nav li .submenu a {
+    font-size: 14px;
+    color: #4672a8;
+    padding: 10px 0;
+    border-bottom: 1px #ff8c3f dotted;
+}
+
+.m_menu ul.nav li .submenu a>b {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    color: #888;
+}
+
+.m_menu .m_funBox {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 50px;
+}
+
+.m_menu .m_funBox a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 18px;
+    background: #ff8c3f;
+    color: #fff;
+    border-radius: 50%;
+    transition: all 0.4s ease;
+}
+
+.m_menu .m_funBox a.youtube i {
+    font-size: 24px;
+}
+
+.m_menu .m_funBox a i {
+    line-height: 35px;
+}
+
+.m_menu .m_funBox a:hover {
+    background: #ff8c3f;
+}
+
+
+/*==內頁共用==*/
+.insideWrap {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 0 80px 0;
+}
+
+.ins_bn {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.breadcrumb {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 0 0;
+    text-align: right;
+}
+
+.breadcrumb p {
+    font-size: 15px;
+    color: #ff8c3f;
+}
+
+.breadcrumb p a {
+    display: inline-block;
+    font-size: 15px;
+    color: #ff8c3f;
+    transition: all 0.4s ease;
+}
+
+.breadcrumb p a:hover {
+    color: #ff8c3f;
+}
+
+.breadcrumb p span {
+    padding: 0 10px;
+}
+
+.ins_titleBox {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0 20px;
+}
+
+.ins_titleBox h2 {
+    font-size: 26px;
+    color: #ff8c3f;
+}
+
+.ins_navBox {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0 20px;
+}
+
+.ins_navBox ul {
+    display: inline-block;
+}
+
+.ins_navBox ul li {
+    float: left;
+    padding: 0 15px;
+}
+
+.ins_navBox ul li a {
+    display: block;
+    font-size: 16px;
+    color: #001750;
+    font-weight: bold;
+    padding: 0 5px;
+    transition: all 0.4s ease;
+}
+
+.ins_navBox ul li a:hover {
+    color: #f65356;
+}
+
+.ins_navBox ul li a.active {
+    color: #f65356;
+    position: relative;
+}
+
+.ins_navBox ul li a.active:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100%;
+    height: 2px;
+    background: #f65356;
+}
+
+.ins_navBox ul li a.active:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -20px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #f65356 transparent transparent transparent;
+    margin-left: -10px;
+}
+
+.contentWrap {
+    width: 100%;
+    padding: 40px 0 0 0;
+}
+
+.contentWrap .wrap .backBox {
+    text-align: right;
+}
+
+.contentWrap .wrap .backBox a {
+    display: inline-block;
+    font-size: 14px;
+    color: #fff;
+    background: #4672a8;
+    padding: 5px 20px;
+    border-radius: 6px;
+    transition: all 0.4s ease;
+}
+
+.contentWrap .wrap .backBox a:hover {
+    background: #ff8c3f;
+}
+
+
+/*==頁碼==*/
+.pageBox {
+    width: 100%;
+    margin: 50px auto 0;
+    text-align: center;
+}
+
+.pageBox ul {
+    display: inline-block;
+}
+
+.pageBox ul li {
+    float: left;
+    padding: 0 2px;
+    box-sizing: border-box;
+}
+
+.pageBox ul li a {
+    display: inline-block;
+    color: #777;
+    font-size: 15px;
+    padding: 0 5px;
+    transition: all 0.4s ease;
+}
+
+.pageBox ul li a:hover {
+    color: #4672a8;
+}
+
+.pageBox ul li a.active {
+    color: #4672a8;
+}
+
+.pageBox ul li a.function {
+    font-size: 12px;
+    background: #ff8c3f;
+    color: #fff;
+    border-radius: 2px;
+    padding: 3px 5px;
+    text-transform: uppercase;
+}
+
+.pageBox ul li a.function:hover {
+    background: #ff8c3f;
+}
+
+
+
+/*手機板次選單*/
+.subNavWrap {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.subNav {
+    display: none;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.subNav a.main {
+    display: block;
+    font-size: 15px;
+    color: #fff;
+    background: #ff8c3f;
+    padding: 10px 20px;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+}
+
+.subNav a.main b {
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.subNav a.main i {
+    display: block;
+    color: #fff;
+    font-size: 15px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -6px;
+}
+
+.subNav ul {
+    display: none;
+    width: 100%;
+    background: #fff;
+    border: 1px #ddd solid;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 99;
+    box-sizing: border-box;
+    padding: 5px 0;
+    border-bottom: 2px #ddd solid;
+}
+
+.subNav ul li a {
+    display: block;
+    font-size: 15px;
+    color: #666;
+    padding: 5px 20px;
+    border-top: 1px #ddd solid;
+    transition: all 0.4s ease;
+}
+
+.subNav ul li a.active {
+    color: #f65356;
+    font-weight: bold;
+}
+
+.subNav ul li a:hover.active {
+    color: #ff8c3f;
+    padding: 5px 20px;
+}
+
+.subNav ul li:first-child a {
+    border-top: 0;
+}
+
+.subNav ul li a:hover {
+    color: #ff8c3f;
+    padding: 5px 25px;
+}
+
+@media (max-width:1200px) {
+    .wrap {
+        width: 100%;
+    }
+}
+
+@media (max-width:1090px) {
+    header nav.menu ul li {
+        padding-left: 20px;
+    }
+}
+
+@media (max-width:1034px) {
+    .wrap {
+        width: 100%;
+    }
+
+    header {
+        display: none;
+    }
+
+    .m_menu {
+        display: block;
+    }
+
+    .breadcrumb {
+        padding-right: 20px;
+    }
+
+    .insideWrap .ins_bn {
+        margin-top: 50px;
+    }
+
+}
+
+
+@media (max-width:980px) {
+    footer .wrap .navBox {
+        margin-left: 50px;
+    }
+}
+
+@media (max-width:768px) {
+    footer .copy_m {
+        display: block;
+    }
+
+    .ins_navBox {
+        display: none;
+    }
+
+    .subNav {
+        display: block;
+    }
+
+    .ins_titleBox {
+        padding: 10px 0 15px;
+    }
+}
+
+
+@media (max-width:640px) {}
+
+@media (max-width:480px) {
+    footer {
+        background: #FFF;
+    }
+
+    footer .wrap {
+        display: none;
+    }
+
+    footer .copy_m {
+        padding: 20px 0;
+    }
+
+
+    .breadcrumb {
+        display: none;
+    }
+
+    .ins_titleBox {
+        padding: 30px 0 10px;
+    }
+
+    .insideWrap .ins_bn {
+        height: 100px;
+    }
+
+    .subNavWrap {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width:420px) {
+    footer .copy_m p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width:375px) {
+    .ins_titleBox h2 {
+        font-size: 24px;
+    }
+
+    .subNavWrap {
+        padding: 0 10px;
+    }
+}
