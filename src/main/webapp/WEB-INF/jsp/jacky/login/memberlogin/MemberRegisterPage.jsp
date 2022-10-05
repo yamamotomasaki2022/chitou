@@ -65,17 +65,20 @@ label.error {
 		<h1>必填資料</h1>
 
 		<div>
-			<label> username</label> <br> </a><input type="text" id="username"
+			<label> username</label> <br> </a>
+			<input type="text" id="username"
 				name="username" autocomplete="off" size="10">
 		</div>
 
 		<div>
-			<label for=""> password</label> <br> </a><input type="text"
+			<label for=""> password</label> <br> </a>
+			<input type="text"
 				id="password" name="password" autocomplete="off" size="10">
 		</div>
 
 		<div>
-			<label for=""> email</label> <br> </a><input type="text" id="email"
+			<label for=""> email</label> <br> </a>
+			<input type="text" id="email"
 				name="email" autocomplete="off" size="10">
 		</div>
 
@@ -137,6 +140,8 @@ label.error {
 	<FORM ACTION="home" method="get">
 		<button onclick="">返回</button>
 	</form>
+	
+	<button id="fastinput">一鍵輸入</button>
 
 
 	<script
@@ -213,6 +218,22 @@ label.error {
 						}
 					});
 		});
+	</script>
+	
+	<script>
+	
+	
+	$('#fastinput').click(function(){
+		
+		$('#username').val('jacky')
+		$('#password').val('123')
+		$('#email').val('learningma0926@gmail.com')
+		
+	})
+	
+	
+	
+
 	</script>
 
 

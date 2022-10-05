@@ -96,8 +96,18 @@ public class LoginService {
 	
 //	管理員刪除會員
 	public void adminDeleteMember(int id) {
+		
 		MemberDetailInfo findDetailByMemberid = findDetailByMemberid(id);
-		mdirepo.delete(findDetailByMemberid);
+		if ( findDetailByMemberid != null) {
+			mdirepo.delete(findDetailByMemberid);
+			
+		}else {
+			
+			MemberBasicInfo findBasicInfoByMemberid = findByMemberid(id);
+			mbrepo.delete(findBasicInfoByMemberid);
+		}
+
+
 	}
 	
 //	管理員更新會員

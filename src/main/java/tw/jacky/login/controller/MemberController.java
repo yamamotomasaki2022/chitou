@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.bytebuddy.utility.RandomString;
+import tw.chitou.gmail.controller.GmailController;
+import tw.chitou.gmail.model.GmailService;
 import tw.jacky.login.model.AdminChitou;
 import tw.jacky.login.model.LoginService;
 import tw.jacky.login.model.MemberBasicInfo;
@@ -43,6 +47,13 @@ public class MemberController {
 	
 	@Autowired
 	private ManagementSystemController managementSystemController;
+	
+	@Autowired
+	private GmailController gmailController;
+	
+	@Autowired
+	private GmailService gService;
+	
 	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	路徑
@@ -104,22 +115,39 @@ public class MemberController {
 		String photo = lservice.savePicToLocal(mf);
 		String pic_locaiton = piclocation + photo;
 		
-		
-		MemberBasicInfo bean = new MemberBasicInfo(4, username, password, pic_locaiton, email);
+		String randomCode = RandomString.make(15);
+		MemberBasicInfo bean = new MemberBasicInfo(4, username, password, pic_locaiton, email,randomCode);
 		String encrpytMemberPassword = managementSystemController.encrpytMemberPassword(bean);
 		bean.setPassword(encrpytMemberPassword);
 		MemberBasicInfo memberBasicInfo = lservice.adminInsertMember(bean);
 		Date date = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd hh:mm:ss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String createtime = simpleDateFormat.format(date);
 		String modifytime = createtime;
-				
-				
-		System.out.println(createtime);
 		MemberDetailInfo memberDetailInfo = new MemberDetailInfo(memberBasicInfo.getMemberid(),name,phone,address,nickname,nationality,birthday,gender,createtime,modifytime);
-		lservice.adminInsertMemberDetailInfo(memberDetailInfo);
 		
+		gmailController.sendVerificationEmail(memberBasicInfo, memberDetailInfo);
+		
+		
+//		return "sss";
 		return path_member_login + "MemberRegisterVerificationPage";
+	}
+	
+	@GetMapping("/verify")
+	public String verifyAccount(@Param("code") String code,Model m) {
+		System.out.println("進到方法的驗證碼:" + code);
+		boolean verified = gService.verify(code);
+		
+		System.out.println("email驗證:" + verified);
+		
+		if(verified) {
+			
+			return path_member_login + "VerificationSuccess";
+			
+		}else {
+			
+			return path_member_login + "VerificationFailure";
+		}
 	}
 	
 	

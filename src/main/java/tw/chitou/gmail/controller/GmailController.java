@@ -12,13 +12,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import tw.chitou.gmail.model.GmailService;
 import tw.chitou.gmail.model.TemplateServices;
+import tw.jacky.login.model.MemberBasicInfo;
+import tw.jacky.login.model.MemberDetailInfo;
 
 @Controller
 public class GmailController {
@@ -111,6 +110,22 @@ public class GmailController {
 			System.out.println(html);
 			gmailService.mimemail(fromEmail, toEmaiList, subject, html);
 			return  "jacky/SendEmailPage";
+		}
+		
+		@GetMapping("/sendVerificationEmail")
+		public void sendVerificationEmail(MemberBasicInfo member, MemberDetailInfo memberDetailInfo) {
+			String verification_code= member.getVerificationcode() ;
+			List<String> toEmaiList = new ArrayList<String>();
+			toEmaiList.add(member.getEmail());
+		    String fromAddress = "eeit49group1chitou@gmail.com";
+//		    String senderName = "Your company name";
+		    String subject = "Please verify your registration";
+		    Map<String,String> params= new HashMap<>();
+		    params.put("name", member.getUsername());
+		    params.put("code", verification_code);
+		    String html = templateService.render("verify", params);
+		    gmailService.mimemail(fromAddress, toEmaiList, subject, html);
+//		    return  "jacky/memberlogin/MemberRegisterPage";
 		}
 
 		
