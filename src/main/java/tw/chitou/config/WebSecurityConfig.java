@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import tw.chitou.handler.AccessDenialHandler;
 import tw.chitou.handler.LoginFailureHandler;
@@ -32,6 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private AccessDenialHandler accessDenialHandler;
+	
+	@Autowired
+	private LogoutSuccessHandler logoutSuccessHandler;
 	
 	
 	@Override
@@ -80,10 +84,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http
 		.logout()
-		.logoutUrl("/logout")
-		.logoutSuccessUrl("/home")
 		.invalidateHttpSession(true)
-		.deleteCookies("JSESSIONID");
+		.deleteCookies("JSESSIONID")
+//		.logoutSuccessUrl("/home");
+		.logoutUrl("/logout")
+		.logoutSuccessHandler(logoutSuccessHandler);
 	}
 	
 }

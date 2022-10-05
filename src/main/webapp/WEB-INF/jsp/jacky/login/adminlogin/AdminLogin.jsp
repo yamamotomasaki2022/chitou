@@ -61,6 +61,10 @@
 										type="submit" value="login">登入</button>
 									<span>${errors.msg}</span>
 								</div>
+								<div>
+								<a href='/oauth2/authorization/google'> Login with Google</a>
+								
+								</div>
 								<div
 									class="my-2 d-flex justify-content-between align-items-center">
 									<div class="form-check">

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import tw.jacky.login.model.LoginService;
 
 @Component
-public class LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
+public class LogoutSuccessHandler implements org.springframework.security.web.authentication.logout.LogoutSuccessHandler {
 	
 	@Autowired
 	private LoginService lService;
@@ -23,7 +23,11 @@ public class LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
 		
-		super.onLogoutSuccess(request, response, authentication);
+		request.setAttribute("logout", 1);
+		request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp").forward(request, response);
+		
+		
+		
 	}
 	
 	
