@@ -62,8 +62,9 @@ public class LoginSucessHandler implements AuthenticationSuccessHandler {
 			System.out.println("sessionid :" + request.getSession().getId());
 			
 			
-//			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
-			response.sendRedirect("/manager/adminhomepage/"+"5");
+			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
+//			response.sendRedirect("/manager/adminhomepage/"+"5");
+//			response.sendRedirect("/manager/AdminHomePage");
 		}
 		else if(authorities.toString().equals("[admin]")){
 			System.out.println("成功的進入了sucesshandler的if判斷内的 admin");
