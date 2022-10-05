@@ -91,7 +91,7 @@ public class ArticleController {
 	public String test3(Model m) {
 		List<Article> list = articleService.findAll();
 		m.addAttribute("list", list);
-		return "georgia/article/NewFile3";
+		return "georgia/article/test";
 	}
 	
 //	***************************************************************
