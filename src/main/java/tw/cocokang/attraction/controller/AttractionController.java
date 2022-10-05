@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import tw.cocokang.attraction.model.Attraction;
 import tw.cocokang.attraction.model.AttractionService;
 import tw.cocokang.attraction.model.Hobbyclassification;
+import tw.cocokang.attraction.model.Pricingplan;
+import tw.cocokang.attraction.model.PricingplanService;
 
 @Controller
 public class AttractionController {
@@ -169,13 +171,12 @@ public class AttractionController {
 	 //--------------------Pricing plan
 
 	//顯示景點內方案
-	@RequestMapping(path = "showAttractionPlans",params = {"attractionid"}, method = RequestMethod.POST)
+	@RequestMapping(path = "showAttractionPlans",params = {"attractionid"}, method = RequestMethod.GET)
 	public String attractionPlans(@RequestParam("attractionid") Integer attractionid ,Model m){
-
-		m.addAttribute("planList",aService.showPricingplans(attractionid));
-		return path + "";
-//		return "luana/attraction/Luana_attractionPlans";
-
+		Attraction attraction = aService.selectByAttid(attractionid);
+		List<Pricingplan> listPlan = aService.showPricingplans(attraction);
+		m.addAttribute("listPlan",listPlan);
+		return "coco/attractionplan/ListView";
 	}
 	
 

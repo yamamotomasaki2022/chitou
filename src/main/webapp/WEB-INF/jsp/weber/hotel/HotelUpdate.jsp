@@ -24,7 +24,7 @@
 	<div>
 		<form:form action="/admin/updateHotel" method="post" modelAttribute="result" enctype="multipart/form-data" class="forms-sample">
 		    <form:input type="hidden" path="hotelID" class="form-control"/><br>
-			<input type="hidden" name="_method" value="PUT">
+<!-- 			<input type="hidden" name="_method" value="PUT"> -->
 	        <div class="form-group">
 		        <label>飯店名稱:</label>
 		        <form:input type="text" path="name" class="form-control" name="name" id="name" placeholder="輸入景點名稱"/><br>

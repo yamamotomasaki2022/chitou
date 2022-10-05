@@ -30,7 +30,6 @@ import tw.luana.attraction.model.AttractionService_Luana;
 import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartService;
 import tw.luana.order.model.OrderService;
-import tw.luana.order.model.Orders;
 
 @Controller
 public class AttractionController_Luana {

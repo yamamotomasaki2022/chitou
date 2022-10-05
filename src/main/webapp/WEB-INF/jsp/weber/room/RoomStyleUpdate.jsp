@@ -24,7 +24,7 @@
 	<div>
 	    <form:form action="/admin/updateStyle" method="post" modelAttribute="style" enctype="multipart/form-data" class="forms-sample">
 	    	<div class="form-group">
-		    	<input type="hidden" name="_method" value="PUT">
+<!-- 		    	<input type="hidden" name="_method" value="PUT"> -->
 		    	<form:input type="hidden" path="styleID" name="styleID"/>
 		        <label>房型名稱:</label>
 		        <form:input type="text" path="name" class="form-control" name="name" id="name"/><br>

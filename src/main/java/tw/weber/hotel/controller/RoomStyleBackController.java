@@ -38,14 +38,14 @@ public class RoomStyleBackController {
 	private String insertPage = suffix + "RoomStyleInsert";
 	private String updatePage = suffix +"RoomStyleUpdate";
 	
-	@GetMapping(path = "/room")
-	public String SearchAllroom(Model model) {
-		Hotel hotel = (Hotel)model.getAttribute("hotelResult");
-		System.err.println("hotelID:"+hotel.getHotelID());
-		List<RoomStyle> result = styleService.findAllByHotelID(hotel.getHotelID());
-		model.addAttribute("result",result);
-		return roomMainPage;
-	}	
+//	@GetMapping(path = "/room")
+//	public String SearchAllroom(Model model) {
+//		Hotel hotel = (Hotel)model.getAttribute("hotelResult");
+//		System.err.println("hotelID:"+hotel.getHotelID());
+//		List<RoomStyle> result = styleService.findAllByHotelID(hotel.getHotelID());
+//		model.addAttribute("result",result);
+//		return roomMainPage;
+//	}	
 	
 	@GetMapping(path = "/searchRoom")
 	public String SearchByKey(@RequestParam("type")String type,@RequestParam("keyword")String keyword,Model model) {
@@ -93,7 +93,7 @@ public class RoomStyleBackController {
 		return updatePage;
 	}
 	
-	@PutMapping(path = "/updateStyle")
+	@PostMapping(path = "/updateStyle")
 	public String updateHotel(@ModelAttribute("Style")RoomStyle style,
 			@RequestParam("upload")MultipartFile[] mfiles,Model model) throws IllegalStateException, IOException {
 		
@@ -111,7 +111,7 @@ public class RoomStyleBackController {
 		return returnRoom;
 	}
 	
-	@DeleteMapping(path = "/deleteStyle")
+	@PostMapping(path = "/deleteStyle")
 	public String deleteroom(@RequestParam("styleID")int styleID) {
 		styleService.delete(styleID);
 		return returnRoom ;
