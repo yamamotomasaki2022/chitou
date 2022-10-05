@@ -11,8 +11,8 @@ public interface FlightTicketRepository extends JpaRepository<FlightTicket, Stri
 
 
 
-	@Query(value = "from FlightTicket where originid = ?1 and destinationid = ?2 and departuretime = ?3 and arrivaltime = ?4 and classid = ?5",nativeQuery = false)
-	public List<FlightTicket> findByOriginidAndDestinationidAndDeparturetimeAndArrivaltimeAndClassid(String originid,String destinationid,String departuretime,String arrivaltime,int classid);
+	@Query(value = "from FlightTicket where airline like concat('%',?1,'%')")
+	public List<FlightTicket> selectByAirline(String airline);
 
 	
 }

@@ -87,7 +87,7 @@ $(function(){
 	</p>
 			<form action="searchAttraction" method="post" enctype="multipart/form-data">
 			<input type="text" name="search" class="form-control">
-			<input type="submit" name="searchno" value="搜尋">
+			<input type="submit" name="searchno" value="搜尋" class="btn btn-outline-info btn-fw">
 			</form>
 			
 	

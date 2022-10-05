@@ -1,6 +1,10 @@
+<%@page import="org.springframework.context.annotation.Bean"%>
+<%@page import="java.util.List"%>
+<%@page import="tw.trista.flightticket.model.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,29 +18,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript"></script>
 <style>
-fieldset {
-	width: 900px;
-	border: 1px solid #A8FF24;
-	border-radius: 15px;
-	margin: auto;
-	background-color: #ECF5FF;
-}
 
-legend {
-	color: #FF8000;
-	text-align: center;
-	margin: auto;
-	font-weight: bolder;
-}
 
-.title {
-	font-style: oblique;
-	text-align: center;
-}
 
-img {center;
-	
-}
+
+
+
+
 </style>
 
 <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
@@ -49,180 +37,95 @@ img {center;
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 	<fieldset>
-		<legend>新增航班</legend>
-		<DIV>
-			<form:form action="addFlightTicket" method="post"
-				modelAttribute="flightTicket">
-				<div>
-					航班編號：<input type="text" id="flightID" name="flightID"> 艙等：
-					<form:select path="classID">
-						<form:option value="1">頭等艙</form:option>
-						<form:option value="2">商務艙</form:option>
-						<form:option value="3">經濟艙</form:option>
-					</form:select>
-				</div>
-				<div>
-					<br> 去程日期：
-					<form:input path="departureTime" type="date"></form:input>
-					回程日期：
-					<form:input path="arrivalTime" type="date"></form:input>
-				</div>
-				<div>
-					<br> 票價：
-					<form:input path="fare" />
-				</div>
-				<br>
-				<div>
-					航空公司：
-					<form:input type="text" path="airline" />
-					<br>
-				</div>
-				<div>
-					<br> 出發機場編號：
-					<form:select path="originID">
-						<form:option value="台北TPE">台北</form:option>
-						<form:option value="香港HKG">香港</form:option>
-						<form:option value="澳門MFM">澳門</form:option>
-						<form:option value="紐約NYK">紐約</form:option>
-						<form:option value="東京TYO">東京</form:option>
-						<form:option value="釜山PUS">釜山</form:option>
-					</form:select>
-					抵達機場編號：
-					<form:select path="destinationID">
-						<form:option value="台北TPE">台北</form:option>
-						<form:option value="香港HKG">香港</form:option>
-						<form:option value="澳門MFM">澳門</form:option>
-						<form:option value="紐約NYK">紐約</form:option>
-						<form:option value="東京TYO">東京</form:option>
-						<form:option value="釜山PUS">釜山</form:option>
-					</form:select>
-				</div>
+		<h1 class="card-title text-primary">&nbsp;機票總覽</h1>
+			<p class="card-description" href="ListFlightTicket">
+		<a href="addFlightTicket">
+			<button id="receive" type="button" class="btn btn-inverse-primary btn-fw">
+				<i class="ti-plus"></i>&nbsp;新增機票
+			</button>
+		</a>
+	</p>
+			<form action="searchFlightTicket" method="post" enctype="multipart/form-data">
+			<input type="text" name="search" class="form-control">
+			<button type="submit" name="searchno" class="btn btn-info">
+			<i class="ti-search"></i>
+			</button>
+			</form>
+			
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>航空公司:</th>
+					<th>班機編號:</th>
+					<th>出發機場:</th>
+					<th>出發時間:</th>
+					<th>降落機場:</th>
+					<th>抵達時間:</th>
+					<th>艙等:</th>
+					<th>票價:</th>
+					
+<!-- 					<th>購票須知:</th> -->
+					<th>修改/刪除:</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<c:forEach var="flightticket" items="${listFlightTicket}">
+					<tr>
+						<form action="updateFlightTicket" method="get">
+							<td><c:out value="${flightticket.airline}" /></td>
+							<td><c:out
+									value="${flightticket.flightid}" /></td>
+							<td><c:out value="${flightticket.originid}" /></td>
+							<td><c:out value="${flightticket.departuretime}" /></td>
+							<td><c:out value="${flightticket.destinationid}" /></td>
+							<td><c:out value="${flightticket.arrivaltime}" /></td>
+							<td><c:out value="${flightticket.classid}" /></td>
+							<td><c:out value="${flightticket.fare}" /></td>
 
-				<div class="submit">
-					<br>
-					<center>
-						<form:button name="submit" class="btn btn-success">新增</form:button>
-						<form:button name="reset" class="btn btn-danger">清除</form:button>
-				<button type="button" id="fastInput" class="btn btn-light">一鍵輸入</button>
+							
+							
 
-					</center>
-				</div>
-			</form:form>
-			<center>
-			</center>
-	</fieldset>
+							<td>
+							<input type="hidden" name="flightid"
+								value="${flightticket.flightid}"> 
+								<input type="hidden"
+								name="originid"
+								value="${flightticket.originid}">
+								<input
+								type="hidden" name="departuretime" value="${flightticket.departuretime}">
+								<input type="hidden" name="destinationid"
+								value="${flightticket.destinationid}"> 
+								<input type="hidden"
+								name="arrivaltime" value='${flightticket.arrivaltime}'>
+								<input type="hidden" name="classid"
+								value="${flightticket.classid}">
+								<input type="hidden"
+								name="fare"
+								value="${flightticket.fare}">
 
+								<button type="submit" name="update"
+									class="btn btn-inverse-success btn-icon">
+									<i class="ti-pencil-alt"></i>
+								</button> &nbsp; &nbsp;
+						</form>
+						<!-- 刪除 -->
+						<a href="deleteFlightTicket?flightid=${flightticket.flightid}"><button
+								class="btn btn-inverse-danger btn-icon">
+								<i class="ti-trash"></i>
+							</button></a>
+						</td>
+				</c:forEach>
+			</tbody>
+		</table>
 
-
-
-
-	<form action="updateFlightTicket" method="post">
-		<fieldset>
-			<legend>修改航班</legend>
-			<div>
-				航班編號：<input type="text" name="flightID"> <br>
-				<div class="newfare">
-					<br> 更新票價：<input type="text" name="newfare">
-
-				</div>
-
-
-				<div class="update">
-					<br>
-					<center>
-						<input type="submit" name="update" class="btn btn-success" value="修改">
-
-					</center>
-
-				</div>
-		</fieldset>
-	</form>
-
-
-
-
-
-	<form action="deleteFlightTicket" method="post">
-		<fieldset>
-			<legend>刪除航班</legend>
-			<div>
-				航班編號：<input type="text" name="flightID">
-
-
-
-				<div class="delete">
-
-					<center>
-
-						<input type="submit" name="delete"  class="btn btn-danger" value="刪除">
-
-					</center>
-				</div>
-		</fieldset>
-	</form>
-
-
-
-
-	<form action="searchFlightTicket" method="post">
-		<fieldset>
-			<legend>查詢航班</legend>
-
-
-			從 <select name="originID">
-				<option value="台北TPE">台北</option>
-				<option value="香港HKG">香港</option>
-				<option value="澳門MFM">澳門</option>
-				<option value="紐約NYK">紐約</option>
-				<option value="東京TYO">東京</option>
-				<option value="釜山PUS">釜山</option>
-			</select> 到 <select name="destinationID">
-				<option value="台北TPE">台北</option>
-				<option value="香港HKG">香港</option>
-				<option value="澳門MFM">澳門</option>
-				<option value="紐約NYK">紐約</option>
-				<option value="東京TYO">東京</option>
-				<option value="釜山PUS">釜山</option>
-			</select>
-			<div>
-				<br> 去程日期：<input type="date" name="departureTime">
-				回程日期：<input type="date" name="arrivalTime">
-			</div>
-			<div>
-				<br> 艙等： <select name="classID">
-					<option value="1">頭等艙</option>
-					<option value="2">商務艙</option>
-					<option value="3">經濟艙</option>
-				</select>
-
-				<center>
-					<input type="submit"  class="btn btn-success" name="read" value="送出">
-				</center>
-	</form>
 
 
 	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
+	
 	<script>
-		$('#fastInput').click(function() {
-			$('#flightID').val('CJ426');
-			$('#classID').val('2');
-			$('#departureTime').val('2022-10-20');
-			$('#arrivalTime').val('2022-10-21');
-			$('#fare').val('16799');
-			$('#airline').val('華信');
-			$('#originID').val('台北TPE');
-			$('#destinationID').val('東京TYO');
-		})
-	</script>
-
-	<script>
-		$(function() {
-			$('form').on('click', ':submit', function() {
-				console.log('button click')
-				return check($(this).val());
-			});
-
 			function check(action) {
 				let msg = '';
 				if (action === '刪除') {

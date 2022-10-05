@@ -2,17 +2,28 @@ package tw.georgia.article.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
-
+//沒改完GET/SET
 @Entity @Table(name = "article")
 @Component
 public class Article {
 
+	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumns({
+//		@JoinColumn(name = "countryID",referencedColumnName = "countryID"),
+		@JoinColumn(name = "categoryID",referencedColumnName = "categoryID")
+//	})
+	private Category category;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "postID")
@@ -21,14 +32,14 @@ public class Article {
 	@Column(name = "posterID")
 	private Integer posterid;
 	
-	@Column(name = "countryID")
-	private Integer countryid;
-	
-	@Column(name = "typeID")
-	private Integer typeid;
-	
 	@Column(name = "title")
 	private String title;
+	
+	@Column(name = "subtitle")
+	private String subtitle;
+	
+	@Column(name = "photo")
+	private String photo;
 	
 	@Column(name = "content")
 	private String content;
@@ -41,26 +52,50 @@ public class Article {
 	}
 
 
-	public Article(Integer posterID, Integer countryID, Integer typeID, String title, String content, String date) {
+	public Article(Category category, Integer postID, Integer posterID, String title, String subtitle, String photo,
+			String content, String date) {
+		super();
+		this.category = category;
+		this.postid = postID;
 		this.posterid = posterID;
-		this.countryid = countryID;
-		this.typeid = typeID;
 		this.title = title;
+		this.subtitle = subtitle;
+		this.photo = photo;
 		this.content = content;
 		this.date = date;
 	}
-	
 
-	public Article(Integer postID, Integer posterID, Integer countryID, Integer typeID, String title, String content,
+
+	public Article(Category category, Integer posterID, String title, String subtitle, String photo, String content,
 			String date) {
 		super();
-		this.postid = postID;
+		this.category = category;
 		this.posterid = posterID;
-		this.countryid = countryID;
-		this.typeid = typeID;
 		this.title = title;
+		this.subtitle = subtitle;
+		this.photo = photo;
 		this.content = content;
 		this.date = date;
+	}
+
+	public Article(Category category, String title, String subtitle, String photo, String content, String date) {
+		super();
+		this.category = category;
+		this.title = title;
+		this.subtitle = subtitle;
+		this.photo = photo;
+		this.content = content;
+		this.date = date;
+	}
+
+
+	public Category getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 
@@ -84,26 +119,6 @@ public class Article {
 	}
 
 
-	public Integer getCountryID() {
-		return countryid;
-	}
-
-
-	public void setCountryID(Integer countryID) {
-		this.countryid = countryID;
-	}
-
-
-	public Integer getTypeID() {
-		return typeid;
-	}
-
-
-	public void setTypeID(Integer typeID) {
-		this.typeid = typeID;
-	}
-
-
 	public String getTitle() {
 		return title;
 	}
@@ -111,6 +126,26 @@ public class Article {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+
+	public String getSubtitle() {
+		return subtitle;
+	}
+
+
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
+	}
+
+
+	public String getPhoto() {
+		return photo;
+	}
+
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 
@@ -129,9 +164,12 @@ public class Article {
 	}
 
 
-	public void setArticleDate(String date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
+	
+	
+
+	
 
 }
-

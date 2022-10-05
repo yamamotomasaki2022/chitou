@@ -14,7 +14,7 @@
 		</a>
 			<div class="collapse" id="auth">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="/adminhomepage">
+					<li class="nav-item"><a class="nav-link" href="ShowTableInHomePage">
 							管理員登入界面 </a></li>
 					<li class="nav-item"><a class="nav-link" href=""> 新增會員 </a></li>
 				</ul>
@@ -51,7 +51,7 @@
 		</a>
 			<div class="collapse" id="tables">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="/hotelBack">飯店管理</a></li>
+					<li class="nav-item"><a class="nav-link" href="/admin/hotel">飯店管理</a></li>
 				</ul>
 			</div></li>
 

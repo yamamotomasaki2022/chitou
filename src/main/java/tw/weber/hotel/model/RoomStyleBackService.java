@@ -67,8 +67,7 @@ public class RoomStyleBackService {
 	public RoomStyle update(RoomStyle style) {
 		int roomAmount = style.getRoomAmount();
 		
-		int styleID = style.getStyleID();
-		List<Room> originalRoomList = roomRepo.findAllByStyle(styleID);
+		List<Room> originalRoomList = roomRepo.findAllByStyle(style);
 		int count = roomAmount - originalRoomList.size();
 		if(count > 0) {
 			System.out.println("大於0");

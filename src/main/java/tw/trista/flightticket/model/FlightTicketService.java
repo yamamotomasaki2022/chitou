@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tw.cocokang.attraction.model.Attraction;
+import tw.georgia.article.model.Article;
+
 @Service
 @Transactional
 public class FlightTicketService {
@@ -18,28 +21,30 @@ public class FlightTicketService {
 
 	
 	//新增
-	public FlightTicket insert(FlightTicket flightBean) {
-		
-		System.out.println(flightBean.toString());
-		return dao.save(flightBean);
+	public FlightTicket insert(FlightTicket flightbean) {
+		return dao.save(flightbean);
 	}
 	
 	//修改
-	public FlightTicket updateOne(FlightTicket flightBean) {
-		return dao.save(flightBean);
+	public FlightTicket updateOne(FlightTicket flightbean) {
+		return dao.save(flightbean);
 	}
 	
 	//刪除
-	public void deleteOne(String flightID) {
-		 dao.deleteById(flightID);
+	public void deleteOne(String flightid) {
+		 dao.deleteById(flightid);
 	}
 	
-	//查詢部分
-    public FlightTicket selectByFlightid(String flightID){  
-    return dao.findById(flightID).get();  
+	//查詢部分(用航空公司查詢)
+    public List<FlightTicket> selectByAirline(String airline){  
+    return dao.selectByAirline(airline);  
     }
 
-    public List<FlightTicket> findByOriginidAndDestinationidAndDeparturetimeAndArrivaltimeAndClassid(String originid,String destinationid,String departuretime,String arrivaltime,int classid){
-    	return dao.findByOriginidAndDestinationidAndDeparturetimeAndArrivaltimeAndClassid(originid, destinationid, departuretime, arrivaltime, classid);
+    public FlightTicket selectByflightid(String flightid){  
+    return dao.findById(flightid).get();  
+    }
+    
+    public List<FlightTicket> getAll(){
+    	return dao.findAll();
     }
 }

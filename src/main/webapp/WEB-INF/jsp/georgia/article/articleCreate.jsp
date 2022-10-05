@@ -6,7 +6,6 @@
 
 <title>新增文章</title>
 <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript"></script>
 <style type="text/css">
 *{
@@ -19,9 +18,14 @@ button, .btn {
 	border-radius: 25px;
 	font-size: 150%;
 }
+.error{
+		color:red;
+	}
 </style>
 
 <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
 </head>
 <body>
@@ -30,10 +34,14 @@ button, .btn {
 <%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 <br>
-<form action="article.insert" method="post" enctype="multipart/form-data">
-會員ID:  <BR><INPUT TYPE="TEXT" NAME="posterID" VALUE="" id="posterIDInput"><BR>
+<form action="article.insert" method="post" enctype="multipart/form-data" id="check">
+<!--  會員ID:  <BR><INPUT TYPE="TEXT" NAME="posterID" VALUE="" id="posterIDInput"><BR>-->
 文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="" id="titleInput" style="width: 100%;"><BR>
-		<br> 選擇國家<select name="chooseCountry">
+文章副標題: <BR><INPUT TYPE="TEXT" NAME="subtitle" VALUE="" id="subtitleInput" style="width: 100%;"><BR><BR>
+選擇縮圖:<BR><INPUT TYPE="FILE" NAME="photo" ID="upload"><BR>
+	   <div id="picPreview"></div><BR>
+
+		選擇國家<select name="chooseCountry">
 			<optgroup label="亞洲">
 				<option value=101>台灣</option>
 				<option value=102>日本</option>
@@ -81,9 +89,47 @@ button, .btn {
 
 
 <script>
+$('#upload').on('change',function(e){
+	$('#picPreview').empty();
+	var photos = this.files;
+	for(let i=0;i<photos.length;i++){
+		var file = photos[i];
+		var fr = new FileReader();
+		fr.onload = function(e){
+			$('#picPreview').append('<img id="img" src="'+e.target.result+'" class="box" style="height:100px">');
+		};
+		fr.readAsDataURL(file);
+	};
+});
+
+$(function() {
+	$('#check').validate({
+		onkeyup : function(element, event) {
+			var value = this.elementValue(element).replace(/^\s+/g, "");
+			$(element).val(value);
+			},
+		rules : {
+			title : {required : true},
+			subtitle : {required : true},
+			photo : {required : true},
+			content : {required : true},
+				},
+			messages : {
+			title : {required : '必填'},
+			photo : {required : '必填'},
+			content : {required : '必填'},
+			subtitle : {required : '必填'},
+			},
+		submitHandler : function(form) {
+			form.submit();
+				}
+			});
+	   });
+	   
 $('#fastInput').click(function(){
-	$('#posterIDInput').val('2222');
-	$('#titleInput').val('中壢哪裡有好玩的地方?');
+	//$('#posterIDInput').val('6666');
+	$('#titleInput').val('中壢必吃牛排店');
+	$('#subtitleInput').val('好牛排，不吃嗎？');
 	$('#contentInput').val('求分享，求推薦');
 })
 </script>

@@ -112,81 +112,13 @@ button, .btn {
 				List<Article> list = (List) request.getAttribute("list");
 				for (Article bean : list) {
 					int title=bean.getTitle().length();
-					String country="";
-					String type="";
-					
-					switch(bean.getCountryID()){
-					case 101:
-						country="台灣";
-						break;
-					case 102:
-						country="日本";
-						break;
-					case 103:
-						country="韓國";
-						break;
-					case 108:
-						country="新加坡";
-						break;
-					case 109:
-						country="印尼";
-						break;
-					case 201:
-						country="美國";
-						break;
-					case 202:
-						country="加拿大";
-						break;
-					case 301:
-						country="英國";
-						break;
-					case 302:
-						country="法國";
-						break;
-					case 304:
-						country="義大利";
-						break;
-					case 307:
-						country="土耳其";
-						break;
-					case 308:
-						country="聖托里尼";
-						break;
-					case 309:
-						country="阿爾巴尼亞";
-						break;
-					case 401:
-						country="澳洲";
-						break;
-					case 501:
-						country="埃及";
-						break;
-					};
-					String typeID=Integer.toString(bean.getTypeID()).substring(3);
-				switch(typeID){
-					case "91":
-						type="遊記";
-						break;
-					case "92":
-						type="食記";
-						break;
-					case "93":
-						type="資訊";
-						break;
-					case "94":
-						type="問題";
-						break;
-					case "95":
-						type="攻略";
-						break;
-				};
 					
 				%>
 
 				<tr>
 					<td class="centre"><%=bean.getPosterID()%></td>
-					<td class="centre"><%=country%></td>
-					<td class="centre"><%=type%></td>
+					<td class="centre"><%=bean.getCategory().getCountry()%></td>
+					<td class="centre"><%=bean.getCategory().getType()%></td>
 					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%></td>
 					<td class="centre"><%=bean.getDate()%></td>
 					<td><form action="article.show" method="post">
@@ -197,13 +129,6 @@ button, .btn {
 
 						<form action="article.renew" method="post" style="">
 							<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
-							<INPUT TYPE="HIDDEN" value=<%=bean.getPosterID()%>
-								name="posterID"> <INPUT TYPE="HIDDEN"
-								value=<%=bean.getCountryID()%> name="countryID"> <INPUT
-								TYPE="HIDDEN" value=<%=bean.getTypeID()%> name="typeID">
-							<INPUT TYPE="HIDDEN" value=<%=bean.getTitle()%> name="title">
-							<INPUT TYPE="HIDDEN" value=<%=bean.getDate()%> name="articleDate">
-							<INPUT TYPE="HIDDEN" value='<%=bean.getContent()%>' name="content">
 							<input type="submit" name="update" value="修改" class="btn btn-primary mr-2"
 								id="update">
 						</form>

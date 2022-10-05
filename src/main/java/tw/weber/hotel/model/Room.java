@@ -1,5 +1,7 @@
 package tw.weber.hotel.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,12 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import tw.cocokang.attraction.model.Hobbyclassification;
 
 @Entity
 @Table(name = "room")
-public class Room {
+public class Room implements Serializable {
 	
 	@Id
 	@Column(name = "roomID")
@@ -24,7 +28,7 @@ public class Room {
 	private int roomID;
 	
 	@JsonBackReference
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "roomstyleid")
 	private RoomStyle style;
 	
