@@ -26,7 +26,8 @@ public class AttractionController {
 	@Autowired
 	private AttractionService aService;
 
-	public String path = "coco/attraction/";
+	public String path = "coco/attraction-background/";
+	public String path1 = "coco/attraction-user/";
 
 	
 	 //--------------------Attraction
@@ -35,6 +36,12 @@ public class AttractionController {
 	public String AttractionListAction(Model m) {
 		m.addAttribute("listAttraction", aService.getAll());
 		return path + "kangListView";
+	}
+	//景點說明
+	@GetMapping("/Attractions")
+	public String AttractionListAction4(Model m) {
+		m.addAttribute("listAttraction", aService.getAll());
+		return path1 + "Attraction";
 	}
 	
 	//test home background home page
@@ -59,7 +66,29 @@ public class AttractionController {
 		m.addAttribute("homeAttractions", aService.getAll());
 		return "Hotelstyle";
 	}
+	@GetMapping("/newHotelsList")
+	public String AttractionListActionwei1(Model m) {
+		m.addAttribute("homeAttractions", aService.getAll());
+		return "HotelsList";
+	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//	寫絕對路徑辦法(圖片)
 	private String getStaticPath() {
 		String path = this.getClass().getClassLoader().getResource("").getPath();
