@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="tw.georgia.article.model.* , java.util.*, java.sql.*, javax.servlet.* , javax.naming.*, java.sql.*, javax.sql.*"%>
-<%
-response.setContentType("text/html;charset=UTF-8");
-response.setHeader("Cache-Control","no-cache"); // HTTP 1.1
-response.setHeader("Pragma","no-cache"); // HTTP 1.0
-response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
-request.setCharacterEncoding("UTF-8");
-response.setCharacterEncoding("UTF-8");
-%>  
+	import="tw.georgia.article.model.* , java.util.*, java.sql.*, javax.servlet.* , javax.naming.*, java.sql.*, javax.sql.*"%> 
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,6 +9,7 @@ response.setCharacterEncoding("UTF-8");
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查詢文章</title>
 <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
 *{
 font-size: 102%;
@@ -38,7 +31,12 @@ table {
 		 .centre{
 		 text-align: center;
 		 }
-		 #BackTop	{
+#BackTop	{
+				position:fixed;				
+				bottom:140px;
+				right:31px;
+				}
+#ToBottom	{
 				position:fixed;				
 				bottom:90px;
 				right:31px;
@@ -119,8 +117,12 @@ for (Article bean : list) {
 </tbody>
 		</table>
 		</div>
-		<svg type="button" id="BackTop" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill jiantou" viewBox="0 0 16 16">
+		
+<svg type="button" id="BackTop" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill jiantou" viewBox="0 0 16 16">
   <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+</svg>
+<svg type="button" id="ToBottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill jiantou" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
 </svg>
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
@@ -131,7 +133,10 @@ function back(){
 $(function() {
 	
 	$('#BackTop').click(function(){ 
-		$('html,body').animate({scrollTop:0}, 333);
+		$('html,body').animate({scrollTop:0}, 200);
+	});
+	$('#ToBottom').click(function(){ 
+		$('html,body').animate({scrollTop:document.body.scrollHeight}, 200);
 	});
 	$('form').on('click', ':submit', function() {
 		console.log('button click')
