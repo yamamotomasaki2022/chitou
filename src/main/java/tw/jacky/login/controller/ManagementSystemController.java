@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -77,9 +79,10 @@ public class ManagementSystemController {
 		return page_adminlogin;
 	}
 
-	@RequestMapping(path = "/adminhomepage")
-	public String processAdminHomePage(Model m) {
+	@RequestMapping(path = "/adminhomepage/{id}")
+	public String processAdminHomePage(@PathParam("id") Integer id ,Model m) {
 		processShowTableInHomePage(m);
+		m.addAttribute("bean", id);
 		return page_adminhomepage;
 	}
 

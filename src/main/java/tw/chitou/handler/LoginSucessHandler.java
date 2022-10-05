@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import tw.jacky.login.model.AdminChitou;
@@ -22,7 +22,7 @@ import tw.jacky.login.model.MemberDetailInfo;
 
 
 @Component
-public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+public class LoginSucessHandler implements AuthenticationSuccessHandler {
 	
 	
 	@Autowired
@@ -36,7 +36,7 @@ public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHa
 //		outcome : [authorities]
 		Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
 		
-		System.out.println("成功的進入了sucesshandler");
+//		System.out.println("成功的進入了sucesshandler");
 
 //		判斷權限用
 //		System.out.println(authorities.toString().equals("[unverified_member]"));
@@ -58,8 +58,12 @@ public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHa
 			request.getSession().setAttribute("adminlist", adminlist);
 			request.getSession().setAttribute("memberlist", memberlist);
 			request.setAttribute("status", 3);
-			request.getSession(true).setAttribute("s", 3);
-			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);			
+//			request.getSession().setAttribute("bean", 5);
+			System.out.println("sessionid :" + request.getSession().getId());
+			
+			
+//			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
+			response.sendRedirect("/manager/adminhomepage/"+"5");
 		}
 		else if(authorities.toString().equals("[admin]")){
 			System.out.println("成功的進入了sucesshandler的if判斷内的 admin");
@@ -71,7 +75,7 @@ public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHa
 			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
 		}
 		
-//		super.onAuthenticationSuccess(request, response, authentication);
+//		super.onAuthenticatioSuccess(request, response, authentication);
 		
 		System.out.println("跳到auth判斷公式之外");
 	}

@@ -75,8 +75,16 @@ if(request.getAttribute("crud") !=null){
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
+
+<% 
+
+System.out.println("sessionid123 :" + request.getSession().getId());
+%>
+
+
 	<h1>${status}</h1>
-	<h1>${sessionScope.s}</h1>
+
+	<h1>${bean}</h1>
 	
 	<h1>管理員界面</h1>
 	<hr>
