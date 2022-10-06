@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import ecpay.payment.integration.AllInOne;
-import ecpay.payment.integration.domain.AioCheckOutOneTime;
-import ecpay.payment.integration.ecpayOperator.EcpayFunction;
 import tw.chitou.util.ECPayHelper;
 import tw.jacky.login.model.MemberBasicInfo;
 import tw.jacky.login.model.MemberDetailInfo;
@@ -133,51 +130,42 @@ public class HotelFrontController {
 	
 	@GetMapping(path = "yee")
 	private String yee() {
-		return "NewHome";
+		return suffix+"ck";
 	}
 	
 	@PostMapping(path = "getECPay")
-//	@ResponseBody
 	private String getECPay(@RequestBody Reservation reservation,Model model) {
-		String tradeNo = "B"+Long.toHexString(System.currentTimeMillis());
-		reservation.setOrderId(tradeNo);
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-		String paymentDate = dtf.format(LocalDateTime.now());
-		model.addAttribute("CheckoutRoom",reservation);
-		model.addAttribute("TradeNo",tradeNo);
-		model.addAttribute("paymentDate",paymentDate);
+		Reservation checkOutRoom = fService.setPaymentInfo(reservation);
+		String clientBackUrl = "http://localhost:8080/returnAfterSuccess";
+		model.addAttribute("CheckoutRoom",checkOutRoom);
+		model.addAttribute("TradeNo",checkOutRoom.getOrderId());
+		model.addAttribute("paymentDate",checkOutRoom.getPaymentDate());
 		model.addAttribute("ItemName",reservation.getRoomName());
 		model.addAttribute("TotalAmount",reservation.getTotalAmount());
+		model.addAttribute("ClientBackURL",clientBackUrl);
 		ECPayHelper ecPayHelper = new ECPayHelper();
-		String clientBackUrl = "http://localhost:8080/returnAfterSuccess";
-		model.addAttribute("checkMacValue",ecPayHelper.getCheckValue(reservation.getRoomName(), paymentDate, tradeNo, "yee", reservation.getTotalAmount()));
-		System.out.println(ecPayHelper.getCheckValue("中文", paymentDate, tradeNo, "yee", "50"));
-//		model.addAttribute("checkMacValue",ecPayHelper.getCheckValue(reservation.getRoomName(),dtf.format(LocalDateTime.now()), tradeNo, "yee", reservation.getTotalAmount()));
-//		EcpayFunction ecpayFunction = new EcpayFunction();
-//		ecpayFunction.genCheckMacValue("5294y06JbISpM5x9", "v77hoKGq4kWxNNIS", ecpayFunction);
-//		String checkoutPage = ecPayHelper.getECpayPage(tradeNo, reservation.getTotalAmount(), reservation.getRoomName(),clientBackUrl);
+		String checkMacValue = ecPayHelper.getCheckValue(reservation.getOrderId(), reservation.getRoomName(),reservation.getTotalAmount(), reservation.getPaymentDate(), "test", clientBackUrl);
+		model.addAttribute("checkMacValue",checkMacValue);
 		return "weber/front/ECpay";
-//		return ecPayHelper.aioCheckOut(ecPayHelper.getECbean(tradeNo, tradeNo, checkoutPage, clientBackUrl));
 	}
 	
 	@GetMapping(path = "returnAfterSuccess")
 	private String success(Model model) {
 		Reservation checkOutRoom = (Reservation)model.getAttribute("CheckoutRoom");
 		checkOutRoom.setOrderStatus("已付款");
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-		checkOutRoom.setPaymentDate(dtf.format(LocalDateTime.now()));
-		Reservation result = fService.finalCheckOut(checkOutRoom);
-		OrderList orderList = new OrderList();
-		orderList.setMemberid(result.getMemberID());
-		orderList.setOrderdate(result.getPaymentDate());
-		orderList.setOrderid(result.getOrderId());
-		orderList.setOrderstatus(result.getOrderStatus());
-		orderList.setOrdertype("飯店");
-		orderList.setTotalprice(Integer.parseInt(result.getTotalAmount()));
-		oService.addToOrderList(orderList);
-		model.addAttribute("checkOutRoom",result);
+		fService.finalCheckOut(checkOutRoom);
+		oService.insertDataToOrderList(checkOutRoom);
+		model.addAttribute("checkOutRoom",checkOutRoom);
 		return finishOrderPage;
 	}
+	
+//	@PostMapping(path = "returnAfterSuccess")
+//	private String success(@RequestParam("MerchantTradeNo")String tradeNo,
+//						   @RequestParam("TradeAmt")String tradeAmount ,Model model) {
+//		System.out.println(tradeNo);
+//		System.out.println(tradeAmount);
+//		return finishOrderPage;
+//	}
 	
 	@PostMapping(path="CheckMacValueForEC")
 	@ResponseBody

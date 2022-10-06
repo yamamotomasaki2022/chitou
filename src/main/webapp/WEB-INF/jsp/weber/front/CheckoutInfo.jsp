@@ -95,7 +95,9 @@
                 <label>${checkOutRoom.totalAmount}</label>
             </div>
             <div class="sub">
-                <input type="reset" value="返回" disabled>
+            	<a href="home">
+                	<button type="button">返回</button>
+                </a>
             </div>
         </fieldset>
     </form>

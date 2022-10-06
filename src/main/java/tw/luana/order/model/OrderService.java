@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartRepository;
 import tw.luana.order.model.AttractionOrderDetailRepository;
+import tw.weber.hotel.model.Reservation;
 
 
 @Service
@@ -94,6 +95,18 @@ public class OrderService {
 		HotelOrder hotelOrder = hotelOrderRepository.findByreservationid(reservationid);
 		hotelOrder.setOrderstatus(status);
 		hotelOrderRepository.save(hotelOrder);
+	}
+	
+	public OrderList insertDataToOrderList(Reservation finishPaymentOrder) {
+		OrderList orderList = new OrderList();
+		orderList.setMemberid(finishPaymentOrder.getMemberID());
+		orderList.setOrderdate(finishPaymentOrder.getPaymentDate());
+		orderList.setOrderid(finishPaymentOrder.getOrderId());
+		orderList.setOrderstatus(finishPaymentOrder.getOrderStatus());
+		orderList.setOrdertype("飯店");
+		orderList.setTotalprice(Integer.parseInt(finishPaymentOrder.getTotalAmount()));
+		addToOrderList(orderList);
+		return orderList;
 	}
 }
 	

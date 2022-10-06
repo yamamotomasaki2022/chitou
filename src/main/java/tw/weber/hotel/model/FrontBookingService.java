@@ -1,5 +1,7 @@
 package tw.weber.hotel.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +55,14 @@ public class FrontBookingService {
 	
 	public Reservation finalCheckOut(Reservation reservation) {
 		return reRepo.save(reservation);
+	}
+	
+	public Reservation setPaymentInfo(Reservation reservation) {
+		String tradeNo = "B"+Long.toHexString(System.currentTimeMillis());
+		reservation.setOrderId(tradeNo);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		String paymentDate = dtf.format(LocalDateTime.now());
+		reservation.setPaymentDate(paymentDate);
+		return reservation;
 	}
 }

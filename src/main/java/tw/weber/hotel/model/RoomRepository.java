@@ -38,7 +38,7 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
 	
 	public List<Room> findAllByStyle(RoomStyle style);
 	
-	@Query(value = "select * from room "
+	@Query(value = "select top 1 * from room "
 			+ "where roomID not in  "
 			+ "(select roomID from reservation "
 			+ "where checkInDate between ?1 and ?2 or checkoutdate between ?1 and ?2) "
