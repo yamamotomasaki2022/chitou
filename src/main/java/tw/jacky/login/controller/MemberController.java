@@ -93,9 +93,26 @@ public class MemberController {
 // 會員在homepage送信
 	@GetMapping("/MemberVerifyEmail")
 	public String processMemberVerifyEmail(Model m) {
+		
+		
+		
 	MemberBasicInfo memberbasicinfo = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
 	MemberDetailInfo memberdetailinfo = (MemberDetailInfo)m.getAttribute("memberdetailinfo");
-	gmailController.sendVerificationEmail(memberbasicinfo, memberdetailinfo);
+	String randomCode = RandomString.make(15);
+	
+	System.out.println("有無取得基本資料:" + memberbasicinfo.getStatusid());
+	
+	if(memberbasicinfo.getStatusid()== 4) {
+//		System.out.println("有無進到方法内");
+		MemberBasicInfo memberbean = lservice.findByMemberid(memberbasicinfo.getMemberid());
+		MemberDetailInfo memberdetailbean = lservice.findDetailByMemberid(memberbean.getMemberid());
+		memberbean.setVerificationcode(randomCode);		
+		gmailController.sendVerificationEmail(memberbean, memberdetailbean);		
+	}else {
+		m.addAttribute("operation_Status", 1);
+		return path_member_login + "MemberHomePage";
+	}
+	
 	
 	return path_member_login + "MemberRegisterVerificationPage";
 	
