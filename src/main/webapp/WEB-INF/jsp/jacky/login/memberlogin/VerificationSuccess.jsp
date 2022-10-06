@@ -3,12 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
-<h1>Boss ok</h1>
-
+<h1>驗證成功！！！</h1>
 </body>
 </html>

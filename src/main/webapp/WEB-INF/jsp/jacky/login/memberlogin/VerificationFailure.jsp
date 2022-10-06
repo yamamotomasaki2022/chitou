@@ -3,12 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
-<h1>測試測試ok</h1>
-
+<h1>驗證失敗！！！！</h1>
 </body>
 </html>
