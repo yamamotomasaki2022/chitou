@@ -34,8 +34,8 @@ import tw.jacky.login.model.MemberBasicInfo;
 import tw.jacky.login.model.MemberDetailInfo;
 
 @Controller
-@SessionAttributes({ "memberbean", "adminlist" })
-//@RequestMapping("/member")
+@SessionAttributes({ "memberbean", "adminlist", "memberbasicinfo" ,"memberdetailinfo" })
+@RequestMapping("/uvmember")
 public class MemberController {
 
 	@Autowired
@@ -78,58 +78,27 @@ public class MemberController {
 		return path_member_login + "MemberHomePage";
 	}
 
-	@GetMapping(path = "/toMemberRegisterPage")
-	public String processtoMemberRegisterPage() {
-		return "jacky/login/memberlogin/MemberRegisterPage";
+
+
+
+
+
+// 會員更改密碼
+	@GetMapping("/MemberModifyPassword")
+	public String processMemberModifyPassword() {
+		return path_member_login + "MemberChangePassword";
 	}
-
-//	注冊會員
-
-	@PostMapping(path = "/MemberRegisterIntoDB")
-	public String processMemberRegisterIntoDB(@RequestParam("username") String username,
-			@RequestParam("password") String password, @RequestParam("email") String email,
-			@RequestParam("myFile") MultipartFile mf, @RequestParam("name") String name,
-			@RequestParam("phone") String phone, @RequestParam("address") String address,
-			@RequestParam("nickname") String nickname, @RequestParam("nationality") String nationality,
-			@RequestParam("birthday") String birthday, @RequestParam("gender") String gender) {
-
-		String photo = lservice.savePicToLocal(mf);
-		String pic_locaiton = piclocation + photo;
-
-		String randomCode = RandomString.make(15);
-		MemberBasicInfo bean = new MemberBasicInfo(4, username, password, pic_locaiton, email, randomCode);
-		String encrpytMemberPassword = managementSystemController.encrpytMemberPassword(bean);
-		bean.setPassword(encrpytMemberPassword);
-		MemberBasicInfo memberBasicInfo = lservice.adminInsertMember(bean);
-		Date date = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String createtime = simpleDateFormat.format(date);
-		String modifytime = createtime;
-		MemberDetailInfo memberDetailInfo = new MemberDetailInfo(memberBasicInfo.getMemberid(), name, phone, address,
-				nickname, nationality, birthday, gender, createtime, modifytime);
-		lservice.adminInsertMemberDetailInfo(memberDetailInfo);
-
-		gmailController.sendVerificationEmail(memberBasicInfo, memberDetailInfo);
-
-//		return "sss";
-		return path_member_login + "MemberRegisterVerificationPage";
-	}
-
-	@GetMapping("/verify")
-	public String verifyAccount(@Param("code") String code, Model m) {
-		System.out.println("進到方法的驗證碼:" + code);
-		boolean verified = gService.verify(code);
-
-		System.out.println("email驗證:" + verified);
-
-		if (verified) {
-
-			return path_member_login + "VerificationSuccess";
-
-		} else {
-
-			return path_member_login + "VerificationFailure";
-		}
+	
+	
+// 會員在homepage送信
+	@GetMapping("/MemberVerifyEmail")
+	public String processMemberVerifyEmail(Model m) {
+	MemberBasicInfo memberbasicinfo = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+	MemberDetailInfo memberdetailinfo = (MemberDetailInfo)m.getAttribute("memberdetailinfo");
+	gmailController.sendVerificationEmail(memberbasicinfo, memberdetailinfo);
+	
+	return path_member_login + "MemberRegisterVerificationPage";
+	
 	}
 
 

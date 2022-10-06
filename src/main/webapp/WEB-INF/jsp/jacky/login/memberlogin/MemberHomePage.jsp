@@ -59,18 +59,28 @@
 	<button
 		class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
 		type="submit" value="login">一鍵修改</button>
-
+		
+	
+	<a href="/uvmember/MemberModifyPassword">   
+	
 	<button
 		class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-		type="submit" value="login">更改密碼</button>
-
+		type="button" value="login">更改密碼
+	</button>
+	
+	</a>
+		
+	
+	<a href="/uvmember/MemberVerifyEmail">   
 	<button
 		class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
 		type="submit" value="login">驗證郵箱</button>
+	</a>	
+		
 	<button
 		class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
 		type="submit" value="login">
-		更改<·/button>
+		更改</button>
 
 		<button
 			class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
