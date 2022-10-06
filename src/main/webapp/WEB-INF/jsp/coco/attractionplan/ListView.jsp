@@ -15,7 +15,7 @@
 	
     <h4 class="card-title text-primary">&nbsp;方案管理</h4>
     <p class="card-description">
-		<a href="addPlan?attractionid=${attraction.attid}">
+		<a href="toAddPlan?attractionid=${attraction.attid}">
 			<button id="receive" type="button" class="btn btn-inverse-primary btn-fw">
 				<i class="ti-plus"></i>&nbsp;新增方案
 			</button>

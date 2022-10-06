@@ -37,38 +37,39 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 									<h4 class="card-title text-primary">&nbsp;新增方案</h4>
 									<p class="card-description">請輸入您要新增的方案</p>
 									<!--form開始-->
-									<form:form class="forms-sample" action="addPricingPlanAction" method="post" modelAttribute="pricingplan">
-										<form:input type="hidden" path="attractionid"></form:input>
+									<form class="forms-sample" action="addPricingPlanAction" method="post">
+										<input type="hidden" name="attractionid" value="${attractionid}">
 										<div class="form-group">
-											<form:label path="planid">方案編號:</form:label> 
-											<form:input type="text"
-												path="planid" class="form-control"
+											<label name="planid">方案編號:</label> 
+											<input type="text"
+												name="planid" class="form-control"
 												placeholder="請輸入新增的方案ID" />
 										</div>
 
 										<div class="form-group">
-											<form:label path="planname">景點名稱:</form:label>
-											 <form:input type="text" class="form-control"
-												id="" path="planname" placeholder="請輸入新增的景點名稱"/>
+											<label name="planname">方案名稱:</label>
+											 <input type="text" class="form-control"
+												id="" name="planname" placeholder="請輸入新增的方案名稱"/>
 										</div>
 
 										<div class="form-group">
-											<form:label path="planfee">景點位置:</form:label> 
-											<form:input type="text" path="planfee" class="form-control"
-												id="" placeholder="請選擇新增的景點位置" />
+											<label name="planfee">價格:</label> 
+											<input type="text" path="planfee" class="form-control"
+												id="" placeholder="價格" />
 										</div>
 
 										<div class="form-group">
-											<form:label path="plandiscript"> 景點說明: </form:label>
+											<label name="plandiscript"> 方案內容: </label>
 											<div >
-												<form:textarea id="editor1" path="plandiscript" placeholder="請輸入新增的景點說明"></form:textarea>
+												<textarea id="editor1" path="plandiscript" placeholder="請輸入方案的內容"></textarea>
 											</div>
 										</div>
 										
 										<br>
 
 										<button type="submit" name="submit" class="btn btn-primary mr-2">新增</button>
-										<a href="listAttractions"><button class="btn btn-light">返回</button></a>                        </form:form>
+										<a href="listAttractions"><button class="btn btn-light">返回</button></a> 
+									</form>
 							<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 					
 

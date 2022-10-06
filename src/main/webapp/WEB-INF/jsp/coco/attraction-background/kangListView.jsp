@@ -126,7 +126,7 @@ $(function(){
 							</td>
 							<td>
 								<a href="showAttractionPlans?attractionid=${attraction.attid}" >
-								<button class="btn btn-link" >詳細方案
+								<button type="button" class="btn btn-link" >詳細方案
 								</button>
 								</a>
 								

@@ -29,9 +29,12 @@ public class AttractionController {
 	@Autowired
 	private AttractionService aService;
 
+	@Autowired
+	private PricingplanService pService;
+	
 	public String path = "coco/attraction-background/";
 	public String path1 = "coco/attraction-user/";
-
+	public String planAddPath = "coco/attractionplan/";
 	
 	 //--------------------Attraction
 	//總覽
@@ -215,12 +218,17 @@ public class AttractionController {
 		return "coco/attractionplan/ListView";
 	}
 	
-	@GetMapping(path = "/addPlan")
+	@GetMapping(path = "/toAddPlan")
 	public String addPlan(Model m,int attractionid) {
-		Pricingplan pricingplan = new Pricingplan();
-		pricingplan.setAttractionid(attractionid);
-		m.addAttribute("pricingplan",pricingplan);
-		return path1 + "PlanAdd"; 
+		m.addAttribute("attractionid",attractionid);
+		return planAddPath + "PlanAdd"; 
 	}
 	
+	@PostMapping(path = "/addPricingPlanAction")
+	public String addPricingPlanAction(@ModelAttribute Pricingplan pricingplan,int attractionid) {
+		Pricingplan result = pService.addNewPricingPlan(pricingplan,attractionid);
+		return "redirect:showAttractionPlans?attractionid="+attractionid;
+	}
+	
+	@PostMapping(path = "/")
 }
