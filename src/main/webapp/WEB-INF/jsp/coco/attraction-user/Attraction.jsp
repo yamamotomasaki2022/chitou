@@ -243,7 +243,7 @@
 	</div>
 
 
-	<%@ include file="/WEB-INF/includes/coco/attraction/js.jsp"%>
+	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
 
 
 
