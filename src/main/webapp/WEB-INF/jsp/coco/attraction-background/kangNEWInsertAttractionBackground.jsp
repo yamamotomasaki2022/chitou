@@ -105,16 +105,17 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 
 
 	<!-- ckeditor:js & function-->
-	<script src="/js/coco/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
+	<script src="/js/coco/ckeditorCoco.js"></script>
 	<script>
-	 	ClassicEditor
-		   .create(document.querySelector('#editor1'),{
-			    ckfinder: {
-			        uploadUrl: '/ckUploadCoco'
-			    },
-			}).then(editor => {
-		    	  console.log("editor1 success");
-		   });
+// 	 	ClassicEditor
+// 		   .create(document.querySelector('#editor1'),{
+// 			    ckfinder: {
+// 			        uploadUrl: '/ckUploadCoco'
+// 			    },
+// 			}).then(editor => {
+// 		    	  console.log("editor1 success");
+// 		   });
         </script>
 
 </body>

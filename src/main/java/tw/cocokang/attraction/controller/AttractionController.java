@@ -64,12 +64,17 @@ public class AttractionController {
 	@GetMapping("/newHotelsStyle")
 	public String AttractionListActionwei(Model m) {
 		m.addAttribute("homeAttractions", aService.getAll());
-		return "Hotelstyle";
+		return "HotelsStyle";
 	}
 	@GetMapping("/newHotelsList")
 	public String AttractionListActionwei1(Model m) {
 		m.addAttribute("homeAttractions", aService.getAll());
 		return "HotelsList";
+	}
+	@GetMapping("/newHotelsOrder")
+	public String AttractionListActionwei2(Model m) {
+		m.addAttribute("homeAttractions", aService.getAll());
+		return "HotelsOrder";
 	}
 
 	

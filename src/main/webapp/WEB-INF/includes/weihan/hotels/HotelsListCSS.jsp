@@ -27,4 +27,4 @@
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/coco/bobson/menu.js"></script>ml>
+    <script src="js/coco/bobson/menu.js"></script>
