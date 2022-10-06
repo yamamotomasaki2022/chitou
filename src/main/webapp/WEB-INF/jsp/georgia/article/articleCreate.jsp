@@ -137,16 +137,17 @@ $('#fastInput').click(function(){
 	$('#contentInput').val('求分享，求推薦');
 })
 </script>
-<script src="/js/coco/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
+<script src="/js/georgia/ckeditorGeorgia.js"></script>
 <script>
-ClassicEditor
-.create(document.querySelector('#contentInput'),{
-	    ckfinder: {
-	        uploadUrl: '/ckUploadGeorgia'
-	    },
-	}).then(editor => {
- 	  console.log("editor1 success");
-});
+// ClassicEditor
+// .create(document.querySelector('#contentInput'),{
+// 	    ckfinder: {
+// 	        uploadUrl: '/ckUploadGeorgia'
+// 	    },
+// 	}).then(editor => {
+//  	  console.log("editor1 success");
+// });
 </script>
 </body>
 </html>

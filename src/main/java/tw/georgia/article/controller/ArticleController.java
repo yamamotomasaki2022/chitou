@@ -31,6 +31,7 @@ import tw.georgia.article.model.ArticleService;
 import tw.georgia.article.model.Category;
 import tw.georgia.article.model.CategoryService;
 import tw.georgia.article.model.Reply;
+import tw.georgia.article.model.ReplyService;
 
 
 @Controller
@@ -41,6 +42,9 @@ public class ArticleController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private ReplyService replyService;
 	
 	
 	private String staticPath = getStaticPath();
@@ -75,6 +79,7 @@ public class ArticleController {
 //	●
 //	--顯示文章頁面
 //	--留言區
+//	--留言區新增留言
 	
 	//	**********主頁輪播測試*********************************************
 	@RequestMapping(path = "/article.test",method = RequestMethod.GET)
@@ -314,9 +319,25 @@ public class ArticleController {
                 return -1;
             }
         }); 
-		
+		System.out.println(search.size()+"");
 		return search;
 	}
+//	*********留言區新增留言*************************************************
+	@PostMapping(path = "/article.commentinsert")
+	@ResponseBody
+	public String commentinsert(@RequestParam("postID") int postID,
+								@RequestParam("comment") String comment) {
+		String replytime =DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm").format(LocalDateTime.now());
+
+		Article article = new Article();
+		article.setPostID(postID);
+		
+		Reply reply = new Reply(article, comment, replytime);
+		replyService.insert(reply);
+		return "ok";
+	}
+	
+	
 //	******************************************
 //	**      預設 預設  預設  預設  預設            **
 //	**      預設 預設  預設  預設  預設            **

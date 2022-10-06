@@ -17,10 +17,13 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity @Table(name = "article")
 @Component
 public class Article {
-
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 //	@JoinColumns({
 //		@JoinColumn(name = "countryID",referencedColumnName = "countryID"),
@@ -28,6 +31,7 @@ public class Article {
 //	})
 	private Category category;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "article")
 	private Set<Reply> reply=new LinkedHashSet<Reply>();
 	

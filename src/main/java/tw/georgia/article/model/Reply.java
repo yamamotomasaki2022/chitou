@@ -10,9 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity @Table(name = "reply")
 public class Reply {
-
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "postID")
 	private Article article;
@@ -41,6 +43,13 @@ public class Reply {
 	private int managehidden;
 
 	public Reply() {
+	}
+
+	public Reply(Article article, String comment, String replytime) {
+		super();
+		this.article = article;
+		this.comment = comment;
+		this.replytime = replytime;
 	}
 
 	public Reply(Article article, int replyer, String comment, String replyTime, int userDelete, int manageHidden) {

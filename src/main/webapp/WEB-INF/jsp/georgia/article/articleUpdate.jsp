@@ -42,6 +42,7 @@ button, .btn {
 
 
 <br>
+<INPUT TYPE="Button" value="取消" name="goBack" class="btn btn-primary mr-2" onclick="back()"><br><br>
 <%
 Article tt=(Article)request.getAttribute("findByIdBean");
 //String articleCiassIDStr=Integer.toString(tt.getCategory().getCategoryID());
@@ -102,9 +103,10 @@ Article tt=(Article)request.getAttribute("findByIdBean");
 
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
-<script type="text/javascript"></script>
-<script src="/js/coco/ckeditor.js"></script>
 <script>
+function back(){
+	history.back();
+}
 $('#upload').on('change',function(e){
 	$('#picPreview').empty();
 	var photos = this.files;
@@ -118,15 +120,17 @@ $('#upload').on('change',function(e){
 	};
 });
 </script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
+<script src="/js/georgia/ckeditorGeorgia.js"></script>
 <script>
-ClassicEditor
-.create(document.querySelector('#contentInput'),{
-	    ckfinder: {
-	        uploadUrl: '/ckUploadGeorgia'
-	    },
-	}).then(editor => {
- 	  console.log("editor1 success");
-});
+//ClassicEditor
+//.create(document.querySelector('#contentInput'),{
+//	    ckfinder: {
+//	        uploadUrl: '/ckUploadGeorgia'
+//	    },
+//	}).then(editor => {
+//	  console.log("editor1 success");
+//});
 </script>
 </body>
 </html>
