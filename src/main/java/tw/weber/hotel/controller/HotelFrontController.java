@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ecpay.payment.integration.AllInOne;
 import ecpay.payment.integration.domain.AioCheckOutOneTime;
+import ecpay.payment.integration.ecpayOperator.EcpayFunction;
 import tw.chitou.util.ECPayHelper;
 import tw.jacky.login.model.MemberBasicInfo;
 import tw.jacky.login.model.MemberDetailInfo;
@@ -136,15 +137,27 @@ public class HotelFrontController {
 	}
 	
 	@PostMapping(path = "getECPay")
-	@ResponseBody
+//	@ResponseBody
 	private String getECPay(@RequestBody Reservation reservation,Model model) {
 		String tradeNo = "B"+Long.toHexString(System.currentTimeMillis());
 		reservation.setOrderId(tradeNo);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		String paymentDate = dtf.format(LocalDateTime.now());
 		model.addAttribute("CheckoutRoom",reservation);
+		model.addAttribute("TradeNo",tradeNo);
+		model.addAttribute("paymentDate",paymentDate);
+		model.addAttribute("ItemName",reservation.getRoomName());
+		model.addAttribute("TotalAmount",reservation.getTotalAmount());
 		ECPayHelper ecPayHelper = new ECPayHelper();
 		String clientBackUrl = "http://localhost:8080/returnAfterSuccess";
-		String checkoutPage = ecPayHelper.getECpayPage(tradeNo, reservation.getTotalAmount(), reservation.getRoomName(),clientBackUrl);
-		return checkoutPage;
+		model.addAttribute("checkMacValue",ecPayHelper.getCheckValue(reservation.getRoomName(), paymentDate, tradeNo, "yee", reservation.getTotalAmount()));
+		System.out.println(ecPayHelper.getCheckValue("中文", paymentDate, tradeNo, "yee", "50"));
+//		model.addAttribute("checkMacValue",ecPayHelper.getCheckValue(reservation.getRoomName(),dtf.format(LocalDateTime.now()), tradeNo, "yee", reservation.getTotalAmount()));
+//		EcpayFunction ecpayFunction = new EcpayFunction();
+//		ecpayFunction.genCheckMacValue("5294y06JbISpM5x9", "v77hoKGq4kWxNNIS", ecpayFunction);
+//		String checkoutPage = ecPayHelper.getECpayPage(tradeNo, reservation.getTotalAmount(), reservation.getRoomName(),clientBackUrl);
+		return "weber/front/ECpay";
+//		return ecPayHelper.aioCheckOut(ecPayHelper.getECbean(tradeNo, tradeNo, checkoutPage, clientBackUrl));
 	}
 	
 	@GetMapping(path = "returnAfterSuccess")

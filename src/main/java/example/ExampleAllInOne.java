@@ -36,12 +36,12 @@ public class ExampleAllInOne {
 //		System.out.println("tradeNoAio: " + postTradeNoAio());
 //		System.out.println("fundingReconDetail: " + postFundingReconDetail());
 //		System.out.println("aioCheckOutALL: " + genAioCheckOutALL());
-		System.out.println("aioCheckOutOneTime: " + genAioCheckOutApplePay());
+//		System.out.println("aioCheckOutOneTime: " + genAioCheckOutApplePay());
 //		System.out.println("aioCheckOutATM: " + genAioCheckOutATM());
 //		System.out.println("aioCheckOutCVS: " + genAioCheckOutCVS());
 //		System.out.println("aioCheckOutBARCODE: " + genAioCheckOutBARCODE());
 //		System.out.println("aioCheckOutDevide: " + genAioCheckOutDevide());
-//		System.out.println("aioCheckOutOneTime: " + genAioCheckOutOneTime());
+		System.out.println("aioCheckOutOneTime: " + genAioCheckOutOneTime());
 //		System.out.println("aioCheckOutPeriod: " + genAioCheckOutPeriod());
 //		System.out.println("aioCheckOutWebATM: " + genAioCheckOutWebATM());
 	}
