@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +29,7 @@ import tw.jacky.login.model.LoginService;
 import tw.jacky.login.model.MemberBasicInfo;
 
 @Controller
-@SessionAttributes({ "memberlist", "adminlist", "session_status", "crud" })
+@SessionAttributes({ "memberlist", "adminlist", "session_status", "crud" ,"bean"})
 @RequestMapping(path="/manager")
 public class ManagementSystemController {
 
@@ -72,13 +75,21 @@ public class ManagementSystemController {
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	管理員登入界面
-	@RequestMapping(path = "/adminlogin", method = RequestMethod.GET)
+	@RequestMapping(path = "/AdminLogin", method = RequestMethod.GET)
 	public String processMainAction() {
 		return page_adminlogin;
 	}
 
-	@RequestMapping(path = "/adminhomepage")
-	public String processAdminHomePage(Model m) {
+	@RequestMapping(path = "/AdminHomePage/{id}")
+	public String processAdminHomePage(@PathVariable("id") Integer id ,Model m) {
+		processShowTableInHomePage(m);
+		System.out.println("取到數字:" + id);
+		m.addAttribute("bean", id);
+		return page_adminhomepage;
+	}
+	
+	@RequestMapping(path = "/AdminHomePage")
+	public String processAdminHomePage2(Model m) {
 		processShowTableInHomePage(m);
 		return page_adminhomepage;
 	}

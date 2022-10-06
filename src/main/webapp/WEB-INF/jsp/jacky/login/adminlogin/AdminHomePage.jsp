@@ -5,17 +5,23 @@
 
 <%
 
-if(request.getSession().getAttribute("session_status") !=null){
-	int session_status = (int)request.getSession().getAttribute("session_status");
-}else{
-	int session_status = 0;
-};
+// if(request.getAttribute("status") !=null){
+//  	int status1 = (int)request.getAttribute("status");
+	
+//  	System.out.println(status1);
+// }else{
+// 	int status1 = 0;
+// 	System.out.println(status1);
+// };
 
 if(request.getAttribute("crud") !=null){
 	int crud = (int)request.getAttribute("crud");
 }else{
 	int crud = 0;
 }
+
+
+
 %>
 
 
@@ -68,18 +74,30 @@ if(request.getAttribute("crud") !=null){
 
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
+
+
+<% 
+
+System.out.println("sessionid123 :" + request.getSession().getId());
+%>
+
+
+	<h1>${status}</h1>
+
+	<h1>${bean}</h1>
+	
 	<h1>管理員界面</h1>
 	<hr>
 	<hr>
 
-	<FORM ACTION="manager/ToAdminCreateMemberPage" method="post">
+	<FORM ACTION="/manager/ToAdminCreateMemberPage" method="post">
 
 		<input class="bot" type="submit" name="addnewmember" value="新增會員資料">
 		<hr>
 
 	</form>
 
-	<FORM ACTION="manager/AdminQueryMember" method="get">
+	<FORM ACTION="/manager/AdminQueryMember" method="get">
 		<select name="searchinfo">
 			<option value="memberid">會員編號</option>
 			<option value="username">賬號</option>
@@ -131,15 +149,15 @@ if(request.getAttribute("crud") !=null){
 				%>
 
 				<tr>
-					<form action="manager/AdminDeleteMember" method="post">
+					<form action="/manager/AdminDeleteMember" method="post">
 						<input type="hidden" name="_method" value="DELETE">
 						<td><input type="hidden" name="td_memberid"
 							value="<%=bean.getMemberid()%>"><%=bean.getMemberid()%></td>
 						<!--  <td><%=bean.getStatusid()%></td>-->
 						<td><%=bean.getUsername()%></td>
 						<td><%=bean.getPassword()%></td>
-						<td><img width="300px" height="300px"
-							src="<%=bean.getPhoto()%>"></td>
+						<td><img width="500px" height="500px"
+							src="/<%=bean.getPhoto()%>"></td>
 						<td><%=bean.getEmail()%></td>
 
 						<td>
@@ -150,7 +168,7 @@ if(request.getAttribute("crud") !=null){
 						</td>
 					</form>
 
-					<form action="manager/ToAdminModifyMember" method="post">
+					<form action="/manager/ToAdminModifyMember" method="post">
 						<input type="hidden" name="memberid"
 							value="<%=bean.getMemberid()%>"> <input type="hidden"
 							name="statusid" value="<%=bean.getStatusid()%>"> <input
@@ -158,7 +176,7 @@ if(request.getAttribute("crud") !=null){
 						<input type="hidden" name="userid" value="<%=bean.getUsername()%>">
 						<input type="hidden" name="password"
 							value="<%=bean.getPassword()%>"> <input type="hidden"
-							name="photo" value="<%=bean.getPhoto()%>"> <input
+							name="photo" value=" /<%=bean.getPhoto()%>"> <input
 							type="hidden" name="email" value="<%=bean.getEmail()%>">
 
 						<td>
@@ -206,7 +224,7 @@ if(request.getAttribute("crud") !=null){
 					%>
 
 					<tr>
-						<form action="manager/AdminDeleteAdmin" method="post">
+						<form action="/manager/AdminDeleteAdmin" method="post">
 							<input type="hidden" name="_method" value="DELETE">
 							<td><input type="hidden" name="td_memberid"
 								value="<%=bean.getAdminid()%>"><%=bean.getAdminid()%></td>
@@ -219,7 +237,7 @@ if(request.getAttribute("crud") !=null){
 							<td><input type=submit name="deletefromadmin" value="刪除"></td>
 						</form>
 
-						<form action="manager/ToAdminModifyAdmin" method="post">
+						<form action="/manager/ToAdminModifyAdmin" method="post">
 							<input type="hidden" name="adminid"
 								value="<%=bean.getAdminid()%>"> <input type="hidden"
 								name="adminstatus" value="<%=bean.getAdminstatus()%>"> <input
@@ -243,7 +261,7 @@ if(request.getAttribute("crud") !=null){
 
 			<hr>
 
-	<FORM ACTION="manager/ToAdminCreateAdmin" method="post">
+	<FORM ACTION="/manager/ToAdminCreateAdmin" method="post">
 
 				<input class="bot" type="submit" name="addnewmember" value="新增管理員資料">
 				<hr>
@@ -252,7 +270,10 @@ if(request.getAttribute("crud") !=null){
 	</div>
 
 
-	<a href="<c:url value="/logout" />">Logout</a>
+	<a href="/logout">管理員登出 </a>
+	
+	
+	
 <!--  
 
 	<form action="logout">
@@ -271,7 +292,7 @@ if(request.getAttribute("crud") !=null){
 	
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
-		var status = "${status}";
+		let status = "${status}";
 
 		if (status == 1) {
 			Swal.fire(
@@ -309,7 +330,7 @@ if(request.getAttribute("crud") !=null){
 	
 	var crud = "${crud}";
 	
-	console.log(crud)
+	console.log("crud:" +crud)
 	
 	if (crud == 1) {
 		Swal.fire(

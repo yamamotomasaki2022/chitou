@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -38,13 +39,32 @@ public class MemberBasicInfo {
 	
 	@Column(name="email")
 	private String email;
+
+	@Column(name="verificationcode")
+	private String verificationcode;
+	
+	
+	
 	
 	
 	public MemberBasicInfo() {
 		
 	}
 	
-	
+	public MemberBasicInfo(int statusid, String username, String password, String photo, String email,
+			String verificationcode) {
+		super();
+		this.statusid = statusid;
+		this.username = username;
+		this.password = password;
+		this.photo = photo;
+		this.email = email;
+		this.verificationcode = verificationcode;
+	}
+
+
+
+
 	public MemberBasicInfo(int memberid, int statusid, String username, String password, String photo, String email) {
 		super();
 		this.memberid = memberid;
@@ -56,6 +76,14 @@ public class MemberBasicInfo {
 	}
 	
 	
+	public MemberBasicInfo(int statusid, String username, String password, String photo, String email) {
+		super();
+		this.statusid = statusid;
+		this.username = username;
+		this.password = password;
+		this.photo = photo;
+		this.email = email;
+	}
 	
 	
 	
@@ -66,14 +94,6 @@ public class MemberBasicInfo {
 	}
 
 
-	public MemberBasicInfo(int statusid, String username, String password, String photo, String email) {
-		super();
-		this.statusid = statusid;
-		this.username = username;
-		this.password = password;
-		this.photo = photo;
-		this.email = email;
-	}
 
 	
 
@@ -115,12 +135,26 @@ public class MemberBasicInfo {
 	}
 
 
+	public String getVerificationcode() {
+		return verificationcode;
+	}
+
+
+	public void setVerificationcode(String verificationcode) {
+		this.verificationcode = verificationcode;
+	}
+
 
 	@Override
 	public String toString() {
 		return "MemberBasicInfo [memberid=" + memberid + ", statusid=" + statusid + ", username=" + username
-				+ ", password=" + password + ", photo=" + photo + ", email=" + email + "]";
+				+ ", password=" + password + ", photo=" + photo + ", email=" + email + ", verificationcode="
+				+ verificationcode + "]";
 	}
+	
+	
+	
+	
 	
 	
 	

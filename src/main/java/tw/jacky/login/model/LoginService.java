@@ -69,7 +69,10 @@ public class LoginService {
 	public MemberBasicInfo findBasicInfobyUsername(String username) {
 		return mbrepo.findByUsername(username);
 	}
-		
+	
+	public MemberBasicInfo findByEmail(String email) {
+		return mbrepo.findByEmail(email);
+	}	
 	
 //	尋找會員詳細資料
 	public MemberDetailInfo findDetailByMemberid(int id) {
@@ -88,12 +91,26 @@ public class LoginService {
 		return mdirepo.save(memberDetailInfo);
 	}
 	
+	public MemberDetailInfo adminInsertMemberDetailInfo(MemberDetailInfo md) {
+		return mdirepo.save(md);
+	}
+	
 	
 	
 //	管理員刪除會員
 	public void adminDeleteMember(int id) {
+		
 		MemberDetailInfo findDetailByMemberid = findDetailByMemberid(id);
-		mdirepo.delete(findDetailByMemberid);
+		if ( findDetailByMemberid != null) {
+			mdirepo.delete(findDetailByMemberid);
+			
+		}else {
+			
+			MemberBasicInfo findBasicInfoByMemberid = findByMemberid(id);
+			mbrepo.delete(findBasicInfoByMemberid);
+		}
+
+
 	}
 	
 //	管理員更新會員

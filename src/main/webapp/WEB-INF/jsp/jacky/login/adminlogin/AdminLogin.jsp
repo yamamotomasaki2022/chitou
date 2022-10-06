@@ -24,14 +24,9 @@
 <link rel="shortcut icon" href="/images/coco/favicon.png" />
 
 <style type="text/css">
-
-#auth_button{
-
-background-color: pink
-
+#auth_button {
+	background-color: pink
 }
-
-
 </style>
 
 </head>
@@ -54,24 +49,30 @@ background-color: pink
 							<form class="pt-3" ACTION="" method="post">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="uName" placeholder="Username" name="username">
+										id="username" placeholder="Username" name="username">
 									<span>${errors.name}</span>
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-lg"
-										id="uPass" placeholder="Password" name="password"> <span>${errors.pwd}</span>
+										id="password" placeholder="Password" name="password">
+									<span>${errors.pwd}</span>
 								</div>
 								<div class="mt-3">
 									<button
 										class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-										type="submit" value="login">管理員登入</button>
+										type="submit" value="login">登入</button>
 									<span>${errors.msg}</span>
+								</div>
+								<div>
+
+
 								</div>
 								<div
 									class="my-2 d-flex justify-content-between align-items-center">
 									<div class="form-check">
 										<label class="form-check-label text-muted"> <input
-											type="checkbox" class="form-check-input" name="jacky-rememberme"> 記住我的認證
+											type="checkbox" class="form-check-input"
+											name="jacky-rememberme"> 記住我的認證
 										</label>
 									</div>
 									<a href="#" class="auth-link .text-primary">忘記密碼</a>
@@ -82,27 +83,44 @@ background-color: pink
 										<i class="ti-facebook"></i>
 									</button>
 
-									<button type="button"
-										class="btn btn-social-icon btn-outline-google">
-										<i class="ti-google"></i>
-									</button>
+<!-- 									<button type="button" -->
+<!-- 										class="btn btn-social-icon btn-outline-google"> -->
+<!-- 										<i class="ti-google"></i> -->
+<!-- 									</button> -->
 
-									<button type="button"
-										class="btn btn-social-icon btn-outline-google">
-										<i class="ti-google"></i>
-									</button>
+
+									<a href='/oauth2/authorization/google'>
+										<button type="button"
+											class="btn btn-social-icon btn-outline-google">
+											<i class="ti-google"></i>
+										</button>
+									</a>
 								</div>
 
 
 								<hr>
 							</form>
-							<div >
-								<form action="toMemberLoginPage" >
-									<input type="submit" class="btn btn-primary mr-2" value="會員" style="float:left ; background-color: #2AAC16">
+							<div>
+								<form action="toMemberLoginPage">
+									<input type="submit" class="btn btn-primary mr-2" value="會員"
+										style="float: left; background-color: #2AAC16">
 								</form>
-								<form action="toAdminLoginPage" >
-									<input type="submit" class="btn btn-primary mr-2" value="管理員" style="float:right;background-color: #2AAC16">
+								<form action="toAdminLoginPage">
+									<input type="submit" class="btn btn-primary mr-2" value="管理員"
+										style="float: right; background-color: #2AAC16">
 								</form>
+							</div>
+
+
+
+							<div>
+								<form action="toMemberRegisterPage">
+									<input type="submit" class="btn btn-primary mr-2" value="注冊"
+										style=""background-color:#2AAC16">
+								</form>
+
+								<button id="fastinput">管理員一鍵登入</button>
+
 							</div>
 
 						</div>
@@ -127,6 +145,17 @@ background-color: pink
 	<script src="/js/coco/settings.js"></script>
 	<script src="/js/coco/todolist.js"></script>
 	<!-- endinject -->
+
+	<script>
+		$('#fastinput').click(function() {
+
+			$('#username').val('boss')
+			$('#password').val('123')
+
+		})
+	</script>
+
+
 </body>
 
 </html>
