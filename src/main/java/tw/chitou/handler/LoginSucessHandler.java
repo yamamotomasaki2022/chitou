@@ -51,6 +51,17 @@ public class LoginSucessHandler implements AuthenticationSuccessHandler {
 			request.getSession().setAttribute("memberdetailinfo", memberdetailinfo);
 			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/memberlogin/MemberHomePage.jsp").forward(request, response);
 		}
+		
+		else if (authorities.toString().equals("[verified_member]")) {
+			System.out.println("成功的進入了sucesshandler的if判斷内");
+			String username = request.getParameter("username");
+			MemberBasicInfo memberbasicinfo = lService.findBasicInfobyUsername(username);
+			MemberDetailInfo memberdetailinfo = lService.findDetailByMemberid(memberbasicinfo.getMemberid());
+			request.getSession().setAttribute("memberbasicinfo", memberbasicinfo);
+			request.getSession().setAttribute("memberdetailinfo", memberdetailinfo);
+			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/memberlogin/MemberHomePage.jsp").forward(request, response);
+		}
+		
 		else if(authorities.toString().equals("[boss777]")) {
 			System.out.println("成功的進入了sucesshandler的if判斷内的boss");
 			List<AdminChitou> adminlist = lService.adminFindAll();

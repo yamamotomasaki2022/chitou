@@ -10,10 +10,10 @@ public interface MemberBasicInfoRepository extends JpaRepository<MemberBasicInfo
 	public MemberBasicInfo findByMemberid(int id);
 
 	public MemberBasicInfo findByUsername(String username);
-
-	
 	
 	@Query("FROM MemberBasicInfo Where verificationcode = ?1")
 	public MemberBasicInfo finyByVerificationcode(String verificationcode);
+	
+	public MemberBasicInfo findByEmail(String email);
 
 }

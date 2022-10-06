@@ -69,7 +69,10 @@ public class LoginService {
 	public MemberBasicInfo findBasicInfobyUsername(String username) {
 		return mbrepo.findByUsername(username);
 	}
-		
+	
+	public MemberBasicInfo findByEmail(String email) {
+		return mbrepo.findByEmail(email);
+	}	
 	
 //	尋找會員詳細資料
 	public MemberDetailInfo findDetailByMemberid(int id) {

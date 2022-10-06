@@ -74,7 +74,11 @@
 
 		<button
 			class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-			type="submit" value="login">確定</button>
+			type="submit" value="login">確定
+		</button>
+			
+			
+		<a href="/logout"> 管理員登出 </a>
 
 
 		<!-- container-scroller -->

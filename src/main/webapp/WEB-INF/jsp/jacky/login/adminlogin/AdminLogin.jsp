@@ -49,11 +49,13 @@
 							<form class="pt-3" ACTION="" method="post">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="username" placeholder="Username" name="username"> <span>${errors.name}</span>
+										id="username" placeholder="Username" name="username">
+									<span>${errors.name}</span>
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-lg"
-										id="password" placeholder="Password" name="password"> <span>${errors.pwd}</span>
+										id="password" placeholder="Password" name="password">
+									<span>${errors.pwd}</span>
 								</div>
 								<div class="mt-3">
 									<button
@@ -62,8 +64,8 @@
 									<span>${errors.msg}</span>
 								</div>
 								<div>
-								<a href='/oauth2/authorization/google'> Login with Google</a>
-								
+
+
 								</div>
 								<div
 									class="my-2 d-flex justify-content-between align-items-center">
@@ -81,15 +83,18 @@
 										<i class="ti-facebook"></i>
 									</button>
 
-									<button type="button"
-										class="btn btn-social-icon btn-outline-google">
-										<i class="ti-google"></i>
-									</button>
+<!-- 									<button type="button" -->
+<!-- 										class="btn btn-social-icon btn-outline-google"> -->
+<!-- 										<i class="ti-google"></i> -->
+<!-- 									</button> -->
 
-									<button type="button"
-										class="btn btn-social-icon btn-outline-google">
-										<i class="ti-google"></i>
-									</button>
+
+									<a href='/oauth2/authorization/google'>
+										<button type="button"
+											class="btn btn-social-icon btn-outline-google">
+											<i class="ti-google"></i>
+										</button>
+									</a>
 								</div>
 
 
@@ -105,15 +110,15 @@
 										style="float: right; background-color: #2AAC16">
 								</form>
 							</div>
-							
-							
-							
+
+
+
 							<div>
 								<form action="toMemberRegisterPage">
 									<input type="submit" class="btn btn-primary mr-2" value="注冊"
-										style="" background-color:#2AAC16">
+										style=""background-color:#2AAC16">
 								</form>
-								
+
 								<button id="fastinput">管理員一鍵登入</button>
 
 							</div>
@@ -140,19 +145,17 @@
 	<script src="/js/coco/settings.js"></script>
 	<script src="/js/coco/todolist.js"></script>
 	<!-- endinject -->
-	
-		<script>
-	
-	$('#fastinput').click(function(){
-		
-		$('#username').val('boss')
-		$('#password').val('123')
-		
-	})
-	
+
+	<script>
+		$('#fastinput').click(function() {
+
+			$('#username').val('boss')
+			$('#password').val('123')
+
+		})
 	</script>
-	
-	
+
+
 </body>
 
 </html>

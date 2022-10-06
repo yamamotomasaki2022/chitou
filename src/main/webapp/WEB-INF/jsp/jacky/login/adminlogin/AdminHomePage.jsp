@@ -270,7 +270,10 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 	</div>
 
 
-	<a href="<c:url value="/logout" />">管理員登出</a>
+	<a href="/logout">管理員登出 </a>
+	
+	
+	
 <!--  
 
 	<form action="logout">

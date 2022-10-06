@@ -1,9 +1,9 @@
 package tw.jacky.login.controller;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-
 
 import java.util.List;
 import java.util.Map;
@@ -33,90 +33,71 @@ import tw.jacky.login.model.LoginService;
 import tw.jacky.login.model.MemberBasicInfo;
 import tw.jacky.login.model.MemberDetailInfo;
 
-
 @Controller
-@SessionAttributes({"memberbean","adminlist"} )
+@SessionAttributes({ "memberbean", "adminlist" })
 //@RequestMapping("/member")
 public class MemberController {
-	
-	
 
 	@Autowired
 	private LoginService lservice;
-	
-	
+
 	@Autowired
 	private ManagementSystemController managementSystemController;
-	
+
 	@Autowired
 	private GmailController gmailController;
-	
+
 	@Autowired
 	private GmailService gService;
-	
-	
+
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	路徑
-	
+
 	String path_main_login = "jacky/login/";
-	String path_admin_login =  path_main_login + "adminlogin/";
-	String path_member_login =  path_main_login + "memberlogin/";
+	String path_admin_login = path_main_login + "adminlogin/";
+	String path_member_login = path_main_login + "memberlogin/";
 	String image_admin_page = "images/jacky/";
-	String piclocation= image_admin_page + "login/";
-	
-	
-	
-	
+	String piclocation = image_admin_page + "login/";
+
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Mapping方法
 
-	
-
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 // 頁面
-	
 
-	String page_memberhomepage= path_member_login + "MemberHomePage";
-	String page_memberlogin= path_member_login + "MemberLogin";
-	
-	
-	
-	
+	String page_memberhomepage = path_member_login + "MemberHomePage";
+	String page_memberlogin = path_member_login + "MemberLogin";
+
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	會員登入界面
 
-	
-	
-	
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	
-
-	@RequestMapping(path= "toMemberHomePage")
+	@RequestMapping(path = "toMemberHomePage")
 	public String MemberHomePage() {
 		return path_member_login + "MemberHomePage";
 	}
-	
-	
-	@GetMapping(path= "/toMemberRegisterPage")
-	public String processtoMemberRegisterPage(){
-		return  "jacky/login/memberlogin/MemberRegisterPage";
+
+	@GetMapping(path = "/toMemberRegisterPage")
+	public String processtoMemberRegisterPage() {
+		return "jacky/login/memberlogin/MemberRegisterPage";
 	}
-	
-	
+
 //	注冊會員
-	
-	@PostMapping(path= "/MemberRegisterIntoDB")
-	public String processMemberRegisterIntoDB(@RequestParam("username") String username,@RequestParam("password") String password, 
-			@RequestParam("email") String email, @RequestParam("myFile") MultipartFile mf, @RequestParam("name") String name,
-			@RequestParam("phone") String phone, @RequestParam("address") String address, @RequestParam("nickname") String nickname,
-			@RequestParam("nationality") String nationality, @RequestParam("birthday") String birthday, @RequestParam("gender") String gender) {
-		
+
+	@PostMapping(path = "/MemberRegisterIntoDB")
+	public String processMemberRegisterIntoDB(@RequestParam("username") String username,
+			@RequestParam("password") String password, @RequestParam("email") String email,
+			@RequestParam("myFile") MultipartFile mf, @RequestParam("name") String name,
+			@RequestParam("phone") String phone, @RequestParam("address") String address,
+			@RequestParam("nickname") String nickname, @RequestParam("nationality") String nationality,
+			@RequestParam("birthday") String birthday, @RequestParam("gender") String gender) {
+
 		String photo = lservice.savePicToLocal(mf);
 		String pic_locaiton = piclocation + photo;
-		
+
 		String randomCode = RandomString.make(15);
-		MemberBasicInfo bean = new MemberBasicInfo(4, username, password, pic_locaiton, email,randomCode);
+		MemberBasicInfo bean = new MemberBasicInfo(4, username, password, pic_locaiton, email, randomCode);
 		String encrpytMemberPassword = managementSystemController.encrpytMemberPassword(bean);
 		bean.setPassword(encrpytMemberPassword);
 		MemberBasicInfo memberBasicInfo = lservice.adminInsertMember(bean);
@@ -124,33 +105,32 @@ public class MemberController {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String createtime = simpleDateFormat.format(date);
 		String modifytime = createtime;
-		MemberDetailInfo memberDetailInfo = new MemberDetailInfo(memberBasicInfo.getMemberid(),name,phone,address,nickname,nationality,birthday,gender,createtime,modifytime);
-		
+		MemberDetailInfo memberDetailInfo = new MemberDetailInfo(memberBasicInfo.getMemberid(), name, phone, address,
+				nickname, nationality, birthday, gender, createtime, modifytime);
+		lservice.adminInsertMemberDetailInfo(memberDetailInfo);
+
 		gmailController.sendVerificationEmail(memberBasicInfo, memberDetailInfo);
-		
-		
+
 //		return "sss";
 		return path_member_login + "MemberRegisterVerificationPage";
 	}
-	
+
 	@GetMapping("/verify")
-	public String verifyAccount(@Param("code") String code,Model m) {
+	public String verifyAccount(@Param("code") String code, Model m) {
 		System.out.println("進到方法的驗證碼:" + code);
 		boolean verified = gService.verify(code);
-		
+
 		System.out.println("email驗證:" + verified);
-		
-		if(verified) {
-			
+
+		if (verified) {
+
 			return path_member_login + "VerificationSuccess";
-			
-		}else {
-			
+
+		} else {
+
 			return path_member_login + "VerificationFailure";
 		}
 	}
-	
-	
-	
+
 
 }
