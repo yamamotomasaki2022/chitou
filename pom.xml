@@ -131,7 +131,7 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-<<<<<<< HEAD
+
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -146,7 +146,7 @@
 			<version>2.17.1</version>
 		</dependency>
 
-=======
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -166,7 +166,7 @@
 		</dependency>
 
 
->>>>>>> Jacky_SpringSecurity2
+
 	</dependencies>
 
 	<build>

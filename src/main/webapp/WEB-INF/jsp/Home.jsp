@@ -48,7 +48,7 @@
 					<li><a href="Home.jsp">Home</a></li>
 					<li class="has-children"><a href="">交通住宿</a>
 						<ul class="dropdown">
-							<li><a href="/admin/hotel">住宿訂購</a></li>
+							<li><a href="/member/yee">住宿訂購</a></li>
 							<li><a href="flightTicket">機票訂購</a></li>
 
 						</ul></li>

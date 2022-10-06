@@ -130,7 +130,7 @@ public class HotelFrontController {
 		return (MemberDetailInfo)model.getAttribute("memberdetailinfo");
 	}
 	
-	@GetMapping(path = "yee")
+	@GetMapping(path = "member/yee")
 	private String yee() {
 		return "NewHome";
 	}
