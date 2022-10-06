@@ -30,6 +30,7 @@ import tw.georgia.article.model.Article;
 import tw.georgia.article.model.ArticleService;
 import tw.georgia.article.model.Category;
 import tw.georgia.article.model.CategoryService;
+import tw.georgia.article.model.Reply;
 
 
 @Controller
@@ -73,6 +74,7 @@ public class ArticleController {
 //	--管理隱藏
 //	●
 //	--顯示文章頁面
+//	--留言區
 	
 	//	**********主頁輪播測試*********************************************
 	@RequestMapping(path = "/article.test",method = RequestMethod.GET)
@@ -288,6 +290,32 @@ public class ArticleController {
 		m.addAttribute("findByID", findByID);
 		
 		return "georgia/article/articleDetail";
+	}
+	
+//	*********留言區*************************************************
+	@GetMapping(path = "/article.comment")
+	@ResponseBody
+	public List<Reply> comment(@RequestParam("postID") int postID) {
+		List<Reply> search = new LinkedList<Reply>();
+		
+		Article findByID = articleService.findByID(postID);
+		Set<Reply> replySet = findByID.getReply();
+		for (Reply reply : replySet) {
+			search.add(reply);
+		}
+        Collections.sort(search, new Comparator<Reply>(){
+        	public int compare(Reply a1, Reply a2) {
+        		if(a1.getReplyID() > a2.getReplyID()){
+                    return 1;
+                }
+                if(a1.getReplyID() == a2.getReplyID()){
+                    return 0;
+                }
+                return -1;
+            }
+        }); 
+		
+		return search;
 	}
 //	******************************************
 //	**      預設 預設  預設  預設  預設            **

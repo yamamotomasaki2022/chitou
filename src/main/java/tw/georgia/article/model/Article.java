@@ -1,5 +1,8 @@
 package tw.georgia.article.model;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,10 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
-//沒改完GET/SET
+
 @Entity @Table(name = "article")
 @Component
 public class Article {
@@ -23,6 +27,9 @@ public class Article {
 		@JoinColumn(name = "categoryID",referencedColumnName = "categoryID")
 //	})
 	private Category category;
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "article")
+	private Set<Reply> reply=new LinkedHashSet<Reply>();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -191,6 +198,16 @@ public class Article {
 
 	public void setManageHidden(int manageHidden) {
 		this.managehidden = manageHidden;
+	}
+
+
+	public Set<Reply> getReply() {
+		return reply;
+	}
+
+
+	public void setReply(Set<Reply> reply) {
+		this.reply = reply;
 	}
 	
 	

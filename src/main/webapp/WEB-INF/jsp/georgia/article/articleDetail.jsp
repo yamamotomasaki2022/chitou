@@ -51,6 +51,31 @@ Article tt=(Article)request.getAttribute("findByID");
 <hr>
 <p style="color:gray;font-size: 5px;"><%=tt.getDate() %> 發布</p>
 <%=tt.getContent() %>
+
+<table>
+	<thead>
+		<tr>
+			<th><h3>留言區</h3></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		<%Set<Reply> replySet=tt.getReply();
+		for(Reply reply:replySet){
+			%>	
+		
+			<td><img id="img" src="images/georgia/picture/354617.jpg" class="box" style="width:100px;height:100px"></td>
+			<td><%=reply.getComment()%></td>
+			<td><input type="button" value="回覆"></td>
+			<br><br></tr>
+		<%}%>
+		<tr>
+			<td><img id="img" src="images/georgia/picture/354617.jpg" class="box" style="width:100px;height:100px"></td>
+			<td><input type="text" placeholder="喵喵喵"></td>
+			<td><input type="button" value="送出"></td>
+		</tr>
+	</tbody>
+</table>
 </div>
 
 <svg type="button" id="BackTop" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill jiantou" viewBox="0 0 16 16">
