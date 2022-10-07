@@ -82,7 +82,7 @@ Article tt=(Article)request.getAttribute("findByID");
         for(Reply r:search){
 		%>	
 			<td><img id="img" src="images/georgia/picture/354617.jpg" class="box" style="width:100px;height:100px"></td>
-			<td><%=r.getComment()%></td>
+			<td style="width:80%;"><%=r.getComment()%></td>
 			<td><input type="button" value="回覆"></td>
 			</tr>
 		<%}%>

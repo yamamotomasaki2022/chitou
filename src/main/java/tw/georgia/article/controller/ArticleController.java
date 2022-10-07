@@ -67,6 +67,7 @@ public class ArticleController {
 //	--主頁輪播測試
 //	●會員
 //	--文章管理主頁(會員)
+//	--留言管理(會員)
 //	--前往新增文章
 //	--新增文章
 //	--前往更新文章
@@ -115,6 +116,16 @@ public class ArticleController {
 		m.addAttribute("list", list);
 		//request.setAttribute("list",list);
 		return "georgia/article/articleUserMain";
+	}	
+
+	//	**********留言管理(會員)********************************************
+	@RequestMapping(path = "/article.reply",method = RequestMethod.GET)
+	public String articleUserComment(Model m) {
+		
+		List<Article> list = articleService.findAll();
+		m.addAttribute("list", list);
+		//request.setAttribute("list",list);
+		return "georgia/article/articleUserComment";
 	}	
 	
 //	**********前往新增文章*********************************************
