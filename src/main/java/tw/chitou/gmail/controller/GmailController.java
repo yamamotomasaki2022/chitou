@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,6 +24,10 @@ import tw.jacky.login.model.MemberDetailInfo;
 @Controller
 public class GmailController {
 	
+	
+	
+		
+	
 	 	@Autowired
 		JavaMailSender javaMailSender;
 	 	
@@ -31,8 +37,12 @@ public class GmailController {
 	 	@Autowired
 	 	TemplateServices templateService;
 	 	
-	 	String path_main_login = "jacky/login/";
 	 	
+		String path_main_login = "jacky/login/";
+		String path_admin_login = path_main_login + "adminlogin/";
+		String path_member_login = path_main_login + "memberlogin/";
+		String image_admin_page = "images/jacky/";
+		String piclocation = image_admin_page + "login/";
 	 	
 	 	
 //		嘗試發送email
@@ -127,6 +137,25 @@ public class GmailController {
 		    gmailService.mimemail(fromAddress, toEmaiList, subject, html);
 //		    return  "jacky/memberlogin/MemberRegisterPage";
 		}
+		
+		
+		@GetMapping("/verify")
+		public String verifyAccount(@Param("code") String code, Model m) {
+			System.out.println("進到方法的驗證碼:" + code);
+			boolean verified = gmailService.verify(code);
+
+			System.out.println("email驗證:" + verified);
+
+			if (verified) {
+
+				return path_member_login + "VerificationSuccess";
+
+			} else {
+
+				return path_member_login + "VerificationFailure";
+			}
+		}
+		
 
 		
 
