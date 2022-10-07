@@ -59,7 +59,7 @@
 		                			</form>
 		                		</div>
 								<div>
-		                			<form action="/admin/deleteHotel" method="post">
+		                			<form action="/admin/deleteHotel" method="post" onsubmit="return deleteConfirm();">
 <!-- 										<input type="hidden" name="_method" value="DELETE"/> -->
 			                			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
 			                			<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" name="delete">
@@ -100,6 +100,23 @@
 	        }
 			$('#tableHead').append('<th>操作</th><th></th>');	        
 	    }); 
+	    function deleteConfirm(form){
+	    	Swal.fire({
+	    		  title: '確定刪除?',
+	    		  text: "將永遠刪除!",
+	    		  icon: 'warning',
+	    		  showCancelButton: true,
+	    		  confirmButtonColor: '#3085d6',
+	    		  cancelButtonColor: '#d33',
+	    		  confirmButtonText: '確定'
+	    		}).then((result) => {
+	    		  if (result.isConfirmed) {
+	    		    return true;
+	    		  }else{
+	    		    return false;
+	    		  }
+	    		})
+	    }
 	</script>
   </body>
 </html>
