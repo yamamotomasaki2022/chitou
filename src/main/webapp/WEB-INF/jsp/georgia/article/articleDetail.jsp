@@ -119,18 +119,41 @@ $(function() {
 		console.log(comment);
 		
 		
-        $.getJSON({
-            type: "GET",
-            url: "/article.comment",
-            async: "true",
-            data: "postID=" + postID,
-            success: function (data) {
-                console.log("讀取成功");
-                comment(data)
-            }, error: function (data) {
-                console.log("讀取失敗");
-            }
-        })
+		$.ajax({
+		      type: "POST",
+		      url: "/article.commentinsert",
+		      data: "postID=" + postID+"&comment="+comment,
+		      async: "false",//等他回來
+		      success: function (resopnse, status, xhr) {
+		        console.log("連線成功");
+		        console.log(xhr.status);
+		        console.log(xhr.readyState);
+		        //判斷新增是否成功
+		        if (xhr.readyState == 4 && xhr.status == 200) {
+		          if (xhr.responseText == "ok") {
+		            console.log("新增成功!");
+		          } else {
+		            console.log("新增分類失敗!");
+		          }
+		        }
+
+		      }
+		    })
+		    
+		    
+		    $.getJSON({
+                    type: "GET",
+                    url: "/article.comment",
+                    async: "true",
+                    data: "postID=" + postID,
+                    success: function (data) {
+                        console.log("讀取成功");
+                        //清空商品列表
+                        comment(data)
+                    }, error: function (data) {
+                        console.log("讀取失敗");
+                    }
+                })
 });
     function comment(data) {
         $('#commentRenew').empty();
