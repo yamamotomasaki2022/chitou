@@ -1,6 +1,8 @@
 package tw.cocokang.attraction.model;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,20 +58,29 @@ public class AttractionService {
 	 
 		//insert plan
 		public void insertPlan(Pricingplan pricingplan,Integer attractionid) {
+			Optional<Attraction> attraction = aRepo.findById(attractionid);
+			pricingplan.setAttraction(attraction.get());
 			pRepo.save(pricingplan);
 		}	 
 	 
 		//update plan
 		 public void updatePlan(Pricingplan pricingplan,Integer attractionid){  
 			 System.out.println(pricingplan.getAttractionid());
+			 Optional<Attraction> attraction = aRepo.findById(attractionid);
+			 pricingplan.setAttraction(attraction.get());
 			 pRepo.save(pricingplan);
 		 }  
 		//Delete plan
 			public void deletePlan(Integer planid) {
-				aRepo.deleteById(planid); 
+				pRepo.deleteById(planid); 
 			}
 		//顯示景點內方案
 		 public List<Pricingplan> showPricingplans(Attraction attraction) {
 		 return pRepo.findAllByAttraction(attraction);
-	}
+		 }
+		 
+		 public Pricingplan getSinglePlan(int planID) {
+			 return pRepo.findById(planID).get();
+		 }
+		 
 }

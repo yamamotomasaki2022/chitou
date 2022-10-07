@@ -34,7 +34,7 @@ public class AttractionController {
 	
 	public String path = "coco/attraction-background/";
 	public String path1 = "coco/attraction-user/";
-	public String planAddPath = "coco/attractionplan/";
+	public String planPath = "coco/attractionplan/";
 	
 	 //--------------------Attraction
 	//總覽
@@ -221,14 +221,31 @@ public class AttractionController {
 	@GetMapping(path = "/toAddPlan")
 	public String addPlan(Model m,int attractionid) {
 		m.addAttribute("attractionid",attractionid);
-		return planAddPath + "PlanAdd"; 
+		return planPath + "PlanAdd"; 
 	}
 	
 	@PostMapping(path = "/addPricingPlanAction")
 	public String addPricingPlanAction(@ModelAttribute Pricingplan pricingplan,int attractionid) {
-		Pricingplan result = pService.addNewPricingPlan(pricingplan,attractionid);
+		aService.insertPlan(pricingplan,attractionid);
 		return "redirect:showAttractionPlans?attractionid="+attractionid;
 	}
 	
-	@PostMapping(path = "/")
+	@GetMapping(path = "/toUpdatePlan")
+	public String toUpdatePlan(@RequestParam int planID,Model m) {
+		Pricingplan plan = aService.getSinglePlan(planID);
+		m.addAttribute("plan",plan);
+		return planPath + "PlanUpdate";
+	}
+	
+	@PostMapping(path = "updatePlanAction")
+	public String updatePlanAction(@ModelAttribute Pricingplan plan) {
+		aService.updatePlan(plan, plan.getAttractionid());
+		return "redirect:showAttractionPlans?attractionid="+plan.getAttractionid();
+	}
+	
+	@PostMapping(path = "deletePlan")
+	public String deletePlan(@RequestParam int planid,@RequestParam int attractionid) {
+		aService.deletePlan(planid);
+		return "redirect:showAttractionPlans?attractionid="+attractionid;
+	}
 }

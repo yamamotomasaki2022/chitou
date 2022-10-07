@@ -27,5 +27,7 @@ public class PricingplanService {
 		return pRepo.save(pricingplan);
 	}
 	
-	
+	public Pricingplan getSinglePlan(int planID) {
+		 return pRepo.findById(planID).get();
+	 }
 }
