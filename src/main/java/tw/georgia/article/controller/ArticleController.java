@@ -319,7 +319,7 @@ public class ArticleController {
                 return -1;
             }
         }); 
-		System.out.println(search.size()+"");
+		System.out.println(search.size());
 		return search;
 	}
 //	*********留言區新增留言*************************************************

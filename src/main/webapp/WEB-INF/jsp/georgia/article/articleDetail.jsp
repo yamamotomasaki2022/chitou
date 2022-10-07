@@ -53,6 +53,7 @@ Article tt=(Article)request.getAttribute("findByID");
 <p style="color:gray;font-size: 5px;"><%=tt.getDate() %> 發布</p>
 <%=tt.getContent() %>
 
+<div>
 <table>
 	<thead>
 		<tr>
@@ -85,6 +86,7 @@ Article tt=(Article)request.getAttribute("findByID");
 			<td><input type="button" value="回覆"></td>
 			</tr>
 		<%}%>
+		
 		</tbody>
 		<tfoot>
 		<tr>
@@ -95,9 +97,8 @@ Article tt=(Article)request.getAttribute("findByID");
 		</tfoot>
 		
 	
-</table>
+</table></div>
 </div>
-<div id="comment"></div>
 
 <svg type="button" id="BackTop" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill jiantou" viewBox="0 0 16 16">
   <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
@@ -132,6 +133,20 @@ $(function() {
 		        if (xhr.readyState == 4 && xhr.status == 200) {
 		          if (xhr.responseText == "ok") {
 		            console.log("新增成功!");
+		            $.getJSON({
+	                    type: "GET",
+	                    url: "/article.comment",
+	                    async: "true",
+	                    data: "postID=" + postID,
+	                    success: function (data) {
+	                        console.log("讀取成功");
+	                        //清空商品列表
+	                        commentchange(data);
+	                    }, error: function (data) {
+	                        console.log("讀取失敗");
+	                    }
+	                });
+		            
 		          } else {
 		            console.log("新增分類失敗!");
 		          }
@@ -141,52 +156,10 @@ $(function() {
 		    })
 		    
 		    
-		    $.getJSON({
-                    type: "GET",
-                    url: "/article.comment",
-                    async: "true",
-                    data: "postID=" + postID,
-                    success: function (data) {
-                        console.log("讀取成功");
-                        //清空商品列表
-                        comment(data)
-                    }, error: function (data) {
-                        console.log("讀取失敗");
-                    }
-                })
-});
-    function comment(data) {
-        $('#commentRenew').empty();
-        $.each(data, function (index, value) {
-            $('#commentRenew').append(
-                $('<tr/>')
-                    .append(
-                        $('<td/>')
-                            .append(
-                                $('<img/>')
-                                    .attr('src', 'images/georgia/picture/354617.jpg')
-                                    .css("height", '100px')
-                                    .css("width", '100px')
-                            )
-                    )
-                    .append(
-                        $('<td/>').addClass('edit_td')
-                            .text(value.comment)
-                    )
-                    .append(
-                        $('<td/>')
-                            .append(
-                                $('<input/>')
-                                    .attr('type', 'button')
-                                    .attr('value', '回覆')
-                            )
-                    )
+		   
 
-            )
-        })
-       
-    }
-     
+
+		});     
 	$('#BackTop').click(function(){ 
 		$('html,body').animate({scrollTop:0}, 200);
 	});
@@ -195,11 +168,44 @@ $(function() {
 	});
 
 
-})
+	    
+});
+	
+	function commentchange(data) {
+	    console.log('123');
+	    $("#commentRenew").empty();
+	    $.each(data, function (index, value) {
+	    	 $('#commentRenew').append(
+	                 $('<tr/>')
+	                     .append(
+	                         $('<td/>')
+	                             .append(
+	                                 $('<img/>')
+	                                     .attr('src', 'images/georgia/picture/354617.jpg')
+	                                     .css("height", '100px')
+	                                     .css("width", '100px')
+	                             )
+	                     )
+	                     .append(
+	                         $('<td/>').addClass('edit_td')
+	                             .text(value.comment)
+	                     )
+	                     .append(
+	                         $('<td/>')
+	                             .append(
+	                                 $('<input/>')
+	                                     .attr('type', 'button')
+	                                     .attr('value', '回覆')
+	                             )
+	                     )
+	             )
+
+        });
+        $('#comment').val('');
+	} 
+	function back(){
+		history.back();}
 </script>
-<script>
-function back(){
-	history.back();}
-</script>
+
 </body>
 </html>
