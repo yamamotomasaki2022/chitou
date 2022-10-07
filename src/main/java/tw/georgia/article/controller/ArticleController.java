@@ -30,6 +30,8 @@ import tw.georgia.article.model.Article;
 import tw.georgia.article.model.ArticleService;
 import tw.georgia.article.model.Category;
 import tw.georgia.article.model.CategoryService;
+import tw.georgia.article.model.Reply;
+import tw.georgia.article.model.ReplyService;
 
 
 @Controller
@@ -40,6 +42,9 @@ public class ArticleController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private ReplyService replyService;
 	
 	
 	private String staticPath = getStaticPath();
@@ -73,6 +78,8 @@ public class ArticleController {
 //	--管理隱藏
 //	●
 //	--顯示文章頁面
+//	--留言區
+//	--留言區新增留言
 	
 	//	**********主頁輪播測試*********************************************
 	@RequestMapping(path = "/article.test",method = RequestMethod.GET)
@@ -289,6 +296,48 @@ public class ArticleController {
 		
 		return "georgia/article/articleDetail";
 	}
+	
+//	*********留言區*************************************************
+	@GetMapping(path = "/article.comment")
+	@ResponseBody
+	public List<Reply> comment(@RequestParam("postID") int postID) {
+		List<Reply> search = new LinkedList<Reply>();
+		
+		Article findByID = articleService.findByID(postID);
+		Set<Reply> replySet = findByID.getReply();
+		for (Reply reply : replySet) {
+			search.add(reply);
+		}
+        Collections.sort(search, new Comparator<Reply>(){
+        	public int compare(Reply a1, Reply a2) {
+        		if(a1.getReplyID() > a2.getReplyID()){
+                    return 1;
+                }
+                if(a1.getReplyID() == a2.getReplyID()){
+                    return 0;
+                }
+                return -1;
+            }
+        }); 
+		System.out.println(search.size()+"");
+		return search;
+	}
+//	*********留言區新增留言*************************************************
+	@PostMapping(path = "/article.commentinsert")
+	@ResponseBody
+	public String commentinsert(@RequestParam("postID") int postID,
+								@RequestParam("comment") String comment) {
+		String replytime =DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm").format(LocalDateTime.now());
+
+		Article article = new Article();
+		article.setPostID(postID);
+		
+		Reply reply = new Reply(article, comment, replytime);
+		replyService.insert(reply);
+		return "ok";
+	}
+	
+	
 //	******************************************
 //	**      預設 預設  預設  預設  預設            **
 //	**      預設 預設  預設  預設  預設            **
