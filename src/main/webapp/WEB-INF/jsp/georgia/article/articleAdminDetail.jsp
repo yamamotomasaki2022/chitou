@@ -204,7 +204,7 @@ $(function() {
         $('#comment').val('');
 	} 
 	function back(){
-		window.location.href="http://localhost:8080/article.user";}
+		window.location.href="http://localhost:8080/article.admin";}
 </script>
 
 </body>

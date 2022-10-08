@@ -52,7 +52,6 @@ Article tt=(Article)request.getAttribute("findByIdBean");
 <form action="article.update" method="post" enctype="multipart/form-data">
 <input type="hidden" name="_method" value="PUT">
 <INPUT TYPE="HIDDEN" NAME="postID" VALUE="<%= tt.getPostID() %>">
-<INPUT TYPE="HIDDEN" NAME="posterID" VALUE="<%= tt.getPosterID() %>">
 <INPUT TYPE="HIDDEN" NAME="date" VALUE="<%= tt.getDate() %>">
 文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="<%= tt.getTitle() %>" style="width: 100%;"><BR>
 文章副標題: <BR><INPUT TYPE="TEXT" NAME="subtitle" VALUE="<%= tt.getSubtitle() %>" id="subtitleInput" style="width: 100%;"><BR><BR>

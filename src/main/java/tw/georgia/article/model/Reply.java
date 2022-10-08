@@ -13,8 +13,15 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import tw.jacky.login.model.MemberBasicInfo;
+
 @Entity @Table(name = "reply")
 public class Reply {
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "replyer")
+	private MemberBasicInfo member;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "postID")
 	private Article article;
@@ -27,8 +34,8 @@ public class Reply {
 //	@Column(name = "postID")
 //	private int postid;
 	
-	@Column(name = "replyer")
-	private int replyer;
+//	@Column(name = "replyer")
+//	private int replyer;
 	
 	@Column(name = "comment")
 	private String comment;
@@ -45,22 +52,25 @@ public class Reply {
 	public Reply() {
 	}
 
-	public Reply(Article article, String comment, String replytime) {
+	
+	public Reply(MemberBasicInfo member, Article article, String comment, String replytime) {
 		super();
+		this.member = member;
 		this.article = article;
 		this.comment = comment;
 		this.replytime = replytime;
 	}
 
-	public Reply(Article article, int replyer, String comment, String replyTime, int userDelete, int manageHidden) {
-		super();
-		this.article = article;
-		this.replyer = replyer;
-		this.comment = comment;
-		this.replytime = replyTime;
-		this.userdelete = userDelete;
-		this.managehidden = manageHidden;
+
+	public MemberBasicInfo getMember() {
+		return member;
 	}
+
+
+	public void setMember(MemberBasicInfo member) {
+		this.member = member;
+	}
+
 
 	public Article getArticle() {
 		return article;
@@ -78,13 +88,13 @@ public class Reply {
 		this.replyid = replyID;
 	}
 
-	public int getReplyer() {
-		return replyer;
-	}
-
-	public void setReplyer(int replyer) {
-		this.replyer = replyer;
-	}
+//	public int getReplyer() {
+//		return replyer;
+//	}
+//
+//	public void setReplyer(int replyer) {
+//		this.replyer = replyer;
+//	}
 
 	public String getComment() {
 		return comment;

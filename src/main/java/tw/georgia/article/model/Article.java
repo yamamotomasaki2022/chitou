@@ -20,15 +20,18 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import tw.jacky.login.model.MemberBasicInfo;
+
 @Entity @Table(name = "article")
 @Component
 public class Article {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumns({
-//		@JoinColumn(name = "countryID",referencedColumnName = "countryID"),
-		@JoinColumn(name = "categoryID",referencedColumnName = "categoryID")
-//	})
+	@JoinColumn(name = "posterID")
+	private MemberBasicInfo member;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "categoryID",referencedColumnName = "categoryID")
 	private Category category;
 	
 	@JsonIgnore
@@ -40,8 +43,8 @@ public class Article {
 	@Column(name = "postID")
 	private Integer postid;
 	
-	@Column(name = "posterID")
-	private Integer posterid;
+//	@Column(name = "posterID")
+//	private Integer posterid;
 	
 	@Column(name = "title")
 	private String title;
@@ -66,14 +69,13 @@ public class Article {
 
 	public Article() {
 	}
-
-
-	public Article(Category category, Integer postID, Integer posterID, String title, String subtitle, String photo,
+	
+	
+	public Article(MemberBasicInfo member, Category category, String title, String subtitle, String photo,
 			String content, String date) {
 		super();
+		this.member = member;
 		this.category = category;
-		this.postid = postID;
-		this.posterid = posterID;
 		this.title = title;
 		this.subtitle = subtitle;
 		this.photo = photo;
@@ -82,26 +84,13 @@ public class Article {
 	}
 
 
-	public Article(Category category, Integer posterID, String title, String subtitle, String photo, String content,
-			String date) {
-		super();
-		this.category = category;
-		this.posterid = posterID;
-		this.title = title;
-		this.subtitle = subtitle;
-		this.photo = photo;
-		this.content = content;
-		this.date = date;
+	public MemberBasicInfo getMember() {
+		return member;
 	}
 
-	public Article(Category category, String title, String subtitle, String photo, String content, String date) {
-		super();
-		this.category = category;
-		this.title = title;
-		this.subtitle = subtitle;
-		this.photo = photo;
-		this.content = content;
-		this.date = date;
+
+	public void setMember(MemberBasicInfo member) {
+		this.member = member;
 	}
 
 
@@ -125,14 +114,14 @@ public class Article {
 	}
 
 
-	public Integer getPosterID() {
-		return posterid;
-	}
-
-
-	public void setPosterID(Integer posterID) {
-		this.posterid = posterID;
-	}
+//	public Integer getPosterID() {
+//		return posterid;
+//	}
+//
+//
+//	public void setPosterID(Integer posterID) {
+//		this.posterid = posterID;
+//	}
 
 
 	public String getTitle() {

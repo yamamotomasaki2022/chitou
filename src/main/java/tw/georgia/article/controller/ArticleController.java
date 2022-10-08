@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import tw.georgia.article.model.Article;
@@ -32,9 +33,11 @@ import tw.georgia.article.model.Category;
 import tw.georgia.article.model.CategoryService;
 import tw.georgia.article.model.Reply;
 import tw.georgia.article.model.ReplyService;
+import tw.jacky.login.model.MemberBasicInfo;
 
 
 @Controller
+@SessionAttributes("memberbasicinfo")
 public class ArticleController {
 	
 	@Autowired
@@ -72,11 +75,14 @@ public class ArticleController {
 //	--新增文章
 //	--前往更新文章
 //	--更新文章
-//	--查詢
+//	--查詢(會員)
 //	--會員刪除
+//	--顯示文章頁面(會員)
 //	●管理
 //	--文章首頁(管理員)
 //	--管理隱藏
+//	--查詢(管理員)
+//	--顯示文章頁面(管理員)
 //	●
 //	--顯示文章頁面
 //	--留言區
@@ -111,8 +117,10 @@ public class ArticleController {
 //	**********文章管理主頁(會員)********************************************
 	@RequestMapping(path = "/article.user",method = RequestMethod.GET)
 	public String articleUserMain(Model m) {
+		MemberBasicInfo memberBasicInfo = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+		int posterID = memberBasicInfo.getMemberid();
 
-		List<Article> list = articleService.findAll();
+		List<Article> list = articleService.findPoster(posterID);
 		m.addAttribute("list", list);
 		//request.setAttribute("list",list);
 		return "georgia/article/articleUserMain";
@@ -143,7 +151,11 @@ public class ArticleController {
 								@RequestParam("chooseCountry") String chooseCountry,
 								@RequestParam("chooseType") String chooseType,
 								@RequestParam("photo") MultipartFile mf,
-								@RequestParam("content") String content) throws IllegalStateException, IOException {
+								@RequestParam("content") String content,
+								Model m) throws IllegalStateException, IOException {
+		
+		MemberBasicInfo memberBasicInfo = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+
 		int categoryID = Integer.parseInt(chooseCountry+chooseType);
 //		int countryID = Integer.parseInt(chooseCountry);
 //		System.out.println(countryID);
@@ -159,8 +171,7 @@ public class ArticleController {
 		category.setCategoryID(categoryID);
 //		category.setCountryID(countryID);
 		
-//		Category category, Integer posterID, String title, String subtitle, String photo, String content,String date		
-		Article insertBean = new Article(category,title,subtitle,photo,content,date);
+		Article insertBean = new Article(memberBasicInfo, category, title, subtitle, photo, content, date);
 		
 		articleService.insert(insertBean);
 		return "redirect:"+userUrl;
@@ -212,11 +223,13 @@ public class ArticleController {
 		return "redirect:"+userUrl;
 	}
 	
-//	*********查詢*************************************************
-	@RequestMapping(path = "/article.read",method = RequestMethod.POST)
-	public String readArticle(@RequestParam("chooseCountry") String chooseCountry,
+//	*********查詢(會員)*************************************************
+	@RequestMapping(path = "/article.user.read",method = RequestMethod.POST)
+	public String articleUserRead(@RequestParam("chooseCountry") String chooseCountry,
 								@RequestParam("chooseType") String chooseType,
 								Model m) {
+		MemberBasicInfo memberBasicInfo = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+		int posterID = memberBasicInfo.getMemberid();
 		List<Article> search = new LinkedList<Article>();
 		if (chooseType == "") {
 			int countryID = Integer.parseInt(chooseCountry);
@@ -224,6 +237,8 @@ public class ArticleController {
 			for(Category cateBean:cateList) {
 				Set<Article> articleSet = cateBean.getArticle();
 				for (Article article : articleSet) {
+					if(article.getMember().getMemberid()!=posterID)
+						continue;
 					search.add(article);
 				}
 		        Collections.sort(search, new Comparator<Article>(){
@@ -244,10 +259,10 @@ public class ArticleController {
 //			m.addAttribute("searchBean", searchBean);
 		}else {
 			int categoryID = Integer.parseInt(chooseCountry+chooseType);
-			List<Article> searchType = articleService.findType(categoryID);
+			List<Article> searchType = articleService.findTypeForUser(categoryID,posterID);
 			m.addAttribute("search", searchType);
 		}
-		return "georgia/article/articleRead";
+		return "georgia/article/articleUserRead";
 	}
 
 //	*****************會員刪除******************************************
@@ -264,7 +279,15 @@ public class ArticleController {
 		return "redirect:"+userUrl;
 	}
 	
-
+//	*********顯示文章頁面(會員)*************************************************
+	@RequestMapping(path = "/article.user.show",method = RequestMethod.POST)
+	public String articleUserDetail(@RequestParam("postID") int postID,
+								Model m) {
+		Article findByID = articleService.findByID(postID);
+		m.addAttribute("findByID", findByID);
+		
+		return "georgia/article/articleUserDetail";
+	}
 	
 	
 //	***************************************************************
@@ -296,6 +319,55 @@ public class ArticleController {
 		
 		return "redirect:"+adminUrl;
 	}
+
+//	*********查詢(管理員)*************************************************
+	@RequestMapping(path = "/article.admin.read",method = RequestMethod.POST)
+	public String articleAdminRead(@RequestParam("chooseCountry") String chooseCountry,
+			@RequestParam("chooseType") String chooseType,
+			Model m) {
+		List<Article> search = new LinkedList<Article>();
+		if (chooseType == "") {
+			int countryID = Integer.parseInt(chooseCountry);
+			List<Category> cateList = categoryService.findCountry(countryID);
+			for(Category cateBean:cateList) {
+				Set<Article> articleSet = cateBean.getArticle();
+				for (Article article : articleSet) {
+					search.add(article);
+				}
+				Collections.sort(search, new Comparator<Article>(){
+					public int compare(Article a1, Article a2) {
+						if(a1.getPostID() > a2.getPostID()){
+							return 1;
+						}
+						if(a1.getPostID() == a2.getPostID()){
+							return 0;
+						}
+						return -1;
+					}
+				}); 
+			}
+//				List<Article> search = articleService.findType(cateBean.getCategoryID());
+			m.addAttribute("search", search);
+//			List<Article> searchBean = articleService.findCountry(countryID);
+//			m.addAttribute("searchBean", searchBean);
+		}else {
+			int categoryID = Integer.parseInt(chooseCountry+chooseType);
+			List<Article> searchType = articleService.findType(categoryID);
+			m.addAttribute("search", searchType);
+		}
+		return "georgia/article/articleAdminRead";
+	}
+	
+//	*********顯示文章頁面(管理員)*************************************************
+	@RequestMapping(path = "/article.admin.show",method = RequestMethod.POST)
+	public String articleAdminDetail(@RequestParam("postID") int postID,
+			Model m) {
+		Article findByID = articleService.findByID(postID);
+		m.addAttribute("findByID", findByID);
+		
+		return "georgia/article/articleAdminDetail";
+	}
+	
 
 	
 //	*********顯示文章頁面*************************************************
@@ -337,13 +409,16 @@ public class ArticleController {
 	@PostMapping(path = "/article.commentinsert")
 	@ResponseBody
 	public String commentinsert(@RequestParam("postID") int postID,
-								@RequestParam("comment") String comment) {
+								@RequestParam("comment") String comment,
+								Model m) {
+		MemberBasicInfo memberBasicInfo = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+		
 		String replytime =DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm").format(LocalDateTime.now());
 
 		Article article = new Article();
 		article.setPostID(postID);
 		
-		Reply reply = new Reply(article, comment, replytime);
+		Reply reply = new Reply(memberBasicInfo, article, comment, replytime);
 		replyService.insert(reply);
 		return "ok";
 	}
@@ -372,5 +447,44 @@ public class ArticleController {
 		articleService.delete(postID);
 		return "redirect:";
 	}
+	
+//	*********查詢*************************************************
+	@RequestMapping(path = "/article.read",method = RequestMethod.POST)
+	public String readArticle(@RequestParam("chooseCountry") String chooseCountry,
+			@RequestParam("chooseType") String chooseType,
+			Model m) {
+		List<Article> search = new LinkedList<Article>();
+		if (chooseType == "") {
+			int countryID = Integer.parseInt(chooseCountry);
+			List<Category> cateList = categoryService.findCountry(countryID);
+			for(Category cateBean:cateList) {
+				Set<Article> articleSet = cateBean.getArticle();
+				for (Article article : articleSet) {
+					search.add(article);
+				}
+				Collections.sort(search, new Comparator<Article>(){
+					public int compare(Article a1, Article a2) {
+						if(a1.getPostID() > a2.getPostID()){
+							return 1;
+						}
+						if(a1.getPostID() == a2.getPostID()){
+							return 0;
+						}
+						return -1;
+					}
+				}); 
+			}
+//				List<Article> search = articleService.findType(cateBean.getCategoryID());
+			m.addAttribute("search", search);
+//			List<Article> searchBean = articleService.findCountry(countryID);
+//			m.addAttribute("searchBean", searchBean);
+		}else {
+			int categoryID = Integer.parseInt(chooseCountry+chooseType);
+			List<Article> searchType = articleService.findType(categoryID);
+			m.addAttribute("search", searchType);
+		}
+		return "georgia/article/articleRead";
+	}
+
 	
 }

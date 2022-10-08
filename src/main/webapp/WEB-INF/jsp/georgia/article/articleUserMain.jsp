@@ -72,7 +72,8 @@ button, .btn {
 	</form>
 
 	<br>
-	<form action="article.read" method="post">
+	<form action="article.user.read" method="post">
+	<input type="hidden" name="_method" value="POST">
 		選擇國家<select name="chooseCountry">
 			<optgroup label="亞洲">
 				<option value=101>台灣</option>
@@ -137,13 +138,12 @@ button, .btn {
 				%>
 
 				<tr>
-					<!--  <td class="centre"><%=bean.getPosterID()%></td>-->
 					<td class=""><%=bean.getCategory().getCountry()%></td>
 					<td class=""><%=bean.getCategory().getType()%></td>
 					<td class=""><img id="img" src="images/georgia/picture/<%=bean.getPhoto()%>" class="box" style="width:100px;height:100px"></td>
 					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%><HR><%=bean.getSubtitle()%></td>
 					<td class=""><%=bean.getDate()%></td>
-					<td><form action="article.show" method="post">
+					<td><form action="article.user.show" method="post">
 					<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
 					<input type="submit" name="toShow" value="查看詳細內文" class="btn btn-light">
 					</form></td>
