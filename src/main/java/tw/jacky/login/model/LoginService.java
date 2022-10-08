@@ -32,9 +32,14 @@ public class LoginService {
 	@Autowired
 	private MemberBasicInfoRepository mbrepo;
 	@Autowired
+	private MemberDetailInfoRepository mdirepo;
+	@Autowired
 	private  AdminChitouRepository acrepo;
 	@Autowired
 	private MemberBasicInfoDAO mDao;
+	
+	
+	
 	
 	private String staticPath = getStaticPath();
 	
@@ -55,21 +60,57 @@ public class LoginService {
 		return mbrepo.findAll();
 	}
 	
-//	查詢單個會員(ID)
+//	查詢單個會員的基本資料(ID)
 	
 	public MemberBasicInfo findByMemberid(int id) {
 		return mbrepo.findByMemberid(id);
 	}
 	
-//	管理員新增會員
+	public MemberBasicInfo findBasicInfobyUsername(String username) {
+		return mbrepo.findByUsername(username);
+	}
+	
+	public MemberBasicInfo findByEmail(String email) {
+		return mbrepo.findByEmail(email);
+	}	
+	
+//	尋找會員詳細資料
+	public MemberDetailInfo findDetailByMemberid(int id) {
+		return mdirepo.findByMemberid(id);
+	}
+	
+	
+//	管理員新增會員基本資料
 	public MemberBasicInfo adminInsertMember(MemberBasicInfo mb) {
 		return mbrepo.save(mb);
 	}
 	
+//	管理員新增會員詳細資料(銜接會員基本資料)
+	public MemberDetailInfo adminInsertMemberDetailInfo(MemberBasicInfo mb) {
+		MemberDetailInfo memberDetailInfo = new MemberDetailInfo(mb.getMemberid());
+		return mdirepo.save(memberDetailInfo);
+	}
+	
+	public MemberDetailInfo adminInsertMemberDetailInfo(MemberDetailInfo md) {
+		return mdirepo.save(md);
+	}
+	
+	
+	
 //	管理員刪除會員
 	public void adminDeleteMember(int id) {
-		MemberBasicInfo bean = findByMemberid(id);
-		mbrepo.delete(bean);
+		
+		MemberDetailInfo findDetailByMemberid = findDetailByMemberid(id);
+		if ( findDetailByMemberid != null) {
+			mdirepo.delete(findDetailByMemberid);
+			
+		}else {
+			
+			MemberBasicInfo findBasicInfoByMemberid = findByMemberid(id);
+			mbrepo.delete(findBasicInfoByMemberid);
+		}
+
+
 	}
 	
 //	管理員更新會員

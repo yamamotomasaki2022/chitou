@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PricingplanRepository extends JpaRepository<Pricingplan, Integer> {
 
-	@Query(value = "from Pricingplan where attractionid = ?1")
-	public List<Pricingplan> showPricingplans(Integer attractionid);
+	public List<Pricingplan> findAllByAttraction(Attraction attraction);
+	
+	
 }

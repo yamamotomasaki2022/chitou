@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import tw.cocokang.attraction.model.Attraction;
 import tw.cocokang.attraction.model.AttractionService;
 import tw.cocokang.attraction.model.Hobbyclassification;
+import tw.cocokang.attraction.model.Pricingplan;
+import tw.cocokang.attraction.model.PricingplanService;
 
 @Controller
 public class AttractionController {
@@ -132,8 +135,8 @@ public class AttractionController {
 		  attraction.setHobbyclassification(hobbyclassification);
 			String photo = mf.getOriginalFilename();
 			String saveFileDir = getStaticPath();
-	        File saveFilePath = new File(saveFileDir, photo);
-	        mf.transferTo(saveFilePath); 
+//	        File saveFilePath = new File(saveFileDir, photo);
+//	        mf.transferTo(saveFilePath); 
 		  attraction.setPhoto(photo);
 		m.addAttribute("attraction", attraction);
 		aService.insert(attraction,preferid);
@@ -213,14 +216,21 @@ public class AttractionController {
 	 //--------------------Pricing plan
 
 	//顯示景點內方案
-	@RequestMapping(path = "showAttractionPlans",params = {"attractionid"}, method = RequestMethod.POST)
+	@RequestMapping(path = "showAttractionPlans",params = {"attractionid"}, method = RequestMethod.GET)
 	public String attractionPlans(@RequestParam("attractionid") Integer attractionid ,Model m){
-
-		m.addAttribute("planList",aService.showPricingplans(attractionid));
-		return path + "";
-//		return "luana/attraction/Luana_attractionPlans";
-
+		Attraction attraction = aService.selectByAttid(attractionid);
+		List<Pricingplan> listPlan = aService.showPricingplans(attraction);
+		m.addAttribute("listPlan",listPlan);
+		m.addAttribute("attraction",attraction);
+		return "coco/attractionplan/ListView";
 	}
 	
-
+	@GetMapping(path = "/addPlan")
+	public String addPlan(Model m,int attractionid) {
+		Pricingplan pricingplan = new Pricingplan();
+		pricingplan.setAttractionid(attractionid);
+		m.addAttribute("pricingplan",pricingplan);
+		return path1 + "PlanAdd"; 
+	}
+	
 }

@@ -30,7 +30,6 @@ import tw.luana.attraction.model.AttractionService_Luana;
 import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartService;
 import tw.luana.order.model.OrderService;
-import tw.luana.order.model.Orders;
 
 @Controller
 public class OrderController {
@@ -47,27 +46,43 @@ public class OrderController {
 	@Autowired
 	private HttpSession session;
 	
+	String path_Luana_Atttraction = "luana/attraction/";
+	String path_Luana_Cart = "luana/cart/";
+	String path_Luana_Order = "luana/order/";
 	
-	//查看訂單
+	
+	//查看個人所有訂單
 	@RequestMapping(path = "order", method = RequestMethod.GET)
-	public String showOrders(Model m) {
+	public String showOrders(//@RequestParam("memberid")int memberid,
+			Model m) {
 
-		m.addAttribute("orders",orderService.showOrders());
+		int memberid = 1;
+		m.addAttribute("orders",orderService.showOrderLists(memberid));
 
-		return "luana/order/Luana_order";
+		return path_Luana_Order + "Luana_order";
+		
+	}
+	//查看個人訂單細項
+	@RequestMapping(path = "orderDetail", method = RequestMethod.POST)
+	public String OrderDetail(@RequestParam("orderid") String orderid,Model m1,Model m2) {
+		
+		m1.addAttribute("orderList", orderService.showSingleOrderList(orderid));
+		m2.addAttribute("aOrderDetail",orderService.showAttractionOrders(orderid));
+		
+		return path_Luana_Order + "Luana_orderDetail";
 		
 	}
 
-	//更改訂單狀態
+	//更改景點訂單狀態
 	@RequestMapping(path = "orderStatus", method = RequestMethod.POST)
 	public String updateStatusByOrderId(@RequestParam("orderStatus") int orderStatus,
-			@RequestParam("orderId") int orderId, Model m) {
+			@RequestParam("orderid") String orderid, Model m) {
 
 
-		orderService.updateOrderStatus(orderStatus, orderId);
-		m.addAttribute("orders",orderService.showOrders());
+//		orderService.updateAttractionOrderStatus(orderStatus, orderid);
+		m.addAttribute("orders",orderService.showAttractionOrders(orderid));
 
-		 return "luana/order/Luana_order";
+		 return path_Luana_Order + "Luana_order";
 	}
 	
 }

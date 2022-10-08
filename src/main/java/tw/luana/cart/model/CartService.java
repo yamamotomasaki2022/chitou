@@ -9,8 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartRepository;
-import tw.luana.order.model.OrderRepository;
-import tw.luana.order.model.Orders;
+import tw.luana.order.model.AttractionOrderDetailRepository;
 
 
 @Service
@@ -24,20 +23,30 @@ public class CartService {
 	
 	
 	public String getAttractionName(Integer attractionId) {
-		return	cartRepository.getAttractionName(attractionId).getName();
+		return	cartRepository.getAttraction(attractionId).getName();
 	}
 	
 	public void addToCart(Cart cart) {		
 		cartRepository.save(cart);
 	}
 	
-	public List<Cart> showCart() {
-		return cartRepository.findAll();
+	public List<Cart> showCart(Integer memberid) {
+		return cartRepository.findByMemberid(memberid);
 	}
 	
 	public void removeCartItemfromcart(Integer itemId) {
 		cartRepository.deleteById(itemId);
 	}
 	
+	public void updateQuantity(Integer quantity,Integer itemId) {
+		
+		Optional<Cart> findById = cartRepository.findById(itemId);
+		findById.get().setQuantity(quantity);
+		cartRepository.save(findById.get());
+	}
+	
+	public void clearCart(Integer memberid) {
+		cartRepository.deleteAllInBatch(cartRepository.findByMemberid(memberid));
+	}
 }
 	

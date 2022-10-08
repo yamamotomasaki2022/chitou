@@ -46,7 +46,7 @@ background-color: pink
 						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
 							<div class="brand-logo">
 								<!-- <img src="../../images/logo1.png" alt="logo"> -->
-								<a class="navbar-brand brand-logo mr-5" href="index.html"><img
+								<a class="navbar-brand brand-logo mr-5" href="home"><img
 									src="/images/coco/logo3.png" class="mr-6" width="auto"
 									height="auto" alt="logo" /><img src="/images/coco/logo2.png"
 									class="mr-2" alt="logo" /></a>
@@ -54,12 +54,12 @@ background-color: pink
 							<form class="pt-3" ACTION="MemberCheckLogin" method="post">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="uName" placeholder="Username" name="loginuserid">
+										id="uName" placeholder="Username" name="username">
 									<span>${errors.name}</span>
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-lg"
-										id="uPass" placeholder="Password" name="loginpw"> <span>${errors.pwd}</span>
+										id="uPass" placeholder="Password" name="password"> <span>${errors.pwd}</span>
 								</div>
 								<div class="mt-3">
 									<button

@@ -47,6 +47,11 @@ public class Article {
 	@Column(name = "date")
 	private String date;
 	
+	@Column(name = "userdelete")
+	private int userdelete;
+	
+	@Column(name = "managehidden")
+	private int managehidden;
 
 	public Article() {
 	}
@@ -166,6 +171,26 @@ public class Article {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+
+	public int getUserDelete() {
+		return userdelete;
+	}
+
+
+	public void setUserDelete(int userDelete) {
+		this.userdelete = userDelete;
+	}
+
+
+	public int getManageHidden() {
+		return managehidden;
+	}
+
+
+	public void setManageHidden(int manageHidden) {
+		this.managehidden = manageHidden;
 	}
 	
 	

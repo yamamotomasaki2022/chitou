@@ -22,9 +22,8 @@ public class Pricingplan {
 	
 	@ManyToOne(fetch = FetchType.EAGER)//拿資料
 	@JoinColumn(name = "attraction_id")
-	private Pricingplan pricingplan;
+	private Attraction attraction;
 	
-	@Column(name = "attraction_id")
 	@Transient
 	private Integer attractionid;
 	
@@ -41,10 +40,10 @@ public class Pricingplan {
 	public Pricingplan() {
 	}
 
-	public Pricingplan(Integer planid, Pricingplan pricingplan, String planname, Integer planfee, String plandiscript) {
+	public Pricingplan(Integer planid, Attraction attraction, String planname, Integer planfee, String plandiscript) {
 		  super();
 		  this.planid=planid;
-		  this.pricingplan=pricingplan;
+		  this.attraction=attraction;
 		  this.planname=planname;
 		  this.planfee=planfee;
 		  this.plandiscript=plandiscript;
@@ -100,6 +99,14 @@ public class Pricingplan {
 
 	public void setPlandiscript(String plandiscript) {
 		this.plandiscript = plandiscript;
+	}
+
+	public Attraction getAttraction() {
+		return attraction;
+	}
+
+	public void setAttraction(Attraction attraction) {
+		this.attraction = attraction;
 	}
 
 	

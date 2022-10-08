@@ -27,11 +27,16 @@ public class AccessDenialHandler implements AccessDeniedHandler {
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 
 		
-		response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		response.getWriter().write("權限不足！請聯絡管理員。");
+//		response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+//		response.setCharacterEncoding("UTF-8");
+//		response.setContentType("text/html;charset=UTF-8");
+//		response.getWriter().write("權限不足！請聯絡管理員。");
+		
+		request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/authentication/AccessDenial.jsp").forward(request, response);
+		
 
+		
+		
 	}
 
 }

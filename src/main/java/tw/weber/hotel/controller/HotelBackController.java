@@ -22,21 +22,26 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tw.weber.hotel.model.Hotel;
 import tw.weber.hotel.model.HotelBackService;
+import tw.weber.hotel.model.RoomStyle;
+import tw.weber.hotel.model.RoomStyleBackService;
 
 
 
 @Controller
-@SessionAttributes({"hotelResult"})
+//@SessionAttributes({"hotelResult"})
 @RequestMapping(path = "/admin")
 public class HotelBackController {
 	
 	@Autowired
 	private HotelBackService hService;
 	
+	@Autowired
+	private RoomStyleBackService styleService;
+	
 	private String suffix = "weber/hotel/";
 	private String hotelmainPage = suffix + "HotelBackMain";  
 	private String returnHotel = "redirect:/admin/hotel" ;
-	private String toRoom = "redirect:/admin/room";
+	private String RoomPage = "weber/room/RoomStyleMain";
 	private String newHotel = suffix + "HotelInsert";
 	private String updateHotel = suffix +"HotelUpdate";
 	
@@ -52,9 +57,11 @@ public class HotelBackController {
 	
 	@GetMapping(path = "/toRoomPage")
 	public String toRoomPage(@RequestParam("hotelID")int hotelID,Model model) {
-		Hotel result = hService.findById(hotelID);
-		model.addAttribute("hotelResult",result);
-		return toRoom;
+		Hotel hotelresult = hService.findById(hotelID);
+		model.addAttribute("hotelResult",hotelresult);
+		List<RoomStyle> result = styleService.findAllByHotelID(hotelresult.getHotelID());
+		model.addAttribute("result",result);
+		return RoomPage;
 	}
 	
 	@GetMapping(path = "/searchHotel")
@@ -97,13 +104,13 @@ public class HotelBackController {
 		return updateHotel;
 	}
 	
-	@DeleteMapping(path = "/deleteHotel")
+	@PostMapping(path = "/deleteHotel")
 	public String deleteHotel(@RequestParam("hotelID")int hotelID) {
 		hService.delete(hotelID);
 		return returnHotel ;
 	}
 	
-	@PutMapping(path = "/updateHotel")
+	@PostMapping(path = "/updateHotel")
 	public String updateHotel(@ModelAttribute("hotel")Hotel hotel,@RequestParam("upload")MultipartFile[] mfiles) throws IllegalStateException, IOException {
 		System.out.println("修改:hotelID"+hotel.getHotelID());
 		if(!mfiles[0].isEmpty()) {

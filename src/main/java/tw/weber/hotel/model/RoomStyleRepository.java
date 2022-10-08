@@ -1,6 +1,7 @@
 package tw.weber.hotel.model;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -30,6 +31,15 @@ public interface RoomStyleRepository extends JpaRepository<RoomStyle, Integer> {
 			+ "JOIN hotel as c on b.hotelID = c.hotelID "
 			+ "where c.hotelID = ?3 and b.capacity > ?4 ",nativeQuery = true)
 	public List<RoomStyle> crazyFind(String dateStart,String dateEnd,int hotelID,int number);
+	
+	@Query(value = "select * from "
+			+ "(select * from room where roomID not in  "
+			+ "(select roomID from reservation "
+			+ "where checkInDate between ?1 and ?2 or checkoutdate between ?1 and ?2) ) "
+			+ "as a JOIN roomstyle as b on a.roomStyleID = b.styleID "
+			+ "JOIN hotel as c on b.hotelID = c.hotelID "
+			+ "where roomStyleID = ?3 and b.capacity > ?4",nativeQuery = true)
+	public Optional<RoomStyle> findEmptyRoom(String dateStart,String dateEnd,int roomStyleID,int number);
 	
 	//找時間寫搜索特定旅館限制
 }

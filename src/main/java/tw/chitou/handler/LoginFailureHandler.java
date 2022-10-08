@@ -2,6 +2,8 @@ package tw.chitou.handler;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +36,30 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 	   AuthenticationException exception) throws IOException, ServletException {
 		 
 		String username = request.getParameter("username");
-		System.out.println("登入失敗的賬號:" + username);		 
+		String password = request.getParameter("password");
+		
+		
+		Map<String, String> errors = new HashMap<String, String>();
+		request.setAttribute("errors", errors);
+		
+		if (username == null || username.length() == 0) {
+			errors.put("name", "name is required");
+		}
+
+		if (password == null || password.length() == 0) {
+			errors.put("pwd", "password is required");
+		}
+
+		if (errors != null && !errors.isEmpty()) {
+			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminLogin.jsp").forward(request, response);		
+		}
+		
+		
+		errors.put("msg", "please input correct username or passward");
+		request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminLogin.jsp").forward(request, response);				
+	}
+
+		
 		 
 //	  SystemConfig sc = sysService.getSystemConfigByParamName("max_login_errors");
 //	  int maxLoginErrors = Integer.parseInt(sc.getParamValue());
@@ -51,4 +76,4 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 //	  response.sendRedirect("/login/failure?username=" + username);
 	 }
 
-}
+

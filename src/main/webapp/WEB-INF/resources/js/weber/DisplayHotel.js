@@ -26,13 +26,13 @@ $("#date").on('change', function () {
 $("#searchRoom").on('click', function (e) {
     var formData = new FormData(e.target.closest('form'));
     var dateStart = 'dateStart=' + formData.get('dateStart');
-    var dateEnd = '&dateEnd=' + formData.get('dateEnd');
-    var hotelID = '&hotelID=' + formData.get('hotelID');
-    var number = '&number=' + formData.get('number');
+    var dateEnd = 'dateEnd=' + formData.get('dateEnd');
+    var hotelID = 'hotelID=' + formData.get('hotelID');
+    var number = 'number=' + formData.get('number');
     console.log(formData);
     $.ajax({
         type: 'get',
-        url: '/searchHotelRoomAjax?' + dateStart + dateEnd + hotelID + number,
+        url: 'searchHotelRoomAjax?' + dateStart + '&' + dateEnd + '&' + hotelID + '&' + number,
         dataType: 'JSON',
         contentType: 'application/json',
         success: function (data) {
@@ -59,7 +59,7 @@ $("#searchRoom").on('click', function (e) {
                                 <div style="float:left;">
                                     <h3 style="color:red;">&nbsp;&nbsp;還剩 ${ele.roomAmount} 間房間</h3>
                                 </div>
-                                <a href="#" style="float:right;" class="btn btn-primary text-white py-2 px-2">馬上訂房</a>
+                                <a href="bookingPage?${hotelID}&roomStyleID=${ele.styleID}&${dateStart}&${dateEnd}&${number}" style="float:right;" class="btn btn-primary text-white py-2 px-2">馬上訂房</a>
                                 <br>
                             </div>
                         </div>

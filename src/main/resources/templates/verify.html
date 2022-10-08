@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<h1>測試thymeleaf是否能運行</h1>
+
+<p>
+親愛的用戶你好: <span th:text="${name}"> </span>
+<br>
+<!-- <span th:text= ${verificationcode}></span> -->
+<a th:href="@{http://localhost:8080/verify?code={code1}(code1=${code})}">view</a>
+
+</p>
+
+
+</body>
+</html>

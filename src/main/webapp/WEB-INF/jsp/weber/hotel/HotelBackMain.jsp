@@ -60,7 +60,7 @@
 		                		</div>
 								<div>
 		                			<form action="/admin/deleteHotel" method="post">
-										<input type="hidden" name="_method" value="DELETE"/>
+<!-- 										<input type="hidden" name="_method" value="DELETE"/> -->
 			                			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
 			                			<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" name="delete">
 			                				<i class="ti-trash"></i>

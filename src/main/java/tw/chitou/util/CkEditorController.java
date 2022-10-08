@@ -43,7 +43,7 @@ public class CkEditorController {
 	
 	@PostMapping(path = "/ckUploadGeorgia")
 	public CkResponse uploadimageGeogia(@RequestParam("upload")MultipartFile upload) throws IllegalStateException, IOException {
-		return uploadImage(upload, "georgia//CKeditor");
+		return uploadImage(upload, "georgia/CKeditor");
 	}
 	
 }

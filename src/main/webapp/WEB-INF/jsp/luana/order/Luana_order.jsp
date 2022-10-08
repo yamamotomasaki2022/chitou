@@ -13,27 +13,26 @@
 <title>訂單結果</title>
 <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
 
-<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
-
+<%@ include file="../Luana_include/head.jsp" %>
 </head>
 <body>
 
-<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
+
+<%@ include file="../Luana_include/navbar.jsp" %>   
 
 <div class="container">
 		<div class="card-header my-3">All Orders 
-		<a class="btn btn-sm btn-primary" href="OrdersManu?orders=1"> Refresh</a>
 		</div>
 		<table class="table table-light">
 			<thead>
 				<tr>
-					<th scope="col">Number</th>
-					<th scope="col">Name</th>
 					<th scope="col">Category</th>
-					<th scope="col">Quantity</th>
+					<th scope="col">Date</th>
+					<th scope="col">Number</th>
 					<th scope="col">Price</th>
 					<th scope="col">Status</th>
-					<th scope="col">Update</th>
+					<th scope="col"></th>
 					<th scope="col"></th>
 					<th scope="col"></th>
 				</tr>
@@ -43,39 +42,20 @@
 	<c:forEach var="order" items="${orders}">
 				
 					<tr>
+						<td>${order.ordertype}</td>
 						<td>${order.orderdate}</td>
-						<td>${order.attractionname}</td>
-						<td>${order.planname}</td>
-						<td>${order.quantity}</td>
-						<td>${order.planfee}</td>
-						<c:choose>
-						<c:when test="${order.orderstatus == 1}"> 										
-						<td>處理中</td>
-						</c:when>
-						<c:when test="${order.orderstatus == 2}" > 										
-						<td>已完成</td>
-						</c:when>
-						<c:when test="${order.orderstatus == 3}" > 										
-						<td>已取消</td>						
-						</c:when>
-						</c:choose>
+						<td>${order.orderid}</td>
+						<td>${order.totalprice}</td>
+						<td>狀態：${order.orderstatus}</td>
+					
 						
 						
-						<form action="orderStatus" method="post">							
 						<td>
-						<select class="custom-select" name="orderStatus" >	
-							  <option value="1">處理中</option>
-							  <option value="2">已完成</option>
-							  <option value="3">已取消</option>
-						</select>
-						<input type="hidden" name="orderId" value="${order.orderid}" >
-						</td>
-						<td><input class="btn btn-sm btn-primary" type="submit" name="orderStatus" value="Update">
-						</td>
-						<td>
-						<input class="btn btn-sm btn-success" type="submit" name="deleteOrder" value="Detail"></td>
-						</td>
+						<form action="orderDetail" method="post">							
+						<input type="hidden" name="orderid" value="${order.orderid}"/>
+						<input class="btn btn-sm btn-primary" type="submit" value="詳細">
 						</form>
+						</td>
 					</tr>
 			</c:forEach>
 			</tbody>	
@@ -83,7 +63,7 @@
 	</div>
 
 
-<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%> 
+<%@ include file="../Luana_include/footer.jsp" %>
 
    
 </body>

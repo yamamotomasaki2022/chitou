@@ -10,5 +10,7 @@ import tw.luana.attraction.model.Attraction_Luana;
 public interface CartRepository extends JpaRepository<Cart, Integer> {
 
 	@Query(value = "from Attraction_Luana where attractionId = ?1")
-	public Attraction_Luana getAttractionName(Integer attractionId);
+	public Attraction_Luana getAttraction(Integer attractionId);
+
+	public List<Cart> findByMemberid(Integer memberid);
 }
