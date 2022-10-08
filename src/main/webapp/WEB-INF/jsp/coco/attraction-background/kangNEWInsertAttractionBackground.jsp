@@ -54,13 +54,13 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 
 										<div class="form-group">
 											<form:label path="attid">景點編號:</form:label> 
-											<form:input type="text"
-												path="attid" class="form-control"
+											<form:input type="text" id="attid"
+												path="attid" name="attid" class="form-control"
 												placeholder="請輸入新增的景點ID" />
 										</div>
 										<div class="form-group">
 											<form:label path="preferid">方案編號:</form:label>
-											 <select name="preferid"
+											 <select name="preferid" name="preferid" id="preferid"
 												class="form-control">
 												<option value="1">1</option>
 												<option value="2">2</option>
@@ -70,20 +70,20 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 
 										<div class="form-group">
 											<form:label path="attName">景點名稱:</form:label>
-											 <form:input type="text" class="form-control"
-												id="" path="attName" placeholder="請輸入新增的景點名稱"/>
+											 <form:input type="text" class="form-control" 
+												name="attName" id="attName"  path="attName" placeholder="請輸入新增的景點名稱"/>
 										</div>
 
 										<div class="form-group">
 											<form:label path="attLocation">景點位置:</form:label> 
-											<form:input type="text" path="attLocation" class="form-control"
+											<form:input type="text" path="attLocation" id="attLocation" class="form-control" name="attLocation" 
 												id="" placeholder="請選擇新增的景點位置" />
 										</div>
 
 										<div class="form-group">
 											<form:label path="attDescription"> 景點說明: </form:label>
 											<div >
-												<form:textarea id="editor1" path="attDescription" placeholder="請輸入新增的景點說明"></form:textarea>
+												<form:textarea id="attDescription" path="attDescription" name="attDescription" placeholder="請輸入新增的景點說明"></form:textarea>
 											</div>
 										</div>
 										
@@ -97,13 +97,29 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 										<br>
 
 										<button type="submit" name="submit" class="btn btn-primary mr-2">新增</button>
-										<a href="listAttractions"><button class="btn btn-light">返回</button></a>                        </form:form>
+										<a href="listAttractions"><button class="btn btn-light">返回</button></a>    
+										<button  class="btn btn-primary mr-2" id="fastinput" style="float:right;">一鍵輸入</button>
+										
+										                    </form:form>
 							<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 					
 
 
 
-
+	<script>
+	
+	
+	$('#fastinput').click(function(){
+		
+		$('#attid').val('1110')
+		$('#attName').val('麗寶樂園渡假區')
+		$('#attLocation').val('台中市后里區福容路8號')
+		$('#attDescription').val('遊客眾多的主題樂園，主打雲霄飛車、多種遊樂設施、人工波浪池和飄飄河。')
+		
+	})
+	
+	</script>
+	
 	<!-- ckeditor:js & function-->
 	<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
 	<script src="/js/coco/ckeditorCoco.js"></script>
