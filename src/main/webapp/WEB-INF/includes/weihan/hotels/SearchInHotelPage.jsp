@@ -3,10 +3,10 @@
  <section class="section pb-0 ">
                         <div class="container">
 
-                            <div class="row check-availabilty" id="next">
+                            <div class="row check-availabilty justify-content-center" id="next">
                                 <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
 
-                                    <form id="searchHotel">
+                                    <form id="searchRoom">
                                         <div class="row">
 	                                            <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
 	                                                <label for="checkin_date"
@@ -26,20 +26,6 @@
 	                                            </div>
                                             <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
                                                 <div class="row">
-                                                    <div class="col-md-6 mb-3 mb-md-0">
-                                                        <label for="adults"
-                                                            class="font-weight-bold text-black">目的地</label>
-                                                        <div class="field-icon-wrap">
-                                                            <div class="icon"><i class="fa-solid fa-chevron-down"></i>
-                                                            </div>
-                                                            <select name="destination" id="location" class="form-control">
-                                                                <option value="台灣" selected>台灣</option>
-                                                                <option value="日本">日本</option>
-                                                                <option value="美國">美國</option>
-                                                                <option value="英國">英國</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
                                                     <div class="col-md-6 mb-3 mb-md-0">
                                                         <label for="children"
                                                             class="font-weight-bold text-black">旅客</label>

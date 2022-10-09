@@ -82,7 +82,7 @@
 		<div id="picPreview"></div>
 	</div>
 	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
 		$('#upload')
 				.on(
@@ -96,7 +96,7 @@
 								fr.onload = function(e) {
 									$('#picPreview')
 											.append(
-													'<img id="img" src="'+e.target.result+'" class="box">');
+													'<a id="click" href=""><img id="img" src="'+e.target.result+'" class="box"></a>');
 								};
 								fr.readAsDataURL(file);
 							}
@@ -118,6 +118,23 @@
 							$('#owner').val('大倉久和');
 							$('#averagePrice').val('2000');
 						});
+		$('#picPreview').on('click',('#click'),function(e){
+			e.preventDefault();
+			Swal.fire({
+				  imageUrl: e.target.getAttribute('src'),
+				  imageWidth: 400,
+				  imageHeight: 200,
+				  imageAlt: 'Custom image',
+				  allowOutsideClick: () => !Swal.isLoading(),
+				  showCancelButton:true,
+				  confirmButtonText: '刪除',
+				  cancelButtonText: 'OK',
+			}).then((result) => {
+				if(result.isConfirmed){
+					e.target.remove();
+				}
+			})
+		})
 	</script>
 
 

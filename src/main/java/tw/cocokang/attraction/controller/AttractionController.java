@@ -217,19 +217,21 @@ public class AttractionController {
 		m.addAttribute("attraction",attraction);
 		return "coco/attractionplan/ListView";
 	}
-	
+	//跳轉到新增方案
 	@GetMapping(path = "/toAddPlan")
 	public String addPlan(Model m,int attractionid) {
 		m.addAttribute("attractionid",attractionid);
 		return planPath + "PlanAdd"; 
 	}
 	
+	//執行新增方案
 	@PostMapping(path = "/addPricingPlanAction")
 	public String addPricingPlanAction(@ModelAttribute Pricingplan pricingplan,int attractionid) {
 		aService.insertPlan(pricingplan,attractionid);
 		return "redirect:showAttractionPlans?attractionid="+attractionid;
 	}
 	
+	//跳轉到更新方案
 	@GetMapping(path = "/toUpdatePlan")
 	public String toUpdatePlan(@RequestParam int planID,Model m) {
 		Pricingplan plan = aService.getSinglePlan(planID);
@@ -237,12 +239,14 @@ public class AttractionController {
 		return planPath + "PlanUpdate";
 	}
 	
+	//執行更新方案
 	@PostMapping(path = "updatePlanAction")
 	public String updatePlanAction(@ModelAttribute Pricingplan plan) {
 		aService.updatePlan(plan, plan.getAttractionid());
 		return "redirect:showAttractionPlans?attractionid="+plan.getAttractionid();
 	}
 	
+	//刪除方案
 	@PostMapping(path = "deletePlan")
 	public String deletePlan(@RequestParam int planid,@RequestParam int attractionid) {
 		aService.deletePlan(planid);

@@ -51,17 +51,22 @@ public class HotelFrontController {
 	}
 	
 	@GetMapping(path = "searchHotel")
-	private String searchFront(@RequestParam("dateStart")String dateStart,
-								@RequestParam("dateEnd")String dateEnd,
-								@RequestParam("destination")String destination,
-								@RequestParam("number")int number,Model model) {
-		List<HotelforSearch> result = fService.crazy(dateStart,dateEnd,destination,number);
-		model.addAttribute("result",result);
+	private String searchFront() {
+		return searchPage;
+	}
+	
+	@GetMapping(path = "hotelPage")
+	private String displayNewHotelPage(@RequestParam(name = "dateStart",required = false)String dateStart,
+										@RequestParam(name = "dateEnd",required = false)String dateEnd,
+										@RequestParam(name = "number",defaultValue = "1")int number,
+										@RequestParam("hotelID")int hotelID,Model model) {
 		model.addAttribute("dateStart",dateStart);
 		model.addAttribute("dateEnd",dateEnd);
-		model.addAttribute("destination",destination);
 		model.addAttribute("number",number);
-		return searchPage;
+		model.addAttribute("hotelID",hotelID);
+//		Hotel hotel = fService.selectHotel(hotelID);
+//		model.addAttribute("hotel",hotel);
+		return hotelPage;
 	}
 	
 	@GetMapping(path = "searchAjax")
@@ -70,7 +75,7 @@ public class HotelFrontController {
 											@RequestParam("dateEnd")String dateEnd,
 											@RequestParam("destination")String destination,
 											@RequestParam("number")int number){
-		
+		System.err.println("ajax搜尋旅館");
 		return fService.crazy(dateStart, dateEnd, destination, number);
 	}
 	
@@ -82,20 +87,6 @@ public class HotelFrontController {
 												@RequestParam("number")int number){
 		System.err.println("ajax搜尋房間");
 		return fService.getRoomStyle(dateStart, dateEnd, hotelID, number);
-	}
-	
-	@GetMapping(path = "hotelPage")
-	private String displayHotelPage(@RequestParam("dateStart")String dateStart,
-									@RequestParam("dateEnd")String dateEnd,
-									@RequestParam("number")int number,
-									@RequestParam("hotelID")int hotelID,Model model) {
-		model.addAttribute("dateStart",dateStart);
-		model.addAttribute("dateEnd",dateEnd);
-		model.addAttribute("number",number);
-		model.addAttribute("hotelID",hotelID);
-		Hotel hotel = fService.selectHotel(hotelID);
-		model.addAttribute("hotel",hotel);
-		return hotelPage;
 	}
 	
 	@GetMapping(path = "bookingPage")
@@ -159,6 +150,8 @@ public class HotelFrontController {
 		return finishOrderPage;
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////
+	
 //	@PostMapping(path = "returnAfterSuccess")
 //	private String success(@RequestParam("MerchantTradeNo")String tradeNo,
 //						   @RequestParam("TradeAmt")String tradeAmount ,Model model) {
@@ -173,6 +166,34 @@ public class HotelFrontController {
 		System.out.println("被檢查了");
 		return "1|OK";
 	}
+	
+//	@GetMapping(path = "searchHotel")
+//	private String searchFront(@RequestParam("dateStart")String dateStart,
+//								@RequestParam("dateEnd")String dateEnd,
+//								@RequestParam("destination")String destination,
+//								@RequestParam("number")int number,Model model) {
+//		List<HotelforSearch> result = fService.crazy(dateStart,dateEnd,destination,number);
+//		model.addAttribute("result",result);
+//		model.addAttribute("dateStart",dateStart);
+//		model.addAttribute("dateEnd",dateEnd);
+//		model.addAttribute("destination",destination);
+//		model.addAttribute("number",number);
+//		return searchPage;
+//	}
+	
+//	@GetMapping(path = "hotelPage")
+//	private String displayHotelPage(@RequestParam("dateStart")String dateStart,
+//									@RequestParam("dateEnd")String dateEnd,
+//									@RequestParam("number")int number,
+//									@RequestParam("hotelID")int hotelID,Model model) {
+//		model.addAttribute("dateStart",dateStart);
+//		model.addAttribute("dateEnd",dateEnd);
+//		model.addAttribute("number",number);
+//		model.addAttribute("hotelID",hotelID);
+//		Hotel hotel = fService.selectHotel(hotelID);
+//		model.addAttribute("hotel",hotel);
+//		return hotelPage;
+//	}
 	
 	
 }
