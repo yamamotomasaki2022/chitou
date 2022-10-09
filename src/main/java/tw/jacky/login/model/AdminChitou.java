@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="adminchitou")
@@ -18,10 +21,10 @@ public class AdminChitou {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer adminid;
 	
+//	忽略掉，因爲下面join column裏面會有
+	@Transient
 	@Column(name="adminstatus")
 	private Integer adminstatus;
-	
-	
 	
 	@Column (name="username")
 	private String username;
@@ -34,7 +37,21 @@ public class AdminChitou {
 	@Column(name="permission")
 	private Boolean permission;
 	
+	@ManyToOne
+	@JoinColumn(name="adminstatus")
+	private LoginStatus loginStatus;
 	
+	
+	
+	
+	public LoginStatus getLoginStatus() {
+		return loginStatus;
+	}
+
+	public void setLoginStatus(LoginStatus loginStatus) {
+		this.loginStatus = loginStatus;
+	}
+
 	public AdminChitou() {
 		
 	}

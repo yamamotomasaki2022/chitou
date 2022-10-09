@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.model.source.internal.hbm.ManyToOneAttributeColumnsAndFormulasSource;
 import org.hibernate.query.Query;
 import org.springframework.beans.Mergeable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,8 +83,17 @@ public class LoginService {
 	
 //	管理員新增會員基本資料
 	public MemberBasicInfo adminInsertMember(MemberBasicInfo mb) {
+		LoginStatus loginStatus = new LoginStatus();
+		loginStatus.setStatusid(mb.getStatusid());
+		mb.setLoginStatus(loginStatus);
 		return mbrepo.save(mb);
 	}
+	
+	public MemberBasicInfo adminUpdateMember(MemberBasicInfo mb) {
+		System.out.println("statusid:" + mb.getLoginStatus().getStatusid());
+		return mbrepo.save(mb);
+	}
+	
 	
 //	管理員新增會員詳細資料(銜接會員基本資料)
 	public MemberDetailInfo adminInsertMemberDetailInfo(MemberBasicInfo mb) {
@@ -172,6 +182,9 @@ public class LoginService {
 	}
 	
 	public AdminChitou adminInsertAdmin(AdminChitou ac) {
+		LoginStatus loginStatus = new LoginStatus();
+		loginStatus.setStatusid(ac.getAdminid());
+		ac.setLoginStatus(loginStatus);
 		return acrepo.save(ac);
 	}
 	

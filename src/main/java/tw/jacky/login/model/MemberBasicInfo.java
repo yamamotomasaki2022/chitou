@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 
@@ -24,7 +27,7 @@ public class MemberBasicInfo {
 	private int memberid;
 	
 	
-	
+	@Transient
 	@Column(name="statusid")
 	private int statusid;
 	
@@ -43,10 +46,20 @@ public class MemberBasicInfo {
 	@Column(name="verificationcode")
 	private String verificationcode;
 	
+	@ManyToOne
+	@JoinColumn(name="statusid")
+	private LoginStatus loginStatus;
 	
 	
 	
-	
+	public LoginStatus getLoginStatus() {
+		return loginStatus;
+	}
+
+	public void setLoginStatus(LoginStatus loginStatus) {
+		this.loginStatus = loginStatus;
+	}
+
 	public MemberBasicInfo() {
 		
 	}

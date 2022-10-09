@@ -75,7 +75,7 @@
 											name="jacky-rememberme"> 記住我的認證
 										</label>
 									</div>
-									<a href="#" class="auth-link .text-primary">忘記密碼</a>
+									<a href="/toForgetPassword" class="auth-link .text-primary">忘記密碼</a>
 								</div>
 								<div class="mb-2">
 									<button type="button"
