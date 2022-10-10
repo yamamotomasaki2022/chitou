@@ -21,7 +21,7 @@
 	<span id="info">  </span>
 	
 	<div class="mt-3">
-		<button
+		<button id="confirm"
 			class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
 			type="submit" value="login" disabled>確定</button>
 	</div>
@@ -37,8 +37,13 @@ var password = $('#password').val();
 var reconfirmpassword = $('#reconfirmpassword').val();
 if(password != reconfirmpassword){
 	$('#info').text('密碼錯誤')
-	$()
+	$('#confirm').attr('disabled',true)
+}else{
+	$('#info').text('')
+	$('#confirm').attr('disabled',false)
 }
+
+
 })
 
 
