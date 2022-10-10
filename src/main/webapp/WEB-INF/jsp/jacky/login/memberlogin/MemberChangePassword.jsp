@@ -14,15 +14,34 @@
 	</div>
 	<div class="form-group">
 		<input type="password" class="form-control form-control-lg"
-			id="password" placeholder="Reconfirmpassword"
+			id="reconfirmpassword" placeholder="Reconfirmpassword"
 			name="reconfirmpassword">
 	</div>
+	
+	<span id="info">  </span>
+	
 	<div class="mt-3">
 		<button
 			class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-			type="submit" value="login">確定</button>
+			type="submit" value="login" disabled>確定</button>
 	</div>
 
-
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<script>
+
+$('#reconfirmpassword').on('change',function(){
+var password = $('#password').val();
+var reconfirmpassword = $('#reconfirmpassword').val();
+if(password != reconfirmpassword){
+	$('#info').text('密碼錯誤')
+	$()
+}
+})
+
+
+
+</script>
 </html>
