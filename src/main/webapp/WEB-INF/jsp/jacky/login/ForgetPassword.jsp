@@ -14,7 +14,7 @@
 
 
 
-	<h1>笑死，誰叫你忘記密碼，重辦！</h1>
+	<h1 id="fun">笑死，誰叫你忘記密碼，重辦！</h1>
 
 	<form action="/sendVerificationMailFromForgetPassword">
 
@@ -26,24 +26,24 @@
 
 
 
-	<div class="mt-3">
-		<button id="availablecheck" type="button" value="login">檢查賬號是否可用</button>
-	</div>
+		<div class="mt-3">
+			<button id="availablecheck" type="button" value="login">檢查賬號是否可用</button>
+		</div>
 
-	<span id="infobox"></span>
+		<span id="infobox"></span>
 
 
 
 
 		<div id="btn">
-<!-- 			<button id="btn" disabled>送出email</button> -->
+			<!-- 			<button id="btn" disabled>送出email</button> -->
 
 		</div>
 
 
 	</form>
 
-
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<script type="text/javascript">
 		$('#availablecheck').on('click', function() {
@@ -56,6 +56,11 @@
 					if (data == false) {
 						console.log(1)
 // 						$('#btn').prop('disabled', true)
+				Swal.fire(
+						  '錯誤!',
+						  '請輸入有效格式',
+						  'error'
+						)
 						
 
 					} else {
@@ -77,6 +82,13 @@
 			})
 
 		})
+		
+		
+		setInterval(fundiv,400)
+		function fundiv(){
+			$('#fun').remove()
+		}
+		
 	</script>
 
 

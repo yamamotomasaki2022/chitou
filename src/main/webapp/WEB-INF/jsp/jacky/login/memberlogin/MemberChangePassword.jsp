@@ -9,7 +9,7 @@
 <body>
 
 	<div class="form-group">
-		<input type="text" class="form-control form-control-lg" id="password"
+		<input type="password" class="form-control form-control-lg" id="password"
 			placeholder="password" name="password">
 	</div>
 	<div class="form-group">
