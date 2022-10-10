@@ -1,4 +1,4 @@
-<%@page import="tw.jacky.login.model.*"%>
+<%@page import="tw.georgia.article.model.ArticleService"%>
 <%@page import="javax.management.MBeanAttributeInfo"%>
 <%@page
 	import="java.sql.Connection, java.util.*, javax.sql.*, javax.servlet.*,  javax.naming.*,java.io.*,java.sql.* ,tw.georgia.article.model.*,tw.georgia.article.controller.*"%>
@@ -11,8 +11,10 @@
 <title>ChiTou文章管理</title>
 
 <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
 <style>
 * {
 	font-size: 102%;
@@ -65,14 +67,14 @@ button, .btn {
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
-
+<INPUT TYPE="SUBMIT" value="倒序" name="" class="btn btn-primary mr-2" id="countdown">
 	<br>
-	<!--  <form action="article.new" method="get">
+	<form action="article.new" method="get">
 		<INPUT TYPE="SUBMIT" value="新增文章" name="newarticle" class="btn btn-primary mr-2">
-	</form>-->
+	</form>
 
 	<br>
-	<form action="article.admin.read" method="post">
+	<form action="article.read" method="post">
 		選擇國家<select name="chooseCountry">
 			<optgroup label="亞洲">
 				<option value=101>台灣</option>
@@ -110,62 +112,55 @@ button, .btn {
 		<br>
 	</form>
 	<div class="table-responsive">
-		<table class="table table-hover">
+		<table class="table table-hover" id="table_id">
 			<thead id="tableHead">
 				<tr>
-					<th class="card-title text-primary">會員ID</th>
-					<th class="card-title text-primary">國家<BR>文章類型</th>
+					<!--  <th class="card-title text-primary">會員ID</th>-->
+					<th class="card-title text-primary">國家</th>
+					<th class="card-title text-primary">文章類型</th>
 					<th class="card-title text-primary">預覽縮圖</th>
 					<th class="card-title text-primary">文章標題</th>
 					<th class="card-title text-primary">發布日期</th>
 					<th class="card-title text-primary">文章內文</th>
-					<th class="card-title text-primary">文章狀態</th>
 					<th class="card-title text-primary">文章管理</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="change">
 
 				<%
 				List<Article> list = (List) request.getAttribute("list");
 				for (Article bean : list) {
+					if(bean.getUserDelete()==1)
+						continue;
+					if(bean.getManageHidden()==1)
+						continue;
 					int title=bean.getTitle().length();
-					String status="";
-					if(bean.getUserDelete()==1){
-						status="會員自行刪除";
-					}else if(bean.getManageHidden()==1){
-						status="文章已隱藏";
-					}else{
-						status="文章上架中";
-					}
-					
 					
 				%>
 
 				<tr>
-					<td class=""><%=bean.getMember().getMemberid()%></td>
-					<td class=""><%=bean.getCategory().getCountry()%><HR><%=bean.getCategory().getType()%></td>
-					<td class=""><img id="img" src="images/georgia/picture/<%=bean.getPhoto()%>" class="box" style="width:80px;height:80px"></td>
+					
+					<td class=""><%=bean.getCategory().getCountry()%></td>
+					<td class=""><%=bean.getCategory().getType()%></td>
+					<td class=""><img id="img" src="images/georgia/picture/<%=bean.getPhoto()%>" class="box" style="width:100px;height:100px"></td>
 					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%><HR><%=bean.getSubtitle()%></td>
 					<td class=""><%=bean.getDate()%></td>
-					<td>
-					<form action="article.admin.show" method="post">
+					<td><form action="article.show" method="post">
 					<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
 					<input type="submit" name="toShow" value="查看詳細內文" class="btn btn-light">
-					</form>
-					</td>
-					<td class=""><%=status%></td>
+					</form></td>
 					<td class="">
 
 						<form action="article.renew" method="post" style="">
 							<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
-							<input type="submit" name="update" value="通知" class="btn btn-primary mr-2"
+							<input type="submit" name="update" value="修改" class="btn btn-primary mr-2"
 								id="update">
 						</form>
 
-						<form action="article.manageHidden" method="post" style="">
-							<!--  <input type="hidden" name="_method" value="DELETE"> -->
+						<form action="article.userDelete" method="post" style="">
+							<!--  <input type="hidden" name="_method" value="DELETE">--> 
 							<input type="hidden" name="postID" value=<%=bean.getPostID()%>>
-							<input type="submit" name="" value="隱藏" class="btn btn-light"
+							<input type="submit" name="userDelete" value="刪除" class="btn btn-light"
 								id="check">
 						</form>
 
@@ -187,8 +182,25 @@ button, .btn {
 </svg>
 
 		<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+		
 		<script>
 			$(function() {
+				initDataTable();
+				
+				$('#countdown').click(function(){
+					if($('#countdown').val()==='倒序'){
+						$('#countdown').val('正序');
+					$('#change').html('<H1>喵喵喵</H1>');
+						
+					}else{
+						$('#countdown').val('倒序');
+					$('#change').html('<H1>汪汪汪</H1>');
+						
+					}
+					
+				});
+				
+				
 				$('#BackTop').click(function(){ 
 					$('html,body').animate({scrollTop:0}, 200);
 				});
@@ -219,6 +231,46 @@ button, .btn {
 						return false
 					}
 				}
+				
+				// 初始化datatable
+				 function initDataTable(){
+				  
+				  $('#table_id').DataTable({
+				   "columnDefs" : [ {
+					   "orderable" : false,
+					    "targets" : [0,1,2,3,5,6],   
+				    "autoWidth": false,
+				   }],
+				   
+				   language: {
+				       "lengthMenu": "顯示_MENU_筆資料",
+				       "sProcessing": "處理中...",
+				       "sZeroRecords": "没有匹配结果",
+				       "sInfo": "目前有 _MAX_ 筆資料",
+				       "sInfoEmpty": "目前共有 0 筆紀錄",
+				       "sInfoFiltered": " ",
+				       "sInfoPostFix": "",
+				       "sSearch": "搜尋:",
+				       "sUrl": "",
+				       "sEmptyTable": "尚未有資料紀錄存在",
+				       "sLoadingRecords": "載入資料中...",
+				       "sInfoThousands": ",",
+				       "oPaginate": {
+				           "sFirst": "首頁",
+				           "sPrevious": "上一頁",
+				           "sNext": "下一頁",
+				           "sLast": "末頁"
+				        },
+				        "order": [[0, "desc"]],
+				        "oAria": {
+				            "sSortAscending": ": 以升序排列此列",
+				            "sSortDescending": ": 以降序排列此列"
+				        }
+				       },
+				   
+				   
+				  }); 
+				 }
 
 			})
 		</script>

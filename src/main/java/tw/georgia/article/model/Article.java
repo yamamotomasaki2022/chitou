@@ -1,5 +1,8 @@
 package tw.georgia.article.model;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,28 +12,39 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
-//沒改完GET/SET
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import tw.jacky.login.model.MemberBasicInfo;
+
 @Entity @Table(name = "article")
 @Component
 public class Article {
-
+	
 	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumns({
-//		@JoinColumn(name = "countryID",referencedColumnName = "countryID"),
-		@JoinColumn(name = "categoryID",referencedColumnName = "categoryID")
-//	})
+	@JoinColumn(name = "posterID")
+	private MemberBasicInfo member;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "categoryID",referencedColumnName = "categoryID")
 	private Category category;
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "article")
+	private Set<Reply> reply=new LinkedHashSet<Reply>();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "postID")
 	private Integer postid;
 	
-	@Column(name = "posterID")
-	private Integer posterid;
+//	@Column(name = "posterID")
+//	private Integer posterid;
 	
 	@Column(name = "title")
 	private String title;
@@ -55,14 +69,13 @@ public class Article {
 
 	public Article() {
 	}
-
-
-	public Article(Category category, Integer postID, Integer posterID, String title, String subtitle, String photo,
+	
+	
+	public Article(MemberBasicInfo member, Category category, String title, String subtitle, String photo,
 			String content, String date) {
 		super();
+		this.member = member;
 		this.category = category;
-		this.postid = postID;
-		this.posterid = posterID;
 		this.title = title;
 		this.subtitle = subtitle;
 		this.photo = photo;
@@ -71,26 +84,13 @@ public class Article {
 	}
 
 
-	public Article(Category category, Integer posterID, String title, String subtitle, String photo, String content,
-			String date) {
-		super();
-		this.category = category;
-		this.posterid = posterID;
-		this.title = title;
-		this.subtitle = subtitle;
-		this.photo = photo;
-		this.content = content;
-		this.date = date;
+	public MemberBasicInfo getMember() {
+		return member;
 	}
 
-	public Article(Category category, String title, String subtitle, String photo, String content, String date) {
-		super();
-		this.category = category;
-		this.title = title;
-		this.subtitle = subtitle;
-		this.photo = photo;
-		this.content = content;
-		this.date = date;
+
+	public void setMember(MemberBasicInfo member) {
+		this.member = member;
 	}
 
 
@@ -114,14 +114,14 @@ public class Article {
 	}
 
 
-	public Integer getPosterID() {
-		return posterid;
-	}
-
-
-	public void setPosterID(Integer posterID) {
-		this.posterid = posterID;
-	}
+//	public Integer getPosterID() {
+//		return posterid;
+//	}
+//
+//
+//	public void setPosterID(Integer posterID) {
+//		this.posterid = posterID;
+//	}
 
 
 	public String getTitle() {
@@ -191,6 +191,16 @@ public class Article {
 
 	public void setManageHidden(int manageHidden) {
 		this.managehidden = manageHidden;
+	}
+
+
+	public Set<Reply> getReply() {
+		return reply;
+	}
+
+
+	public void setReply(Set<Reply> reply) {
+		this.reply = reply;
 	}
 	
 	
