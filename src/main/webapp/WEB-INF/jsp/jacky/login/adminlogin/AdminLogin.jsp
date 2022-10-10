@@ -1,5 +1,9 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +50,9 @@
 									height="auto" alt="logo" /><img src="/images/coco/logo2.png"
 									class="mr-2" alt="logo" /></a>
 							</div>
-							<form class="pt-3" ACTION="" method="post">
+							<form class="pt-3" ACTION="" method="post" onsubmit="return validateForm()">
+								<script src="https://www.google.come/recaptcha/api.js" async
+									defer></script>
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
 										id="username" placeholder="Username" name="username">
@@ -57,16 +63,24 @@
 										id="password" placeholder="Password" name="password">
 									<span>${errors.pwd}</span>
 								</div>
+
+								<!-- 								<div class="g-recaptcha" -->
+								<!-- 									data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"> -->
+								<!-- 								</div> -->
+
+
+								<div class="g-recaptcha" id="rcaptcha" data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"></div>
+								<span id="captcha" style="color: red" /></span>
+								<!-- this will show captcha errors -->
+
 								<div class="mt-3">
 									<button
 										class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-										type="submit" value="login">登入</button>
+										type="submit" value="login" >登入</button>
 									<span>${errors.msg}</span>
 								</div>
-								<div>
-
-
-								</div>
+ 
+								<div></div>
 								<div
 									class="my-2 d-flex justify-content-between align-items-center">
 									<div class="form-check">
@@ -83,10 +97,10 @@
 										<i class="ti-facebook"></i>
 									</button>
 
-<!-- 									<button type="button" -->
-<!-- 										class="btn btn-social-icon btn-outline-google"> -->
-<!-- 										<i class="ti-google"></i> -->
-<!-- 									</button> -->
+									<!-- 									<button type="button" -->
+									<!-- 										class="btn btn-social-icon btn-outline-google"> -->
+									<!-- 										<i class="ti-google"></i> -->
+									<!-- 									</button> -->
 
 
 									<a href='/oauth2/authorization/google'>
@@ -153,6 +167,37 @@
 			$('#password').val('123')
 
 		})
+	</script>
+
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script>
+		function get_action(form) {
+			var v = grecaptcha.getResponse();
+			if (v.length == 0) {
+				document.getElementById('captcha').innerHTML = "You can't leave Captcha Code empty";
+				return false;
+			} else {
+				document.getElementById('captcha').innerHTML = "Captcha completed";
+				return true;
+			}
+		}
+	</script>
+	
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
+	<script type="text/javascript">
+		function validateForm(){
+			if(grecaptcha.getResponse()){
+				return true;
+			}else{
+				Swal.fire(
+						  'Careful!',
+						  'please prove you are not robot',
+						  'error'
+						)
+				return false;	
+			}
+		}
 	</script>
 
 
