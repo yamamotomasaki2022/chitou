@@ -8,23 +8,26 @@
 </head>
 <body>
 
+<form action="/uvmember/MemberModifyPasswordToDB" method="post">
+
 	<div class="form-group">
-		<input type="password" class="form-control form-control-lg" id="password"
-			placeholder="password" name="password">
+		<input type="password" class="form-control form-control-lg"
+			id="password" placeholder="password" name="password">
 	</div>
 	<div class="form-group">
 		<input type="password" class="form-control form-control-lg"
 			id="reconfirmpassword" placeholder="Reconfirmpassword"
 			name="reconfirmpassword">
 	</div>
-	
-	<span id="info">  </span>
-	
+
+	<span id="info"> </span>
+
 	<div class="mt-3">
 		<button id="confirm"
 			class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
 			type="submit" value="login" disabled>確定</button>
 	</div>
+</form>
 
 </body>
 
@@ -42,11 +45,13 @@ if(password != reconfirmpassword){
 	$('#info').text('')
 	$('#confirm').attr('disabled',false)
 }
-
-
 })
 
-
+// $('#reconfirmpassword').on('hover',function(){
+// 	$('#info').remove()
+// })
 
 </script>
+
+
 </html>
