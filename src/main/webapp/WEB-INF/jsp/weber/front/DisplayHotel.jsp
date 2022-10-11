@@ -471,7 +471,7 @@ $("#date").daterangepicker({
             "7月", "8月", "9月", "10月", "11月", "12月"],
     }
 });
-<c:if test="${dateStart==null&&dateStart==null}">
+<c:if test="${dateStart==null&&dateEnd==null}">
 let date = new Date().toISOString().split('T')[0];
 $('#dateStart').val(date);
 $('#dateEnd').val(date);

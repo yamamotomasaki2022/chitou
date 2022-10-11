@@ -1,7 +1,10 @@
 package tw.weber.hotel.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +38,6 @@ public class HotelFrontController {
 	@Autowired
 	private FrontBookingService fService;
 	
-	@Autowired
-	private OrderService oService;
-	
 	private String suffix = "weber/front/";
 	private String main = suffix + "FrontMain";
 	private String searchPage = suffix + "SearchResult";
@@ -59,7 +59,15 @@ public class HotelFrontController {
 	private String displayNewHotelPage(@RequestParam(name = "dateStart",required = false)String dateStart,
 										@RequestParam(name = "dateEnd",required = false)String dateEnd,
 										@RequestParam(name = "number",defaultValue = "1")int number,
-										@RequestParam("hotelID")int hotelID,Model model) {
+										@RequestParam("hotelID")int hotelID,Model model) throws ParseException {
+		if (dateStart!=null) {
+			Date newDateStart = new SimpleDateFormat("yyyy-mm-dd").parse(dateStart);
+			dateStart = new SimpleDateFormat("mm/dd/yyyy").format(newDateStart);
+		}
+		if (dateEnd!=null) {
+			Date newDateEnd = new SimpleDateFormat("yyyy-mm-dd").parse(dateEnd);
+			dateEnd = new SimpleDateFormat("mm/dd/yyyy").format(newDateEnd);
+		}
 		model.addAttribute("dateStart",dateStart);
 		model.addAttribute("dateEnd",dateEnd);
 		model.addAttribute("number",number);
@@ -145,7 +153,7 @@ public class HotelFrontController {
 		Reservation checkOutRoom = (Reservation)model.getAttribute("CheckoutRoom");
 		checkOutRoom.setOrderStatus("已付款");
 		fService.finalCheckOut(checkOutRoom);
-		oService.insertDataToOrderList(checkOutRoom);
+		fService.insertDataToOrderList(checkOutRoom);
 		model.addAttribute("checkOutRoom",checkOutRoom);
 		return finishOrderPage;
 	}
@@ -195,5 +203,23 @@ public class HotelFrontController {
 //		return hotelPage;
 //	}
 	
+	@GetMapping(path = "hotelOrder")
+	private String hotelOrder(@RequestParam("roomStyleID")int roomstyleID,
+							  @RequestParam("hotelID")int hotelID,
+							  @RequestParam("dateStart")String dateStart,
+							  @RequestParam("dateEnd")String dateEnd,
+							  @RequestParam("number")int number,Model model) {
+		Hotel hotel = fService.selectHotel(hotelID);
+		RoomStyle style = fService.findStyle(dateStart,dateEnd,roomstyleID,number);
+		Room room = fService.findEmptyRoom(dateStart, dateEnd, roomstyleID);
+		model.addAttribute("hotel",hotel);
+		model.addAttribute("style",style);
+		model.addAttribute("room",room);
+		model.addAttribute("checkInDate",dateStart);
+		model.addAttribute("checkOutDate",dateEnd);
+		model.addAttribute("number",number);
+//		return suffix + "HotelsOrder";
+		return suffix + "orderHotel";
+	}
 	
 }

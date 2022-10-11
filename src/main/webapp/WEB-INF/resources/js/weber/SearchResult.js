@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	$('#checkin_date').val(new Date().toISOString().split('T')[0]);
 	$('#checkout_date').val(new Date().toISOString().split('T')[0]);
+	console.log(new Date().toISOString().split('T')[0]);
 	doSearch();
 })
 
@@ -29,13 +30,13 @@ function doSearch(){
 						<li>
 							<div class="itemBox">
 								<div class="imgBox">
-									<a href="hotelPage?${dateStart}&${dateEnd}&${number}&hotelID=${ele.hotelID}">
+									<a href="hotelPage?${dateStart}${dateEnd}${number}&hotelID=${ele.hotelID}">
 										<img src="images/weber/hotel/hotelNB${ele.hotelID}/photo1.jpg" 
 											alt="" width="100%" height="261px">
 									</a>
 								</div>
 								<div class="txtBox">
-									<a href="hotelPage?dateStart=${dateStart}&dateEnd=${dateEnd}&number=${number}&hotelID=${ele.hotelID}">
+									<a href="hotelPage?${dateStart}${dateEnd}${number}&hotelID=${ele.hotelID}">
 	                            		<span style="font-size:20px;font-weight:bold;">${ele.name}</span>
 	                            	</a>
 									<span class="text"><i class="fa-solid fa-location-dot"></i>
