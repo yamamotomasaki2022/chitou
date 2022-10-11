@@ -25,8 +25,8 @@ public class Hobbyclassification {
 	@Column(name = "prefer_descrip")
 	private String preferDescrip;
 	
-	@OneToMany(mappedBy = "hobbyclassification")
-	private List<Attraction> cAttractions;
+//	@OneToMany(mappedBy = "hobbyclassification")
+//	private List<Attraction> cAttractions;
 	
 	public Hobbyclassification() {
 		
@@ -56,12 +56,12 @@ public class Hobbyclassification {
 		this.preferDescrip = preferDescrip;
 	}
 
-	public List<Attraction> getcAttractions() {
-		return cAttractions;
-	}
-
-	public void setcAttractions(List<Attraction> cAttractions) {
-		this.cAttractions = cAttractions;
-	}
+//	public List<Attraction> getcAttractions() {
+//		return cAttractions;
+//	}
+//
+//	public void setcAttractions(List<Attraction> cAttractions) {
+//		this.cAttractions = cAttractions;
+//	}
 
 }

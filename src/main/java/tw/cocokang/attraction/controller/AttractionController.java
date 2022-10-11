@@ -21,7 +21,6 @@ import tw.cocokang.attraction.model.Attraction;
 import tw.cocokang.attraction.model.AttractionService;
 import tw.cocokang.attraction.model.Hobbyclassification;
 import tw.cocokang.attraction.model.Pricingplan;
-import tw.cocokang.attraction.model.PricingplanService;
 
 @Controller
 public class AttractionController {
@@ -31,7 +30,7 @@ public class AttractionController {
 
 	public String path = "coco/attraction-background/";
 	public String path1 = "coco/attraction-user/";
-
+	public String planPath = "coco/attractionplan/";
 	
 	 //--------------------Attraction
 	//總覽
@@ -224,13 +223,39 @@ public class AttractionController {
 		m.addAttribute("attraction",attraction);
 		return "coco/attractionplan/ListView";
 	}
-	
-	@GetMapping(path = "/addPlan")
+	//跳轉到新增方案
+	@GetMapping(path = "/toAddPlan")
 	public String addPlan(Model m,int attractionid) {
-		Pricingplan pricingplan = new Pricingplan();
-		pricingplan.setAttractionid(attractionid);
-		m.addAttribute("pricingplan",pricingplan);
-		return path1 + "PlanAdd"; 
+		m.addAttribute("attractionid",attractionid);
+		return planPath + "PlanAdd"; 
 	}
 	
+	//執行新增方案
+	@PostMapping(path = "/addPricingPlanAction")
+	public String addPricingPlanAction(@ModelAttribute Pricingplan pricingplan,int attractionid) {
+		aService.insertPlan(pricingplan,attractionid);
+		return "redirect:showAttractionPlans?attractionid="+attractionid;
+	}
+	
+	//跳轉到更新方案
+	@GetMapping(path = "/toUpdatePlan")
+	public String toUpdatePlan(@RequestParam int planID,Model m) {
+		Pricingplan plan = aService.getSinglePlan(planID);
+		m.addAttribute("plan",plan);
+		return planPath + "PlanUpdate";
+	}
+	
+	//執行更新方案
+	@PostMapping(path = "updatePlanAction")
+	public String updatePlanAction(@ModelAttribute Pricingplan plan) {
+		aService.updatePlan(plan, plan.getAttractionid());
+		return "redirect:showAttractionPlans?attractionid="+plan.getAttractionid();
+	}
+	
+	//刪除方案
+	@PostMapping(path = "deletePlan")
+	public String deletePlan(@RequestParam int planid,@RequestParam int attractionid) {
+		aService.deletePlan(planid);
+		return "redirect:showAttractionPlans?attractionid="+attractionid;
+	}
 }

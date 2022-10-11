@@ -31,12 +31,26 @@
 						<i class="fa-solid fa-hotel"></i>&nbsp;住宿酒店
 					</button>
 
+<<<<<<< HEAD
 					&emsp;&emsp;&emsp;&emsp;
 
 					<button type="button" class="btn btn-outline-primary btn-sm">
 						<i class="fa-solid fa-plane"></i>&nbsp;交通機票
 					</button>
 					<!-- <button type="button" class="btn btn-outline-light btn-sm"><i
+=======
+            &emsp;
+            <button type="button" class="btn btn-outline-primary btn-sm"><i
+                class="fa-solid fa-location-dot"></i>&nbsp;景點門票</button>
+            &emsp;&emsp;&emsp;&emsp;
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='newHotelsList'"><i
+                class="fa-solid fa-hotel"></i>&nbsp;住宿酒店</button>
+            &emsp;&emsp;&emsp;&emsp;
+
+            <button type="button" class="btn btn-outline-primary btn-sm"><i
+                class="fa-solid fa-plane"></i>&nbsp;交通機票</button>
+            <!-- <button type="button" class="btn btn-outline-light btn-sm"><i
+>>>>>>> 6c699a67b12633459faba976f16f8549c4d47d5d
               class="fa-solid fa-plane"></i>&nbsp;交通機票</button> -->
 					&emsp;&emsp;&emsp;&emsp;
 

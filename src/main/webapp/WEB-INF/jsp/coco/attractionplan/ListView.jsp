@@ -15,16 +15,12 @@
 	
     <h4 class="card-title text-primary">&nbsp;方案管理</h4>
     <p class="card-description">
-		<a href="addPlan?attractionid=${attraction.attid}">
+		<a href="toAddPlan?attractionid=${attraction.attid}">
 			<button id="receive" type="button" class="btn btn-inverse-primary btn-fw">
 				<i class="ti-plus"></i>&nbsp;新增方案
 			</button>
 		</a>
 	</p>
-    <form action="searchAttraction" method="post" enctype="multipart/form-data">
-		<input type="text" name="search" class="form-control">
-		<input type="submit" name="searchno" value="搜尋" class="btn btn-outline-info btn-fw">
-	</form>
 	<div>
 		<div class="table-responsive">
 	    	<table class="table table-hover">
@@ -42,17 +38,17 @@
 			                <td>${plan.plandiscript}</td>
 			                <td>
 			                	<div style="float:left;">
-			            			<form action="/admin/toUpdateHotel" method="post">
-			            				<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${plan.planid}">
+			            			<form action="toUpdatePlan" method="get">
+			            				<input type="hidden" id="planID" class="planID" name="planID" value="${plan.planid}">
 			                			<button type="submit" class="btn btn-inverse-success btn-icon" style="width:30px;height:30px;" name="toUpdatePage">
 		                					<i class="ti-pencil-alt"></i>
 		                				</button>
 		                			</form>
 		                		</div>
 								<div>
-		                			<form action="/admin/deleteHotel" method="post">
-<!-- 										<input type="hidden" name="_method" value="DELETE"/> -->
-			                			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${plan.planid}">
+		                			<form action="deletePlan" method="post">
+			                			<input type="hidden" id="planID" class="planID" name="planid" value="${plan.planid}">
+			                			<input type="hidden" id="attractionID" class="attractionID" name="attractionid" value="${plan.attraction.attid}">
 			                			<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" name="delete">
 			                				<i class="ti-trash"></i>
 			                			</button>

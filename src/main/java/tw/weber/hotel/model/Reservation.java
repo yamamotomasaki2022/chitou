@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "reservation")
-public class Reservation implements Serializable {
+public class Reservation{
 
 	@Id
 	@Column(name = "reservationid")
@@ -57,6 +57,9 @@ public class Reservation implements Serializable {
 	
 	@Column(name = "orderstatus")
 	private String orderStatus;
+	
+	@Column(name = "hotelid")
+	private int hotelID;
 	
 	@Transient
 	private String totalAmount;
@@ -211,6 +214,14 @@ public class Reservation implements Serializable {
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
+	
+	public int getHotelID() {
+		return hotelID;
+	}
+
+	public void setHotelID(int hotelID) {
+		this.hotelID = hotelID;
+	}
 
 	@Override
 	public String toString() {
@@ -218,8 +229,9 @@ public class Reservation implements Serializable {
 				+ ", booker=" + booker + ", email=" + email + ", phone=" + phone + ", roomID=" + roomID + ", roomName="
 				+ roomName + ", checkInDate=" + checkInDate + ", checkOutDate=" + checkOutDate + ", paymentDate="
 				+ paymentDate + ", addBed=" + addBed + ", numberOfPeople=" + numberOfPeople + ", hotelName=" + hotelName
-				+ ", orderStatus=" + orderStatus + ", totalAmount=" + totalAmount + "]";
+				+ ", orderStatus=" + orderStatus + ", hotelID=" + hotelID + ", totalAmount=" + totalAmount + "]";
 	}
+
 
 	
 

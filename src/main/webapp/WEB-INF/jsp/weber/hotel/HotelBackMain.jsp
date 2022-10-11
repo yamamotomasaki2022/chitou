@@ -59,10 +59,10 @@
 		                			</form>
 		                		</div>
 								<div>
-		                			<form action="/admin/deleteHotel" method="post">
+		                			<form action="/admin/deleteHotel" method="post" onsubmit="deleteConfirm(event)">
 <!-- 										<input type="hidden" name="_method" value="DELETE"/> -->
 			                			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
-			                			<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" name="delete">
+			                			<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" >
 			                				<i class="ti-trash"></i>
 			                			</button>
 			            			</form>
@@ -85,7 +85,7 @@
 	</div>
 	
 		<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
-	
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
 		var type = ["photos","hotelID","name","type","country","status","capacity","owner","averagePrice"];
 		var typeName = ["照片","飯店ID","飯店名","類型","國家","狀態","可容納人數","業主名稱","平均房價"];
@@ -99,7 +99,23 @@
 	        	$('#tableHead').append(tr);
 	        }
 			$('#tableHead').append('<th>操作</th><th></th>');	        
-	    }); 
+	    });
+	    function deleteConfirm(event){
+	    	event.preventDefault();
+	    	var todo = event.target;
+	    	Swal.fire({
+	    		  title: '確定刪除?',
+	    		  icon: 'warning',
+	    		  showCancelButton: true,
+	    		  confirmButtonColor: '#3085d6',
+	    		  cancelButtonColor: '#d33',
+	    		  confirmButtonText: '刪掉!'
+	    		}).then((result) => {
+		    		  if (result.isConfirmed) {
+		    			  todo.submit();
+			    	 }
+			})
+	    };
 	</script>
   </body>
 </html>

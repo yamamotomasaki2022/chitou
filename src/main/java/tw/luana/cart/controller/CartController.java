@@ -23,11 +23,18 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import tw.cocokang.attraction.model.Attraction;
+import tw.cocokang.attraction.model.AttractionService;
+import tw.cocokang.attraction.model.Pricingplan;
+import tw.jacky.login.model.MemberBasicInfo;
 import tw.luana.attraction.model.AttractionService_Luana;
 import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartService;
@@ -36,11 +43,12 @@ import tw.luana.order.model.AttractionOrderDetail;
 import tw.luana.order.model.OrderList;
 
 @Controller
+@SessionAttributes("memberbasicinfo")
 public class CartController {
 
 	@Autowired
-	private AttractionService_Luana attractionService;
-
+	private AttractionService aService;
+	
 	@Autowired
 	private CartService cartService;
 
@@ -55,28 +63,34 @@ public class CartController {
 	String path_Luana_Order = "luana/order/";
 
 	// 商品加入購物車
-	@RequestMapping(path = "addToCart", method = RequestMethod.POST)
-	public String addToCart(@RequestParam("planName") String planName, @RequestParam("planId") int planId,
-			@RequestParam("planFee") int planFee, @RequestParam("quantity") int quantity,
+	@GetMapping(path = "addToCart")
+	@ResponseBody
+	public boolean addToCart(@RequestParam("planId") int planId,
 			@RequestParam("attractionId") int attractionId,
-			//@RequestParam("memberid")int memberid,
-			@ModelAttribute Cart cart, Model m) {
+//			@RequestParam("memberid")int memberid,
+			Model m) {
 
-		String attractionname = cartService.getAttractionName(attractionId);
-
-		int memberid = 1;
+		MemberBasicInfo member = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+		
+		if(member == null) {
+			return false;
+		}
+		
+		Cart cart = new Cart();
+		
+		Pricingplan plan = aService.getSinglePlan(planId);
+		Attraction attraction = aService.selectByAttid(attractionId);
 		
 		cart.setAttractionid(attractionId);
-		cart.setAttractionname(attractionname);
+		cart.setAttractionname(attraction.getAttName());
 		cart.setPlanid(planId);
-		cart.setPlanname(planName);
-		cart.setPlanfee(planFee);
-		cart.setQuantity(quantity);
-		cart.setMemberid(memberid);
+		cart.setPlanname(plan.getPlanname());
+		cart.setPlanfee(plan.getPlanfee());
+		cart.setQuantity(1);
+		cart.setMemberid(member.getMemberid());
 		cartService.addToCart(cart);
 
-		m.addAttribute("planList", attractionService.showAttractionPlans(attractionId));
-		return path_Luana_Atttraction + "Luana_attractionPlans";
+		return true;
 
 	}
 
@@ -195,5 +209,5 @@ public class CartController {
 //		m.addAttribute("cartList",cartService.showCart());
 //		return path_Luana_Cart + "Luana_cart";
 //	}
-
+	
 }

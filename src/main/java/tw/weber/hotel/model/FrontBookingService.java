@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tw.luana.order.model.OrderList;
+import tw.luana.order.model.OrderListRepository;
+
 @Service
 @Transactional
 public class FrontBookingService {
@@ -28,6 +31,9 @@ public class FrontBookingService {
 	
 	@Autowired
 	private ReservationRepository reRepo;
+	
+	@Autowired
+	private OrderListRepository oRepo;
 	
 	public List<Room> find(){
 		return rRepo.find();
@@ -64,5 +70,17 @@ public class FrontBookingService {
 		String paymentDate = dtf.format(LocalDateTime.now());
 		reservation.setPaymentDate(paymentDate);
 		return reservation;
+	}
+	
+	public OrderList insertDataToOrderList(Reservation finishPaymentOrder) {
+		OrderList orderList = new OrderList();
+		orderList.setMemberid(finishPaymentOrder.getMemberID());
+		orderList.setOrderdate(finishPaymentOrder.getPaymentDate());
+		orderList.setOrderid(finishPaymentOrder.getOrderId());
+		orderList.setOrderstatus(finishPaymentOrder.getOrderStatus());
+		orderList.setOrdertype("飯店");
+		orderList.setTotalprice(Integer.parseInt(finishPaymentOrder.getTotalAmount()));
+		oRepo.save(orderList);
+		return orderList;
 	}
 }
