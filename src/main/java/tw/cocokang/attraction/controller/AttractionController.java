@@ -53,51 +53,61 @@ public class AttractionController {
 	//test home background home page
 	@GetMapping("/homeAttractions")
 	public String AttractionListAction1(Model m) {
-		m.addAttribute("homeAttractions", aService.getAll());
 		return "BackgroundHomePage";
 	}
 	@GetMapping("/newhomeAttractions")
 	public String AttractionListAction2(Model m) {
-		m.addAttribute("homeAttractions", aService.getAll());
 		return "NewHome";
 	}
 	@GetMapping("/beforehome")
 	public String AttractionListAction3(Model m) {
-		m.addAttribute("homeAttractions", aService.getAll());
 		return "Home";
 	}
 	//weihan
 	@GetMapping("/newHotelsStyle")
 	public String AttractionListActionwei(Model m) {
-		m.addAttribute("homeAttractions", aService.getAll());
 		return "HotelsStyle";
 	}
 	@GetMapping("/newHotelsList")
 	public String AttractionListActionwei1(Model m) {
-		m.addAttribute("homeAttractions", aService.getAll());
 		return "HotelsList";
 	}
 	@GetMapping("/newHotelsOrder")
 	public String AttractionListActionwei2(Model m) {
-		m.addAttribute("homeAttractions", aService.getAll());
 		return "HotelsOrder";
 	}
-
+//Jacky 
+	@GetMapping("/newAdminCreateAdmin")
+	public String AttractionListActionma1(Model m) {
+		return "AdminCreateAdmin";
+	}
 	
+	@GetMapping("/newAdminCreateMember")
+	public String AttractionListActionma2(Model m) {
+		return "AdminCreateMember";
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@GetMapping("/newAdminModifyMemberPage")
+	public String AttractionListActionma4(Model m) {
+		return "AdminModifyMemberPage";
+	}
+	@GetMapping("/newMemberChangePassword")
+	public String AttractionListActionma5(Model m) {
+		return "MemberChangePassword";
+	}
+	@GetMapping("/newMemberRegisterPage")
+	public String AttractionListActionma7(Model m) {
+		return "MemberRegisterPage";
+	}
+//	//undone
+//	@GetMapping("/newMemberChangePassword")
+//	public String AttractionListActionma6(Model m) {
+//		return "MemberChangePassword";
+//	}
+	@GetMapping("/newAdminModifyAdminPage")
+	public String AttractionListActionma3(Model m) {
+		return "AdminModifyAdminPage";
+	}
 	
 	
 	//	寫絕對路徑辦法(圖片)

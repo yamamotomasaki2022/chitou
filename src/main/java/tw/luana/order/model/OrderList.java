@@ -1,10 +1,15 @@
 package tw.luana.order.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,6 +35,9 @@ public class OrderList implements Serializable {
 	
 	@Column(name = "MEMBERID")
 	private Integer memberid;
+	
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "ORDERLIST")
+//	private Set<AttractionOrderDetail> aDetails = new LinkedHashSet<AttractionOrderDetail>();
 	
 	
 	
@@ -111,5 +119,17 @@ public class OrderList implements Serializable {
 	public void setMemberid(Integer memberid) {
 		this.memberid = memberid;
 	}
+
+
+
+//	public Set<AttractionOrderDetail> getaDetails() {
+//		return aDetails;
+//	}
+//
+//
+//
+//	public void setaDetails(Set<AttractionOrderDetail> aDetails) {
+//		this.aDetails = aDetails;
+//	}
 
 }

@@ -1,4 +1,4 @@
-<%@page import="tw.georgia.article.model.ArticleService"%>
+<%@page import="tw.jacky.login.model.*"%>
 <%@page import="javax.management.MBeanAttributeInfo"%>
 <%@page
 	import="java.sql.Connection, java.util.*, javax.sql.*, javax.servlet.*,  javax.naming.*,java.io.*,java.sql.* ,tw.georgia.article.model.*,tw.georgia.article.controller.*"%>
@@ -72,7 +72,7 @@ button, .btn {
 	</form>-->
 
 	<br>
-	<form action="article.read" method="post">
+	<form action="article.admin.read" method="post">
 		選擇國家<select name="chooseCountry">
 			<optgroup label="亞洲">
 				<option value=101>台灣</option>
@@ -142,13 +142,13 @@ button, .btn {
 				%>
 
 				<tr>
-					<td class=""><%=bean.getPosterID()%></td>
+					<td class=""><%=bean.getMember().getMemberid()%></td>
 					<td class=""><%=bean.getCategory().getCountry()%><HR><%=bean.getCategory().getType()%></td>
 					<td class=""><img id="img" src="images/georgia/picture/<%=bean.getPhoto()%>" class="box" style="width:80px;height:80px"></td>
 					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%><HR><%=bean.getSubtitle()%></td>
 					<td class=""><%=bean.getDate()%></td>
 					<td>
-					<form action="article.show" method="post">
+					<form action="article.admin.show" method="post">
 					<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
 					<input type="submit" name="toShow" value="查看詳細內文" class="btn btn-light">
 					</form>

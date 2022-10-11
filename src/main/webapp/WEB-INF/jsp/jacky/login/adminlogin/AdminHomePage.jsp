@@ -131,7 +131,7 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 				<tr>
 					<th>會員編號</th>
 					<th>賬號</th>
-					<th>密碼</th>
+					<th>身份</th>
 					<th>照片</th>
 					<th>郵箱</th>
 					<th>刪除</th>
@@ -155,7 +155,7 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 							value="<%=bean.getMemberid()%>"><%=bean.getMemberid()%></td>
 						<!--  <td><%=bean.getStatusid()%></td>-->
 						<td><%=bean.getUsername()%></td>
-						<td><%=bean.getPassword()%></td>
+						<td><%=bean.getLoginStatus().getStatusname()%></td>
 						<td><img width="500px" height="500px"
 							src="/<%=bean.getPhoto()%>"></td>
 						<td><%=bean.getEmail()%></td>
@@ -228,7 +228,7 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 							<input type="hidden" name="_method" value="DELETE">
 							<td><input type="hidden" name="td_memberid"
 								value="<%=bean.getAdminid()%>"><%=bean.getAdminid()%></td>
-							<td><%=bean.getAdminstatus()%></td>
+							<td><%=bean.getLoginStatus().getStatusname()%></td>
 							<td><%=bean.getUsername()%></td>
 							<td><%=bean.getPassword()%></td>
 							<td><%=bean.getPermission()%></td>

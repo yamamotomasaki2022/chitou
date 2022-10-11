@@ -139,6 +139,23 @@ public class GmailController {
 		}
 		
 		
+		@GetMapping("/sendVerificationEmailForgerPassword")
+		public void sendVerificationEmailForgerPassword(MemberBasicInfo member, MemberDetailInfo memberDetailInfo) {
+			String verification_code= member.getVerificationcode() ;
+			List<String> toEmaiList = new ArrayList<String>();
+			toEmaiList.add(member.getEmail());
+		    String fromAddress = "eeit49group1chitou@gmail.com";
+//		    String senderName = "Your company name";
+		    String subject = "忘記密碼驗證";
+		    Map<String,String> params= new HashMap<>();
+		    params.put("name", member.getUsername());
+		    params.put("code", verification_code);
+		    String html = templateService.render("verifyforgetpw", params);
+		    gmailService.mimemail(fromAddress, toEmaiList, subject, html);
+//		    return  "jacky/memberlogin/MemberRegisterPage";
+		}
+		
+		
 		@GetMapping("/verify")
 		public String verifyAccount(@Param("code") String code, Model m) {
 			System.out.println("進到方法的驗證碼:" + code);
@@ -156,6 +173,22 @@ public class GmailController {
 			}
 		}
 		
+		
+		@GetMapping("/verifyPassword")
+		public String changePassword(@Param("code") String code, Model m) {
+			System.out.println("進到方法的驗證碼:" + code);
+			boolean verified = gmailService.verify(code);
+
+			System.out.println("email驗證:" + verified);
+
+			if (verified) {
+				return path_member_login + "PasswordModifyPage";
+
+			} else {
+
+				return path_member_login + "VerificationFailure";
+			}
+		}
 
 		
 

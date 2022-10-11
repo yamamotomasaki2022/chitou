@@ -25,11 +25,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import tw.luana.attraction.model.AttractionService_Luana;
 import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartService;
+import tw.luana.order.model.AttractionOrderDetail;
 import tw.luana.order.model.OrderService;
+import tw.weber.hotel.model.Reservation;
 
 @Controller
 public class OrderController {
@@ -62,7 +65,7 @@ public class OrderController {
 		return path_Luana_Order + "Luana_order";
 		
 	}
-	//查看個人訂單細項
+	//查看訂單細項
 	@RequestMapping(path = "orderDetail", method = RequestMethod.POST)
 	public String OrderDetail(@RequestParam("orderid") String orderid,Model m1,Model m2) {
 		
@@ -85,4 +88,35 @@ public class OrderController {
 		 return path_Luana_Order + "Luana_order";
 	}
 	
+	
+//後台
+	
+	//查看所有訂單
+	@RequestMapping(path ="backOrderList", method = RequestMethod.GET)
+	public String backOrderList(Model m) {
+		m.addAttribute("orderBack", orderService.backOrderLists());
+		
+		return path_Luana_Order + "orderBack";
+	}
+	
+	//查看景點訂單內容
+	@RequestMapping(path = "attractionOrderDetail", method = RequestMethod.POST)
+	@ResponseBody
+	public List<AttractionOrderDetail> showAttractionOrderDetails(@RequestParam("orderid") String orderid){
+		System.err.println("orderid: "+orderid);
+		System.out.println( orderService.showAttractionOrders(orderid));
+		return orderService.showAttractionOrders(orderid);
+	}
+
+
+	//查看飯店訂單內容
+		@RequestMapping(path = "hotelOrderDetail", method = RequestMethod.POST)
+		@ResponseBody
+		public List<Reservation> showHotelOrderDetail(@RequestParam("orderid")String orderid){
+			System.err.println("orderid: "+orderid);
+			System.err.println(orderService.showHotelOrders(orderid));
+
+			return orderService.showHotelOrders(orderid);
+		}
+
 }

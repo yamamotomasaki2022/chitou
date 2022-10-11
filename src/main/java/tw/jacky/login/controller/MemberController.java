@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+
 import net.bytebuddy.utility.RandomString;
 import tw.chitou.gmail.controller.GmailController;
 import tw.chitou.gmail.model.GmailService;
@@ -107,7 +109,7 @@ public class MemberController {
 		MemberBasicInfo memberbean = lservice.findByMemberid(memberbasicinfo.getMemberid());
 		MemberDetailInfo memberdetailbean = lservice.findDetailByMemberid(memberbean.getMemberid());
 		memberbean.setVerificationcode(randomCode);		
-		gmailController.sendVerificationEmail(memberbean, memberdetailbean);		
+		gmailController.sendVerificationEmail(memberbasicinfo, memberdetailinfo);
 	}else {
 		m.addAttribute("operation_Status", 1);
 		return path_member_login + "MemberHomePage";
@@ -117,6 +119,9 @@ public class MemberController {
 	return path_member_login + "MemberRegisterVerificationPage";
 	
 	}
+	
+	
+
 
 
 }

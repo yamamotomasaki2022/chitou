@@ -42,6 +42,7 @@ button, .btn {
 
 
 <br>
+<INPUT TYPE="Button" value="取消" name="goBack" class="btn btn-primary mr-2" onclick="back()"><br><br>
 <%
 Article tt=(Article)request.getAttribute("findByIdBean");
 //String articleCiassIDStr=Integer.toString(tt.getCategory().getCategoryID());
@@ -51,7 +52,6 @@ Article tt=(Article)request.getAttribute("findByIdBean");
 <form action="article.update" method="post" enctype="multipart/form-data">
 <input type="hidden" name="_method" value="PUT">
 <INPUT TYPE="HIDDEN" NAME="postID" VALUE="<%= tt.getPostID() %>">
-<INPUT TYPE="HIDDEN" NAME="posterID" VALUE="<%= tt.getPosterID() %>">
 <INPUT TYPE="HIDDEN" NAME="date" VALUE="<%= tt.getDate() %>">
 文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="<%= tt.getTitle() %>" style="width: 100%;"><BR>
 文章副標題: <BR><INPUT TYPE="TEXT" NAME="subtitle" VALUE="<%= tt.getSubtitle() %>" id="subtitleInput" style="width: 100%;"><BR><BR>
@@ -102,9 +102,10 @@ Article tt=(Article)request.getAttribute("findByIdBean");
 
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
-<script type="text/javascript"></script>
-<script src="/js/coco/ckeditor.js"></script>
 <script>
+function back(){
+	history.back();
+}
 $('#upload').on('change',function(e){
 	$('#picPreview').empty();
 	var photos = this.files;
@@ -118,15 +119,17 @@ $('#upload').on('change',function(e){
 	};
 });
 </script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
+<script src="/js/georgia/ckeditorGeorgia.js"></script>
 <script>
-ClassicEditor
-.create(document.querySelector('#contentInput'),{
-	    ckfinder: {
-	        uploadUrl: '/ckUploadGeorgia'
-	    },
-	}).then(editor => {
- 	  console.log("editor1 success");
-});
+//ClassicEditor
+//.create(document.querySelector('#contentInput'),{
+//	    ckfinder: {
+//	        uploadUrl: '/ckUploadGeorgia'
+//	    },
+//	}).then(editor => {
+//	  console.log("editor1 success");
+//});
 </script>
 </body>
 </html>
