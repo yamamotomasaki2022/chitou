@@ -157,7 +157,7 @@ $(function() {
 	<script>
 		$('#fastinput').click(function() {
 
-			$('#username').val('test')
+			$('#username').val('jacky')
 			$('#password').val('123')
 			$('#email').val('testout1234@gmail.com')
 

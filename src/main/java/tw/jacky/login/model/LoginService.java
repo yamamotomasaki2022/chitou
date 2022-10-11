@@ -88,6 +88,13 @@ public class LoginService {
 		mb.setLoginStatus(loginStatus);
 		return mbrepo.save(mb);
 	}
+//	管理員更新會員
+	public MemberBasicInfo adminModifyMember(MemberBasicInfo mb) {
+//		LoginStatus loginStatus = new LoginStatus();
+//		loginStatus.setStatusid(mb.getStatusid()); 
+//		mb.setLoginStatus(loginStatus);
+		return mbrepo.save(mb);
+	}
 	
 	public MemberBasicInfo adminUpdateMember(MemberBasicInfo mb) {
 		System.out.println("statusid:" + mb.getLoginStatus().getStatusid());
@@ -123,13 +130,6 @@ public class LoginService {
 
 	}
 	
-//	管理員更新會員
-	public MemberBasicInfo adminModifyMember(MemberBasicInfo mb) {
-		LoginStatus loginStatus = new LoginStatus();
-		loginStatus.setStatusid(mb.getStatusid()); 
-		mb.setLoginStatus(loginStatus);
-		return mbrepo.save(mb);
-	}
 	
 //	管理員查詢會員資料 (原本Hql的辦法 比較快 因爲Interface沒辦法滿足我的需求)
 	public List<MemberBasicInfo> adminQeuryMember(String hql){

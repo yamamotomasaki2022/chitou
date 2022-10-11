@@ -221,7 +221,7 @@ public class ManagementSystemController {
 				
 				MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password, pic_locaiton,
 						email);
-				lservice.adminModifyMember(memberBasicInfo);
+				lservice.adminInsertMember(memberBasicInfo);
 			}else {
 //				System.out.println("沒有更改圖片");
 				MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password, bean.getPhoto(),
