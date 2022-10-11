@@ -9,5 +9,13 @@
 <body>
 
 <h1>驗證成功！！！</h1>
+
+
+<form action="/home">
+
+<input type="submit" value="返回">
+
+</form>
+
 </body>
 </html>

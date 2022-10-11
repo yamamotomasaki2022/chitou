@@ -1,103 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 response.setContentType("text/html;charset=UTF-8");
 response.setHeader("Cache-Control", "no-cache"); // HTTP 1.1
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0
 response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!DOCTYPE html>
 <html>
 <head>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
-<TITLE>管理員創建會員</TITLE>
-<link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>ChiTou後台管理系統-管理員創建會員</title>
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<style>
-form label {
-	display: inline-block;
-	width: 100px;
-}
-
-form div {
-	margin-bottom: 10px;
-}
-
-.error {
-	color: red;
-	margin-left: 5px;
-}
-
-label.error {
-	display: inline;
-}
-</style>
-
 <script>
 	function getTime() {
 		var currentTime = new Date();
 		return currentTime
 	}
 </script>
-
-	<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
-
-
 </head>
-
 <body>
+	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+	
+	<div class="col-md-6 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title text-primary">管理員創建會員</h3>
+				<p class="card-description">請輸入要創建的會員資訊</p>
+				<form class="forms-sample" ACTION="admininsertmember" method="post" id="form"
+		enctype="multipart/form-data">
+					<div class="form-group">
+						<label>userID</label> <input type="text" id="username" class="form-control"
+							name="username" autocomplete="off" placeholder="userID">
+					</div>
+					<div class="form-group">
+						<label>Password</label> <input type="password"
+							class="form-control" id="password" name="password"
+							autocomplete="off" placeholder="Password">
+					</div>
+					<div class="form-group">
+						<label>Photo</label>
+						<div class="input-group col-xs-12">
+						<img id="img1" alt="" src="">
+							<input id= "myfile" type="file" name="myFile"
+								class="form-control file-upload-info" placeholder="Upload Image">
+							<span class="input-group-append"></span>
+						</div>
+					</div>
 
-<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
-
-	<H1>管理員創建會員</H1>
-
-	<h5>jQuery 驗證其中幾個欄目</h5>
-	<FORM ACTION="admininsertmember" method="post" id="form" enctype="multipart/form-data"  >
-		<!--  ><div><input type="hidden" name="memberid" value="1"></div> -->
-
-		<div>
-			<label> userID</label> <br> </a><input type="text" id="username"
-				name="username" autocomplete="off" size="10">
+					<div class="form-group">
+						<label >email</label>
+						<input class="form-control"
+							type="text" id="email"
+				name="email" autocomplete="off" placeholder="email">
+					</div>
+				
+					<button type="submit" class="btn btn-primary mr-2" id="createmember" name="submit">提交</button>
+				<!-- herf=總攬連結 -->
+				</form>
+				<form action="AdminHomePage">
+				
+					<input type="submit" class="btn btn-light" value="返回"></button></a> 
+					
+				</form>
+				<button id="fastinput" class="btn btn-primary mr-2" > 一鍵輸入</button>
+				
+				
+			</div>
 		</div>
-
-		<div>
-			<label for=""> password</label> <br> </a><input type="text"
-				id="password" name="password" autocomplete="off" size="10">
-		</div>
-
-		<p>
-			Photo:<br /> 
-			<img id="img1" alt="" src=""><br>
-			<input  id= "myfile" type="file" name="myFile" />
-			
-		</p>
-
-
-		<div>
-			<label for=""> email</label> <br> </a><input type="text" id="email"
-				name="email" autocomplete="off" size="10">
-		</div>
-
-
-		<hr>
-
-
-		<INPUT TYPE="submit" id="createmember" name="submit" value="提交">
-
-	</form>
-	<br>
-	<FORM ACTION="ShowTableInHomePage" method="get">
-		<button onclick="">返回</button>
-	</form>
-
-
-<script
+	</div>
+	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
@@ -177,8 +154,15 @@ $(function() {
 </script>
 
 
-<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+	<script>
+		$('#fastinput').click(function() {
 
+			$('#username').val('test')
+			$('#password').val('123')
+			$('#email').val('testout1234@gmail.com')
 
+		})
+	</script>
+	
 </body>
 </html>

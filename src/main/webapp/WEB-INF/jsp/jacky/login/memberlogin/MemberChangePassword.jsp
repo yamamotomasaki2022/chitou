@@ -8,21 +8,50 @@
 </head>
 <body>
 
+<form action="/uvmember/MemberModifyPasswordToDB" method="post">
+
 	<div class="form-group">
-		<input type="text" class="form-control form-control-lg" id="password"
-			placeholder="password" name="password">
+		<input type="password" class="form-control form-control-lg"
+			id="password" placeholder="password" name="password">
 	</div>
 	<div class="form-group">
 		<input type="password" class="form-control form-control-lg"
-			id="password" placeholder="Reconfirmpassword"
+			id="reconfirmpassword" placeholder="Reconfirmpassword"
 			name="reconfirmpassword">
 	</div>
-	<div class="mt-3">
-		<button
-			class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-			type="submit" value="login">確定</button>
-	</div>
 
+	<span id="info"> </span>
+
+	<div class="mt-3">
+		<button id="confirm"
+			class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+			type="submit" value="login" disabled>確定</button>
+	</div>
+</form>
 
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<script>
+
+$('#reconfirmpassword').on('change',function(){
+var password = $('#password').val();
+var reconfirmpassword = $('#reconfirmpassword').val();
+if(password != reconfirmpassword){
+	$('#info').text('密碼錯誤')
+	$('#confirm').attr('disabled',true)
+}else{
+	$('#info').text('')
+	$('#confirm').attr('disabled',false)
+}
+})
+
+// $('#reconfirmpassword').on('hover',function(){
+// 	$('#info').remove()
+// })
+
+</script>
+
+
 </html>

@@ -210,18 +210,18 @@ public class ManagementSystemController {
 			String photo_path = lservice.savePicToLocal(mf);
 			String pic_locaiton = piclocation + photo_path;
 			
-			System.out.println(bean.getPhoto());
-			System.out.println(pic_locaiton);
-			System.out.println("文檔名稱:" + filename);
+//			System.out.println(bean.getPhoto());
+//			System.out.println(pic_locaiton);
+//			System.out.println("文檔名稱:" + filename);
 				
 			if(filename != "") {
-				System.out.println("更改過圖片");
+//				System.out.println("更改過圖片");
 				
 				MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password, pic_locaiton,
 						email);
 				lservice.adminModifyMember(memberBasicInfo);
 			}else {
-				System.out.println("沒有更改圖片");
+//				System.out.println("沒有更改圖片");
 				MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password, bean.getPhoto(),
 						email);
 				lservice.adminModifyMember(memberBasicInfo);

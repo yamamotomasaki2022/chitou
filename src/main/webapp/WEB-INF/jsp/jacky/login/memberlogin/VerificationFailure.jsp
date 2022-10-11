@@ -9,5 +9,15 @@
 <body>
 
 <h1>驗證失敗！！！！</h1>
+
+
+<form action="/home">
+
+<input type="submit" value="返回">
+
+</form>
+
+
+
 </body>
 </html>

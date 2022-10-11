@@ -8,10 +8,10 @@
 <body>
 
 
-<h1>測試thymeleaf是否能運行</h1>
+<h1>未驗證會員登入之後驗證會員</h1>
 
 <p>
-親愛的用戶你好: <span th:text="${name}"> </span>
+親愛的用戶 會員 啦啦啦啦啦 <span th:text="${name}"> </span>
 <br>
 <span th:text= ${verificationcode}></span>
 <a th:href="@{http://localhost:8080/verify?code={code1}(code1=${code})}">會員驗證</a>

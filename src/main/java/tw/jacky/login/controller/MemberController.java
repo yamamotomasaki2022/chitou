@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -82,9 +84,6 @@ public class MemberController {
 
 
 
-
-
-
 // 會員更改密碼
 	@GetMapping("/MemberModifyPassword")
 	public String processMemberModifyPassword() {
@@ -96,20 +95,20 @@ public class MemberController {
 	@GetMapping("/MemberVerifyEmail")
 	public String processMemberVerifyEmail(Model m) {
 		
-		
-		
 	MemberBasicInfo memberbasicinfo = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
 	MemberDetailInfo memberdetailinfo = (MemberDetailInfo)m.getAttribute("memberdetailinfo");
-	String randomCode = RandomString.make(15);
 	
-	System.out.println("有無取得基本資料:" + memberbasicinfo.getStatusid());
+	System.out.println("有無取得基本資料:" + memberbasicinfo.getLoginStatus().getStatusid());
 	
-	if(memberbasicinfo.getStatusid()== 4) {
+	if( memberbasicinfo.getLoginStatus().getStatusid()== 4) {
 //		System.out.println("有無進到方法内");
-		MemberBasicInfo memberbean = lservice.findByMemberid(memberbasicinfo.getMemberid());
-		MemberDetailInfo memberdetailbean = lservice.findDetailByMemberid(memberbean.getMemberid());
-		memberbean.setVerificationcode(randomCode);		
-		gmailController.sendVerificationEmail(memberbasicinfo, memberdetailinfo);
+		String randomCode = RandomString.make(3);
+//		MemberBasicInfo memberbean = lservice.findByMemberid(memberbasicinfo.getMemberid());
+//		MemberDetailInfo memberdetailbean = lservice.findDetailByMemberid(memberbean.getMemberid());
+		memberbasicinfo.setVerificationcode(randomCode);		
+//		System.out.println("member的狀態碼是:" + memberbean.getStatusid());
+		lservice.adminModifyMember(memberbasicinfo);
+		gmailController.sendVerificationEmailStatusId(memberbasicinfo, memberdetailinfo);
 	}else {
 		m.addAttribute("operation_Status", 1);
 		return path_member_login + "MemberHomePage";
@@ -120,6 +119,18 @@ public class MemberController {
 	
 	}
 	
+	
+	@PostMapping(path="/MemberModifyPasswordToDB")
+	public String processMemberModifyPasswordToDB(@RequestParam("password") String password, HttpServletRequest  request) {
+		MemberBasicInfo memberbean =(MemberBasicInfo) request.getSession().getAttribute("memberbasicinfo");
+		System.out.println("我的memberbasicinfo bean是否取到值:" + memberbean.getEmail());
+		memberbean.setPassword(password);
+		String newpassword = managementSystemController.encrpytMemberPassword(memberbean);
+		memberbean.setPassword(newpassword);
+		lservice.adminUpdateMember(memberbean);
+		
+		return path_member_login + "MemberHomePage";
+	}
 	
 
 
