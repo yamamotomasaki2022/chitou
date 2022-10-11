@@ -68,7 +68,7 @@ response.setContentType("text/html;charset=UTF-8");
 		                		</div>
 			            		<div>
 			                		<form action="/admin/deleteStyle" method="post">
-										<input type="hidden" name="_method" value="DELETE"/>
+<!-- 										<input type="hidden" name="_method" value="DELETE"/> -->
 				                		<input type="hidden" name="styleID" value="${bean.styleID}">
 				                		<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" name="delete">
 			    		            		<i class="ti-trash"></i>

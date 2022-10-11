@@ -83,6 +83,11 @@ height:15rem;
   </div>
 </div>
 
+<form action="article.testcate" method="POST">
+<INPUT TYPE="TEXT" NAME="cate" VALUE="">
+<INPUT TYPE="SUBMIT" value="跑跑" name="run" class="">
+</form>
+
 
 <script>
 $(".owl-carousel").owlCarousel({
@@ -90,7 +95,7 @@ $(".owl-carousel").owlCarousel({
 	    loop:true,
 	    margin:10,
 	    autoplay:true,
-	    autoplayTimeout:1000,
+	    autoplayTimeout:1500,
 	    autoplayHoverPause:true,
 	    autoWidth:true
 	});

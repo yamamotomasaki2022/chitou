@@ -44,13 +44,22 @@ public class ArticleService {
 	}
 	
 //	**************查詢國家********************
-	public List<Article> findCountry(int countryID){
-		return articleRepository.findByCountryid(countryID);
-	}
+//	public List<Article> findCountry(int countryID){
+//		return articleRepository.findByCountryid(countryID);
+//	}
 	
+//	*************查詢分類(會員)*********************
+	public List<Article> findTypeForUser(int categoryID,int posterID){
+		return articleRepository.findByCategoryIDForUser(categoryID,posterID);
+	}
 //	*************查詢分類*********************
 	public List<Article> findType(int categoryID){
 		return articleRepository.findByCategoryID(categoryID);
+	}
+	
+//	*************查詢會員資料*********************
+	public List<Article> findPoster(int posterID){
+		return articleRepository.findByPosterID(posterID);
 	}
 	
 }

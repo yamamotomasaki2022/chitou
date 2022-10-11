@@ -37,7 +37,7 @@ $("#search").on('click', function (e) {
     console.log(formData);
     $.ajax({
         type: 'get',
-        url: '/searchAjax?' + dateStart + dateEnd + destination + number,
+        url: 'searchAjax?' + dateStart + dateEnd + destination + number,
         dataType: 'JSON',
         contentType: 'application/json',
         success: function (data) {
@@ -67,7 +67,7 @@ $("#search").on('click', function (e) {
                                         </span>
                                     </div>
 
-                                    <a href="/hotelPage?dateStart=${dateStart}&dateEnd=${dateEnd}&number=${number}&hotelID=${ele.hotelID}" class="btn btn-primary py-2 px-3" style="background-color: lightblue">詳細</a>
+                                    <a href="hotelPage?${dateStart}&${dateEnd}&${number}&hotelID=${ele.hotelID}" class="btn btn-primary py-2 px-3" style="background-color: lightblue">詳細</a>
                                     <span style="color:blue">還剩${ele.amount}間房</span>
                                 </div>
                             </div>

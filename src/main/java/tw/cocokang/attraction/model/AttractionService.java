@@ -69,7 +69,7 @@ public class AttractionService {
 				aRepo.deleteById(planid); 
 			}
 		//顯示景點內方案
-		 public List<Pricingplan> showPricingplans(Integer attractionid) {
-		 return pRepo.showPricingplans(attractionid);
+		 public List<Pricingplan> showPricingplans(Attraction attraction) {
+		 return pRepo.findAllByAttraction(attraction);
 	}
 }
