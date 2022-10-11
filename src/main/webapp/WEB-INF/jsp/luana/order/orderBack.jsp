@@ -21,6 +21,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <!-- dataTable -->
+    
+    <!--
+    
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 
     <script type="text/javascript" charset="utf8"
@@ -28,6 +31,7 @@
 	
 	<script src="js/luana/dataTable.js"></script>
 	
+	-->
 		<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 	
 	
@@ -39,15 +43,24 @@
 
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"  %>
 	
-    <table id="table_id" class="display">
+	
+	    <div style="display:inline-block;float:left;">
+	    <form action="/admin/searchHotel" method="get" >
+	    	<select id="type" name="type">
+	    	</select>
+	    	<input type="text" name="keyword">
+	    	<input type="submit" class="btn btn-primary mr-2" value="搜尋">
+	    </form>
+	</div>
+
+	
+	
+	<div class="table-responsive">
+    <table id="table_id"  class="table table-hover">
         <thead>
-            <tr>
-                <th>種類</th>
-                <th>日期</th>
-                <th>訂單編號</th>
-                <th>總價</th>
-                <th>訂單狀態</th>
-                <th></th>
+            <tr id="tableHead">
+      
+               
             </tr>
         </thead>
         <tbody>
@@ -59,26 +72,27 @@
 						<td id="orderid">${order.orderid}</td>
 						<td id="ordertype">${order.totalprice}</td>
 						<td id="orderstatus">${order.orderstatus}</td>
+						<td id="memberid">${order.memberid}</td>
 						
 						<c:choose>
 							<c:when test="${order.ordertype == '景點'}">
 								<td>
 									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" value="${order.orderid}" onclick="btnAttraction('${order.orderid}')" >
-  									詳細訂單
+  									明細
 									</button>
 								</td>
 							</c:when>
 							<c:when test="${order.ordertype == '飯店'}">
 								<td>
 									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" value="${order.orderid}" onclick="btnHotel('${order.orderid}')" >
-  									詳細訂單
+  									明細
 									</button>
 								</td>
 							</c:when>
 							<c:when test="${order.ordertype == '機票'}">
 								<td>
 									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" value="${order.orderid}" onclick="btnFlight('${order.orderid}')" >
-  									詳細訂單
+  									明細
 								</button>
 								</td>
 							</c:when>
@@ -88,7 +102,7 @@
             </c:forEach>
         </tbody>
     </table>
-    
+    </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -184,6 +198,23 @@
     	  	},//表示如果請求響應出現錯誤，會執行的回調函數
     	 });
     }
+    </script>
+    
+    <script type="text/javascript">
+    	var type = ["orderid","ordertype","orderdate","orderstatus","totalprice","memberid"];
+		var typeName = ["訂單種類","下訂日","訂單編號","總價","訂單狀態","會員編號"];
+	    $(document).ready( function () {
+	        for(var i=1;i<type.length;i++){
+	        	let option = '"<option value="'+type[i]+'">'+typeName[i]+'</option>"';
+	        	$('#type').append(option);
+	        }
+	        for(var i=0;i<typeName.length;i++){
+	        	let tr =  '<th>'+typeName[i]+'</th>';
+	        	$('#tableHead').append(tr);
+	        }
+			$('#tableHead').append('<th>詳細內容</th>');	        
+	    }); 
+    
     </script>
     
     
