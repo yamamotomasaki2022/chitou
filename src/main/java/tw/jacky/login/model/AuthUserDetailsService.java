@@ -24,10 +24,13 @@ public class AuthUserDetailsService implements UserDetailsService {
 		
 		String role= "";
 		
+		AdminChitou adminchitous = lService.findByAdminUersname(username);
+		System.out.println("adminusername:" + adminchitous);
+		
 		
 		try {
 			AdminChitou adminchitou = lService.findByAdminUersname(username);
-			Integer adminstatus = adminchitou.getAdminstatus();
+			Integer adminstatus = adminchitou.getLoginStatus().getStatusid();
 			if(adminstatus == 1) {
 				role = "admin";
 				System.out.println("是否進入if:" + role);
@@ -46,7 +49,7 @@ public class AuthUserDetailsService implements UserDetailsService {
 		} catch (Exception e) {
 			
 			MemberBasicInfo memberbean = lService.findBasicInfobyUsername(username);
-			int statusid = memberbean.getStatusid();
+			int statusid = memberbean.getLoginStatus().getStatusid();
 			
 			if(statusid==4) {
 				role="unverified_member";
