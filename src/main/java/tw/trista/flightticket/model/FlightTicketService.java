@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.cocokang.attraction.model.Attraction;
-import tw.georgia.article.model.Article;
+
+
 
 @Service
 @Transactional
@@ -46,5 +46,10 @@ public class FlightTicketService {
     
     public List<FlightTicket> getAll(){
     	return dao.findAll();
+    }
+    
+    //前端查詢
+    public List<FlightTicket> findByOriginidAndDestinationidAndDeparturetimeAndArrivaltime(String originid,String destinationid,String departuretime,String arrivaltime){
+    	return dao.findByOriginidAndDestinationidAndDeparturetimeAndArrivaltime(originid, destinationid, departuretime, arrivaltime);
     }
 }
