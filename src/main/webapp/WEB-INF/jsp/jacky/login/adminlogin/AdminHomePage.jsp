@@ -4,24 +4,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-
 // if(request.getAttribute("status") !=null){
 //  	int status1 = (int)request.getAttribute("status");
-	
+
 //  	System.out.println(status1);
 // }else{
 // 	int status1 = 0;
 // 	System.out.println(status1);
 // };
 
-if(request.getAttribute("crud") !=null){
-	int crud = (int)request.getAttribute("crud");
-}else{
+if (request.getAttribute("crud") != null) {
+	int crud = (int) request.getAttribute("crud");
+} else {
 	int crud = 0;
 }
-
-
-
 %>
 
 
@@ -76,19 +72,14 @@ if(request.getAttribute("crud") !=null){
 
 
 
-<% 
+	<%
+	System.out.println("sessionid123 :" + request.getSession().getId());
+	%>
 
-System.out.println("sessionid123 :" + request.getSession().getId());
-%>
 
-
-	<h1>${status}</h1>
-
-	<h1>${bean}</h1>
-	
 	<h1>管理員界面</h1>
 	<hr>
-	<hr>
+
 
 	<FORM ACTION="/manager/ToAdminCreateMemberPage" method="post">
 
@@ -101,17 +92,9 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 		<select name="searchinfo">
 			<option value="memberid">會員編號</option>
 			<option value="username">賬號</option>
-			<option value="password">密碼</option>
-			<option value="name">名字</option>
-			<option value="nickname">綽號</option>
-			<option value="phone">號碼</option>
-			<option value="nationality">國家</option>
-			<option value="birth">生日</option>
-			<option value="gender">性別</option>
-			<option value="address">地址</option>
+			<option value="auth">身份</option>
 			<option value="email">郵箱</option>
-			<option value="createtime">創建時間</option>
-			<option value="modify">修改時間</option>
+
 		</select> <label>查詢</label> <input type="text" name="searchtext" size="10">
 		<input class="bot" type="submit" name="searchmemberinDB" value="查詢">
 
@@ -208,7 +191,7 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 						<th>管理員編號</th>
 						<th>權限</th>
 						<th>賬號</th>
-						<th>密碼</th>
+						<!-- 						<th>密碼</th> -->
 						<th>禁止</th>
 						<th>刪除</th>
 						<th>修改</th>
@@ -230,11 +213,20 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 								value="<%=bean.getAdminid()%>"><%=bean.getAdminid()%></td>
 							<td><%=bean.getLoginStatus().getStatusname()%></td>
 							<td><%=bean.getUsername()%></td>
-							<td><%=bean.getPassword()%></td>
+							<%-- 							<td><%=bean.getPassword()%></td> --%>
 							<td><%=bean.getPermission()%></td>
 
 
-							<td><input type=submit name="deletefromadmin" value="刪除"></td>
+							<td>
+<!-- 							<input type=submit name="deletefromadmin" value="刪除"> -->
+							
+						
+							<button href="deleteAttraction?attid="
+								class="btn btn-inverse-danger btn-icon">
+								<i class="ti-trash"></i>
+							</button>
+						
+							</td>
 						</form>
 
 						<form action="/manager/ToAdminModifyAdmin" method="post">
@@ -246,7 +238,13 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 								value="<%=bean.getPassword()%>"> <input type="hidden"
 								name="permission" value="<%=bean.getPermission()%>">
 
-							<td><input type=submit name="modifyfromadmin" value="更改"></td>
+							<td>
+<!-- 							<input type=submit name="modifyfromadmin" value="更改"> -->
+							<button type="submit" name="modifyfromadmin"
+								class="btn btn-inverse-success btn-icon">
+								<i class="ti-pencil-alt"></i>
+							</button>
+							</td>
 						</form>
 					</tr>
 
@@ -261,20 +259,20 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 
 			<hr>
 
-	<FORM ACTION="/manager/ToAdminCreateAdmin" method="post">
+			<FORM ACTION="/manager/ToAdminCreateAdmin" method="post">
 
 				<input class="bot" type="submit" name="addnewmember" value="新增管理員資料">
 				<hr>
-	</form>
+			</form>
 		</div>
 	</div>
 
 
 	<a href="/logout">管理員登出 </a>
-	
-	
-	
-<!--  
+
+
+
+	<!--  
 
 	<form action="logout">
 		<button onclick="">返回登入界面</button>
@@ -289,7 +287,7 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 
 
 	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
-	
+
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
 		let status = "${status}";
@@ -323,8 +321,8 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 		}
 		
 	</script>
-	
-	
+
+
 	<script>
 	
 	
@@ -393,7 +391,7 @@ System.out.println("sessionid123 :" + request.getSession().getId());
 		
 	}
 	</script>
-	
-	
+
+
 </body>
 </html>

@@ -68,9 +68,9 @@
 								<!-- 									data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"> -->
 								<!-- 								</div> -->
 
-
-								<div class="g-recaptcha" id="rcaptcha" data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"></div>
-								<span id="captcha" style="color: red" /></span>
+<!-- 谷歌驗證 -->
+<!-- 								<div class="g-recaptcha" id="rcaptcha" data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"></div> -->
+<!-- 								<span id="captcha" style="color: red" /></span> -->
 								<!-- this will show captcha errors -->
 
 								<div class="mt-3">
@@ -199,6 +199,8 @@
 			}
 		}
 	</script>
+	
+	
 
 
 </body>

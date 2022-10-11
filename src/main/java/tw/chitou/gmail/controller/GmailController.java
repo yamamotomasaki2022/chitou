@@ -155,6 +155,22 @@ public class GmailController {
 //		    return  "jacky/memberlogin/MemberRegisterPage";
 		}
 		
+		@GetMapping("/sendVerificationEmailStatusId")
+		public void sendVerificationEmailStatusId(MemberBasicInfo member, MemberDetailInfo memberDetailInfo) {
+			String verification_code= member.getVerificationcode() ;
+			List<String> toEmaiList = new ArrayList<String>();
+			toEmaiList.add(member.getEmail());
+		    String fromAddress = "eeit49group1chitou@gmail.com";
+//		    String senderName = "Your company name";
+		    String subject = "忘記密碼驗證";
+		    Map<String,String> params= new HashMap<>();
+		    params.put("name", member.getUsername());
+		    params.put("code", verification_code);
+		    String html = templateService.render("verifystatusidto5", params);
+		    gmailService.mimemail(fromAddress, toEmaiList, subject, html);
+//		    return  "jacky/memberlogin/MemberRegisterPage";
+		}
+		
 		
 		@GetMapping("/verify")
 		public String verifyAccount(@Param("code") String code, Model m) {

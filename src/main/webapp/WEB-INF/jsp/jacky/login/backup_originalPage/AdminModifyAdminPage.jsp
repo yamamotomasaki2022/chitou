@@ -71,7 +71,7 @@ td {
 
 	</div>
 	<hr>
-	<form action="AdminHomePage">
+	<form action="adminhomepage">
 		<button onclick="">返回登入界面</button>
 	</form>
 	

@@ -10,7 +10,7 @@
 
 <h1>請到郵箱接收驗證信！</h1>
 
-<form action="home">
+<form action="/home">
 
 <input type="submit" value="返回主頁"> 
 </form>

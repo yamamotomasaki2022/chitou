@@ -125,6 +125,9 @@ public class LoginService {
 	
 //	管理員更新會員
 	public MemberBasicInfo adminModifyMember(MemberBasicInfo mb) {
+		LoginStatus loginStatus = new LoginStatus();
+		loginStatus.setStatusid(mb.getStatusid()); 
+		mb.setLoginStatus(loginStatus);
 		return mbrepo.save(mb);
 	}
 	
@@ -183,10 +186,11 @@ public class LoginService {
 	
 	public AdminChitou adminInsertAdmin(AdminChitou ac) {
 		LoginStatus loginStatus = new LoginStatus();
-		loginStatus.setStatusid(ac.getAdminid());
+		loginStatus.setStatusid(ac.getAdminstatus());
 		ac.setLoginStatus(loginStatus);
 		return acrepo.save(ac);
 	}
+	
 	
 	public void adminDeleteAdmin(int id) {
 		AdminChitou adminchitou = findByAdminId(id);

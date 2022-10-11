@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import tw.jacky.login.model.LoginService;
+import tw.jacky.login.model.LoginStatus;
 import tw.jacky.login.model.MemberBasicInfo;
 import tw.jacky.login.model.MemberBasicInfoRepository;
 
@@ -55,7 +56,10 @@ public class GmailService {
 			return false;
 		}else {
 			System.out.println("已經取得了驗證碼");
-			member.setStatusid(5);
+//			member.setStatusid(5);
+			LoginStatus loginStatus = new LoginStatus();
+			loginStatus.setStatusid(5);
+			member.setLoginStatus(loginStatus);
 			mbrepo.save(member);
 			return true;
 		}

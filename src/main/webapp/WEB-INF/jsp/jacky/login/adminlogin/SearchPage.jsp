@@ -49,41 +49,27 @@ border: 2px solid;
 	<select name="searchinfo">
 				<option value="memberid">會員編號</option>	
 				<option value="userid">賬號</option>
-				<option value="password">密碼</option>
-				<option value="name">名字</option>
-				<option value="nickname">綽號</option>
-				<option value="phone">號碼</option>
-				<option value="nationality">國家</option>
-				<option value="birth">生日</option>
-				<option value="gender">性別</option>
-				<option value="address">地址</option>
+				<option value="auth">身份</option>
 				<option value="email">郵箱</option>
-				<option value="createtime">創建時間</option>
-				<option value="modify">修改時間</option>
+
 	</select> <br> 
-	<label>查詢</label><br>
+
+<form action="/manager/AdminQueryMember">
+
+
 	<input type="text" name="searchtext" size="10">
 	<input class="bot" type="submit" name="searchmemberinDB"
 				value="查詢">
 		<br>		
+</form>
 		<label> 會員資料庫列表</label>
 		<table>
 			<thead>
 				<tr>
 					<th>會員編號</th>
-					<th>權限</th>
 					<th>賬號</th>
-					<th>密碼</th>
-					<th>姓名</th>
-					<th>綽號</th>
-					<th>電話號碼</th>
-					<th>國家</th>
-					<th>生日</th>
-					<th>性別</th>
-					<th>地址</th>
+					<th>權限</th>
 					<th>郵箱</th>
-					<th>創建時間</th>
-					<th>修改時間</th>
 				</tr>
 			</thead>
 
@@ -95,10 +81,10 @@ for(MemberBasicInfo bean:result) { %>
 
 				<tr>
 					<td name="td_memberid" value=<%= bean.getMemberid() %>> <%= bean.getMemberid() %></td>
-					<td name="td_statusid" value=<%= bean.getStatusid() %>> <%= bean.getStatusid() %></td>
 					<td name="td_userid" value= <%= bean.getUsername() %>> <%= bean.getUsername() %> </td>
-					<td name="td_password" value= <%= bean.getPassword() %>> <%= bean.getPassword() %></td>
-					<td name="td_photo" value= <%= bean.getPhoto() %>> <%= bean.getPhoto() %></td>
+					<td name="td_statusid" value=<%= bean.getLoginStatus().getStatusname()  %>> <%= bean.getLoginStatus().getStatusname() %></td>
+<%-- 					<td name="td_password" value= <%= bean.getPassword() %>> <%= bean.getPassword() %></td> --%>
+<%-- 					<td name="td_photo" value= <%= bean.getPhoto() %>> <%= bean.getPhoto() %></td> --%>
 					<td name="td_email" value= <%= bean.getEmail() %>> <%= bean.getEmail() %></td>
 
 				</tr>
@@ -115,7 +101,7 @@ for(MemberBasicInfo bean:result) { %>
 
 </FORM>
 <hr>
-<form action="adminhomepage">
+<form action="AdminHomePage">
 <button onclick="">返回管理員主頁面</button>
 </form>
 
