@@ -64,8 +64,6 @@
 					<th>抵達時間:</th>
 					<th>艙等:</th>
 					<th>票價:</th>
-					
-<!-- 					<th>購票須知:</th> -->
 					<th>修改/刪除:</th>
 				</tr>
 			</thead>
@@ -104,7 +102,7 @@
 								<input type="hidden"
 								name="fare"
 								value="${flightticket.fare}">
-
+						<!-- 修改 -->
 								<button type="submit" name="update"
 									class="btn btn-inverse-success btn-icon">
 									<i class="ti-pencil-alt"></i>

@@ -9,8 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartRepository;
-import tw.luana.order.model.OrderRepository;
-import tw.luana.order.model.Orders;
+import tw.luana.order.model.AttractionOrderDetailRepository;
 
 
 @Service

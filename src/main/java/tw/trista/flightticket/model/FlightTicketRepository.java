@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 
 
+
 public interface FlightTicketRepository extends JpaRepository<FlightTicket, String> {
 
 
@@ -14,5 +15,6 @@ public interface FlightTicketRepository extends JpaRepository<FlightTicket, Stri
 	@Query(value = "from FlightTicket where airline like concat('%',?1,'%')")
 	public List<FlightTicket> selectByAirline(String airline);
 
-	
+	@Query(value = "from FlightTicket where originid = ?1 and destinationid = ?2 and departuretime = ?3 and arrivaltime = ?4 ",nativeQuery = false)
+	public List<FlightTicket> findByOriginidAndDestinationidAndDeparturetimeAndArrivaltime(String originid,String destinationid,String departuretime,String arrivaltime);
 }

@@ -2,10 +2,14 @@ package tw.luana.order.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "ATTRACTIONORDERDETAIL")
@@ -15,6 +19,7 @@ public class AttractionOrderDetail {
 	@Column(name = "ITEMID")
 	private Integer itemid;
 	
+	//@Transient
 	@Column(name = "ORDERID")
 	private String orderid;
 	
@@ -32,6 +37,10 @@ public class AttractionOrderDetail {
 	
 	@Column(name = "PRICE")
 	private Integer price;
+	
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "ORDERID")
+//	private OrderList orderList;
 	
 	public AttractionOrderDetail() {
 	}
@@ -91,6 +100,14 @@ public class AttractionOrderDetail {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+
+//	public OrderList getOrderList() {
+//		return orderList;
+//	}
+//
+//	public void setOrderList(OrderList orderList) {
+//		this.orderList = orderList;
+//	}
 	
 	
 

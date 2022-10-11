@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "ATTRACTIONPLAN")
+@Table(name = "ATTRACTIONPLAN_LUANA")
 
 public class AttractionPlan_Luana implements Serializable {
 

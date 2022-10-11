@@ -46,6 +46,7 @@ public class AttractionController_Luana {
 	@Autowired
 	private HttpSession session;
 	
+	
 	String path_Luana_Atttraction = "luana/attraction/";
 	String path_Luana_Cart = "luana/cart/";
 	String path_Luana_Order = "luana/order/";
@@ -74,7 +75,7 @@ public class AttractionController_Luana {
 
 		m.addAttribute("planList",attractionService.showAttractionPlans(attractionId));
 
-		return path_Luana_Atttraction+"Luana_attractionPlans";
+		return path_Luana_Atttraction + "Luana_attractionPlans";
 
 	}
 	
