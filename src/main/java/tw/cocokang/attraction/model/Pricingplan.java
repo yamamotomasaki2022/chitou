@@ -11,6 +11,8 @@ import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "PRICINGPLAN")
 @Component
@@ -20,6 +22,7 @@ public class Pricingplan {
 	@Column(name = "plan_id")
 	private Integer planid;
 	
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)//拿資料
 	@JoinColumn(name = "attraction_id")
 	private Attraction attraction;

@@ -21,7 +21,6 @@ import tw.cocokang.attraction.model.Attraction;
 import tw.cocokang.attraction.model.AttractionService;
 import tw.cocokang.attraction.model.Hobbyclassification;
 import tw.cocokang.attraction.model.Pricingplan;
-import tw.cocokang.attraction.model.PricingplanService;
 
 @Controller
 public class AttractionController {
@@ -29,9 +28,6 @@ public class AttractionController {
 	@Autowired
 	private AttractionService aService;
 
-	@Autowired
-	private PricingplanService pService;
-	
 	public String path = "coco/attraction-background/";
 	public String path1 = "coco/attraction-user/";
 	public String planPath = "coco/attractionplan/";
