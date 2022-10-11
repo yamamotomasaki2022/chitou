@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -120,6 +122,18 @@ public class MemberController {
 	
 	}
 	
+	
+	@PostMapping(path="/MemberModifyPasswordToDB")
+	public String processMemberModifyPasswordToDB(@RequestParam("password") String password, HttpServletRequest  request) {
+		MemberBasicInfo memberbean =(MemberBasicInfo) request.getSession().getAttribute("memberbasicinfo");
+		System.out.println("我的memberbasicinfo bean是否取到值:" + memberbean.getEmail());
+		memberbean.setPassword(password);
+		String newpassword = managementSystemController.encrpytMemberPassword(memberbean);
+		memberbean.setPassword(newpassword);
+		lservice.adminUpdateMember(memberbean);
+		
+		return path_member_login + "MemberHomePage";
+	}
 	
 
 
