@@ -121,7 +121,7 @@ public class MemberController {
 	
 	
 	@PostMapping(path="/MemberModifyPasswordToDB")
-	public String processMemberModifyPasswordToDB(@RequestParam("password") String password, HttpServletRequest  request) {
+	public String processMemberModifyPasswordToDB(@RequestParam("pwd") String password, HttpServletRequest  request) {
 		MemberBasicInfo memberbean =(MemberBasicInfo) request.getSession().getAttribute("memberbasicinfo");
 		System.out.println("我的memberbasicinfo bean是否取到值:" + memberbean.getEmail());
 		memberbean.setPassword(password);

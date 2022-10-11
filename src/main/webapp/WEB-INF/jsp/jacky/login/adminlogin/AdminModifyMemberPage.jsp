@@ -40,10 +40,10 @@
 					value="<%=bean.getUsername()%>" placeholder="username">
 					</div>
 					
-					<div class="form-group">
-						<label>身份</label> <input class="form-control" type="text"
-							name="password" value="<%=bean.getLoginStatus().getStatusname()%>" placeholder="Statusid">
-					</div>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label>身份</label> <input class="form-control" type="text" -->
+<%-- 							name="password" value="<%=bean.getLoginStatus().getStatusname()%>" placeholder="Statusid"> --%>
+<!-- 					</div> -->
 					
 					<div class="form-group">
 						<label>Photo</label>

@@ -106,12 +106,14 @@
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
-					<a class="dropdown-item"> <i class="ti-power-off text-primary"></i>
-						會員登入
-					</a> <a class="dropdown-item"> <i class="ti-settings text-primary"></i>
+					<a href="/uvmember/toMemberHomePage" class="dropdown-item"> <i class="ti-power-off text-primary"></i>
+						<button>會員登入</button>
+					</a> 
+					<a class="dropdown-item"> <i class="ti-settings text-primary"></i>
 						設定
-					</a> <a class="dropdown-item"> <i class="ti-power-off text-primary"></i>
-						登出
+					</a> 
+					<a  href="/logout" class="dropdown-item"> <i class="ti-power-off text-primary"></i>
+						<button>登出</button>
 					</a>
 				</div></li>
 			<li class="nav-item nav-settings d-none d-lg-flex"><a

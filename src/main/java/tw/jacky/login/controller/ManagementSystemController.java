@@ -202,11 +202,12 @@ public class ManagementSystemController {
 	@PutMapping(path = "/AdminModifyMember")
 	public String processAdminModifyMember(@RequestParam("memberid") int memberid,
 			@RequestParam("statusid") int statusid, @RequestParam("username") String username,
-			@RequestParam("password") String password, @RequestParam("myFile") MultipartFile mf,
+			@RequestParam("myFile") MultipartFile mf,
 			@RequestParam("email") String email, Model m) {
 			
 			
 			MemberBasicInfo bean = lservice.findByMemberid(memberid);
+			String password = bean.getPassword();
 			String filename = mf.getOriginalFilename();
 			String photo_path = lservice.savePicToLocal(mf);
 			String pic_locaiton = piclocation + photo_path;

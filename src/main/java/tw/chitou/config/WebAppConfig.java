@@ -11,6 +11,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/home").setViewName("Home");
+		registry.addViewController("/test").setViewName("test");
 	}
 
 	@Override

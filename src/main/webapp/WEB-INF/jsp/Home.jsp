@@ -20,10 +20,12 @@
 <link rel="stylesheet" href="/css/beforehomepage/css/aos.css">
 <link rel="stylesheet" href="/css/beforehomepage/css/style.css">
 
+
 </head>
 
 
 <body>
+
 
 	<!-- header 頭列 -->
 
