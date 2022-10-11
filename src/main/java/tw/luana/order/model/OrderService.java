@@ -12,6 +12,7 @@ import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartRepository;
 import tw.luana.order.model.AttractionOrderDetailRepository;
 import tw.weber.hotel.model.Reservation;
+import tw.weber.hotel.model.ReservationRepository;
 
 
 @Service
@@ -28,7 +29,7 @@ public class OrderService {
 	private AttractionOrderDetailRepository attractionOrderRepository;
 	
 	@Autowired
-	private HotelOrderRepository hotelOrderRepository;
+	private ReservationRepository reservationRepository;
 	
 	
 //訂單總表
@@ -82,31 +83,32 @@ public class OrderService {
 	
 //飯店
 	
-	public void HotelToOrder(HotelOrder hotelOrder) {
-		hotelOrderRepository.save(hotelOrder);
+	//顯示飯店詳細訂單
+	public List<Reservation> showHotelOrders(String orderid) {
+		return reservationRepository.findAllByOrderId(orderid);
 	}
+
 	
-	public List<HotelOrder> showHotelOrders(){
-		return hotelOrderRepository.findAll();
-	}
+//	public void HotelToOrder(HotelOrder hotelOrder) {
+//		hotelOrderRepository.save(hotelOrder);
+//	}
+//	
+//	public List<HotelOrder> showHotelOrders(){
+//		return hotelOrderRepository.findAll();
+//	}
+//	
+//	public void updateHotelOrderStatus(Integer status, Integer reservationid) {
+//		
+//		HotelOrder hotelOrder = hotelOrderRepository.findByreservationid(reservationid);
+//		hotelOrder.setOrderstatus(status);
+//		hotelOrderRepository.save(hotelOrder);
+//	}
 	
-	public void updateHotelOrderStatus(Integer status, Integer reservationid) {
-		
-		HotelOrder hotelOrder = hotelOrderRepository.findByreservationid(reservationid);
-		hotelOrder.setOrderstatus(status);
-		hotelOrderRepository.save(hotelOrder);
-	}
 	
-	public OrderList insertDataToOrderList(Reservation finishPaymentOrder) {
-		OrderList orderList = new OrderList();
-		orderList.setMemberid(finishPaymentOrder.getMemberID());
-		orderList.setOrderdate(finishPaymentOrder.getPaymentDate());
-		orderList.setOrderid(finishPaymentOrder.getOrderId());
-		orderList.setOrderstatus(finishPaymentOrder.getOrderStatus());
-		orderList.setOrdertype("飯店");
-		orderList.setTotalprice(Integer.parseInt(finishPaymentOrder.getTotalAmount()));
-		addToOrderList(orderList);
-		return orderList;
+//後台顯示
+	
+	public List<OrderList> backOrderLists(){
+		return orderListRepository.findAll();
 	}
 }
 	
