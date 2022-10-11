@@ -68,13 +68,14 @@ public class LoginSucessHandler implements AuthenticationSuccessHandler {
 			List<MemberBasicInfo> memberlist = lService.memberFindAll();
 			request.getSession().setAttribute("adminlist", adminlist);
 			request.getSession().setAttribute("memberlist", memberlist);
-			request.setAttribute("status", 3);
+//			request.getSession().setAttribute("session_status", 3);
+//			request.setAttribute("status", 3);
 //			request.getSession().setAttribute("bean", 5);
-			System.out.println("sessionid :" + request.getSession().getId());
+//			System.out.println("sessionid :" + request.getSession().getId());
 			
 			
-			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
-//			response.sendRedirect("/manager/adminhomepage/"+"5");
+//			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
+			response.sendRedirect("/manager/AdminHomePage/"+"3");
 //			response.sendRedirect("/manager/AdminHomePage");
 		}
 		else if(authorities.toString().equals("[admin]")){
@@ -84,7 +85,8 @@ public class LoginSucessHandler implements AuthenticationSuccessHandler {
 			request.getSession().setAttribute("adminlist", adminlist);
 			request.getSession().setAttribute("memberlist", memberlist);
 			request.getSession().setAttribute("session_status", 1);
-			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
+//			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
+			response.sendRedirect("/manager/AdminHomePage/"+"1");
 		}
 		
 //		super.onAuthenticatioSuccess(request, response, authentication);

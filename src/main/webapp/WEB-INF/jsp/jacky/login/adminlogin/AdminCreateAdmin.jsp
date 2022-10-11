@@ -52,7 +52,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 					</div>
 
 					<button type="submit" class="btn btn-primary mr-2"  id="createmember" name="submit">提交</button>
-					<a href="listAttractions"><button class="btn btn-light">返回</button></a> 
+					<a href="/manager/AdminHomePage"><button type="button" class="btn btn-light">返回</button></a> 
 				</form>
 			</div>
 		</div>

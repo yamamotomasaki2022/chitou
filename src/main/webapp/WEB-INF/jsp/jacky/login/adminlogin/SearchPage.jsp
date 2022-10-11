@@ -42,7 +42,7 @@ border: 2px solid;
 
 
 
-	<FORM ACTION="./Project2Servlet" method="post">
+	<FORM ACTION="/manager/AdminQueryMember">
 		<h1>查詢主頁面</h1>
 
 	<div>
@@ -54,14 +54,15 @@ border: 2px solid;
 
 	</select> <br> 
 
-<form action="/manager/AdminQueryMember">
+
 
 
 	<input type="text" name="searchtext" size="10">
 	<input class="bot" type="submit" name="searchmemberinDB"
 				value="查詢">
 		<br>		
-</form>
+
+
 		<label> 會員資料庫列表</label>
 		<table>
 			<thead>

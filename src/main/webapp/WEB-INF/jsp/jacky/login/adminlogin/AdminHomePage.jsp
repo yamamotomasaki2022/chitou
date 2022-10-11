@@ -289,37 +289,53 @@ if (request.getAttribute("crud") != null) {
 	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
 	<script>
-		let status = "${status}";
+		var status = "${session_status}";
 
 		if (status == 1) {
-			Swal.fire(
-					  'Welcome!',
-					  'Admin!',
-					  'success'
-					)
 			document.getElementById('aaa').setAttribute("style",
 					"display : none")
-		} else if (status == 2) {
-			Swal.fire(
-					  'Welcome!',
-					  'Manager!',
-					  'success'
-					)
+		}else if(status==2){
 			document.getElementById('aaa').setAttribute("style",
-					"display : '' ")
-		} else if (status == 3) {
-			Swal.fire(
-					  'Welcome!',
-					  'Boss!',
-					  'success'
-					)
+			"display : '' ")
+		}else if(status==3){
 			document.getElementById('aaa').setAttribute("style",
-					"display : '' ")
-		} else {
-			
+			"display : '' ")
 		}
 		
+	</script>
+	
+	<script>
+	
+	var welcome = ${welcome_message}
+	
+	
+	if (welcome == 1) {
+		Swal.fire(
+				  'Welcome!',
+				  'Admin!',
+				  'success'
+				)
+	} else if (welcome == 2) {
+		Swal.fire(
+				  'Welcome!',
+				  'Manager!',
+				  'success'
+				)
+
+	} else if (welcome == 3) {
+		Swal.fire(
+				  'Welcome!',
+				  'Boss!',
+				  'success'
+				)
+
+	} else {
+		
+	}
+	
+	
 	</script>
 
 

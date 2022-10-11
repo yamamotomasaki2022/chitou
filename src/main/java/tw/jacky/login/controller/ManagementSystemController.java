@@ -29,7 +29,7 @@ import tw.jacky.login.model.LoginService;
 import tw.jacky.login.model.MemberBasicInfo;
 
 @Controller
-@SessionAttributes({ "memberlist", "adminlist", "session_status", "crud" ,"bean"})
+@SessionAttributes({ "memberlist", "adminlist", "session_status", "crud"})
 @RequestMapping(path="/manager")
 public class ManagementSystemController {
 
@@ -83,8 +83,9 @@ public class ManagementSystemController {
 	@RequestMapping(path = "/AdminHomePage/{id}")
 	public String processAdminHomePage(@PathVariable("id") Integer id ,Model m) {
 		processShowTableInHomePage(m);
-		System.out.println("取到數字:" + id);
-		m.addAttribute("bean", id);
+//		System.out.println("取到數字:" + id);
+		m.addAttribute("session_status", id);
+		m.addAttribute("welcome_message", id);
 		return page_adminhomepage;
 	}
 	
