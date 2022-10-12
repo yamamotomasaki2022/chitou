@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ChiTou- 探索熱門景點、獨特體驗、交通、飯店住宿、租車、美食</title>
-<%@ include file="/WEB-INF/includes/newhomepage/NewHomeHead.jsp"%>
+<%@ include file="/WEB-INF/includes/newhomepage/CSSandJS.jsp"%>
 </head>
 <body>
 	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>

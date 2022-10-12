@@ -8,7 +8,7 @@
 
 	
 	
-<	<link rel="stylesheet" href="/css/coco/hotelsstyle/style.css">
+	<link rel="stylesheet" href="/css/coco/hotelsstyle/style.css">
     	<link rel="stylesheet" href="/css/coco/hotelsstyle/kang5.css">
     	<link rel="stylesheet" href="/css/coco/hotelsstyle/tiny-slider.css">
 	
