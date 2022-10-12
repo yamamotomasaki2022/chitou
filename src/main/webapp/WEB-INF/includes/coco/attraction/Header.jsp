@@ -23,7 +23,7 @@
             <button type="button" class="btn btn-outline-primary btn-sm"><i
                 class="fa-solid fa-location-dot"></i>&nbsp;景點門票</button>
             &emsp;&emsp;&emsp;&emsp;
-            <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='newHotelsList'"><i
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='searchHotel'"><i
                 class="fa-solid fa-hotel"></i>&nbsp;住宿酒店</button>
             &emsp;&emsp;&emsp;&emsp;
 

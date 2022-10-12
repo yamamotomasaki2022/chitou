@@ -38,8 +38,8 @@
 					<c:forEach var="bean" items="${result}">
 						<tr>
 							<td>
-			                	<a href="images/weber/hotel/hotelNB${bean.hotelID}/photo1.jpg">
-			                	<img src="images/weber/hotel/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ></a>
+			                	<a href="/images/weber/hotel/hotelNB${bean.hotelID}/photo1.jpg">
+			                	<img src="/images/weber/hotel/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ></a>
 			                </td>
 			                <td>${bean.hotelID}</td>
 			                <td>${bean.name}</td>
@@ -109,7 +109,8 @@
 	    		  showCancelButton: true,
 	    		  confirmButtonColor: '#3085d6',
 	    		  cancelButtonColor: '#d33',
-	    		  confirmButtonText: '刪掉!'
+	    		  confirmButtonText: '刪掉!',
+	    		  cancelButtonText: '取消'
 	    		}).then((result) => {
 		    		  if (result.isConfirmed) {
 		    			  todo.submit();

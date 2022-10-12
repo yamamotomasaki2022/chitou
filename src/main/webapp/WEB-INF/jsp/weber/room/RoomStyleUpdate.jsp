@@ -60,7 +60,7 @@
     	$(function(){
    			$('#oldpics').empty();
     		for(var i=1 ; i <= count ; i++){
-				$('#oldpics').append('<img id="img" src="images/weber/roomStyle/styleNB${style.styleID}/photo'+i+'.jpg" class="box">');
+				$('#oldpics').append('<img id="img" src="/images/weber/roomStyle/styleNB${style.styleID}/photo'+i+'.jpg" class="box">');
     		}
     	});
     	
