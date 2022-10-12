@@ -18,8 +18,48 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
-		<h4 class="card-title text-primary">會員資料表</h4>
-	
+	<div class="col-md-6 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title text-primary">管理員資料更改</h3>
+				<p class="card-description">一般管理員為 1，主管為 2，老闆為 3</p>
+				<form class="forms-sample"action="AdminModifyAdmin" method="post">
+					<div class="form-group">
+						<label>權限</label> <input type="text" id="username" class="form-control"
+							name="username" autocomplete="off" placeholder="userID">
+					</div>
+					<div class="form-group">
+						<label>賬號</label> <input type="password"
+							class="form-control" id="password" name="password"
+							autocomplete="off" placeholder="Password">
+					</div>
+					
+					<div class="form-group">
+						<label>密碼</label> <input type="password"
+							class="form-control" id="password" name="password"
+							autocomplete="off" placeholder="Password">
+					</div>
+					
+					<div class="form-group">
+						<label>禁止</label> 
+						<select class="form-control" name="permission">
+													<option value="true">允許</option>
+													<option value="false">禁止</option>
+												</select>
+					</div>
+
+					<button type="submit" class="btn btn-primary mr-2" name="modifyfromadmin">更改</button>
+					<a href="/manager/AdminHomePage"><button type="button" class="btn btn-light" value="返回">返回</button></a>
+					<!-- herf=總攬連結 -->
+				</form>
+				
+				
+			
+				
+				
+			</div>
+		</div>
+	</div>
 	
 	
 	
