@@ -62,7 +62,7 @@ td {
 					<option value="false">禁止</option>
 					</select> <br>	
 
-
+ 
 				<input type=submit name="modifyfromadmin" value="更改">
 					
 				</form>
@@ -78,4 +78,4 @@ td {
 	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 	
 </body>
-</html>
+</html> 

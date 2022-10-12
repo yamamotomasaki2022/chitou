@@ -19,7 +19,7 @@
 					<div class="h-100">
 						<div class="frame h-100">
 							<div class="feature-img-bg h-100"
-								style="background-image: url('images/hero-slider-1.jpg');">
+								style="background-image: url('images/coco/newhomepage/hero-slider-1.jpg');">
 							</div>
 						</div>
 					</div>
@@ -97,7 +97,7 @@
 			<div class="row">
 				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
 					<div class="media-1">
-						<a href="#" class="d-block mb-3"><img src="images/hero-slider-1.jpg" alt="Image"
+						<a href="#" class="d-block mb-3"><img src="images/coco/newhomepage/hero-slider-1.jpg" alt="Image"
 								class="img-fluid"></a>
 						<span class="d-flex align-items-center loc mb-2">
 							<span class="icon-room mr-3"></span>
@@ -117,7 +117,7 @@
 				</div>
 				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
 					<div class="media-1">
-						<a href="#" class="d-block mb-3"><img src="images/hero-slider-2.jpg" alt="Image"
+						<a href="#" class="d-block mb-3"><img src="images/coco/newhomepage/hero-slider-2.jpg" alt="Image"
 								class="img-fluid"></a>
 						<span class="d-flex align-items-center loc mb-2">
 							<span class="icon-room mr-3"></span>
@@ -137,7 +137,7 @@
 				</div>
 				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
 					<div class="media-1">
-						<a href="#" class="d-block mb-3"><img src="images/hero-slider-3.jpg" alt="Image"
+						<a href="#" class="d-block mb-3"><img src="images/coco/newhomepage/hero-slider-3.jpg" alt="Image"
 								class="img-fluid"></a>
 						<span class="d-flex align-items-center loc mb-2">
 							<span class="icon-room mr-3"></span>
@@ -157,7 +157,7 @@
 				</div>
 				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
 					<div class="media-1">
-						<a href="#" class="d-block mb-3"><img src="images/hero-slider-4.jpg" alt="Image"
+						<a href="#" class="d-block mb-3"><img src="images/coco/newhomepage/hero-slider-4.jpg" alt="Image"
 								class="img-fluid"></a>
 
 						<span class="d-flex align-items-center loc mb-2">

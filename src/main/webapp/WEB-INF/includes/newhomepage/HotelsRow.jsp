@@ -24,7 +24,7 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img">								
-									<img src="/images/coco/newhomepage/images/image-1.jpg" alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/image-1.jpg" alt="Image" class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -55,7 +55,7 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img">
-									<img src="/images/coco/newhomepage/images/image-2.jpg"alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/image-2.jpg"alt="Image" class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -84,7 +84,7 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img">
-									<img src="/images/coco/newhomepage/images/image-3.jpg"alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/image-3.jpg"alt="Image" class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -113,7 +113,7 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img">
-									<img src="/images/coco/newhomepage/images/japan-1.jpg"alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/japan-1.jpg"alt="Image" class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -143,7 +143,7 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img">
-									<img src="/images/coco/newhomepage/images/japan-2.jpg" alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/japan-2.jpg" alt="Image" class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -173,7 +173,7 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img">
-									<img src="/images/coco/newhomepage/images/japan-2.jpg" alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/japan-2.jpg" alt="Image" class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -203,7 +203,7 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img">
-									<img src="/images/coco/newhomepage/images/usa-2.jpg"alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/japan-2.jpg"alt="Image" class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -233,7 +233,7 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img">
-									<img src="/images/coco/newhomepage/images/usa-2.jpg" alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/japan-2.jpg" alt="Image" class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -263,7 +263,7 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img">
-									<img src="/images/coco/newhomepage/images/usa-3.jpg" alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/japan-3.jpg" alt="Image" class="img-fluid">
 								</a>
 
 								<div class="property-content">
