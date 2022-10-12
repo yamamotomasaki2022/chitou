@@ -45,7 +45,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 					<div class="form-group">
 						<label>Photo</label>
 						<div class="input-group col-xs-12">
-						<img id="img1" alt="" src="">
+						<img width="200px" height="200px" id="img1" alt="" src="/images/jacky/login/default1.png">
 							<input id= "myfile" type="file" name="myFile"
 								class="form-control file-upload-info" placeholder="Upload Image">
 							<span class="input-group-append"></span>
