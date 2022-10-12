@@ -3,8 +3,8 @@
 <link rel="icon" href="https://img.onl/duxjr3" sizes="32x32" />
     
     
-    	<link rel="stylesheet" href="/css/coco/hotelsstyle/style.css">
-    	<link rel="stylesheet" href="/css/coco/hotelsstyle/kang5.css">
+<!--     	<link rel="stylesheet" href="/css/coco/hotelsstyle/style.css"> -->
+<!--     	<link rel="stylesheet" href="/css/coco/hotelsstyle/kang5.css"> -->
     	<link rel="stylesheet" href="/css/coco/hotelsstyle/tiny-slider.css">
     	
     	<link rel="stylesheet" href="/css/coco/hotelsstyle/bootstrap.min.css">

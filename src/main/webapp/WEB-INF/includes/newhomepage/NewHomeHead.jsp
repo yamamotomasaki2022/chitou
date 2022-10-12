@@ -2,71 +2,66 @@
 	pageEncoding="UTF-8" %>
 	<link rel="shortcut icon" href="/images/coco/favicon.png" />
 	
-<link rel="stylesheet" href="/css/coco/feather.css">
-<link rel="stylesheet" href="/css/coco/vendor.bundle.base.css">
-<link rel="stylesheet" href="/css/newhomepage/css/dataTables.bootstrap4.css">
-<link rel="stylesheet" href="/css/coco/themify-icons.css"> 
-<link rel="stylesheet" type="text/css" href="/css/newhomepage/css/select.dataTables.min.css">
-	<link rel="stylesheet" href="/css/coco/vertical-layout-light/style.css">
+<!-- <link rel="stylesheet" href="/css/coco/feather.css"> -->
+<!-- <link rel="stylesheet" href="/css/coco/vendor.bundle.base.css"> -->
+<!-- <link rel="stylesheet" href="/css/newhomepage/css/dataTables.bootstrap4.css"> -->
 
 	
 	
+<	<link rel="stylesheet" href="/css/coco/hotelsstyle/style.css">
+    	<link rel="stylesheet" href="/css/coco/hotelsstyle/kang5.css">
+    	<link rel="stylesheet" href="/css/coco/hotelsstyle/tiny-slider.css">
 	
+  	<link rel="stylesheet" href="/css/coco/hotelsstyle/styles.css">
 	
-	<link rel="stylesheet" href="/css/newhomepage/css/style.css">
-	<link rel="stylesheet" href="/css/newhomepage/css/kang5.css">
-	<link rel="stylesheet" href="/css/newhomepage/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/newhomepage/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="/css/newhomepage/css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="/css/newhomepage/css/jquery.fancybox.min.css">
-	<link rel="stylesheet" href="/css/newhomepage/css/fonts/style.css">
-	
-	<link rel="stylesheet" href="/css/newhomepage/css/flaticon.css">
-	<link rel="stylesheet" href="/css/newhomepage/css/daterangepicker.css">
-	<link rel="stylesheet" href="/css/newhomepage/css/aos.css">
-	<link rel="stylesheet" href="/css/newhomepage/css/co/style.css">
 	<link rel="stylesheet" href="/css/newhomepage/css/kang.css">
 	<link rel="stylesheet" href="/css/newhomepage/css/kang1.css">
-	<link rel="stylesheet" href="/css/newhomepage/css/kang2.css">
-	<link rel="stylesheet" href="/css/newhomepage/css/kang3.css">
-		
+
+	
 
 
-	<link rel="stylesheet" href="css/kang/fonts/icomoon/style.css">
-	<link rel="stylesheet" href="css/kang/fonts/flaticon/font/flaticon.css">
-	<link rel="stylesheet" href="css/kang/css/tiny-slider.css">
+    <link rel="stylesheet" href="/css/homepage/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/homepage/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/homepage/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/homepage/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/homepage/style1.css">
+    <link rel="stylesheet" href="/css/homepage/flaticon.css">
+    <link rel="stylesheet" href="/css/homepage/daterangepicker.css">
+    <link rel="stylesheet" href="/css/homepage/aos.css">
+    <link rel="stylesheet" href="/css/homepage/style.css">
+	
+	    	<link rel="stylesheet" href="/css/coco/hotelsstyle/styles.css">
+	
+
+    	<link rel="stylesheet" href="/css/coco/hotelsstyle/kang2.css">
+    	<link rel="stylesheet" href="/css/coco/hotelsstyle/kang6.css">
+	
+		<link rel="stylesheet" href="/css/coco/hotelsstyle/tiny-slider.css">
 	
 	
-	<script src="https://kit.fontawesome.com/6c4c414686.js" crossorigin="anonymous"></script>
-	<script src="/js/coco/vendor.bundle.base.js"></script>
+	
+	<script src="https://kit.fontawesome.com/6c4c414686.js" crossorigin="anonymous"></script>	
+	<script src="js/coco/hotelsstyle/vendor.bundle.base.js"></script>
+       	<script src="js/coco/hotelsstyle/Chart.min.js"></script>
+       	<script src="js/coco/hotelsstyle/jquery.dataTables.js"></script>
+       	<script src="js/coco/hotelsstyle/dataTables.bootstrap4.js"></script>
+       	<script src="js/coco/hotelsstyle/dataTables.select.min.js"></script>
+	
+	       	<script src="js/coco/hotelsstyle/dashboard.js"></script>
 	
 	
-	
-	<script src="/css/newhomepage/css/js/Chart.min.js"></script>
-	<script src="/css/newhomepage/css/js/jquery.dataTables.js"></script>
-	<script src="/css/newhomepage/css/js/dataTables.bootstrap4.js"></script>
-	<script src="/css/newhomepage/css/js/dataTables.select.min.js"></script>
-	
-<script src="/js/coco/off-canvas.js"></script>
-<script src="/js/coco/hoverable-collapse.js"></script>
-<script src="/js/coco/template.js"></script>
-<script src="/js/coco/settings.js"></script>
-<script src="/js/coco/todolist.js"></script>
-	
-	
-	<script src="/css/newhomepage/css/js/dashboard.js"></script>
-	
-	<script src="/css/newhomepage/css/js/jquery-3.4.1.min.js"></script>
-	<script src="/css/newhomepage/css/js/popper.min.js"></script>
-	<script src="/css/newhomepage/css/js/bootstrap.min.js"></script>
-	<script src="/css/newhomepage/css/js/owl.carousel.min.js"></script>
-	<script src="/css/newhomepage/css/js/jquery.animateNumber.min.js"></script>
-	<script src="/css/newhomepage/css/js/jquery.waypoints.min.js"></script>
-	<script src="/css/newhomepage/css/js/jquery.fancybox.min.js"></script>
-	<script src="/css/newhomepage/css/js/aos.js"></script>
-	<script src="/css/newhomepage/css/js/moment.min.js"></script>
-	<script src="/css/newhomepage/css/js/daterangepicker.js"></script>
-	<script src="/css/newhomepage/css/js/typed.js"></script>
+    	<script src="js/coco/hotelsstyle/jquery-3.4.1.min.js"></script>
+       	<script src="js/coco/hotelsstyle/popper.min.js"></script>
+       	<script src="js/coco/hotelsstyle/bootstrap.min.js"></script>
+       	<script src="js/coco/hotelsstyle/owl.carousel.min.js"></script>
+       	<script src="js/coco/hotelsstyle/jquery.animateNumber.min.js"></script>
+       	<script src="js/coco/hotelsstyle/jquery.waypoints.min.js"></script>
+       	<script src="js/coco/hotelsstyle/jquery.fancybox.min.js"></script>
+       	<script src="js/coco/hotelsstyle/aos.js"></script>
+       	<script src="js/coco/hotelsstyle/moment.min.js"></script>
+       	<script src="js/coco/hotelsstyle/daterangepicker.js"></script>
+
+       	<script src="js/coco/hotelsstyle/typed.js"></script>
 
 
 	<script>
@@ -96,13 +91,17 @@
 			});
 		})
 	</script>
-		<script src="/css/newhomepage/css/co/bootstrap.bundle.min.js"></script>
-		<script src="/css/newhomepage/css/co/tiny-slider.js"></script>
-		<script src="/css/newhomepage/css/co/aos.js"></script>
-		<script src="/css/newhomepage/css/co/navbar.js"></script>
-		<script src="/css/newhomepage/css/co/counter.js"></script>
-		<script src="/css/newhomepage/css/co/custom.js"></script>
-		
-		<script src="/css/newhomepage/css/js/custom.js"></script>
+	<script src="js/coco/hotelsstyle/bootstrap.bundle.min.js"></script>
+       	<script src="js/coco/hotelsstyle/tiny-slider.js"></script>
+       	<script src="js/coco/hotelsstyle/h/aos.js"></script>
+       	<script src="js/coco/hotelsstyle/navbar.js"></script>
+       	<script src="js/coco/hotelsstyle/counter.js"></script>
+       	<script src="js/coco/hotelsstyle/custom.js"></script>
+       	<script src="js/coco/hotelsstyle/h/custom.js"></script>
+	
+	
+
+	
+	
 	
 	
