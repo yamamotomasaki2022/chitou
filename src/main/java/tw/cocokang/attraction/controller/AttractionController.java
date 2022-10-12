@@ -95,6 +95,10 @@ public class AttractionController {
 	public String AttractionListActionma7(Model m) {
 		return "MemberRegisterPage";
 	}
+	@GetMapping("/MemberHomePage")
+	public String AttractionListActionma(Model m) {
+		return "MemberHomePage";
+	}
 //	//undone
 //	@GetMapping("/newMemberChangePassword")
 //	public String AttractionListActionma6(Model m) {
