@@ -73,6 +73,7 @@ button, .btn {
 					<th class="card-title text-primary">預覽縮圖</th>
 					<th class="card-title text-primary">文章標題</th>
 					<th class="card-title text-primary">評論日期</th>
+					<th class="card-title text-primary">留言會員ID</th>
 					<th class="card-title text-primary">評論內容</th>
 					<th class="card-title text-primary">文章內文</th>
 					<th class="card-title text-primary">文章管理</th>
@@ -83,10 +84,14 @@ button, .btn {
 				<%
 				List<Reply> list = (List) request.getAttribute("list");
 				for (Reply bean : list) {
-					if(bean.getUserDelete()==1)
-						continue;
-					if(bean.getManageHidden()==1)
-						continue;
+					String status="";
+					if(bean.getUserDelete()==1){
+						status="會員自行刪除";
+					}else if(bean.getManageHidden()==1){
+						status="評論已隱藏";
+					}else{
+						status="文章上架中";
+					}
 					int title=bean.getArticle().getTitle().length();
 					
 				%>
@@ -95,6 +100,7 @@ button, .btn {
 					<td class=""><img id="img" src="images/georgia/picture/<%=bean.getArticle().getPhoto()%>" class="box" style="width:100px;height:100px"></td>
 					<td><%=(title<20)?bean.getArticle().getTitle().substring(0,title):bean.getArticle().getTitle().substring(0,20)%><HR><%=bean.getArticle().getSubtitle()%></td>
 					<td class=""><%=bean.getReplyTime()%></td>
+					<td class=""><%=bean.getMember().getMemberid()%></td>
 					<td class=""><%=bean.getComment()%></td>
 					<td><form action="article.show" method="post">
 					<INPUT TYPE="HIDDEN" value=<%=bean.getArticle().getPostID()%> name="postID">
@@ -102,10 +108,16 @@ button, .btn {
 					</form></td>
 					<td class="">
 
-						<form action="article.userDelete.reply" method="post" style="">
-							<!--  <input type="hidden" name="_method" value="DELETE">--> 
-							<input type="hidden" name="postID" value=<%=bean.getReplyID()%>>
-							<input type="submit" name="userDelete" value="刪除" class="btn btn-light"
+						<form action="article.mail.reply" method="post" style="">
+							<INPUT TYPE="HIDDEN" value=<%=bean.getReplyID()%> name="replyID">
+							<input type="submit" name="update" value="通知" class="btn btn-primary mr-2"
+								id="update">
+						</form>
+
+						<form action="article.manageHidden.reply" method="post" style="">
+							<!--  <input type="hidden" name="_method" value="DELETE"> -->
+							<input type="hidden" name="replyID" value=<%=bean.getReplyID()%>>
+							<input type="submit" name="" value="隱藏" class="btn btn-light"
 								id="check">
 						</form>
 
