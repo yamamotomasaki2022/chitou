@@ -70,8 +70,9 @@
 								<!-- 								</div> -->
 
 								<!-- 谷歌驗證 -->
-																<div class="g-recaptcha" id="rcaptcha" data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"></div>
-																<span id="captcha" style="color: red" /></span>
+<!-- 								<div class="g-recaptcha" id="rcaptcha" -->
+<!-- 									data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"></div> -->
+<!-- 								<span id="captcha" style="color: red" /></span> -->
 								<!-- this will show captcha errors -->
 
 								<div class="mt-3">
@@ -110,9 +111,9 @@
 											<i class="ti-google"></i>
 										</button>
 									</a>
-									
 
-									
+
+
 								</div>
 
 
@@ -123,10 +124,10 @@
 								<input id="tomember" type="button" class="btn btn-primary mr-2"
 									value="會員" style="float: left; background-color: #2AAC16">
 
-<!-- 								<form action="toAdminLoginPage"> -->
-									<input id="toadmin" type="button" class="btn btn-primary mr-2" value="管理員"
-										style="float: right; background-color: #2AAC16">
-<!-- 								</form> -->
+								<!-- 								<form action="toAdminLoginPage"> -->
+								<input id="toadmin" type="button" class="btn btn-primary mr-2"
+									value="管理員" style="float: right; background-color: #2AAC16">
+								<!-- 								</form> -->
 							</div>
 
 							<br> <br> <br>
@@ -139,26 +140,26 @@
 
 								<!-- 								</form> -->
 
-	
+
 								<button type="button" class="btn btn-primary mr-2"
 									id="fastinput" style="float: right">老闆一鍵登入</button>
 
 								<button type="button" class="btn btn-primary mr-2"
 									id="fastinput2" style="float: left">管理員一鍵登入</button>
-									
-								<div style="text-align:center">
-								<button type="button" class="btn btn-primary mr-2"
-									id="fastinput3" style="float:left">會員一鍵登入</button>
 
-								</div>	
+								<div style="text-align: center">
+									<button type="button" class="btn btn-primary mr-2"
+										id="fastinput3" style="float: left">會員一鍵登入</button>
+
+								</div>
 
 							</div>
-							
-							
-							<div  >
-								<a href="toMemberRegisterPage"><button id="fastinput4" type="button"
-										class="btn btn-primary mr-2" style="float:right" >
-										注冊</button></a>
+
+
+							<div>
+								<a href="toMemberRegisterPage"><button id="fastinput4"
+										type="button" class="btn btn-primary mr-2"
+										style="float: right">注冊</button></a>
 							</div>
 
 
@@ -199,23 +200,20 @@
 			$('#password').val('123')
 
 		})
-		
+
 		$('#fastinput3').click(function() {
 
 			$('#username').val('jacky')
 			$('#password').val('123')
 
 		})
-		
-		
-		
-// 		$('#fastinputtotal').on('click','#fastinput3',function() {
 
-// 			$('#username').val('jacky')
-// 			$('#password').val('123')
+		// 		$('#fastinputtotal').on('click','#fastinput3',function() {
 
-// 		})
-		
+		// 			$('#username').val('jacky')
+		// 			$('#password').val('123')
+
+		// 		})
 	</script>
 
 	<script src='https://www.google.com/recaptcha/api.js'></script>
@@ -248,35 +246,31 @@
 	</script>
 
 	<script>
-	
-	$(document).ready(function(){
-		$('#fastinput3').css('display','none')
-		$('#fastinput4').css('display','none')
-	})
-	
-	$('#tomember').on('click',function(){
+		$(document).ready(function() {
+			$('#fastinput3').css('display', 'none')
+			$('#fastinput4').css('display', 'none')
+		})
 
-// 		$('#fastinput').remove()
-// 		$('#fastinput2').remove()
-// 		$('#fastinputtotal').append('<button type="button" class="btn btn-primary mr-2" id="fastinput3">會員一鍵輸入 </button>')
-		$('#fastinput').css('display','none')
-		$('#fastinput2').css('display','none')
-		$('#fastinput3').css('display','')
-		$('#fastinput4').css('display','')
-	})
-	
-	$('#toadmin').on('click',function(){
-// 		$('#fastinput3').remove()
-// 		$('#fastinputtotal').append('<button type="button" class="btn btn-primary mr-2" id="fastinput2"> 管理員一鍵輸入 </button>')
-// 		$('#fastinputtotal').append('<button type="button" class="btn btn-primary mr-2" id="fastinput"> 老闆一鍵輸入 </button>')
-		$('#fastinput').css('display','')
-		$('#fastinput2').css('display','')
-		$('#fastinput3').css('display','none')
-		$('#fastinput4').css('display','none')
-	})
-	
-	
-	
+		$('#tomember').on('click', function() {
+
+			// 		$('#fastinput').remove()
+			// 		$('#fastinput2').remove()
+			// 		$('#fastinputtotal').append('<button type="button" class="btn btn-primary mr-2" id="fastinput3">會員一鍵輸入 </button>')
+			$('#fastinput').css('display', 'none')
+			$('#fastinput2').css('display', 'none')
+			$('#fastinput3').css('display', '')
+			$('#fastinput4').css('display', '')
+		})
+
+		$('#toadmin').on('click', function() {
+			// 		$('#fastinput3').remove()
+			// 		$('#fastinputtotal').append('<button type="button" class="btn btn-primary mr-2" id="fastinput2"> 管理員一鍵輸入 </button>')
+			// 		$('#fastinputtotal').append('<button type="button" class="btn btn-primary mr-2" id="fastinput"> 老闆一鍵輸入 </button>')
+			$('#fastinput').css('display', '')
+			$('#fastinput2').css('display', '')
+			$('#fastinput3').css('display', 'none')
+			$('#fastinput4').css('display', 'none')
+		})
 	</script>
 
 

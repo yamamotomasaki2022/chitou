@@ -262,4 +262,8 @@ public class AttractionController {
 		aService.deletePlan(planid);
 		return "redirect:showAttractionPlans?attractionid="+attractionid;
 	}
+	
+	
+	
+	
 }

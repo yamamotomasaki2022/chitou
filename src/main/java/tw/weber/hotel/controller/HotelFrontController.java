@@ -72,8 +72,8 @@ public class HotelFrontController {
 		model.addAttribute("dateEnd",dateEnd);
 		model.addAttribute("number",number);
 		model.addAttribute("hotelID",hotelID);
-//		Hotel hotel = fService.selectHotel(hotelID);
-//		model.addAttribute("hotel",hotel);
+		Hotel hotel = fService.selectHotel(hotelID);
+		model.addAttribute("hotel",hotel);
 		return hotelPage;
 	}
 	

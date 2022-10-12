@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>訂房</title>
-<script src="/css/wei/js/jquery-3.4.1.min.js"></script>
 <style>
         fieldset {
             width: 500px;
@@ -127,6 +126,8 @@
         </fieldset>
     </form>
 </div>    
+	
+<script src="/js/coco/hotelsstyle/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/js/weber/ecPay.js"></script>
     
 </body>

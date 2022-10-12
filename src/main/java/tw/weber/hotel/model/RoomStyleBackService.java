@@ -24,6 +24,11 @@ public class RoomStyleBackService {
 	@Autowired
 	private RoomRepository roomRepo;
 	
+	@Autowired
+	private BSearchRepository bsRepo;
+	
+	@Autowired ReservationRepository reRepo;
+	
 	public List<RoomStyle> findAll(){
 		return styleRepo.findAll();
 	}
@@ -34,8 +39,8 @@ public class RoomStyleBackService {
 		return styleRepo.findAllByHotel(hotel);
 	}
 	
-	public RoomStyle findById(int roomID){
-		Optional<RoomStyle> op = styleRepo.findById(roomID);
+	public RoomStyle findById(int styleID){
+		Optional<RoomStyle> op = styleRepo.findById(styleID);
 		return op.get();
 	}
 	
@@ -158,5 +163,18 @@ public class RoomStyleBackService {
 			return parentDir.delete();
 		}
 		return false;
+	}
+	
+	public List<Room> getRoomList(int styleID){
+		RoomStyle style = findById(styleID);
+		return roomRepo.findAllByStyle(style);
+	}
+	
+	public List<BookSearch> getRoomStatusByDate(int styleID,String date){
+		return bsRepo.findRoomStatusByDate(styleID, date);
+	}
+	
+	public Reservation getReservationByDateAndRoom(int roomID,String date) {
+		return reRepo.findByDateAndRoom(roomID, date).get();
 	}
 }

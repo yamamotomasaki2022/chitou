@@ -77,13 +77,13 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group">
 											<form:label path="attLocation">景點位置:</form:label> 
 											<form:input type="text" path="attLocation" id="attLocation" class="form-control" name="attLocation" 
-												id="" placeholder="請選擇新增的景點位置" />
+												placeholder="請選擇新增的景點位置" />
 										</div>
 
 										<div class="form-group">
 											<form:label path="attDescription"> 景點說明: </form:label>
 											<div >
-												<form:textarea id="attDescription" path="attDescription" name="attDescription" placeholder="請輸入新增的景點說明"></form:textarea>
+												<form:textarea id="editor1" path="attDescription" name="attDescription" placeholder="請輸入新增的景點說明"></form:textarea>
 											</div>
 										</div>
 										

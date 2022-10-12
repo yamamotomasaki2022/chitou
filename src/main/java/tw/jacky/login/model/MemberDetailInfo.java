@@ -32,7 +32,7 @@ public class MemberDetailInfo {
 	private String nationality;
 	
 	@Column(name="birth")
-	private String brith;
+	private String birth;
 	
 	@Column(name="gender")
 	private String gender;
@@ -61,7 +61,7 @@ public class MemberDetailInfo {
 		this.address = address;
 		this.nickname = nickname;
 		this.nationality = nationality;
-		this.brith = brith;
+		this.birth = birth;
 		this.gender = gender;
 		this.createtime = createtime;
 		this.modifytime = modifytime;
@@ -71,6 +71,16 @@ public class MemberDetailInfo {
 	
 	
 	
+	public String getBirth() {
+		return birth;
+	}
+
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
+
 	public MemberDetailInfo(int memberid) {
 		super();
 		this.memberid = memberid;
@@ -113,12 +123,7 @@ public class MemberDetailInfo {
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
-	public String getBrith() {
-		return brith;
-	}
-	public void setBrith(String brith) {
-		this.brith = brith;
-	}
+
 	public String getGender() {
 		return gender;
 	}
@@ -150,7 +155,7 @@ public class MemberDetailInfo {
 	@Override
 	public String toString() {
 		return "MemberDetailInfo [memberid=" + memberid + ", name=" + name + ", phone=" + phone + ", address=" + address
-				+ ", nickname=" + nickname + ", nationality=" + nationality + ", brith=" + brith + ", gender=" + gender
+				+ ", nickname=" + nickname + ", nationality=" + nationality + ", birth=" + birth + ", gender=" + gender
 				+ ", createtime=" + createtime + ", modifytime=" + modifytime + "]";
 	}
 	

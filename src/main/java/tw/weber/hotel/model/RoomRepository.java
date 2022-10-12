@@ -45,8 +45,5 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
 			+ "and roomStyleID = ?3",nativeQuery = true)
 	public Optional<Room> findEmptyRoom(String dateStart,String dateEnd,int styleID);
 	
-//	@Query(value = "select c.name,c.address,c.averagePrice from (select * from room where roomID not in  (select roomID from reservation where checkInDate between ?1 and ?2 or checkoutdate between ?1 and ?2)) as a JOIN roomstyle as b on a.roomStyleID = b.styleID JOIN hotel as c on b.hotelID = c.hotelID where c.country = ?3 and b.capacity > ?4 group by c.name,c.address,c.averagePrice",nativeQuery = true)
-//	public List<Room> crazy(String dateStart,String dateEnd,String destination,int number);
-	
 	
 }

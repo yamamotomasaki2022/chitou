@@ -28,7 +28,7 @@ import tw.weber.hotel.model.RoomStyleBackService;
 
 
 @Controller
-//@SessionAttributes({"hotelResult"})
+@SessionAttributes({"hotelResult"})
 @RequestMapping(path = "/admin")
 public class HotelBackController {
 	

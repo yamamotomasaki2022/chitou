@@ -68,12 +68,12 @@
 	<script>
 		$(function() {
 			$.ajax({
-				url : "/loadHotelPhotoAjax/${hotelID}",
+				url : "/admin/loadHotelPhotoAjax/${hotelID}",
 				data : "hotelNB${hotelID}",
 				success : function(data) {
 						$('#oldpics').empty();
 					for (var i = 1; i <= data; i++) {
-						$('#oldpics').append('<img id="img" src="images/weber/hotel/hotelNB${hotelID}/photo'+i+'.jpg" class="box">');
+						$('#oldpics').append('<img id="img" src="/images/weber/hotel/hotelNB${hotelID}/photo'+i+'.jpg" class="box">');
 					}
 				}
 			});
