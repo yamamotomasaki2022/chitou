@@ -60,13 +60,13 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 					</div>
 				
 					<button type="submit" class="btn btn-primary mr-2" id="createmember" name="submit">提交</button>
-				<!-- herf=總攬連結 -->
+					<a href="/manager/AdminHomePage"><button type="button" class="btn btn-light" value="返回">返回</button></a>
+					<!-- herf=總攬連結 -->
 				</form>
-				<form action="AdminHomePage">
 				
-					<input type="submit" class="btn btn-light" value="返回"></button></a> 
-					
-				</form>
+				
+					<br>	
+			
 				<button id="fastinput" class="btn btn-primary mr-2" > 一鍵輸入</button>
 				
 				
@@ -157,7 +157,7 @@ $(function() {
 	<script>
 		$('#fastinput').click(function() {
 
-			$('#username').val('test')
+			$('#username').val('jacky')
 			$('#password').val('123')
 			$('#email').val('testout1234@gmail.com')
 

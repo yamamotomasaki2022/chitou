@@ -47,11 +47,11 @@ public class AttractionController {
 	}
 	
 	//test home background home page
+//	@GetMapping("/homeAttractions")
+//	public String AttractionListAction1(Model m) {
+//		return "BackgroundHomePage";
+//	}
 	@GetMapping("/homeAttractions")
-	public String AttractionListAction1(Model m) {
-		return "BackgroundHomePage";
-	}
-	@GetMapping("/newhomeAttractions")
 	public String AttractionListAction2(Model m) {
 		return "NewHome";
 	}
@@ -94,6 +94,10 @@ public class AttractionController {
 	@GetMapping("/newMemberRegisterPage")
 	public String AttractionListActionma7(Model m) {
 		return "MemberRegisterPage";
+	}
+	@GetMapping("/MemberHomePage")
+	public String AttractionListActionma(Model m) {
+		return "MemberHomePage";
 	}
 //	//undone
 //	@GetMapping("/newMemberChangePassword")
@@ -258,4 +262,8 @@ public class AttractionController {
 		aService.deletePlan(planid);
 		return "redirect:showAttractionPlans?attractionid="+attractionid;
 	}
+	
+	
+	
+	
 }

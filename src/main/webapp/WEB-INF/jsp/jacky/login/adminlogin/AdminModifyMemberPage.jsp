@@ -40,16 +40,16 @@
 					value="<%=bean.getUsername()%>" placeholder="username">
 					</div>
 					
-					<div class="form-group">
-						<label>身份</label> <input class="form-control" type="text"
-							name="password" value="<%=bean.getLoginStatus().getStatusname()%>" placeholder="Statusid">
-					</div>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label>身份</label> <input class="form-control" type="text" -->
+<%-- 							name="password" value="<%=bean.getLoginStatus().getStatusname()%>" placeholder="Statusid"> --%>
+<!-- 					</div> -->
 					
 					<div class="form-group">
 						<label>Photo</label>
 						<div class="input-group col-xs-12">
 						<img id="img1" alt="" src=" <%=bean.getPhoto() %>" >
-							<input id="myfile2" type="file" name="myFile"
+							<input id="myfile" type="file" name="myFile"
 								class="form-control file-upload-info" placeholder="Upload Image">
 							<span class="input-group-append"></span>
 						</div>
@@ -70,7 +70,7 @@
 	</div>
 	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 	<script>
-		$('.myfile').on('change', function(e) {
+		$('#myfile').on('change', function(e) {
 			const file = this.files[0];//將上傳檔案轉換為base64字串
 
 			const fr = new FileReader();//建立FileReader物件

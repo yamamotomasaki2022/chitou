@@ -9,7 +9,7 @@
 			<!---->
 			<div refresh="function () { [native code] }" id="HotCountry_ActivityLIST">
 				<div>
-					<h2 class="section-title text-center">熱門景點</h2>
+					<h2 class="section-title text-center">熱門飯店</h2>
 					<!---->
 					<div data-v-257ac1f6>
 						<div refresh="function () { [native code] }"

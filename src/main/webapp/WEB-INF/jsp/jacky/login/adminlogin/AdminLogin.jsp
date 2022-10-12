@@ -50,7 +50,8 @@
 									height="auto" alt="logo" /><img src="/images/coco/logo2.png"
 									class="mr-2" alt="logo" /></a>
 							</div>
-							<form class="pt-3" ACTION="" method="post" onsubmit="return validateForm()">
+							<form class="pt-3" ACTION="" method="post"
+								onsubmit="return validateForm()">
 								<script src="https://www.google.come/recaptcha/api.js" async
 									defer></script>
 								<div class="form-group">
@@ -68,18 +69,19 @@
 								<!-- 									data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"> -->
 								<!-- 								</div> -->
 
-<!-- 谷歌驗證 -->
-<!-- 								<div class="g-recaptcha" id="rcaptcha" data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"></div> -->
+								<!-- 谷歌驗證 -->
+<!-- 								<div class="g-recaptcha" id="rcaptcha" -->
+<!-- 									data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"></div> -->
 <!-- 								<span id="captcha" style="color: red" /></span> -->
 								<!-- this will show captcha errors -->
 
 								<div class="mt-3">
 									<button
 										class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-										type="submit" value="login" >登入</button>
+										type="submit" value="login">登入</button>
 									<span>${errors.msg}</span>
 								</div>
- 
+
 								<div></div>
 								<div
 									class="my-2 d-flex justify-content-between align-items-center">
@@ -109,33 +111,57 @@
 											<i class="ti-google"></i>
 										</button>
 									</a>
+
+
+
 								</div>
 
 
 								<hr>
 							</form>
 							<div>
-								<form action="toMemberLoginPage">
-									<input type="submit" class="btn btn-primary mr-2" value="會員"
-										style="float: left; background-color: #2AAC16">
-								</form>
-								<form action="toAdminLoginPage">
-									<input type="submit" class="btn btn-primary mr-2" value="管理員"
-										style="float: right; background-color: #2AAC16">
-								</form>
+
+								<input id="tomember" type="button" class="btn btn-primary mr-2"
+									value="會員" style="float: left; background-color: #2AAC16">
+
+								<!-- 								<form action="toAdminLoginPage"> -->
+								<input id="toadmin" type="button" class="btn btn-primary mr-2"
+									value="管理員" style="float: right; background-color: #2AAC16">
+								<!-- 								</form> -->
 							</div>
 
+							<br> <br> <br>
+
+							<div id="fastinputtotal">
+
+								<!-- 								<form action="toMemberRegisterPage"> -->
+								<!-- 									<input type="submit" class="btn btn-primary mr-2" value="注冊" -->
+								<!-- 										style=""background-color:#2AAC16"> -->
+
+								<!-- 								</form> -->
+
+
+								<button type="button" class="btn btn-primary mr-2"
+									id="fastinput" style="float: right">老闆一鍵登入</button>
+
+								<button type="button" class="btn btn-primary mr-2"
+									id="fastinput2" style="float: left">管理員一鍵登入</button>
+
+								<div style="text-align: center">
+									<button type="button" class="btn btn-primary mr-2"
+										id="fastinput3" style="float: left">會員一鍵登入</button>
+
+								</div>
+
+							</div>
 
 
 							<div>
-								<form action="toMemberRegisterPage">
-									<input type="submit" class="btn btn-primary mr-2" value="注冊"
-										style=""background-color:#2AAC16">
-								</form>
-
-								<button id="fastinput">管理員一鍵登入</button>
-
+								<a href="toMemberRegisterPage"><button id="fastinput4"
+										type="button" class="btn btn-primary mr-2"
+										style="float: right">注冊</button></a>
 							</div>
+
 
 						</div>
 					</div>
@@ -167,6 +193,27 @@
 			$('#password').val('123')
 
 		})
+
+		$('#fastinput2').click(function() {
+
+			$('#username').val('admin')
+			$('#password').val('123')
+
+		})
+
+		$('#fastinput3').click(function() {
+
+			$('#username').val('jacky')
+			$('#password').val('123')
+
+		})
+
+		// 		$('#fastinputtotal').on('click','#fastinput3',function() {
+
+		// 			$('#username').val('jacky')
+		// 			$('#password').val('123')
+
+		// 		})
 	</script>
 
 	<script src='https://www.google.com/recaptcha/api.js'></script>
@@ -182,25 +229,51 @@
 			}
 		}
 	</script>
-	
+
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	
+
 	<script type="text/javascript">
-		function validateForm(){
-			if(grecaptcha.getResponse()){
+		function validateForm() {
+			if (grecaptcha.getResponse()) {
 				return true;
-			}else{
-				Swal.fire(
-						  'Careful!',
-						  'please prove you are not robot',
-						  'error'
-						)
-				return false;	
+			} else {
+				Swal
+						.fire('Careful!', 'please prove you are not robot',
+								'error')
+				return false;
 			}
 		}
 	</script>
-	
-	
+
+	<script>
+		$(document).ready(function() {
+			$('#fastinput3').css('display', 'none')
+			$('#fastinput4').css('display', 'none')
+		})
+
+		$('#tomember').on('click', function() {
+
+			// 		$('#fastinput').remove()
+			// 		$('#fastinput2').remove()
+			// 		$('#fastinputtotal').append('<button type="button" class="btn btn-primary mr-2" id="fastinput3">會員一鍵輸入 </button>')
+			$('#fastinput').css('display', 'none')
+			$('#fastinput2').css('display', 'none')
+			$('#fastinput3').css('display', '')
+			$('#fastinput4').css('display', '')
+		})
+
+		$('#toadmin').on('click', function() {
+			// 		$('#fastinput3').remove()
+			// 		$('#fastinputtotal').append('<button type="button" class="btn btn-primary mr-2" id="fastinput2"> 管理員一鍵輸入 </button>')
+			// 		$('#fastinputtotal').append('<button type="button" class="btn btn-primary mr-2" id="fastinput"> 老闆一鍵輸入 </button>')
+			$('#fastinput').css('display', '')
+			$('#fastinput2').css('display', '')
+			$('#fastinput3').css('display', 'none')
+			$('#fastinput4').css('display', 'none')
+		})
+	</script>
+
+
 
 
 </body>
