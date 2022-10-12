@@ -1,7 +1,9 @@
 package tw.jacky.login.controller;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -371,7 +373,7 @@ public class ManagementSystemController {
 // import csv
 
 	@GetMapping("/exportCSV")
-	public void processExportCSV(HttpServletResponse response) {
+	public void processExportCSV(HttpServletResponse response) throws IOException {
 		response.setContentType("text/csv");
 		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
 		String currentDateTime = dateFormatter.format(new Date());
