@@ -221,6 +221,10 @@ public class ManagementSystemController {
 		String filename = mf.getOriginalFilename();
 		String photo_path = lservice.savePicToLocal(mf);
 		String pic_locaiton = piclocation + photo_path;
+		
+		Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String modifytime = simpleDateFormat.format(date);
 
 //			System.out.println(bean.getPhoto());
 //			System.out.println(pic_locaiton);
@@ -231,11 +235,17 @@ public class ManagementSystemController {
 
 			MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password, pic_locaiton,
 					email);
+			MemberDetailInfo findDetailByMemberid = lservice.findDetailByMemberid(memberid);
+			findDetailByMemberid.setModifytime(modifytime);
+			lservice.adminInsertMemberDetailInfo(findDetailByMemberid);
 			lservice.adminInsertMember(memberBasicInfo);
 		} else {
 //				System.out.println("沒有更改圖片");
 			MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password,
 					bean.getPhoto(), email);
+			MemberDetailInfo findDetailByMemberid = lservice.findDetailByMemberid(memberid);
+			findDetailByMemberid.setModifytime(modifytime);
+			lservice.adminInsertMemberDetailInfo(findDetailByMemberid);
 			lservice.adminInsertMember(memberBasicInfo);
 		}
 		m.addAttribute("crud", 3);
@@ -413,5 +423,8 @@ public class ManagementSystemController {
 		csvWriter.close();
 
 	}
+	
+	
+	
 
 }
