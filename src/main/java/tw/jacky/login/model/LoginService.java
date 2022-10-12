@@ -60,6 +60,12 @@ public class LoginService {
 	public List<MemberBasicInfo>  memberFindAll() {
 		return mbrepo.findAll();
 	}
+//	memberdetailinfo
+	public List<MemberDetailInfo> memberDetailFindAll(){
+		return mdirepo.findAll();
+	}
+	
+	
 	
 //	查詢單個會員的基本資料(ID)
 	
