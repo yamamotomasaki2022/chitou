@@ -8807,7 +8807,7 @@ sup {
 }
 
 a {
-  color: #007bff;
+/*   color: #007bff; */
   text-decoration: none;
   background-color: transparent;
 }
@@ -11046,6 +11046,22 @@ textarea.is-invalid.tt-hint {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.btn1, .fc button, .ajax-upload-dragdrop .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .swal2-styled, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-confirm, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-cancel, .wizard > .actions a {
+  display: inline-block;
+  font-weight: 400;
+  color: #4B49AC;;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1;
+  border-radius: 0.1875rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .btn, .fc button, .ajax-upload-dragdrop .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .swal2-styled, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-confirm, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-cancel, .wizard > .actions a {
     transition: none;
@@ -11392,6 +11408,11 @@ fieldset:disabled .wizard > .actions a,
   border-color: #4B49AC;
 }
 
+.btn-outline1-primary:hover {
+  color:#4B49AC;;
+  background-color: #4B49AC;
+}
+
 .btn-outline-primary:focus, .btn-outline-primary.focus {
   box-shadow: 0 0 0 0.2rem rgba(75, 73, 172, 0.5);
 }
@@ -11643,7 +11664,7 @@ fieldset:disabled .wizard > .actions a,
 
 .btn-link {
   font-weight: 400;
-  color: #007bff;
+/*   color: #007bff; */
   text-decoration: none;
 }
 

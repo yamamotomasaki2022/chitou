@@ -21,8 +21,7 @@
 
 
     <link rel="stylesheet" href="/css/homepage/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/homepage/owl.carousel.min.css">
-    <link rel="stylesheet" href="/css/homepage/owl.theme.default.min.css">
+ 
     <link rel="stylesheet" href="/css/homepage/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/homepage/style1.css">
     <link rel="stylesheet" href="/css/homepage/flaticon.css">
@@ -36,7 +35,7 @@
     	<link rel="stylesheet" href="/css/coco/hotelsstyle/kang2.css">
     	<link rel="stylesheet" href="/css/coco/hotelsstyle/kang6.css">
 	
-		<link rel="stylesheet" href="/css/coco/hotelsstyle/tiny-slider.css">
+<!-- 		<link rel="stylesheet" href="/css/coco/hotelsstyle/tiny-slider.css"> -->
 	
 	
 	
