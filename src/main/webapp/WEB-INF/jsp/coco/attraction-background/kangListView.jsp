@@ -102,6 +102,7 @@ $(function(){
 					<th>景點位置:</th>
 					<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;景點說明:</th>
 <!-- 					<th>購票須知:</th> -->
+					<th>方案內容:</th>
 					<th>操作:</th>
 				</tr>
 			</thead>
@@ -123,8 +124,13 @@ $(function(){
 							</button>
 							</a>
 							</td>
-							
-							
+							<td>
+								<a href="showAttractionPlans?attractionid=${attraction.attid}" >
+								<button type="button" class="btn btn-link" >詳細方案
+								</button>
+								</a>
+								
+							</td>
 
 							<td>
 <!-- 							<input type="hidden" name="photo" -->

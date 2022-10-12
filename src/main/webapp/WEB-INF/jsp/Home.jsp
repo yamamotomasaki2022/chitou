@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-Hant">
 
@@ -19,10 +20,12 @@
 <link rel="stylesheet" href="/css/beforehomepage/css/aos.css">
 <link rel="stylesheet" href="/css/beforehomepage/css/style.css">
 
+
 </head>
 
 
 <body>
+
 
 	<!-- header 頭列 -->
 
@@ -47,7 +50,7 @@
 					<li><a href="Home.jsp">Home</a></li>
 					<li class="has-children"><a href="">交通住宿</a>
 						<ul class="dropdown">
-							<li><a href="/admin/hotel">住宿訂購</a></li>
+							<li><a href="/member/yee">住宿訂購</a></li>
 							<li><a href="flightTicket">機票訂購</a></li>
 
 						</ul></li>
@@ -55,7 +58,7 @@
 					<li><a href="article.main">評論區</a></li>
 					<li class="has-children"><a href="">個人</a>
 						<ul class="dropdown">
-							<li><a href="/manager/adminhomepage">會員專區</a></li>
+							<li><a href="/manager/AdminHomePage">會員專區</a></li>
 							<!-- <li><a href="weber-journeyMain.jsp">我的行程</a></li> -->
 							<li><a href="index">個人購物車</a></li>
 						</ul>
@@ -135,7 +138,8 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img"> <img
-									src="/css/beforehomepage/images/image-1.jpg" alt="Image" class="img-fluid">
+									src="/css/beforehomepage/images/image-1.jpg" alt="Image"
+									class="img-fluid">
 								</a>
 								<div class="property-content">
 									<div class="price mb-2">
@@ -167,7 +171,8 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img"> <img
-									src="/css/beforehomepage/images/image-2.jpg" alt="Image" class="img-fluid">
+									src="/css/beforehomepage/images/image-2.jpg" alt="Image"
+									class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -199,7 +204,8 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img"> <img
-									src="/css/beforehomepage/images/image-3.jpg" alt="Image" class="img-fluid">
+									src="/css/beforehomepage/images/image-3.jpg" alt="Image"
+									class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -231,7 +237,8 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img"> <img
-									src="/css/beforehomepage/images/japan-1.jpg" alt="Image" class="img-fluid">
+									src="/css/beforehomepage/images/japan-1.jpg" alt="Image"
+									class="img-fluid">
 								</a>
 								<div class="property-content">
 									<div class="price mb-2">
@@ -263,7 +270,8 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img"> <img
-									src="/css/beforehomepage/images/japan-2.jpg" alt="Image" class="img-fluid">
+									src="/css/beforehomepage/images/japan-2.jpg" alt="Image"
+									class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -296,7 +304,8 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img"> <img
-									src="/css/beforehomepage/images/japan-2.jpg"alt="Image" class="img-fluid">
+									src="/css/beforehomepage/images/japan-2.jpg" alt="Image"
+									class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -329,7 +338,8 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img"> <img
-									src="/css/beforehomepage/images/usa-2.jpg" alt="Image" class="img-fluid">
+									src="/css/beforehomepage/images/usa-2.jpg" alt="Image"
+									class="img-fluid">
 								</a>
 								<div class="property-content">
 									<div class="price mb-2">
@@ -361,7 +371,8 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img"> <img
-									src="/css/beforehomepage/images/usa-2.jpg"  alt="Image" class="img-fluid">
+									src="/css/beforehomepage/images/usa-2.jpg" alt="Image"
+									class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -394,7 +405,8 @@
 							<div class="property-item">
 
 								<a href="property-single.html" class="img"> <img
-									src="/css/beforehomepage/images/usa-3.jpg" alt="Image" class="img-fluid">
+									src="/css/beforehomepage/images/usa-3.jpg" alt="Image"
+									class="img-fluid">
 								</a>
 
 								<div class="property-content">
@@ -512,7 +524,7 @@
 				<div class="testimonial-slider">
 					<div class="item">
 						<div class="testimonial">
-							<img src="/css/beforehomepage/images/xpark.png"alt="Image"
+							<img src="/css/beforehomepage/images/xpark.png" alt="Image"
 								class="img-fluid w-100 mb-100">
 							<div class="rate">
 								<br> <span class="icon-star text-warning"></span> <span
@@ -536,8 +548,8 @@
 
 					<div class="item">
 						<div class="testimonial">
-						"/css/beforehomepage/images/image4.jpg"
-							<img src="/css/beforehomepage/images/image4.jpg" alt="Image"
+							"/css/beforehomepage/images/image4.jpg" <img
+								src="/css/beforehomepage/images/image4.jpg" alt="Image"
 								class="img-fluid w-100 mb-100 ">
 							<div class="rate">
 								<br> <span class="icon-star text-warning"></span> <span
@@ -713,8 +725,8 @@
 				<div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
 					<div class="h-100 person">
 
-						<img src="/css/beforehomepage/images/dog1.jpg" class="img-responsive"
-							alt="Cinque Terre">
+						<img src="/css/beforehomepage/images/dog1.jpg"
+							class="img-responsive" alt="Cinque Terre">
 
 						<div class="person-contents">
 							<h2 class="mb-0">
@@ -739,8 +751,8 @@
 				<div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
 					<div class="h-100 person">
 
-						<img src="/css/beforehomepage/images/dog2.jpg" class="img-responsive"
-							alt="Cinque Terre">
+						<img src="/css/beforehomepage/images/dog2.jpg"
+							class="img-responsive" alt="Cinque Terre">
 
 						<div class="person-contents">
 							<h2 class="mb-0">
@@ -766,8 +778,8 @@
 				<div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
 					<div class="h-100 person">
 
-						<img src="/css/beforehomepage/images/dog3.jpg"class="img-responsive"
-							alt="Cinque Terre">
+						<img src="/css/beforehomepage/images/dog3.jpg"
+							class="img-responsive" alt="Cinque Terre">
 
 						<div class="person-contents">
 							<h2 class="mb-0">
@@ -797,7 +809,8 @@
 		<div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
 			<div class="h-100 person">
 
-				<img src="/css/beforehomepage/images/dog4.jpg"class="img-responsive" alt="Cinque Terre">
+				<img src="/css/beforehomepage/images/dog4.jpg"
+					class="img-responsive" alt="Cinque Terre">
 
 				<div class="person-contents">
 					<h2 class="mb-0">
@@ -822,7 +835,8 @@
 		<div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
 			<div class="h-100 person">
 
-				<img src="/css/beforehomepage/images/dog5.jpg" class="img-responsive" alt="Cinque Terre">
+				<img src="/css/beforehomepage/images/dog5.jpg"
+					class="img-responsive" alt="Cinque Terre">
 
 				<div class="person-contents">
 					<h2 class="mb-0">
@@ -847,7 +861,8 @@
 		<div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
 			<div class="h-100 person">
 
-				<img src="/css/beforehomepage/images/dog6.jpg" class="img-responsive" alt="Cinque Terre">
+				<img src="/css/beforehomepage/images/dog6.jpg"
+					class="img-responsive" alt="Cinque Terre">
 
 				<div class="person-contents">
 					<h2 class="mb-0">
@@ -971,6 +986,21 @@
 			<span class="visually-hidden">Loading...</span>
 		</div>
 	</div>
+
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+		var logout = ${logout}
+		console.log('logout:' + logout)
+		
+
+		if (logout == 1) {
+			Swal.fire(
+					  'Thanks!',
+					  'You have logged out!',
+					  'success'
+					)
+		}
+	</script>
 
 	<script src="/js/coco/off-canvas.js"></script>
 

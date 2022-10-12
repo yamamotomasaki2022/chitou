@@ -54,7 +54,7 @@ td {
 				<form action="AdminModifyAdmin" method="post">
 				<input type="hidden" name="_method" value="PUT">
 				<input type="hidden" name="adminid" value="<%=bean.getAdminid()%>"><br>
-				權限<input type="text" name="adminstatus" value="<%=bean.getAdminstatus()%>"><br>
+				權限<input type="text" name="adminstatus" value="<%=bean.getLoginStatus().getStatusid()%>"><br>
 				賬號<input type="text" name="username" value="<%=bean.getUsername()%>"><br>
 				密碼<input type="text" name="password" value="<%=bean.getPassword()%>"><br>
 				禁止<select name="permission">
@@ -71,7 +71,7 @@ td {
 
 	</div>
 	<hr>
-	<form action="adminhomepage">
+	<form action="AdminHomePage">
 		<button onclick="">返回登入界面</button>
 	</form>
 	

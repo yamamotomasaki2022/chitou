@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.model.source.internal.hbm.ManyToOneAttributeColumnsAndFormulasSource;
 import org.hibernate.query.Query;
 import org.springframework.beans.Mergeable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,14 @@ public class LoginService {
 	@Autowired
 	private MemberBasicInfoRepository mbrepo;
 	@Autowired
+	private MemberDetailInfoRepository mdirepo;
+	@Autowired
 	private  AdminChitouRepository acrepo;
 	@Autowired
 	private MemberBasicInfoDAO mDao;
+	
+	
+	
 	
 	private String staticPath = getStaticPath();
 	
@@ -55,27 +61,75 @@ public class LoginService {
 		return mbrepo.findAll();
 	}
 	
-//	查詢單個會員(ID)
+//	查詢單個會員的基本資料(ID)
 	
 	public MemberBasicInfo findByMemberid(int id) {
 		return mbrepo.findByMemberid(id);
 	}
 	
-//	管理員新增會員
+	public MemberBasicInfo findBasicInfobyUsername(String username) {
+		return mbrepo.findByUsername(username);
+	}
+	
+	public MemberBasicInfo findByEmail(String email) {
+		return mbrepo.findByEmail(email);
+	}	
+	
+//	尋找會員詳細資料
+	public MemberDetailInfo findDetailByMemberid(int id) {
+		return mdirepo.findByMemberid(id);
+	}
+	
+	
+//	管理員新增會員基本資料
 	public MemberBasicInfo adminInsertMember(MemberBasicInfo mb) {
+		LoginStatus loginStatus = new LoginStatus();
+		loginStatus.setStatusid(mb.getStatusid());
+		mb.setLoginStatus(loginStatus);
 		return mbrepo.save(mb);
 	}
+//	管理員更新會員
+	public MemberBasicInfo adminModifyMember(MemberBasicInfo mb) {
+//		LoginStatus loginStatus = new LoginStatus();
+//		loginStatus.setStatusid(mb.getStatusid()); 
+//		mb.setLoginStatus(loginStatus);
+		return mbrepo.save(mb);
+	}
+	
+	public MemberBasicInfo adminUpdateMember(MemberBasicInfo mb) {
+		System.out.println("statusid:" + mb.getLoginStatus().getStatusid());
+		return mbrepo.save(mb);
+	}
+	
+	
+//	管理員新增會員詳細資料(銜接會員基本資料)
+	public MemberDetailInfo adminInsertMemberDetailInfo(MemberBasicInfo mb) {
+		MemberDetailInfo memberDetailInfo = new MemberDetailInfo(mb.getMemberid());
+		return mdirepo.save(memberDetailInfo);
+	}
+	
+	public MemberDetailInfo adminInsertMemberDetailInfo(MemberDetailInfo md) {
+		return mdirepo.save(md);
+	}
+	
+	
 	
 //	管理員刪除會員
 	public void adminDeleteMember(int id) {
-		MemberBasicInfo bean = findByMemberid(id);
-		mbrepo.delete(bean);
+		
+		MemberDetailInfo findDetailByMemberid = findDetailByMemberid(id);
+		if ( findDetailByMemberid != null) {
+			mdirepo.delete(findDetailByMemberid);
+			
+		}else {
+			
+			MemberBasicInfo findBasicInfoByMemberid = findByMemberid(id);
+			mbrepo.delete(findBasicInfoByMemberid);
+		}
+
+
 	}
 	
-//	管理員更新會員
-	public MemberBasicInfo adminModifyMember(MemberBasicInfo mb) {
-		return mbrepo.save(mb);
-	}
 	
 //	管理員查詢會員資料 (原本Hql的辦法 比較快 因爲Interface沒辦法滿足我的需求)
 	public List<MemberBasicInfo> adminQeuryMember(String hql){
@@ -131,8 +185,12 @@ public class LoginService {
 	}
 	
 	public AdminChitou adminInsertAdmin(AdminChitou ac) {
+		LoginStatus loginStatus = new LoginStatus();
+		loginStatus.setStatusid(ac.getAdminstatus());
+		ac.setLoginStatus(loginStatus);
 		return acrepo.save(ac);
 	}
+	
 	
 	public void adminDeleteAdmin(int id) {
 		AdminChitou adminchitou = findByAdminId(id);

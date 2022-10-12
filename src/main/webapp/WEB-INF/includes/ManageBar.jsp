@@ -14,9 +14,9 @@
 		</a>
 			<div class="collapse" id="auth">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="ShowTableInHomePage">
-							管理員登入界面 </a></li>
-					<li class="nav-item"><a class="nav-link" href=""> 新增會員 </a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/manager/ShowTableInHomePage"> 管理員界面 </a></li>
+<!-- 					<li class="nav-item"><a class="nav-link" href=""> 新增會員 </a></li> -->
 				</ul>
 			</div>
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"

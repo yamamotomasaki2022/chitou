@@ -17,14 +17,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "attraction_Luana")
+@Table(name = "ATTRACTION_LUANA")
 
 public class Attraction_Luana implements Serializable {
 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ATTRACTIONID")
+	@Column(name = "attractionID")
 	private Integer attractionId;
 	
 	@Column(name = "prefer_id")

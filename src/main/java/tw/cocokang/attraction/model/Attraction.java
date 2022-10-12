@@ -1,15 +1,23 @@
 package tw.cocokang.attraction.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import tw.weber.hotel.model.Room;
 
 @Entity
 @Table(name = "attraction")
@@ -39,6 +47,10 @@ public class Attraction {
 	
 	@Column(name = "attraction_description")
 	private String attDescription;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "attraction",cascade = CascadeType.REMOVE)
+	private List<Pricingplan> pricingplans;
 	
 //	@Column(name = "attraction_notice")
 //	private String attNotice;
@@ -156,4 +168,13 @@ public class Attraction {
 //				+ ", attDescription=" + attDescription + "]";
 //	}
 
+	public List<Pricingplan> getPricingplans() {
+		return pricingplans;
+	}
+
+	public void setPricingplans(List<Pricingplan> pricingplans) {
+		this.pricingplans = pricingplans;
+	}
+	
+	
 }

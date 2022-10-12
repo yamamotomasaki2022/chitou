@@ -13,9 +13,11 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.Primary;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity @Table(name = "category")
 public class Category {
-
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "category")
 	private Set<Article> article=new LinkedHashSet<Article>();
 	

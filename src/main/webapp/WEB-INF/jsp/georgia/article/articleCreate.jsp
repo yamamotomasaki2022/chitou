@@ -34,6 +34,7 @@ button, .btn {
 <%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 <br>
+<INPUT TYPE="Button" value="取消" name="goBack" class="btn btn-primary mr-2" onclick="back()"><br><br>
 <form action="article.insert" method="post" enctype="multipart/form-data" id="check">
 <!--  會員ID:  <BR><INPUT TYPE="TEXT" NAME="posterID" VALUE="" id="posterIDInput"><BR>-->
 文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="" id="titleInput" style="width: 100%;"><BR>
@@ -89,6 +90,9 @@ button, .btn {
 
 
 <script>
+function back(){
+	history.back();
+}
 $('#upload').on('change',function(e){
 	$('#picPreview').empty();
 	var photos = this.files;
@@ -133,16 +137,17 @@ $('#fastInput').click(function(){
 	$('#contentInput').val('求分享，求推薦');
 })
 </script>
-<script src="/js/coco/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
+<script src="/js/georgia/ckeditorGeorgia.js"></script>
 <script>
-ClassicEditor
-.create(document.querySelector('#contentInput'),{
-	    ckfinder: {
-	        uploadUrl: '/ckUploadGeorgia'
-	    },
-	}).then(editor => {
- 	  console.log("editor1 success");
-});
+// ClassicEditor
+// .create(document.querySelector('#contentInput'),{
+// 	    ckfinder: {
+// 	        uploadUrl: '/ckUploadGeorgia'
+// 	    },
+// 	}).then(editor => {
+//  	  console.log("editor1 success");
+// });
 </script>
 </body>
 </html>

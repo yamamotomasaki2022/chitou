@@ -1,8 +1,16 @@
 package tw.jacky.login.controller;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +29,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
 
 import tw.jacky.login.model.AdminChitou;
 import tw.jacky.login.model.LoginService;
@@ -27,12 +39,12 @@ import tw.jacky.login.model.MemberBasicInfo;
 
 @Controller
 @SessionAttributes({ "memberlist", "adminlist", "session_status", "crud" })
-@RequestMapping(path="/manager")
+@RequestMapping(path = "/manager")
 public class ManagementSystemController {
 
 	@Autowired
 	private LoginService lservice;
-	
+
 //	 測試Merge后版本
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -49,36 +61,43 @@ public class ManagementSystemController {
 
 //	String method_memberlist = "memberlist";
 //	String method_adminlist = "adminlist";
-	String method_ShowTableInHomePage= "ShowTableInHomePage";
+	String method_ShowTableInHomePage = "ShowTableInHomePage";
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 // 頁面
 
 	String page_adminlogin = path_admin_login + "AdminLogin";
 	String page_adminhomepage = path_admin_login + "AdminHomePage";
-	
-	
-	
+
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //  ajax controller
-	
-	@GetMapping(path="/crudBean")
+
+	@GetMapping(path = "/crudBean")
 	@ResponseBody
 	public String crudBean(Model m) {
 		System.out.println("進來了");
-		m.addAttribute("crud",0);
+		m.addAttribute("crud", 0);
 		return "delete crud_Bean";
 	}
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	管理員登入界面
-	@RequestMapping(path = "/adminlogin", method = RequestMethod.GET)
+	@RequestMapping(path = "/AdminLogin", method = RequestMethod.GET)
 	public String processMainAction() {
 		return page_adminlogin;
 	}
 
-	@RequestMapping(path = "/adminhomepage")
-	public String processAdminHomePage(Model m) {
+	@RequestMapping(path = "/AdminHomePage/{id}")
+	public String processAdminHomePage(@PathVariable("id") Integer id, Model m) {
+		processShowTableInHomePage(m);
+//		System.out.println("取到數字:" + id);
+		m.addAttribute("session_status", id);
+		m.addAttribute("welcome_message", id);
+		return page_adminhomepage;
+	}
+
+	@RequestMapping(path = "/AdminHomePage")
+	public String processAdminHomePage2(Model m) {
 		processShowTableInHomePage(m);
 		return page_adminhomepage;
 	}
@@ -138,10 +157,9 @@ public class ManagementSystemController {
 //		m.addAttribute("adminlist", adminlist);
 //		return page_adminhomepage;
 //	}
-	
-	
+
 //	顯示所有table
-	@GetMapping(path="/ShowTableInHomePage")
+	@GetMapping(path = "/ShowTableInHomePage")
 	public String processShowTableInHomePage(Model m) {
 		List<AdminChitou> adminlist = lservice.adminFindAll();
 		List<MemberBasicInfo> memberlist = lservice.memberFindAll();
@@ -149,9 +167,6 @@ public class ManagementSystemController {
 		m.addAttribute("adminlist", adminlist);
 		return page_adminhomepage;
 	}
-	
-
-	
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -166,8 +181,14 @@ public class ManagementSystemController {
 		String pic_locaiton = piclocation + photo;
 
 //		會員預設權力為 1
-		MemberBasicInfo bean = new MemberBasicInfo(1, username, password, pic_locaiton, email);
-		lservice.adminInsertMember(bean);
+		MemberBasicInfo bean = new MemberBasicInfo(4, username, password, pic_locaiton, email);
+		bean.setPassword(encrpytMemberPassword(bean));
+		System.out.println(bean.getPassword());
+		MemberBasicInfo adminInsertMember = lservice.adminInsertMember(bean);
+
+//		生成一個memberdetail的bean
+		lservice.adminInsertMemberDetailInfo(adminInsertMember);
+
 //		1為create
 		m.addAttribute("crud", 1);
 		return "redirect:" + method_ShowTableInHomePage;
@@ -187,34 +208,30 @@ public class ManagementSystemController {
 	@PutMapping(path = "/AdminModifyMember")
 	public String processAdminModifyMember(@RequestParam("memberid") int memberid,
 			@RequestParam("statusid") int statusid, @RequestParam("username") String username,
-			@RequestParam("password") String password, @RequestParam("myFile") MultipartFile mf,
-			@RequestParam("email") String email, Model m) {
-			
-			
-			MemberBasicInfo bean = lservice.findByMemberid(memberid);
-			String filename = mf.getOriginalFilename();
-			String photo_path = lservice.savePicToLocal(mf);
-			String pic_locaiton = piclocation + photo_path;
-			
-			System.out.println(bean.getPhoto());
-			System.out.println(pic_locaiton);
-			System.out.println("文檔名稱:" + filename);
-				
-			if(filename != "") {
-				System.out.println("更改過圖片");
-				
-				MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password, pic_locaiton,
-						email);
-				lservice.adminModifyMember(memberBasicInfo);
-			}else {
-				System.out.println("沒有更改圖片");
-				MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password, bean.getPhoto(),
-						email);
-				lservice.adminModifyMember(memberBasicInfo);
-			}
-			
-		
+			@RequestParam("myFile") MultipartFile mf, @RequestParam("email") String email, Model m) {
 
+		MemberBasicInfo bean = lservice.findByMemberid(memberid);
+		String password = bean.getPassword();
+		String filename = mf.getOriginalFilename();
+		String photo_path = lservice.savePicToLocal(mf);
+		String pic_locaiton = piclocation + photo_path;
+
+//			System.out.println(bean.getPhoto());
+//			System.out.println(pic_locaiton);
+//			System.out.println("文檔名稱:" + filename);
+
+		if (filename != "") {
+//				System.out.println("更改過圖片");
+
+			MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password, pic_locaiton,
+					email);
+			lservice.adminInsertMember(memberBasicInfo);
+		} else {
+//				System.out.println("沒有更改圖片");
+			MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password,
+					bean.getPhoto(), email);
+			lservice.adminModifyMember(memberBasicInfo);
+		}
 		m.addAttribute("crud", 3);
 
 		return "redirect:" + method_ShowTableInHomePage;
@@ -230,6 +247,14 @@ public class ManagementSystemController {
 		return path_admin_login + "SearchPage";
 	}
 
+//	給管理員密碼加密
+//	有重複的辦法
+	public String encrpytMemberPassword(MemberBasicInfo member) {
+//	    加密的方法 —> 將字串加密 在放入Javabean内
+		String beEncode = new BCryptPasswordEncoder().encode(member.getPassword());
+		return beEncode;
+	}
+
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //	admin
@@ -243,7 +268,7 @@ public class ManagementSystemController {
 		int adminCheckStatus;
 
 		m.addAttribute("errors", errors);
-		m.addAttribute("crud",0);
+		m.addAttribute("crud", 0);
 
 		if (user == null || user.length() == 0) {
 			errors.put("name", "name is required");
@@ -288,7 +313,7 @@ public class ManagementSystemController {
 				m.addAttribute("session_status", 3);
 				m.addAttribute("status", 3);
 			}
-			
+
 			processShowTableInHomePage(m);
 
 			return page_adminhomepage;
@@ -335,22 +360,43 @@ public class ManagementSystemController {
 		m.addAttribute("crud", 3);
 		return "redirect:" + method_ShowTableInHomePage;
 	}
-	
-	
-//	給密碼加密
-	
+
+//	給管理員密碼加密
+//	有重複的辦法
 	public String encrpytAdminPassword(AdminChitou admin) {
 //	    加密的方法 —> 將字串加密 在放入Javabean内
 		String beEncode = new BCryptPasswordEncoder().encode(admin.getPassword());
 		return beEncode;
 	}
-	
-	
-	
-	@RequestMapping(path="/testpage")
-	@ResponseBody
-	public String test() {
-		return "test sesssion sucess!!!";
+
+//	------------------------------------------------------------------------------------------------------------------------------------------------------------
+// import csv
+
+	@GetMapping("/exportCSV")
+	public void processExportCSV(HttpServletResponse response) throws IOException {
+		response.setContentType("text/csv");
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+		String currentDateTime = dateFormatter.format(new Date());
+
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename=users_" + currentDateTime + ".csv";
+		response.setHeader(headerKey, headerValue);
+
+//		List<User> listUsers = service.listAll();
+		List<MemberBasicInfo> memberlist = lservice.memberFindAll();
+
+		ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+		String[] csvHeader = { "Username", "AuthLevel", "Full Name", "Roles", "Enabled" };
+		String[] nameMapping = { "id", "email", "fullName", "roles", "enabled" };
+
+		csvWriter.writeHeader(csvHeader);
+
+		for (MemberBasicInfo memberbean : memberlist) {
+			csvWriter.write(memberbean, nameMapping);
+		}
+
+		csvWriter.close();
+
 	}
 
 }

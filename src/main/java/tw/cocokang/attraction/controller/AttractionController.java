@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import tw.cocokang.attraction.model.Attraction;
 import tw.cocokang.attraction.model.AttractionService;
 import tw.cocokang.attraction.model.Hobbyclassification;
+import tw.cocokang.attraction.model.Pricingplan;
 
 @Controller
 public class AttractionController {
@@ -28,7 +30,7 @@ public class AttractionController {
 
 	public String path = "coco/attraction-background/";
 	public String path1 = "coco/attraction-user/";
-
+	public String planPath = "coco/attractionplan/";
 	
 	 //--------------------Attraction
 	//總覽
@@ -132,8 +134,8 @@ public class AttractionController {
 		  attraction.setHobbyclassification(hobbyclassification);
 			String photo = mf.getOriginalFilename();
 			String saveFileDir = getStaticPath();
-	        File saveFilePath = new File(saveFileDir, photo);
-	        mf.transferTo(saveFilePath); 
+//	        File saveFilePath = new File(saveFileDir, photo);
+//	        mf.transferTo(saveFilePath); 
 		  attraction.setPhoto(photo);
 		m.addAttribute("attraction", attraction);
 		aService.insert(attraction,preferid);
@@ -213,14 +215,47 @@ public class AttractionController {
 	 //--------------------Pricing plan
 
 	//顯示景點內方案
-	@RequestMapping(path = "showAttractionPlans",params = {"attractionid"}, method = RequestMethod.POST)
+	@RequestMapping(path = "showAttractionPlans",params = {"attractionid"}, method = RequestMethod.GET)
 	public String attractionPlans(@RequestParam("attractionid") Integer attractionid ,Model m){
-
-		m.addAttribute("planList",aService.showPricingplans(attractionid));
-		return path + "";
-//		return "luana/attraction/Luana_attractionPlans";
-
+		Attraction attraction = aService.selectByAttid(attractionid);
+		List<Pricingplan> listPlan = aService.showPricingplans(attraction);
+		m.addAttribute("listPlan",listPlan);
+		m.addAttribute("attraction",attraction);
+		return "coco/attractionplan/ListView";
+	}
+	//跳轉到新增方案
+	@GetMapping(path = "/toAddPlan")
+	public String addPlan(Model m,int attractionid) {
+		m.addAttribute("attractionid",attractionid);
+		return planPath + "PlanAdd"; 
 	}
 	
-
+	//執行新增方案
+	@PostMapping(path = "/addPricingPlanAction")
+	public String addPricingPlanAction(@ModelAttribute Pricingplan pricingplan,int attractionid) {
+		aService.insertPlan(pricingplan,attractionid);
+		return "redirect:showAttractionPlans?attractionid="+attractionid;
+	}
+	
+	//跳轉到更新方案
+	@GetMapping(path = "/toUpdatePlan")
+	public String toUpdatePlan(@RequestParam int planID,Model m) {
+		Pricingplan plan = aService.getSinglePlan(planID);
+		m.addAttribute("plan",plan);
+		return planPath + "PlanUpdate";
+	}
+	
+	//執行更新方案
+	@PostMapping(path = "updatePlanAction")
+	public String updatePlanAction(@ModelAttribute Pricingplan plan) {
+		aService.updatePlan(plan, plan.getAttractionid());
+		return "redirect:showAttractionPlans?attractionid="+plan.getAttractionid();
+	}
+	
+	//刪除方案
+	@PostMapping(path = "deletePlan")
+	public String deletePlan(@RequestParam int planid,@RequestParam int attractionid) {
+		aService.deletePlan(planid);
+		return "redirect:showAttractionPlans?attractionid="+attractionid;
+	}
 }

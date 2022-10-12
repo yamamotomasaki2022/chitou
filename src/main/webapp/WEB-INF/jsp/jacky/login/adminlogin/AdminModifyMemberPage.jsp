@@ -1,91 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@page import="javax.management.MBeanAttributeInfo"%>
 <%@page import=" java.util.*,tw.jacky.login.model.*"%>
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>AdminHomePage</title>
-<link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<style>
-table {
-	border: 2px solid;
-	margin-top: 10px;
-}
-
-th {
-	border: 2px solid;
-}
-
-td {
-	border: 2px solid;
-}
-</style>
-
-
+<title>ChiTou後台管理系統-會員資料更改</title>
 <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
-
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
+	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
-<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+	<div class="col-md-6 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title text-primary">會員資料更改</h3>
+				<p class="card-description">請輸入要更改的會員資訊</p>
+				<%
+				MemberBasicInfo bean = (MemberBasicInfo) request.getAttribute("modifymemberbean");
+				%>
 
-	<hr>
-	<br>
-	<label>會員資料更改</label>
-	<div>
-
-		<%
-		MemberBasicInfo bean = (MemberBasicInfo) request.getAttribute("modifymemberbean");
-		%>
-
-		<tr>
-			<form action="AdminModifyMember" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="_method" value="PUT"> <input
-					type="hidden" name="memberid" value="<%=bean.getMemberid()%>"><br>
+				<form class="forms-sample" action="AdminModifyMember" method="post"
+					enctype="multipart/form-data">
+					<div class="form-group">
+						<input type="hidden" name="_method" value="PUT" class="form-control"> 
+						<input type="hidden" name="memberid" value="<%=bean.getMemberid()%>" class="form-control">
+					</div>
 					
-				<input type="hidden" name="statusid" value="<%=bean.getStatusid()%>"><br>
-				
-				用戶ID<input type="text" name="username"
-					value="<%=bean.getUsername()%>"><br> 
-				密碼<input
-					type="text" name="password" value="<%=bean.getPassword()%>"><br>
-				<p>
-					Photo:<br/> 
-					<img id="img1" alt="" src=" <%=bean.getPhoto() %>" ><br> 
+					<div class="form-group">
+						<input type="hidden" name="statusid" value="<%=bean.getLoginStatus().getStatusid()%>" class="form-control">
+					</div>
+					
+					<div class="form-group">
+						<label>用戶ID</label> <input type="text"
+							class="form-control"name="username"
+					value="<%=bean.getUsername()%>" placeholder="username">
+					</div>
+					
+<!-- 					<div class="form-group"> -->
+<!-- 						<label>身份</label> <input class="form-control" type="text" -->
+<%-- 							name="password" value="<%=bean.getLoginStatus().getStatusname()%>" placeholder="Statusid"> --%>
+<!-- 					</div> -->
+					
+					<div class="form-group">
+						<label>Photo</label>
+						<div class="input-group col-xs-12">
+						<img id="img1" alt="" src=" <%=bean.getPhoto() %>" >
+							<input id="myfile" type="file" name="myFile"
+								class="form-control file-upload-info" placeholder="Upload Image">
+							<span class="input-group-append"></span>
+						</div>
+					</div>
 
-					<input id="myfile2" class="myfile" type="file" name="myFile" />
+					<div class="form-group">
+						<label>email</label> <input class="form-control" type="text"
+							name="email" value="<%=bean.getEmail()%>" placeholder="email">
+					</div>
 
-				</p>
-				email <input type="text" name="email" value="<%=bean.getEmail()%>"><br>
-
-				<input type=submit name="modifyfromadmin" value="更改">
-
-			</form>
-		</tr>
-
-
+					<button type="submit" class="btn btn-primary mr-2"
+						name="modifyfromadmin">更改</button>
+					<a href="listAttractions"><button class="btn btn-light">返回</button></a>
+					<!-- herf=總攬連結 -->
+				</form>
+			</div>
+		</div>
 	</div>
-	<hr>
-	<form action="ShowTableInHomePage">
-		<button onclick="">返回登入界面</button>
-	</form>
-
-<%@ include file="/WEB-INF/includes/SuperBottom.jsp" %>
-
+	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 	<script>
-		$('.myfile').on('change', function(e) {
+		$('#myfile').on('change', function(e) {
 			const file = this.files[0];//將上傳檔案轉換為base64字串
 
 			const fr = new FileReader();//建立FileReader物件
@@ -99,8 +84,6 @@ td {
 		});
 		
 	</script>
-	
-
 
 </body>
 </html>
