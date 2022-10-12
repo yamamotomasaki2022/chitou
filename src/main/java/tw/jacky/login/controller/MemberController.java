@@ -146,7 +146,7 @@ public class MemberController {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String modifytime = simpleDateFormat.format(date);
 		
-		System.out.println("性別:" + gender);
+//		System.out.println("性別:" + gender);
 
 		memberbasicinfo.setEmail(email);
 
