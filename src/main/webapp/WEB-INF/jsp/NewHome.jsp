@@ -43,16 +43,16 @@
 		if (logout == 1) {
 			Swal.fire('Thanks!', 'You have logged out!', 'success')
 			$('#img1').attr('src','/images/jacky/login/default1.png')
-		}else{
-			$('#img1').attr('src','/${memberbasicinfo.photo}')}
+		}
+		
+// 		else{
+// 			$('#img1').attr('src','/${memberbasicinfo.photo}')}
 		
 	</script>
 	
-	<script>
 	
 	
-	
-	</script>
+
 	
 
 </body>

@@ -13,11 +13,12 @@ response.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="UTF-8">
 <title>來Chitou訂機票</title>
-<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
+<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 
 </head>
 <body>
-	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
 	<!--標頭開始-->
 	<h4 class="card-title text-primary">&nbsp;預訂機票</h4>
 	<p class="card-description">請輸入購買人的資料</p>
@@ -113,7 +114,7 @@ response.setCharacterEncoding("UTF-8");
 		<button type="button" id="fastInput" class="btn btn-light">一鍵輸入</button>
 	</form:form>
 	</div>
-	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+	
 	<script>
 		$('#fastInput').click(function() {
 
@@ -124,9 +125,11 @@ response.setCharacterEncoding("UTF-8");
 			
 		})
 	</script>
-	<script src="/js/coco/ckeditor.js"></script>
+	
 
+<%-- <%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%> --%>
 
+<%-- <%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%> --%>
 
 </body>
 </html>

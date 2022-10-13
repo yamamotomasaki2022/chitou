@@ -67,11 +67,9 @@
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
-					<a class="dropdown-item"> <i class="ti-settings text-primary"></i>
-						景點總覽
-					</a> <a href="" class="dropdown-item"> <i
-						class="ti-power-off text-primary"></i> 管理員登出
-					</a>
+					<a href="chitou.flightticket" class="dropdown-item"> <i class="ti-settings text-primary"></i>
+						機票總覽
+					</a> 
 				</div></li>
 		</ul>
 		<ul class="navbar-nav mr-lg-4">
@@ -161,4 +159,17 @@
 			<span class="icon-menu"></span>
 		</button>
 	</div>
+	
+	<script>
+	
+	var memberbasicinfo = ${memberbasicinfo.statusid};
+	
+	if (memberbasicinfo != null){
+		console.log('sss:' + memberbasicinfo)
+		$('#img1').attr('src', '/${memberbasicinfo.photo}')
+		}
+	
+	</script>
+	
+
 </nav>

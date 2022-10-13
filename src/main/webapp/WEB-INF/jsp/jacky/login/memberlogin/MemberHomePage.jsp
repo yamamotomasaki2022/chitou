@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ChiTou-會員主頁</title>
-<%@ include file="/WEB-INF/includes/jacky/Member/MemberCSSAndJS.jsp"%>
+<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 <style type="text/css">
 /* .tupian{ border:1px solid #000; width:300px; height:100px}  */
 /* .tupian img{width:300px; height:400px}  */
@@ -27,6 +27,15 @@
 
 </head>
 <body>
+
+
+
+
+
+
+<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
+
+
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div class="content-wrapper d-flex align-items-center auth px-0">
@@ -163,6 +172,10 @@
 			</div>
 		</div>
 	</div>
+	
+	<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
+
+<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
 
 	<script>
 		$('#modify').on('click', function() {

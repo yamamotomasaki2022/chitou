@@ -33,14 +33,14 @@
 <style>
 </style>
 
-<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 
 </head>
 
 <body>
 
 
-	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
 
 	<fieldset>
 		<h1 class="card-title text-primary">&nbsp;即刻上Chitou預訂最低價機票！</h1>
@@ -201,10 +201,11 @@
 		</section>
 
 
-		<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
 
 			<script>
+		
+		
 		$('#fastInput').click(function() {
 			$('#originid').val('台北TPE');
 			$('#departuretime').val('2022-12-31');
@@ -213,5 +214,7 @@
 			
 		})
 	</script>
+<%-- 		<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%> --%>
+<%-- 		<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%> --%>
 </body>
 </html>

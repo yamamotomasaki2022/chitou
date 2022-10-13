@@ -16,10 +16,14 @@ response.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="UTF-8">
 <title>來Chitou訂機票-搜尋結果</title>
-<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 </head>
 <body>
-	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+	
+
+
+
+<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
 <h4 class="card-title text-primary">&nbsp;航班搜尋結果</h4>
 
 	<div class="table-responsive">
@@ -76,10 +80,16 @@ response.setCharacterEncoding("UTF-8");
 				)
 	}
 	
+
+	
 	
 	
 	
 	</script>			
+	
+<%-- 	<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%> --%>
+
+<%-- <%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%> --%>
 				
 </body>
 </html>
