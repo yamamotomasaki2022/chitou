@@ -61,5 +61,25 @@ response.setCharacterEncoding("UTF-8");
 				</div>
 				
 				<a href="chitou.flightticket"><button class="btn btn-light">返回</button></a>   
+				
+				
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+	var ordersuccess = ${ordersuccess}
+	
+	if(ordersuccess==1){
+		Swal.fire(
+				  '訂購成功!',
+				  '謝謝!',
+				  'success'
+				)
+	}
+	
+	
+	
+	
+	</script>			
+				
 </body>
 </html>

@@ -139,7 +139,8 @@ public class FlightTicketFrontController {
 			 Model m,OrderList orderList) { 
 		
 		MemberBasicInfo memberBasicInfo = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
-//		System.out.println(memberBasicInfo.getMemberid()+"********************************************");
+		
+		System.out.println("我的會員編號:" + memberBasicInfo.getMemberid()+"********************************************");
 		String orderTypeName = "機票";
 		String orderType = "F";
 		String orderStatus = "已付款";
@@ -161,6 +162,8 @@ public class FlightTicketFrontController {
 		flightorderbean.setOrderid(orderId);
 //		flightorderbean.setMember(memberBasicInfo);
 		ooservice.insert(flightorderbean);
+		
+		m.addAttribute("ordersuccess",1);
 
 //		List<FlightTicket> flightticket1 = ooservice.getAll();
 //		m.addAttribute("listFlightTicket", flightticket1);
