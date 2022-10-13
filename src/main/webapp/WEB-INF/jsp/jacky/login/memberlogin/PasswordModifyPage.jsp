@@ -5,11 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 </head>
 <body>
 
-
-	<h1>請修改密碼！！！</h1>
+<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
+	<h1>請修改密碼(忘記密碼的人)！！！</h1>
 
 
 
@@ -21,19 +23,23 @@
 		</div>
 
 		<div>
+		    <span>密碼</span>
 			<input id="password" placeholder="password" name="password">
 			<span>${errors.name}</span>
 		</div>
 		<div>
+			<span>確認密碼</span>
 			<input type="password" id="password2" placeholder="Reconfirmed"
-				name="password2"> <span id="tishi"></span>
+				name="password2" onkeyup="validate()"> <span id="tishi"></span>
 		</div>
+		
 		<div class="mt-3">
 			<button id="confirm" type="submit" value="login">修改密碼</button>
-			<span>${errors.msg}</span>
+
 		</div>
 
 	</form>
+	
 	
 	<script type="text/javascript">
 	
@@ -73,6 +79,8 @@ else {
       }
 
 }
+	
+</script>
 
 </body>
 </html>

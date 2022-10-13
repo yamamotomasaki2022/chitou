@@ -36,7 +36,7 @@
 
 
 		<div id="btn">
-			<!-- 			<button id="btn" disabled>送出email</button> -->
+			<a href="/home"><button type="button">返回主頁面</button></a>
 
 		</div>
 

@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>ChiTou-修改密碼</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <%@ include file="/WEB-INF/includes/jacky/Member/MemberCSSAndJS.jsp"%>
 
 </head>
-</head>
 <body>
 
+<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
  <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth px-0">
@@ -52,6 +53,10 @@
       </div>
     </div>
   </div>
+
+
+
+
 
 <script>
 
