@@ -15,7 +15,7 @@ response.setCharacterEncoding("UTF-8");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ChiTou後台管理系統-搜尋結果</title>
+<title>來Chitou訂機票-搜尋結果</title>
 <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 </head>
 <body>
@@ -47,12 +47,15 @@ response.setCharacterEncoding("UTF-8");
 							<td>${searchflight.arrivaltime}</td>
 							<td>${searchflight.classid}</td>
 							<td>${searchflight.fare}</td>
-					</tr>
-					<a href="addFlightTicketOrder">
+					
+					<td>
+					<a href="frontaddFlightTicket">
 			<button id="receive" type="button" class="btn btn-inverse-primary btn-fw">
 				<i class="ti-plus"></i>
 			</button>
+			</td>
 		</a>
+		</tr>
 				</c:forEach>
 				</table>
 				</div>

@@ -54,13 +54,49 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 		<div class="form-group">
 			<form:label path="originid">出發機場:</form:label>
 			<select name="originid" class="form-control" id="originid">
-				<optgroup label="亞洲">
-					<option value="松山TSA">松山TSA</option>
-					<option value="桃機TPE">桃機TPE</option>
-					<option value="台中TXG">台中TXG</option>
-					<option value="台南TNN">台南TNN</option>
-					<option value="高雄KHH">高雄KHH</option>
-					<option value="北京PEK">北京PEK</option>
+				<optgroup label="台灣">
+												<option value="松山TSA">松山TSA</option>
+												<option value="台北TPE">台北TPE</option>
+												<option value="台中TXG">台中TXG</option>
+												<option value="台南TNN">台南TNN</option>
+												<option value="高雄KHH">高雄KHH</option>
+											</optgroup>
+											<optgroup label="中國">
+												<option value="香港HKG">香港HKG</option>
+												<option value="澳門MFM">澳門MFM</option>
+												<option value="北京PEK">北京PEK</option>
+												<option value="上海SHA">上海SHA</option>
+												<option value="天津TSN">天津TSN</option>
+												<option value="成都CTU">成都CTU</option>
+											</optgroup>
+											<optgroup label="日本">
+												<option value="東京TYO">東京TYO</option>
+												<option value="大阪OSA">大阪OSA</option>
+												<option value="名古屋NGO">名古屋NGO</option>
+												<option value="沖繩OKA">沖繩OKA</option>
+												<option value="札幌SPK">札幌SPK</option>
+												<option value="福岡FUK">福岡FUK</option>
+											</optgroup>
+											<optgroup label="韓國">
+												<option value="首爾SEL">首爾SEL</option>
+												<option value="釜山PUS">釜山PUS</option>
+											</optgroup>
+											<optgroup label="北美洲">
+												<option value="波士頓BOS">波士頓BOS</option>
+												<option value="紐約NYK">紐約NYK</option>
+												<option value="亞特蘭大ATL">亞特蘭大ATL</option>
+												<option value="邁阿密MIA">邁阿密MIA</option>
+												<option value="溫哥華YVR">溫哥華YVR</option>
+												<option value="多倫多YYZ">多倫多YYZ</option>
+											</optgroup>
+											<optgroup label="歐洲">
+												<option value="倫敦LON">倫敦LON</option>
+												<option value="巴黎PAR">巴黎PAR</option>
+												<option value="阿姆斯特丹AMS">阿姆斯特丹AMS</option>
+												<option value="維也納VIE">維也納VIE</option>
+												<option value="布拉格PRG">布拉格PRG</option>
+												<option value="米蘭MIL">米蘭MIL</option>
+											</optgroup>
 			</select>
 		</div>
 
@@ -73,14 +109,49 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 		<div class="form-group">
 			<form:label path="destinationid"> 降落機場: </form:label>
 			<select name="destinationid" class="form-control" id="destinationid">
-				<optgroup label="亞洲">
-					<option value="松山TSA">松山TSA</option>
-					<option value="桃機TPE">桃機TPE</option>
-					<option value="台中TXG">台中TXG</option>
-					<option value="台南TNN">台南TNN</option>
-					<option value="高雄KHH">高雄KHH</option>
-					<option value="北京PEK">北京PEK</option>
-					<option value="東京TYO">東京TYO</option>
+				<optgroup label="台灣">
+												<option value="松山TSA">松山TSA</option>
+												<option value="台北TPE">台北TPE</option>
+												<option value="台中TXG">台中TXG</option>
+												<option value="台南TNN">台南TNN</option>
+												<option value="高雄KHH">高雄KHH</option>
+											</optgroup>
+											<optgroup label="中國">
+												<option value="香港HKG">香港HKG</option>
+												<option value="澳門MFM">澳門MFM</option>
+												<option value="北京PEK">北京PEK</option>
+												<option value="上海SHA">上海SHA</option>
+												<option value="天津TSN">天津TSN</option>
+												<option value="成都CTU">成都CTU</option>
+											</optgroup>
+											<optgroup label="日本">
+												<option value="東京TYO">東京TYO</option>
+												<option value="大阪OSA">大阪OSA</option>
+												<option value="名古屋NGO">名古屋NGO</option>
+												<option value="沖繩OKA">沖繩OKA</option>
+												<option value="札幌SPK">札幌SPK</option>
+												<option value="福岡FUK">福岡FUK</option>
+											</optgroup>
+											<optgroup label="韓國">
+												<option value="首爾SEL">首爾SEL</option>
+												<option value="釜山PUS">釜山PUS</option>
+											</optgroup>
+											<optgroup label="北美洲">
+												<option value="波士頓BOS">波士頓BOS</option>
+												<option value="紐約NYK">紐約NYK</option>
+												<option value="亞特蘭大ATL">亞特蘭大ATL</option>
+												<option value="邁阿密MIA">邁阿密MIA</option>
+												<option value="溫哥華YVR">溫哥華YVR</option>
+												<option value="多倫多YYZ">多倫多YYZ</option>
+											</optgroup>
+											<optgroup label="歐洲">
+												<option value="倫敦LON">倫敦LON</option>
+												<option value="巴黎PAR">巴黎PAR</option>
+												<option value="阿姆斯特丹AMS">阿姆斯特丹AMS</option>
+												<option value="維也納VIE">維也納VIE</option>
+												<option value="布拉格PRG">布拉格PRG</option>
+												<option value="米蘭MIL">米蘭MIL</option>
+											</optgroup>
 			</select>
 		</div>
 
@@ -114,14 +185,14 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 	<script>
 		$('#fastInput').click(function() {
-			$('#airline').val('華信');
-			$('#flightid').val('CJ426');
-			$('#originid').val('桃機TPE');
+			$('#airline').val('國泰');
+			$('#flightid').val('CJ523');
+			$('#originid').val('松山TSA');
 			$('#departuretime').val('2022-10-20');
-			$('#destinationid').val('東京TYO');
+			$('#destinationid').val('沖繩OKA');
 			$('#arrivaltime').val('2022-10-21');
 			$('#classid').val('2');
-			$('#fare').val('16799');
+			$('#fare').val('24599');
 		})
 	</script>
 

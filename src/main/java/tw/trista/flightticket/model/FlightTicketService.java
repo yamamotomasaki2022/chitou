@@ -41,6 +41,7 @@ public class FlightTicketService {
     }
 
     public FlightTicket selectByflightid(String flightid){  
+    	System.out.println(dao.findById(flightid).get());
     return dao.findById(flightid).get();  
     }
     
