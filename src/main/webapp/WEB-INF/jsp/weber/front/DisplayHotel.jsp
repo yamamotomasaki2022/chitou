@@ -8,9 +8,19 @@
 <title>ChiTou-景點門票-飯店房型</title>
     
 	<%@ include file="/WEB-INF/includes/weihan/style/HotelsStyleCSS.jsp"%>
-
-      
-
+<style>
+.zoomImage{
+    width:100%;
+    height:0;
+    padding-bottom: 60%;
+    overflow:hidden;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    background-size:cover;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
@@ -18,12 +28,10 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-7">
-          <div class="owl-single dots-absolute owl-carousel">
-            <img src="/images/weber/hotel/hotelNB${hotel.hotelID}/photo1.jpg" alt="Free HTML Template by Untree.co" class="img-fluid rounded-20" height="300px">
-            <img src="/images/weber/hotel/hotelNB${hotel.hotelID}/photo2.jpg" alt="Free HTML Template by Untree.co" class="img-fluid rounded-20" height="300px">
-            <img src="/images/weber/hotel/hotelNB${hotel.hotelID}/photo3.jpg" alt="Free HTML Template by Untree.co" class="img-fluid rounded-20" height="300px">
-            <img src="/images/weber/hotel/hotelNB${hotel.hotelID}/photo4.jpg" alt="Free HTML Template by Untree.co" class="img-fluid rounded-20" height="300px">
-            <img src="/images/weber/hotel/hotelNB${hotel.hotelID}/photo5.jpg" alt="Free HTML Template by Untree.co" class="img-fluid rounded-20" height="300px">
+          <div class="owl-single dots-absolute owl-carousel zoomImage">
+          	<c:forEach var="photo" items="${photos}">
+            <img src="${photo}" alt="Free HTML Template by Untree.co" class="img-fluid rounded-20">
+            </c:forEach>
           </div>
         </div>
         <div class="col-lg-5 pl-lg-5 ml-auto">

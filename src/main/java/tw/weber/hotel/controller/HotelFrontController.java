@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -68,6 +69,12 @@ public class HotelFrontController {
 		model.addAttribute("hotelID",hotelID);
 		Hotel hotel = fService.selectHotel(hotelID);
 		model.addAttribute("hotel",hotel);
+		int numberOfHotelPhoto = fService.getNumberOfHotelPhoto(hotelID);
+		ArrayList<String> photos = new ArrayList<String>();
+		for(int i = 1;i <= numberOfHotelPhoto;i++) {
+			photos.add("/images/weber/hotel/hotelNB"+ hotelID +"/photo"+ i +".jpg");
+		}
+		model.addAttribute("photos",photos);
 		return hotelPage;
 	}
 	

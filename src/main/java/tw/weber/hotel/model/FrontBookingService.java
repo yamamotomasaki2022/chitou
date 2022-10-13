@@ -1,5 +1,6 @@
 package tw.weber.hotel.model;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -82,5 +83,18 @@ public class FrontBookingService {
 		orderList.setTotalprice(Integer.parseInt(finishPaymentOrder.getTotalAmount()));
 		oRepo.save(orderList);
 		return orderList;
+	}
+	
+	public int getNumberOfHotelPhoto(int hotelID) {
+		File parentDir = new File(".//src//main//webapp//WEB-INF//resources//images//weber//hotel//" + "hotelNB" + hotelID);
+		int i = 0;
+		if(parentDir.exists()) {
+			File[] files = parentDir.listFiles();
+			for(File file:files) {
+				i++;
+				System.out.println(i);
+			}
+		}
+		return i;
 	}
 }

@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>ChiTou-飯店總覽</title>
 
-    	<%@ include file="/WEB-INF/includes/weihan/hotels/HotelsListCSS.jsp"%>
-    
+<%@ include file="/WEB-INF/includes/weihan/hotels/HotelsListCSS.jsp"%>
+
 </head>
 <body>
 	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
