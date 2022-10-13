@@ -19,8 +19,18 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 <!-- chart js api -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+<style>
+
+div {
+  color: #26b72b;
+  border:10px;
+}
+
+
+</style>
+
 
 
 
@@ -35,17 +45,26 @@
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
-<div style="width:300px;height:300px;border:3px #cccccc dashed">
-
+	<div>出國人口比例</div>
+<div style="width:400px;height:400px;border:3px #cccccc dashed;float:left">
 	<canvas id="myChart1" style="width:110%; max-width:600px"></canvas>
 </div>
 	
 	
-	<div style="width:700px;height:500px;border:3px #cccccc dashed">
+	<div style="width:600px;height:400px;border:3px #cccccc dashed; ;float:right">
 	
-	<canvas id="myChart2" style="width:100%;max-width:700px"></canvas>
+	<canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
 
 	</div>
+	
+
+	
+	<div style="width:400px;height:200px;border:3px #cccccc dashed;float: left">
+		
+	<canvas id="myChart3" style="width:100%;max-width:600px"></canvas>
+
+	</div>
+
 
 
 
@@ -74,107 +93,7 @@
 		
 	</script>
 
-	<script>
-	
-// 	var welcome = ${welcome_message}
-	
-	
-// 	if (welcome == 1) {
-// 		Swal.fire(
-// 				  'Welcome!',
-// 				  'Admin!',
-// 				  'success'
-// 				)
-// 	} else if (welcome == 2) {
-// 		Swal.fire(
-// 				  'Welcome!',
-// 				  'Manager!',
-// 				  'success'
-// 				)
 
-// 	} else if (welcome == 3) {
-// 		Swal.fire(
-// 				  'Welcome!',
-// 				  'Boss!',
-// 				  'success'
-// 				)
-
-// 	} else {
-		
-// 	}
-	
-	
-	</script>
-
-
-	<script>
-	
-	
-// 	var crud = "${crud}";
-	
-// 	console.log("crud:" +crud)
-	
-// 	if (crud == 1) {
-// 		Swal.fire(
-// 				  '讚！',
-// 				  '新增成功',
-// 				  'success'
-// 				).then((result) => 
-// 				$.ajax({
-// 				type:'get',
-// 				url:'/manager/crudBean',
-// 				success:function(data){
-// 					console.log(data);
-// 				}
-				
-// 				}
-// 				)
-				
-				
-// 				)
-				
-// 	} else if (crud == 2) {
-// 		Swal.fire(
-// 				  '',
-// 				  'Manager!',
-// 				  'success'
-// 				)
-// 	} else if (crud == 3) {
-// 		Swal.fire(
-// 				  '讚!',
-// 				  '更新成功!',
-// 				  'success'
-// 				).then((result) => 
-// 				$.ajax({
-// 					type:'get',
-// 					url:'/manager/crudBean',
-// 					success:function(data){
-// 						console.log(data);
-// 					}
-					
-// 					}
-// 					)
-// 	} else if (crud == 4) {
-// 		Swal.fire(
-// 				  '讚！',
-// 				  '刪除成功！',
-// 				  'success'
-// 				)
-// 				.then((result) => 
-// 				$.ajax({
-// 				type:'get',
-// 				url:'/manager/crudBean',
-// 				success:function(data){
-// 					console.log(data);
-// 				}
-				
-// 				}
-// 				)
-				
-// 	}else {
-		
-// 	}
-	</script>
 
 
 <script>
@@ -234,7 +153,29 @@ new Chart("myChart2", {
 });
 </script>
 
+<script>
+var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+var yValues = [55, 49, 44, 24, 15];
+var barColors = ["red", "green","blue","orange","brown"];
 
+new Chart("myChart3", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "World Wine Production 2018"
+    }
+  }
+});
+</script>
 
 </body>
 </html>
