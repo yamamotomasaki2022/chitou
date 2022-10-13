@@ -35,10 +35,17 @@
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
+<div style="width:300px;height:300px;border:3px #cccccc dashed">
+
 	<canvas id="myChart1" style="width:110%; max-width:600px"></canvas>
+</div>
+	
+	
+	<div style="width:700px;height:500px;border:3px #cccccc dashed">
 	
 	<canvas id="myChart2" style="width:100%;max-width:700px"></canvas>
 
+	</div>
 
 
 

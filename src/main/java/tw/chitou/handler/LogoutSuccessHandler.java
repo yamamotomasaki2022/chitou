@@ -24,7 +24,7 @@ public class LogoutSuccessHandler implements org.springframework.security.web.au
 			throws IOException, ServletException {
 		
 		request.setAttribute("logout", 1);
-		request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/NewHome.jsp").forward(request, response);
 		
 		
 		

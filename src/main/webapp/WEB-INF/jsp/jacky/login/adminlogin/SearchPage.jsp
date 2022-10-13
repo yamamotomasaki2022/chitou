@@ -48,7 +48,7 @@ border: 2px solid;
 	<div>
 	<select name="searchinfo">
 				<option value="memberid">會員編號</option>	
-				<option value="userid">賬號</option>
+				<option value="username">賬號</option>
 				<option value="auth">身份</option>
 				<option value="email">郵箱</option>
 
