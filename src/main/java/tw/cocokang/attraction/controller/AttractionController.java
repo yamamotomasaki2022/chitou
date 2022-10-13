@@ -39,6 +39,13 @@ public class AttractionController {
 		m.addAttribute("listAttraction", aService.getAll());
 		return path + "kangListView";
 	}
+	
+	@GetMapping("/AttractionList")
+	public String AttractionListActionk(Model m) {
+		m.addAttribute("listAttraction", aService.getAll());
+		return path1 + "AttractionList";
+	}
+	
 	//景點說明
 	@GetMapping("/Attractions")
 	public String AttractionListAction4(Model m) {
@@ -262,8 +269,4 @@ public class AttractionController {
 		aService.deletePlan(planid);
 		return "redirect:showAttractionPlans?attractionid="+attractionid;
 	}
-	
-	
-	
-	
 }

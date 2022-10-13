@@ -23,6 +23,7 @@
 <!--header css-->
 <link rel="stylesheet" href="css/coco/header/style.css">
 <link rel="stylesheet" href="css/coco/header/kang5.css">
+
 <!-- bootstrap -->
 <link rel="stylesheet" href="css/coco/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="css/coco/bootstrap/owl.carousel.min.css">
@@ -35,4 +36,6 @@
 <link rel="stylesheet" href="css/coco/bootstrap/aos.css">
 <link rel="stylesheet" href="css/coco/bootstrap/style.css">
 <link rel="stylesheet" href="/css/coco/vertical-layout-light/style.css">
+<link rel="stylesheet" href="/css/coco/themify-icons.css">
+
 

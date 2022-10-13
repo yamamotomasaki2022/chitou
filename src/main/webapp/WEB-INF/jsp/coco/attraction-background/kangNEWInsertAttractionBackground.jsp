@@ -77,13 +77,13 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group">
 											<form:label path="attLocation">景點位置:</form:label> 
 											<form:input type="text" path="attLocation" id="attLocation" class="form-control" name="attLocation" 
-												placeholder="請選擇新增的景點位置" />
+												 placeholder="請選擇新增的景點位置" />
 										</div>
 
 										<div class="form-group">
 											<form:label path="attDescription"> 景點說明: </form:label>
 											<div >
-												<form:textarea id="editor1" path="attDescription" name="attDescription" placeholder="請輸入新增的景點說明"></form:textarea>
+												<form:textarea id="attDescription" path="attDescription" name="attDescription" placeholder="請輸入新增的景點說明"></form:textarea>
 											</div>
 										</div>
 										
@@ -98,16 +98,19 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 
 										<button type="submit" name="submit" class="btn btn-primary mr-2">新增</button>
 										<a href="listAttractions"><button class="btn btn-light">返回</button></a>    
-										<button  class="btn btn-primary mr-2" id="fastinput" style="float:right;">一鍵輸入</button>
+										<button type="button" class="btn btn-primary mr-2" id="fastinput" style="float:right;">一鍵輸入</button>
 										
 										                    </form:form>
 							<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 					
 
 
-
+	<script src="/js/coco/bootstrap/jquery-3.4.1.min.js"></script>
 	<script>
 	
+// 	$('#fastinput').on('click',function{
+// 		console.log('yee')
+// 	})
 	
 	$('#fastinput').click(function(){
 		

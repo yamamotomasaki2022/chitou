@@ -1,4 +1,4 @@
-CKEDITOR.ClassicEditor.create(document.querySelector("#editor1"), {
+CKEDITOR.ClassicEditor.create(document.querySelector("#attDescription"), {
 	ckfinder: {
 			        uploadUrl: '/ckUploadCoco'
 			    },

@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>ChiTou-景點門票-景點說明</title>
+<%-- <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%> --%>
+
 	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 
 </head>
@@ -30,7 +32,7 @@
 				<br>
 
 
-				<h4 class="title">｜方案選擇</h4>
+				<h4 class="title" style="font-weight: 700;">｜方案選擇</h4>
 				<br>
 				<div class="custom-block" data-aos="fade-up">
 					<div class="custom-accordion" id="accordion_1">
@@ -159,7 +161,7 @@
 		<div class="container">
 			<!-- <div class="row justify-content-center mb-5"> -->
 			<div class="col-md- text">
-				<h4 class="title">｜景點說明</h4>
+				<h4 class="title" style="font-weight: 700;">｜景點說明</h4>
 				<br>
 				<h5>六福村主題遊樂園</h5>
 				<p>

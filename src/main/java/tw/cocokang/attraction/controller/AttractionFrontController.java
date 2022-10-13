@@ -20,6 +20,20 @@ public class AttractionFrontController {
 	
 	public String path = "coco/attraction-user/";
 	
+	@GetMapping("/AttractionSearch")
+	public String attraction(Model m){
+		List<Attraction> attractionlist = aService.getAll();
+		m.addAttribute("AttractionList",attractionlist);
+		return path + "AttractionList";
+	}
+	
+	@GetMapping("/AttracionSearchName")
+	public String attraction(@RequestParam String keyword,Model m) {
+		List<Attraction> attractionlist = aService.findAttractionsAction(keyword);
+		m.addAttribute("AttractionList",attractionlist);
+		return path + "AttractionList";
+	}
+	
 	@GetMapping("/AttractionPage")
 	public String AttractionListAction(@RequestParam int attID,Model m) {
 		Attraction attraction = aService.selectByAttid(attID);

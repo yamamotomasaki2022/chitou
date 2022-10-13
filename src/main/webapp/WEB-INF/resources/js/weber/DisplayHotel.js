@@ -48,7 +48,7 @@ function doSearch(){
                                 <div style="float:left;">
                                     <h3 style="color:red;">&nbsp;&nbsp;還剩 ${ele.roomAmount} 間房間</h3>
                                 </div>
-                                <a href="hotelOrder?${hotelID}&roomStyleID=${ele.styleID}&${dateStart}&${dateEnd}&${number}" style="float:right;" class="btn btn-primary text-white py-2 px-2">馬上訂房</a>
+                                <a href="bookingPage?${hotelID}&roomStyleID=${ele.styleID}&${dateStart}&${dateEnd}&${number}" style="float:right;" class="btn btn-primary text-white py-2 px-2">馬上訂房</a>
                                 <br>
                             </div>
                         </div>

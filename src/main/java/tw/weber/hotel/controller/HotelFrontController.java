@@ -39,16 +39,10 @@ public class HotelFrontController {
 	private FrontBookingService fService;
 	
 	private String suffix = "weber/front/";
-	private String main = suffix + "FrontMain";
 	private String searchPage = suffix + "SearchResult";
 	private String hotelPage = suffix + "DisplayHotel";
-	private String bookingPage = suffix + "orderHotel";
+	private String bookingPage = suffix + "HotelsOrder";
 	private String finishOrderPage = suffix + "CheckoutInfo";
-	
-	@GetMapping(path = "hotel")
-	private String frontPage() {
-		return main;
-	}
 	
 	@GetMapping(path = "searchHotel")
 	private String searchFront() {
@@ -198,23 +192,23 @@ public class HotelFrontController {
 //		return hotelPage;
 //	}
 	
-	@GetMapping(path = "hotelOrder")
-	private String hotelOrder(@RequestParam("roomStyleID")int roomstyleID,
-							  @RequestParam("hotelID")int hotelID,
-							  @RequestParam("dateStart")String dateStart,
-							  @RequestParam("dateEnd")String dateEnd,
-							  @RequestParam("number")int number,Model model) {
-		Hotel hotel = fService.selectHotel(hotelID);
-		RoomStyle style = fService.findStyle(dateStart,dateEnd,roomstyleID,number);
-		Room room = fService.findEmptyRoom(dateStart, dateEnd, roomstyleID);
-		model.addAttribute("hotel",hotel);
-		model.addAttribute("style",style);
-		model.addAttribute("room",room);
-		model.addAttribute("checkInDate",dateStart);
-		model.addAttribute("checkOutDate",dateEnd);
-		model.addAttribute("number",number);
-		return suffix + "HotelsOrder";
+//	@GetMapping(path = "hotelOrder")
+//	private String hotelOrder(@RequestParam("roomStyleID")int roomstyleID,
+//							  @RequestParam("hotelID")int hotelID,
+//							  @RequestParam("dateStart")String dateStart,
+//							  @RequestParam("dateEnd")String dateEnd,
+//							  @RequestParam("number")int number,Model model) {
+//		Hotel hotel = fService.selectHotel(hotelID);
+//		RoomStyle style = fService.findStyle(dateStart,dateEnd,roomstyleID,number);
+//		Room room = fService.findEmptyRoom(dateStart, dateEnd, roomstyleID);
+//		model.addAttribute("hotel",hotel);
+//		model.addAttribute("style",style);
+//		model.addAttribute("room",room);
+//		model.addAttribute("checkInDate",dateStart);
+//		model.addAttribute("checkOutDate",dateEnd);
+//		model.addAttribute("number",number);
+//		return suffix + "HotelsOrder";
 //		return suffix + "orderHotel";
-	}
+//	}
 	
 }
