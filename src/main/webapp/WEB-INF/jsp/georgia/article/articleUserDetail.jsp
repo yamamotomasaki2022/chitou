@@ -81,9 +81,15 @@ Article tt=(Article)request.getAttribute("findByID");
         });
         for(Reply r:search){
 		%>	
-			<td><img id="img" src="images/georgia/picture/354617.jpg" class="box" style="width:100px;height:100px"></td>
-			<td style="width:80%;"><%=r.getComment()%></td>
-			<td><input type="button" value="回覆"></td>
+			<td rowspan="2"  style="width:10%;background-color:blue;"><img id="img" src="images/georgia/picture/354617.jpg" class="box" style="width:99%;"></td>
+            <td style="background-color:yellow;"><%=r.getMember().getUsername()%></td>
+        </tr>
+        <tr>
+            <td style="background-color:red;"><%=r.getReplyTime()%></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="background-color:green;"><%=r.getComment()%></td>
+			</tr>
 			</tr>
 		<%}%>
 		

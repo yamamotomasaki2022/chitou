@@ -80,10 +80,14 @@ Article tt=(Article)request.getAttribute("findByID");
             }
         });
         for(Reply r:search){
-		%>	
-			<td><img id="img" src="images/georgia/picture/354617.jpg" class="box" style="width:100px;height:100px"></td>
-			<td style="width:80%;"><%=r.getComment()%></td>
-			<td><input type="button" value="回覆"></td>
+		%>	<td rowspan="2"><img id="img" src="images/georgia/picture/354617.jpg" class="box" style="width:100px;height:100px"></td>
+            <td><%=r.getMember().getUsername()%></td>
+        </tr>
+        <tr>
+            <td><%=r.getReplyTime()%></td>
+        </tr>
+        <tr>
+            <td colspan="2"><%=r.getComment()%></td>
 			</tr>
 		<%}%>
 		

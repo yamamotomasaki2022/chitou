@@ -1,7 +1,14 @@
 package tw.georgia.article.model;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 public interface ReplyRepository extends JpaRepository<Reply, Integer> {
 
+	@Modifying
+	@Query("from Reply where replyer= :replyer")
+	public List<Reply> findByReplyer(int replyer);
 }
