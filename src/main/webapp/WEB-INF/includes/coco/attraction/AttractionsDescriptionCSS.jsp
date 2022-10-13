@@ -19,23 +19,23 @@
 }
 </style>
 <link rel="stylesheet"
-	href="css/coco/attraction/datatables.net-bs4/dataTables.bootstrap4.css">
+	href="${pageContext.request.contextPath}/css/coco/attraction/datatables.net-bs4/dataTables.bootstrap4.css">
 <!--header css-->
-<link rel="stylesheet" href="css/coco/header/style.css">
-<link rel="stylesheet" href="css/coco/header/kang5.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coco/header/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coco/header/kang5.css">
 
 <!-- bootstrap -->
-<link rel="stylesheet" href="css/coco/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="css/coco/bootstrap/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coco/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coco/bootstrap/owl.carousel.min.css">
 <link rel="stylesheet"
-	href="css/coco/bootstrap/owl.theme.default.min.css">
-<link rel="stylesheet" href="css/coco/bootstrap/jquery.fancybox.min.css">
-<link rel="stylesheet" href="css/coco/bootstrap/icomoon/style.css">
-<link rel="stylesheet" href="css/coco/bootstrap/flaticon.css">
-<link rel="stylesheet" href="css/coco/bootstrap/daterangepicker.css">
-<link rel="stylesheet" href="css/coco/bootstrap/aos.css">
-<link rel="stylesheet" href="css/coco/bootstrap/style.css">
+	href="${pageContext.request.contextPath}/css/coco/bootstrap/owl.theme.default.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coco/bootstrap/jquery.fancybox.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coco/bootstrap/icomoon/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coco/bootstrap/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coco/bootstrap/daterangepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coco/bootstrap/aos.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coco/bootstrap/style.css">
 <!-- <link rel="stylesheet" href="/css/coco/vertical-layout-light/style.css"> -->
-<link rel="stylesheet" href="/css/coco/themify-icons.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}//css/coco/themify-icons.css">
 
 

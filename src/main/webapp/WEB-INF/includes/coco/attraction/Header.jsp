@@ -67,9 +67,9 @@
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
-					<a href="chitou.flightticket" class="dropdown-item"> <i class="ti-settings text-primary"></i>
-						機票總覽
-					</a> 
+					<a href="chitou.flightticket" class="dropdown-item"> <i
+						class="ti-settings text-primary"></i> 機票總覽
+					</a>
 				</div></li>
 		</ul>
 		<ul class="navbar-nav mr-lg-4">
@@ -79,9 +79,13 @@
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
-					<a class="dropdown-item"> <i class="ti-settings text-primary"></i>
-						景點總覽
-					</a> <a href="/member/sss" class="dropdown-item"> <i
+					<a href="/article.main" class="dropdown-item"> <i
+						class="ti-settings text-primary"></i> 文章總覽
+					</a>
+					 <a href="/article.user" class="dropdown-item"> <i
+						class="ti-settings text-primary"></i> 文章管理
+					</a> 
+					<a href="/member/sss" class="dropdown-item"> <i
 						class="ti-power-off text-primary"></i> 發表文章
 					</a>
 				</div></li>
@@ -136,18 +140,16 @@
 				</div></li>
 			<li class="nav-item nav-profile dropdown"><a
 				class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-				id="profileDropdown"> <img id="img1" src="/images/jacky/login/default1.png"
-					alt="selfie" />
+				id="profileDropdown"> <img id="img1"
+					src="/images/jacky/login/default1.png" alt="selfie" />
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
-					<a href="/uvmember/toMemberHomePage" class="dropdown-item"> <i class="ti-settings text-primary"></i>
-						個人頁面
-					</a> 
-					<a class="dropdown-item"> <i class="ti-settings text-primary"></i>
+					<a href="/uvmember/toMemberHomePage" class="dropdown-item"> <i
+						class="ti-settings text-primary"></i> 個人頁面
+					</a> <a class="dropdown-item"> <i class="ti-settings text-primary"></i>
 						Settings
-					</a> 
-					<a id="logout" href="/logout" class="dropdown-item"> <i
+					</a> <a id="logout" href="/logout" class="dropdown-item"> <i
 						class="ti-power-off text-primary"></i> 登出
 					</a>
 				</div></li>
@@ -159,17 +161,20 @@
 			<span class="icon-menu"></span>
 		</button>
 	</div>
-	
+
 	<script>
-	
-	var memberbasicinfo = ${memberbasicinfo.statusid};
-	
-	if (memberbasicinfo != null){
-		console.log('sss:' + memberbasicinfo)
-		$('#img1').attr('src', '/${memberbasicinfo.photo}')
+		var memberbasicinfo = ${memberbasicinfo};
+		
+		if(memberbasicinfo !=null){
+			var statusid = ${memberbasicinfo.statusid}
+
+		if (statusid != null) {
+				console.log('sss:' + memberbasicinfo)
+				$('#img1').attr('src', '/${memberbasicinfo.photo}')
+			}
+
 		}
-	
 	</script>
-	
+
 
 </nav>

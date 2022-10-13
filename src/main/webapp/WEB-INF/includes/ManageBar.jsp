@@ -62,7 +62,7 @@
 		</a>
 			<div class="collapse" id="icons">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="/article.main">討論區功能管理</a></li>
+					<li class="nav-item"><a class="nav-link" href="/article.admin">討論區功能管理</a></li>
 				</ul>
 			</div></li>
 

@@ -43,7 +43,7 @@ public class HotelFrontController {
 	private String searchPage = suffix + "SearchResult";
 	private String hotelPage = suffix + "DisplayHotel";
 	private String bookingPage = suffix + "HotelsOrder";
-	private String finishOrderPage = suffix + "CheckoutInfo";
+	private String finishOrderPage = "finish";
 	
 	@GetMapping(path = "searchHotel")
 	private String searchFront() {

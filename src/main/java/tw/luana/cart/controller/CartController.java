@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import tw.chitou.util.ECPayHelper;
 import tw.cocokang.attraction.model.Attraction;
 import tw.cocokang.attraction.model.AttractionService;
 import tw.cocokang.attraction.model.Pricingplan;
@@ -39,11 +40,12 @@ import tw.luana.attraction.model.AttractionService_Luana;
 import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartService;
 import tw.luana.order.model.OrderService;
+import tw.weber.hotel.model.Reservation;
 import tw.luana.order.model.AttractionOrderDetail;
 import tw.luana.order.model.OrderList;
 
 @Controller
-@SessionAttributes("memberbasicinfo")
+@SessionAttributes({"memberbasicinfo","TradeNo","paymentDate","TotalAmount","totalprice","checkOutCart"})
 public class CartController {
 
 	@Autowired
@@ -96,15 +98,16 @@ public class CartController {
 
 	// 查看購物車
 	@RequestMapping(path = "cart", method = RequestMethod.GET)
-	public String showCart(
-			//@RequestParam("memberid") int memberid,
-			Model m) {
-
-		int memberid = 1;
+	public String showCart(	Model m) {
+		MemberBasicInfo member = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+		Integer memberid = member.getMemberid();
 		
+		if(cartService.showCart(memberid).isEmpty()) {
+			return path_Luana_Cart + "Luana_cartEmpty";
+		}else {		
 		m.addAttribute("cartList", cartService.showCart(memberid));
-
 		return path_Luana_Cart + "Luana_cart";
+		}
 	}
 
 	// 移除購物車商品
@@ -113,7 +116,8 @@ public class CartController {
 			//@RequestParam("memberid") int memberid,
 			Model m) {
 
-		int memberid = 1;
+		MemberBasicInfo member = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+		Integer memberid = member.getMemberid();
 		
 		cartService.removeCartItemfromcart(itemId);
 		m.addAttribute("cartList", cartService.showCart(memberid));
@@ -128,7 +132,8 @@ public class CartController {
 			//@RequestParam("memberid") int memberid,
 			Model m) {
 
-		int memberid = 1;
+		MemberBasicInfo member = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+		Integer memberid = member.getMemberid();
 		
 		if (count.equals("inc")) {
 			int newQuantity = ++quantity;
@@ -141,73 +146,115 @@ public class CartController {
 		return path_Luana_Cart + "Luana_cart";
 	}
 
+	//確認結帳內容
+		@RequestMapping(path = "confirmBeforeCheckout", method = RequestMethod.POST)
+		public String confirmBeforeCheckout(Model m) {
+			MemberBasicInfo member = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+			Integer memberid = member.getMemberid();
+			
+				m.addAttribute("cartList", cartService.showCart(memberid));
+				return path_Luana_Cart + "Luana_cartCheckoutConfirm";
+			
+		}
+	
 	//整車購買
 	@RequestMapping(path = "buyFromCart", method = RequestMethod.POST)
-	public String buyFromCart(@RequestParam("memberid") Integer memberid, @RequestParam("totalPrice") Integer totalprice, Model m,
-			OrderList orderList) {
-		String orderTypeName = "景點";
-		String orderType = "A";
-		String orderStatus = "1";
-		String orderId = orderType + Long.toHexString(System.currentTimeMillis());
+	public String buyFromCart(@RequestParam("totalPrice") String totalprice,Model m) {
+		
+		MemberBasicInfo member = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+		Integer memberid = member.getMemberid();
+		List<Cart> cartList = cartService.showCart(memberid);
+		List<AttractionOrderDetail> checkOutCart = cartService.setCartPayment(cartList);
+		String clientBackUrl = "http://localhost:8080/buySuccess";
 		
 		Date date = new Date();
-		String OrderDay = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+		String OrderDay = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date);
 		
-		//加入訂單總表
+		String orderId = checkOutCart.iterator().next().getOrderid();
+		String itemName = "購物車訂單";
+		
+		m.addAttribute("checkOutCart",checkOutCart);
+		
+		m.addAttribute("TradeNo",orderId);
+		m.addAttribute("paymentDate",OrderDay);
+		m.addAttribute("ItemName",itemName);
+		m.addAttribute("TotalAmount",totalprice);
+		m.addAttribute("ClientBackURL",clientBackUrl);
+		ECPayHelper ecPayHelper = new ECPayHelper();
+		String checkMacValue = ecPayHelper.getCheckValue(orderId, itemName,totalprice, OrderDay, "test", clientBackUrl);
+		m.addAttribute("checkMacValue",checkMacValue);
+				
+		return "weber/front/ECpay";
+	}
+	
+	//付款完存入資料庫
+	@GetMapping(path = "buySuccess")
+	private String success(Model model) {
+		String orderid = (String)model.getAttribute("TradeNo");
+		String OrderDay = (String)model.getAttribute("paymentDate");
+		List<AttractionOrderDetail> checkOutCart = (List<AttractionOrderDetail>)model.getAttribute("checkOutCart");
+		String totalprice = (String) model.getAttribute("TotalAmount");
+		Integer totalInt = Integer.parseInt(totalprice);
+		String orderTypeName = "景點";
+		System.err.println("orderid"+ orderid);
+		System.err.println("orderid"+ orderid);
+		System.err.println("orderid"+ orderid);
+		System.err.println("orderid"+ orderid);
+		System.err.println("orderid"+ orderid);
+		MemberBasicInfo member = (MemberBasicInfo)model.getAttribute("memberbasicinfo");
+		Integer memberid = member.getMemberid();
+		
+		OrderList orderList = new OrderList();
+		
+		orderList.setOrderid(orderid);
 		orderList.setOrdertype(orderTypeName);
-		orderList.setOrderid(orderId);
 		orderList.setOrderdate(OrderDay);
-		orderList.setOrderstatus(orderStatus);
-		orderList.setTotalprice(totalprice);
+		orderList.setOrderstatus("已付款");
+		orderList.setTotalprice(totalInt);
+		orderList.setMemberid(memberid);
 		
-		orderService.addToOrderList(orderList);	
-		
-		//加入景點詳細訂單
-		orderService.AttractionToOrder(memberid, orderId);
+		orderService.AttractionToOrder(checkOutCart);
+		orderService.addToOrderList(orderList);
 		
 		//結帳完成移除購物車品項
 		cartService.clearCart(memberid);
 		
-		m.addAttribute("cartList", cartService.showCart(memberid));
+		model.addAttribute("orders",orderService.showOrderLists(memberid));
 		
-		return path_Luana_Cart + "Luana_cart";
+		return path_Luana_Order + "Luana_order";
 	}
-
-	// 單一購買景點方案
-//	@RequestMapping(path = "buyIt",method = RequestMethod.POST)
-//	public String buyFromCart(@RequestParam("planName") String planName,@RequestParam("attractionName") String attractionName,
-//			@RequestParam("planId") int planId, @RequestParam("planFee") int planFee,
-//			@RequestParam("quantity") int quantity, @RequestParam("attractionId") int attractionId,@RequestParam("itemId") int itemId, 
-//			@ModelAttribute AttractionOrderDetail attrOrderDetail,
-//			OrderList orderList,Model m) {
-//		
+	
+//	//整車購買
+//	@RequestMapping(path = "buyFromCart", method = RequestMethod.POST)
+//	public String buyFromCart(@RequestParam("memberid") Integer memberid, @RequestParam("totalPrice") Integer totalprice, Model m,
+//			OrderList orderList) {
+//		String orderTypeName = "景點";
 //		String orderType = "A";
+//		String orderStatus = "1";
 //		String orderId = orderType + Long.toHexString(System.currentTimeMillis());
 //		
 //		Date date = new Date();
 //		String OrderDay = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 //		
-//		orderList.setOrdertype(1);
-//		orderList.setOrderId(orderId);
+//		//加入訂單總表
+//		orderList.setOrdertype(orderTypeName);
+//		orderList.setOrderid(orderId);
 //		orderList.setOrderdate(OrderDay);
-//		orderList.setOrderstatus("1");
-//		orderList.setTotalprice(planFee);
+//		orderList.setOrderstatus(orderStatus);
+//		orderList.setTotalprice(totalprice);
 //		
-//		orderService.addToOrderList(orderList);
+//		orderService.addToOrderList(orderList);	
 //		
-//		attrOrderDetail.setOrderid(orderId);
-//		attrOrderDetail.setAttractionid(attractionId);
-//		attrOrderDetail.setAttractionname(attractionName);
-//		attrOrderDetail.setPlanname(planName);
-//		attrOrderDetail.setQuantity(quantity);
-//		attrOrderDetail.setPrice(planFee);
-//	
-//		orderService.AttractionToOrder(attrOrderDetail);
+//		//加入景點詳細訂單
+//		orderService.AttractionToOrder(memberid, orderId);
 //		
+//		//結帳完成移除購物車品項
+//		cartService.clearCart(memberid);
 //		
-//		cartService.removeCartItemfromcart(itemId);
-//		m.addAttribute("cartList",cartService.showCart());
+//		m.addAttribute("cartList", cartService.showCart(memberid));
+//		
 //		return path_Luana_Cart + "Luana_cart";
 //	}
-	
+
+
 }
