@@ -119,9 +119,8 @@ $(function(){
 <%-- 							<td><c:out value="${attraction.attDescription.substring(5,6)}" /></td> --%>
 <%-- 							<td><c:out value="${attraction.attNotice}" /></td> --%>
 							<td>
-							<a href="showView?attid=${attraction.attid}" >
-							<button class="btn btn-link" >查看詳細內文
-							</button>
+							<a href="AttractionPage?attID=${attraction.attid}" >
+							查看詳細內文
 							</a>
 							</td>
 							<td>

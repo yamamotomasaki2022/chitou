@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ChiTou-景點門票-飯店房型</title>
+    	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
     
 	<%@ include file="/WEB-INF/includes/weihan/style/HotelsStyleCSS.jsp"%>
 <style>
@@ -402,6 +403,7 @@
   </div>
       	<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
       	<%@ include file="/WEB-INF/includes/weihan/style/HotelsStyleJS.jsp"%>
+	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
 
 <script>
 $("#date").daterangepicker({

@@ -7,15 +7,31 @@
 <meta charset="UTF-8">
 <title>ChiTou-景點門票-景點說明</title>
 	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
+<style>
+.zoomImage{
+    width:100%;
+    height:0;
+    padding-bottom: 100%;
+    overflow:hidden;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    background-size:cover;
+}
+</style>
+<%-- 	<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%> --%>
+<!-- 	<script src="/js/coco/hoverable-collapse.js"></script> -->
+<!-- <script src="/js/coco/template.js"></script> -->
 </head>
-<body>
+<body class="body2">
 	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
 	<!-- 封面滑動照片 -->
 	<div class="container my-4">
 		<div class="mb-4">
-			<div class="slideshow">
-				<img src="https://picsum.photos/900/400?random=1" alt="" /> 
-			</div>
+<!-- 			<div class="slideshow"> -->
+				<img src="/images/coco/attractionpicture/${attraction.photo}" alt="" height="70%" width="70%" style="display:block;margin:auto;"/> 
+<!-- 			</div> -->
 		</div>
 
 		<br>
@@ -76,9 +92,9 @@
 						<div class="owl-single owl-carousel no-nav">
 							<div class="testimonial mx-auto">
 								<figure class="img-wrap">
-									<img src="images/person_2.jpg" alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/image4.jpg" alt="Image" class="img-fluid">
 								</figure>
-								<h3 class="name">Adam Aderson</h3>
+								<h3 class="name">遠雄海洋樂園</h3>
 								<blockquote>
 									<p>&ldquo;There live the blind texts. Separated they live
 										in Bookmarksgrove right at the coast of the Semantics, a large
@@ -88,9 +104,9 @@
 
 							<div class="testimonial mx-auto">
 								<figure class="img-wrap">
-									<img src="images/person_3.jpg" alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/image5.jpg" alt="Image" class="img-fluid">
 								</figure>
-								<h3 class="name">Lukas Devlin</h3>
+								<h3 class="name">麗寶樂園</h3>
 								<blockquote>
 									<p>&ldquo;There live the blind texts. Separated they live
 										in Bookmarksgrove right at the coast of the Semantics, a large
@@ -100,9 +116,9 @@
 
 							<div class="testimonial mx-auto">
 								<figure class="img-wrap">
-									<img src="images/person_4.jpg" alt="Image" class="img-fluid">
+									<img src="images/coco/newhomepage/image6.jpg" alt="Image" class="img-fluid">
 								</figure>
-								<h3 class="name">Kayla Bryant</h3>
+								<h3 class="name">六福村樂園</h3>
 								<blockquote>
 									<p>&ldquo;There live the blind texts. Separated they live
 										in Bookmarksgrove right at the coast of the Semantics, a large

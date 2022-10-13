@@ -41,12 +41,10 @@
 			                	<a href="/images/weber/hotel/hotelNB${bean.hotelID}/photo1.jpg">
 			                	<img src="/images/weber/hotel/hotelNB${bean.hotelID}/photo1.jpg" width="100" height="100" ></a>
 			                </td>
-			                <td>${bean.hotelID}</td>
+<%-- 			                <td>${bean.hotelID}</td> --%>
 			                <td>${bean.name}</td>
-			                <td>${bean.type}</td>
 			                <td>${bean.country}</td>
 			                <td>${bean.status}</td>
-			                <td>${bean.capacity}</td>
 			                <td>${bean.owner}</td>
 			                <td>${bean.averagePrice}</td>
 			                <td>
@@ -87,8 +85,8 @@
 		<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
-		var type = ["photos","hotelID","name","type","country","status","capacity","owner","averagePrice"];
-		var typeName = ["照片","飯店ID","飯店名","類型","國家","狀態","可容納人數","業主名稱","平均房價"];
+		var type = ["photos","name","country","status","owner","averagePrice"];
+		var typeName = ["照片","飯店名","國家","狀態","業主名稱","平均房價"];
 	    $(document).ready( function () {
 	        for(var i=1;i<type.length;i++){
 	        	let option = '"<option value="'+type[i]+'">'+typeName[i]+'</option>"';

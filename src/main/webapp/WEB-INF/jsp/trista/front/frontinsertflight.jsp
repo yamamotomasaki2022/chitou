@@ -127,9 +127,9 @@ response.setCharacterEncoding("UTF-8");
 	</script>
 	
 
-<%-- <%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%> --%>
+<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
 
-<%-- <%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%> --%>
+<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
 
 </body>
 </html>

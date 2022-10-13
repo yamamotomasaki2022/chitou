@@ -7,7 +7,10 @@
 <meta charset="UTF-8">
 <title>ChiTou-飯店總覽</title>
 
+
 <%@ include file="/WEB-INF/includes/weihan/hotels/HotelsListCSS.jsp"%>
+	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
+
 
 </head>
 <body>
@@ -24,7 +27,7 @@
 
 
                 <div class="wrap clearfix">
-                    <br><br>
+               <br> <br><br> <br><br>
 <!-- search bar -->
     	<%@ include file="/WEB-INF/includes/weihan/hotels/HotelsListSearch.jsp"%>
 
@@ -92,7 +95,11 @@
 	<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
 
     <!--wow-->
+
+    
+      		<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
       	<%@ include file="/WEB-INF/includes/weihan/hotels/HotelsListJS.jsp"%>
+      		
       	
       	
   	<script type="text/javascript" src="/js/weber/SearchResult.js"></script>

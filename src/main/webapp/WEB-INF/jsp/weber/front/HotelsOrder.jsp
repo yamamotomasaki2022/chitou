@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>ChiTou-景點門票-飯店訂單資料</title>
+	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
+
 	<%@ include file="/WEB-INF/includes/weihan/orders/HotelsOrdersCSS.jsp"%>
 
 </head>
@@ -339,6 +341,7 @@
         </main>
     </div>
     	<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
+    	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
     
       	<%@ include file="/WEB-INF/includes/weihan/orders/HotelsOrdersJS.jsp"%>
   	    <script type="text/javascript" src="/js/weber/ecPay.js"></script>

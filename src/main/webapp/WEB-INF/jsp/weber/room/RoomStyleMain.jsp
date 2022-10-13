@@ -49,15 +49,14 @@ response.setContentType("text/html;charset=UTF-8");
 	            <tbody>
 					<c:forEach var="bean" items="${result}">
 						<tr>
-							<td>
-				               	<a href="/images/weber/roomStyle/styleNB${bean.styleID}/photo1.jpg">
-				               	<img src="/images/weber/roomStyle/styleNB${bean.styleID}/photo1.jpg" width="100" height="100" ></a>
-				            </td>
+<!-- 							<td> -->
+<%-- 				               	<a href="/images/weber/roomStyle/styleNB${bean.styleID}/photo1.jpg"> --%>
+<%-- 				               	<img src="/images/weber/roomStyle/styleNB${bean.styleID}/photo1.jpg" width="100" height="100" ></a> --%>
+<!-- 				            </td> -->
 							<td>${bean.styleID}</td>
 				            <td>${bean.name}</td>
 				            <td>${bean.capacity}</td>
 				            <td>${bean.price}</td>
-				            <td>${bean.bed}</td>
 				            <td>${bean.status}</td>
 			            	<td>
 			            		<% int i=0; %>
@@ -130,8 +129,8 @@ response.setContentType("text/html;charset=UTF-8");
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<script type="text/javascript" src="/js/weber/RoomStyleBackMain.js"></script>
 		<script>
-		var type = ["photos","styleID","name","capacity","price","bed","status"];
-		var typeName = ["照片","房間風格ID","名稱","容量","價格","床位數量","狀態","房間數量"];
+		var type = ["styleID","name","capacity","price","status"];
+		var typeName = ["房間風格ID","名稱","容量","價格","狀態","房間數量"];
 	    $(document).ready( function () {
 	        for(var i=1;i<type.length;i++){
 	        	let option = '"<option value="'+type[i]+'">'+typeName[i]+'</option>"';

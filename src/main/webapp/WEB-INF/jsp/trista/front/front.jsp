@@ -12,7 +12,7 @@
 <title>來Chitou訂機票</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/trista/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="/css/trista/bootstrap.min.css"> -->
 <!-- <link rel="stylesheet" href="/css/trista/bootstrap-theme.min.css"> -->
 <!-- <link rel="stylesheet" href="/css/trista/fontAwesome.css"> -->
 <!-- <link rel="stylesheet" href="/css/trista/hero-slider.css"> -->
@@ -41,8 +41,10 @@
 
 
 	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
-
+	<div class="container my-4">
 	<fieldset>
+	<br>
+	<br>
 		<h1 class="card-title text-primary">&nbsp;即刻上Chitou預訂最低價機票！</h1>
 		<div class="col-md-5 col-md-offset-1">
 			<section id="first-tab-group" class="tabgroup">
@@ -214,7 +216,7 @@
 			
 		})
 	</script>
-<%-- 		<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%> --%>
-<%-- 		<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%> --%>
+		<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
+		<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
 </body>
 </html>

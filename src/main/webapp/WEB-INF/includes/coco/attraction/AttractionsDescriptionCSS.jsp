@@ -35,7 +35,7 @@
 <link rel="stylesheet" href="css/coco/bootstrap/daterangepicker.css">
 <link rel="stylesheet" href="css/coco/bootstrap/aos.css">
 <link rel="stylesheet" href="css/coco/bootstrap/style.css">
-<link rel="stylesheet" href="/css/coco/vertical-layout-light/style.css">
+<!-- <link rel="stylesheet" href="/css/coco/vertical-layout-light/style.css"> -->
 <link rel="stylesheet" href="/css/coco/themify-icons.css">
 
 

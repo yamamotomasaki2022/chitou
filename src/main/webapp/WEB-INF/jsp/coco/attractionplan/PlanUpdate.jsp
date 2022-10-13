@@ -68,7 +68,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 										<br>
 
 										<button type="submit" name="submit" class="btn btn-primary mr-2">修改</button>
-										<a href="showAttractionPlans"><button class="btn btn-light">返回</button></a> 
+										<a href="showAttractionPlans?attractionid=${plan.attraction.attid}"><button type="button" class="btn btn-light">返回</button></a> 
 									</form>
 							<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 					

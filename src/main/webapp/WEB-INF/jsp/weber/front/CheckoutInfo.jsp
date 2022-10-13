@@ -5,44 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>結帳資訊</title>
-<script src="/css/wei/js/jquery-3.4.1.min.js"></script>
-<style>
-        fieldset {
-            width: 500px;
-            border: 2px solid black;
-            border-radius: 15px;
-            margin: 15px;
-        }
-
-        legend {
-            /* text-align: center; */
-            margin-left: 50px;
-        }
-
-        .st1 {
-            width: 450px;
-            border-bottom: 3px dashed #ADADAD;
-            margin: 20px;
-            padding-bottom: 10px;
-        }
-
-        .sub {
-            width: 450px;
-            margin: 20px;
-            text-align: center;
-        }
-
-        .t1 {
-            width: 100px;
-            float: left;
-            /* border: 1px solid red; */
-            text-align: right;
-        }
-
-        textarea {
-            resize: none;
-        }
-    </style>
 </head>
 <body>
 <div align="center">

@@ -1562,27 +1562,27 @@ body {
     transition: all 0.5s ease-in-out 0s;
 }
 
-.appsLand-btn:hover,
-.appsLand-btn:focus,
-.appsLand-btn:active {
-    text-decoration: none;
-    outline: none;
-}
+/* .appsLand-btn:hover, */
+/* .appsLand-btn:focus, */
+/* .appsLand-btn:active { */
+/*     text-decoration: none; */
+/*     outline: none; */
+/* } */
 
-.appsLand-btn:hover {
-    box-shadow: 0 3px 25px rgba(2, 3, 3, 0.25);
-    background: #4B49AC;
-}
+/* .appsLand-btn:hover { */
+/*     box-shadow: 0 3px 25px rgba(2, 3, 3, 0.25); */
+/*     background: #4B49AC; */
+/* } */
 
-.appsLand-btn.appsLand-btn-larg {
-    padding: 20px 40px;
-}
+/* .appsLand-btn.appsLand-btn-larg { */
+/*     padding: 20px 40px; */
+/* } */
 
-.appsLand-btn.appsLand-btn-larg i {
-    margin-right: 9px;
-    font-size: 24px;
-    vertical-align: sub;
-}
+/* .appsLand-btn.appsLand-btn-larg i { */
+/*     margin-right: 9px; */
+/*     font-size: 24px; */
+/*     vertical-align: sub; */
+/* } */
 
 /*appsLand-btn*/
 

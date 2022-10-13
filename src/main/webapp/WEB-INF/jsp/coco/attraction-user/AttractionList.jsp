@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>ChiTou-景點門票-景點總覽</title>
-<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+
+<%-- <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%> --%>
 
 <!-- 分頁 -->
 <link rel="stylesheet" type="text/css" href="css/coco/bobson/master.css">
@@ -30,7 +31,7 @@
 <link rel="stylesheet" href="css/coco/list/jquery-ui.min.css">
 
 <!--bootstrap.min.css -->
-<link rel="stylesheet" href="css/coco/list/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="css/coco/list/bootstrap.min.css"> -->
 
 <!-- bootsnav -->
 <link rel="stylesheet" href="css/coco/list/bootsnav.css">
@@ -46,7 +47,6 @@
 
 
 <script src="assets/js/jquery.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
 
 		<!--modernizr.min.js-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
@@ -81,9 +81,12 @@
 
 		<!--Custom JS-->
 		<script src="assets/js/custom.js"></script>
+		
+			<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
+		
 </head>
 <body>
-<%-- 	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%> --%>
+	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
 
 	<!--about-us start -->
 	<section id="home" class="about-us">
@@ -129,20 +132,12 @@
 				<div class="col-md-12">
 					<div class="single-travel-boxes">
 						<div id="desc-tabs" class="desc-tabs">
+																	<div class="col-lg-12 col-md-4 col-sm-12">
+						
 
-
-
-							<!-- Tab panes -->
-							<div class="tab-content">
-
-								<div role="tabpanel" class="tab-pane active fade in" id="tours">
-									<div class="tab-para">
-
-										<div class="row">
-											<div class="col-lg-12 col-md-4 col-sm-12">
-												<div class="single-tab-select-box">
-
-													<h2>搜尋景點</h2>
+<div class="single-tab-select-box">
+<br>
+													<h2 class="container">搜尋景點</h2>
 
 													<div class="custom-input-group">
 														<form action="AttracionSearchName" method="get">
@@ -157,6 +152,34 @@
 
 
 												</div>
+																								</div>
+												
+
+							<!-- Tab panes -->
+<!-- 							<div class="tab-content"> -->
+
+								<div role="tabpanel" class="tab-pane active fade in" id="tours">
+									<div class="tab-para">
+
+										<div class="row">
+											<div class="col-lg-12 col-md-4 col-sm-12">
+<!-- 												<div class="single-tab-select-box"> -->
+
+<!-- 													<h2>搜尋景點</h2> -->
+
+<!-- 													<div class="custom-input-group"> -->
+<!-- 														<form action="AttracionSearchName" method="get"> -->
+<!-- 															<input type="text" name="keyword" class="form-control" -->
+<!-- 																placeholder="輸入您想查詢的景點"> -->
+<!-- 															<button type="submit" class="appsLand-btn subscribe-btn">搜尋</button> -->
+<!-- 														</form> -->
+<!-- 														<div class="clearfix"></div> -->
+
+<!-- 													</div> -->
+
+
+
+<!-- 												</div> -->
 												<!--/.single-tab-select-box-->
 											</div>
 											<!--/.col-->
@@ -174,7 +197,7 @@
 
 
 
-							</div>
+<!-- 							</div> -->
 							<!--/.tab content-->
 						</div>
 						<!--/.desc-tabs-->
@@ -209,7 +232,7 @@
 					<c:forEach var="attraction" items="${AttractionList}">
 						<div class="col-md-4 col-sm-6">
 							<div class="single-package-item">
-								<img src="/images/coco/newhomepage/image6.jpg" alt="package-place">
+								<img src="/images/coco/attractionpicture/${attraction.photo}" alt="package-place">
 								<div class="single-package-item-txt">
 									<h3>${attraction.attName}</h3>
 									<div class="packages-para">
@@ -283,9 +306,10 @@
 			</div>
 
 
+	<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
 
 		</div>
-	<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
+	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
 
 </body>
 </html>
