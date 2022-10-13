@@ -13,14 +13,14 @@
 						</div>
 						<div class="widget">
 							<ul class="list-unstyled social">
-								<li><a href="#"><span class="icon-twitter"></span></a></li>
-								<li><a href="#"><span class="icon-instagram"></span></a></li>
-								<li><a href="#"><span class="icon-facebook"></span></a></li>
-								<li><a href="#"><span class="icon-linkedin"></span></a></li>
-								<li><a href="#"><span class="icon-dribbble"></span></a></li>
-								<li><a href="#"><span class="icon-pinterest"></span></a></li>
-								<li><a href="#"><span class="icon-apple"></span></a></li>
-								<li><a href="#"><span class="icon-google"></span></a></li>
+								<li><a href="#"><span class="fa-brands fa-twitter"></span></a></li>
+								<li><a href="#"><span class="fa-brands fa-instagram""></span></a></li>
+								<li><a href="#"><span class="fa-brands fa-facebook-f"></span></a></li>
+								<li><a href="#"><span class="fa-brands fa-linkedin-in"></span></a></li>
+								<li><a href="#"><span class="fa-solid fa-basketball"></span></a></li>
+								<li><a href="#"><span class="fa-brands fa-pinterest"></span></a></li>
+								<li><a href="#"><span class="fa-brands fa-apple"></span></a></li>
+								<li><a href="#"><span class="fa-brands fa-google"></span></a></li>
 							</ul>
 						</div>
 					</div>

@@ -11,6 +11,9 @@
 <!-- plugins:js -->
 <script src="/js/coco/vendor.bundle.base.js"></script>
 <!-- inject:js -->
+<!--icon-->
+	<script src="https://kit.fontawesome.com/6c4c414686.js" crossorigin="anonymous"></script>
+	
 <script src="/js/coco/off-canvas.js"></script>
 <script src="/js/coco/hoverable-collapse.js"></script>
 <script src="/js/coco/template.js"></script>
