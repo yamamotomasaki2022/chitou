@@ -138,7 +138,7 @@ public class LoginController {
 		memberbean.setPassword(password);
 		lservice.adminUpdateMember(memberbean);
 		
-		return "Home";
+		return "NewHome";
 	}
 	
 	
