@@ -59,7 +59,7 @@ public class Reservation{
 	private String orderStatus;
 	
 	@Column(name = "hotelid")
-	private int hotelID;
+	private Integer hotelID;
 	
 	@Transient
 	private String totalAmount;
@@ -215,11 +215,11 @@ public class Reservation{
 		this.orderStatus = orderStatus;
 	}
 	
-	public int getHotelID() {
+	public Integer getHotelID() {
 		return hotelID;
 	}
 
-	public void setHotelID(int hotelID) {
+	public void setHotelID(Integer hotelID) {
 		this.hotelID = hotelID;
 	}
 

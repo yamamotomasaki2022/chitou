@@ -47,15 +47,15 @@
 						<td>${order.orderid}</td>
 						<td>${order.totalprice}</td>
 						<td>狀態：${order.orderstatus}</td>
-					
-						
-						
-						<td>
-						<form action="orderDetail" method="post">							
-						<input type="hidden" name="orderid" value="${order.orderid}"/>
-						<input class="btn btn-sm btn-primary" type="submit" value="詳細">
-						</form>
+	
+					 	<td>
+							<form action="orderDetail" method="post">							
+								<input type="hidden" name="orderid" value="${order.orderid}"/>
+								<input type="hidden" name="ordertype" value="${order.ordertype}"/>
+								<input class="btn btn-sm btn-primary" type="submit" value="詳細">
+							</form>
 						</td>
+					
 					</tr>
 			</c:forEach>
 			</tbody>	

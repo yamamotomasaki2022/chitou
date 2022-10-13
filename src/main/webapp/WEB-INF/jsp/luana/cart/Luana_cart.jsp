@@ -31,36 +31,33 @@
     	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
         <%@ include file="../Luana_include/navbar.jsp" %>
        
-            <div class="container">
-                <div class="d-flex py-3">
-                    		<c:set var="total" value="${0}" />
-                    	 <c:forEach var="Cart" items="${cartList}">
-                    		<c:set var="total" value="${total+Cart.planfee * Cart.quantity}" />
-                    		
-                    	 </c:forEach>
-                    <h3>Total: 
-                    	${total} 
-                     </h3>		
-		
-			 <form action="buyFromCart" method="post" class="form-inline" >
-				<!-- 未來接新傑會員id -->
-              	<input type="hidden" name="memberid" value="1"/>
-             	<input type="hidden" name="totalPrice" value="${total}"/>
-              	<input type="submit"  class="btn btn-primary"  value="結帳">
-             </form>
-					
-                </div>
+            <div class="container">                
+                <div class="col-9" style="display:inline-block;float:left;">
                 <table class="table table-loght">
-
+					<thead>
+						<tr>
+							<th>購物車一覽</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
                     <tbody>
-	                    <tr>
+	                  <!--  
+	                  	<tr>
 	                    	<td><input type="checkbox" name="itemId" value="checkAll"></td>
 	                    	<td>checkAll</td>
 	                    </tr> 
+	                   -->   
                       	  <c:forEach var="Cart" items="${cartList}">
                         <tr>
+                        <!--  
                         	<td><input type="checkbox" name="itemId" value="${Cart.itemid}"></td>
-                            <td>${Cart.attractionname}</td>
+                        -->    
+                        	<td>${Cart.attractionname}</td>
                             <td>${Cart.planname}</td>
                             <td>${Cart.planfee}</td>                     
 							
@@ -100,6 +97,30 @@
                 </table>
             </div>
             
+            
+            <div class="col-3" style="display:inline-block;float:right;">
+                 
+                 
+            	<div class="card">
+      				<div class="card-body">
+                  	<c:set var="total" value="${0}" />
+                    <c:forEach var="Cart" items="${cartList}">
+                    <c:set var="total" value="${total+Cart.planfee * Cart.quantity}" />
+                    </c:forEach>	
+       					<h5 class="card-title">Total: ${total}</h5>
+                 
+                 
+					 <form action="confirmBeforeCheckout" method="post" class="form-inline" >
+		             	<input type="hidden" name="totalPrice" value="${total}"/>
+		              	<input type="submit"  class="btn btn-primary"  value="結帳">
+		             </form>
+		                 
+              		</div>
+				</div>
+           </div>
+            
+            
+           </div>
             <%@ include file="../Luana_include/footer.jsp" %>
     </body>
 

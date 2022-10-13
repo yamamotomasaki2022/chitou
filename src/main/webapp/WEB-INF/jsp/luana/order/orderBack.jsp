@@ -32,7 +32,12 @@
 	<script src="js/luana/dataTable.js"></script>
 	
 	-->
+	
+	
 		<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+		
+	<!-- sweetalert2 -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
 	
     <title>BackOrderList</title>
@@ -45,14 +50,40 @@
 	
 	
 	    <div style="display:inline-block;float:left;">
-	    <form action="/admin/searchHotel" method="get" >
-	    	<select id="type" name="type">
+	    <form action="searchOrder" method="get">
+	    	<select id="type" name="type" class="form-select form-select-sm" aria-label=".form-select-sm example">
 	    	</select>
 	    	<input type="text" name="keyword">
 	    	<input type="submit" class="btn btn-primary mr-2" value="搜尋">
 	    </form>
 	</div>
-
+		<form action="showOrderlistInType" method="post">
+			<div style="display:inline-block;float:right;">
+				<input type="hidden" name="type" value="all">
+				<input type="submit" class="btn btn-primary mr-2" name="add" value="總覽">
+			</div>
+		</form>
+		<form action="showOrderlistInType" method="post">
+			<div style="display:inline-block;float:right;">
+				<input type="hidden" name="type" value="飯店">
+				<input type="submit" class="btn btn-primary mr-2" name="add" value="飯店">
+			</div>
+		
+		</form>
+		<form action="showOrderlistInType" method="post">
+			<div style="display:inline-block;float:right;">
+				<input type="hidden" name="type" value="機票">
+				<input type="submit" class="btn btn-primary mr-2" name="add" value="機票">
+			</div>
+		
+		</form>
+		<form action="showOrderlistInType" method="post">
+			<div style="display:inline-block;float:right;">
+				<input type="hidden" name="type" value="景點">
+				<input type="submit" class="btn btn-primary mr-2" name="add" value="景點">
+			</div>
+		</form>
+		
 	
 	
 	<div class="table-responsive">
@@ -66,13 +97,23 @@
         <tbody>
            <c:forEach var="order" items="${orderBack}">
 				
-					<tr>
-						<td id="ordertype">${order.ordertype}</td>
-						<td id="orderdate">${order.orderdate}</td>
-						<td id="orderid">${order.orderid}</td>
-						<td id="ordertype">${order.totalprice}</td>
-						<td id="orderstatus">${order.orderstatus}</td>
-						<td id="memberid">${order.memberid}</td>
+					<tr class="updateOrderstatus" id="orderList">
+						<td class="ordertype">${order.ordertype}</td>
+						<td class="orderdate">${order.orderdate}</td>
+						<td class="orderid">${order.orderid}</td>
+						<td class="ordertype">${order.totalprice}</td>
+						<td class="orderstatus">${order.orderstatus}</td>
+						<td class="memberid">${order.memberid}</td>
+						<td class="mannual">
+							
+								<select class="form-select form-select-sm status" aria-label=".form-select-sm example">
+									<option selected>更新訂單</option>
+									<option value="已付款">已付款</option>
+									<option value="已取消">已取消</option>
+									<option value="已完成">已完成</option>
+								</select>
+							
+						</td>
 						
 						<c:choose>
 							<c:when test="${order.ordertype == '景點'}">
@@ -116,8 +157,8 @@
       </div>
    
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+     <!--   <button type="button" class="btn btn-primary">Save changes</button> --> 
       </div>
     </div>
   </div>
@@ -135,9 +176,9 @@
     	 $.ajax({
     	  	url: "attractionOrderDetail",	//上傳URL
     	  	type: "POST", //請求方式
-    	  	data: {"orderid": data}, //需要上傳的數據
+    	  	data: {"orderid": data,}, //上傳的數據
     	  	//contentType:"application/json",
-    	  	dataType: "JSON", //設置接受到的響應數據的格式
+    	  	dataType: "JSON", //設置接受到的數據的格式
     	  	success: function (detail) {	//請求成功
     	  	console.log(detail);
 
@@ -160,19 +201,19 @@
     	  	},
     	  	error: function () {
     			console.log("Oh no...");
-    	  	},//表示如果請求響應出現錯誤，會執行的回調函數
+    	  	},//表示出現錯誤
     	 });
     }
     
     function btnHotel(data) {
     
     	 $.ajax({
-    	  	url: "hotelOrderDetail",	//上傳URL
-    	  	type: "POST", //請求方式
-    	  	data: {"orderid": data}, //需要上傳的數據
+    	  	url: "hotelOrderDetail",
+    	  	type: "POST",
+    	  	data: {"orderid": data},
     	  	//contentType:"application/json",
-    	  	dataType: "JSON", //設置接受到的響應數據的格式
-    	  	success: function (detail) {	//請求成功
+    	  	dataType: "JSON", 
+    	  	success: function (detail) {
     	  	console.log(detail);
 
     	  	$("#title").html("訂單編號："+ data );
@@ -195,16 +236,16 @@
     	  	},
     	  	error: function () {
     			console.log("Oh no...");
-    	  	},//表示如果請求響應出現錯誤，會執行的回調函數
+    	  	},
     	 });
     }
     </script>
     
     <script type="text/javascript">
-    	var type = ["orderid","ordertype","orderdate","orderstatus","totalprice","memberid"];
+    	var type = ["ordertype","orderdate","orderid","totalprice","orderstatus","memberid"];
 		var typeName = ["訂單種類","下訂日","訂單編號","總價","訂單狀態","會員編號"];
 	    $(document).ready( function () {
-	        for(var i=1;i<type.length;i++){
+	        for(var i=0;i<type.length;i++){
 	        	let option = '"<option value="'+type[i]+'">'+typeName[i]+'</option>"';
 	        	$('#type').append(option);
 	        }
@@ -212,9 +253,74 @@
 	        	let tr =  '<th>'+typeName[i]+'</th>';
 	        	$('#tableHead').append(tr);
 	        }
-			$('#tableHead').append('<th>詳細內容</th>');	        
+			$('#tableHead').append('<th>更新狀態</th><th>詳細</th>');	        
 	    }); 
     
+    </script>
+    
+    <script type="text/javascript">
+    
+    $('.updateOrderstatus').on('change', function () {
+    
+    	Swal.fire({
+    		  title: '確定更改訂單狀態？',
+    		  showDenyButton: true,
+    		  showCancelButton: false,
+    		  confirmButtonText: '是',
+    		  denyButtonText: `否`,
+    		}).then((result) => {
+    		
+    		  if (result.isConfirmed) {
+    			  
+    			var selected = $(this).find(":selected").val();
+    			console.log("selected:" +selected);
+    			
+    			var orderId = $(this).find(".orderid").text();
+    			console.log("orderId:" +orderId);
+    			
+		       // Swal.fire('訂單已更新', '', 'success')
+    			$.ajax({
+		      		
+		        	  	url: "updateOrderStatus",	//上傳URL
+		        	  	type: "POST", //請求方式
+		        	  	data: {"orderStatus": selected, "orderid":orderId}, //上傳數據
+		        	  	//contentType:"application/json",
+		        	  	dataType: "JSON", //接受的格式
+		        	  	success: function (result) {	//請求成功
+		        	  		
+		        	  			location.reload(true);
+		        	  		
+		        	  		//$(this).find("#orderstatus").text(selected);	
+		        	  		
+		        	  		/*
+		            	  	console.log(orderList);
+		        			
+		            	  	let orderList="";
+		        			
+		            			for(i = 0 ; i < orderList.length ; i++){
+		        				
+		        					orderList += 
+		        						"名稱："+orderList[i].hotelName +" "+
+		        						orderList[i].roomName +"</br>"+
+		        						"人數："+orderList[i].numberOfPeople +"</br>"+
+		        						"入住日："+orderList[i].checkInDate +"</br>"+
+		        						"退房日："+orderList[i].checkOutDate +"<br><hr>";
+		        				};
+		        		
+		        			$("#orderDetail").text(orderList);	
+		        	  		*/
+		        	  	},
+		        	  	error: function () {
+		        			console.log("Oh no...");
+		        	  	},
+		        	 });
+    		  } else if (result.isDenied) {
+    		    Swal.fire('取消更新', '', 'info')
+    		  }
+    		})	
+    });
+    
+   
     </script>
     
     

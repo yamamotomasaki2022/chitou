@@ -42,7 +42,7 @@ public class OrderService {
 	
 	//顯示個人訂單
 	public List<OrderList> showOrderLists(Integer memberid){
-		return orderListRepository.findAllByMemberid(memberid);
+		return orderListRepository.findByOrderidOrderByOrderdate(memberid);
 	}
 	
 	//顯示單筆訂單資訊
@@ -52,23 +52,14 @@ public class OrderService {
 
 //景點
 	
-	//加入景點訂單
-	public void AttractionToOrder(Integer memberid,String orderid) {		
-		List<Cart> cartItem = cartRepository.findByMemberid(memberid);
-		System.out.println("AttractionToOrder"+cartItem);
-		for(Cart cart : cartItem) {
-			AttractionOrderDetail aOrderDetail =  new AttractionOrderDetail();
-			aOrderDetail.setOrderid(orderid);
-			aOrderDetail.setAttractionid(cart.getAttractionid());
-			aOrderDetail.setAttractionname(cart.getAttractionname());
-			aOrderDetail.setPlanname(cart.getPlanname());
-			aOrderDetail.setQuantity(cart.getQuantity());
-			aOrderDetail.setPrice(cart.getQuantity()*cart.getPlanfee());
-			attractionOrderRepository.save(aOrderDetail);
+	//加入景點訂單列表
+	public void AttractionToOrder(List<AttractionOrderDetail> aDetails) {		
+		for(AttractionOrderDetail a : aDetails) {
+			attractionOrderRepository.save(a);
 		}
 	}
 	
-	//顯示景點詳細訂單
+	//顯示訂單詳細資料
 	public List<AttractionOrderDetail> showAttractionOrders(String orderid) {
 		return attractionOrderRepository.findAllByOrderid(orderid);
 	}
@@ -84,8 +75,8 @@ public class OrderService {
 //飯店
 	
 	//顯示飯店詳細訂單
-	public List<Reservation> showHotelOrders(String orderid) {
-		return reservationRepository.findAllByOrderId(orderid);
+	public List<Reservation> showHotelOrders(String orderId) {
+		return reservationRepository.findAllByOrderId(orderId);
 	}
 
 	
@@ -105,10 +96,53 @@ public class OrderService {
 //	}
 	
 	
-//後台顯示
+//後台
 	
+	//顯示所有訂單
 	public List<OrderList> backOrderLists(){
-		return orderListRepository.findAll();
+		return orderListRepository.findAllOrderByOrderdate();
+	}
+	
+	//顯示特定種類訂單
+	public List<OrderList> listInType(String ordertype){
+		return orderListRepository.findAllByOrdertype(ordertype);
+	}
+	
+	//更新訂單狀態
+	public boolean updateOrderStatus(String orderstatus, String orderid) {
+		
+		Integer result = orderListRepository.updateOrderStatus(orderstatus, orderid);
+			if(result == 1) {
+				return true;
+			}else {
+				return false;
+			}
+	}
+	
+	//查詢訂單
+
+	public List<OrderList> findOrderList(String type,String keyword){
+			
+			if(type.equals("orderid")) {
+				return orderListRepository.findAllByOrderidContaining( keyword);
+			}
+			else if (type.equals("ordertype")) {
+				return orderListRepository.findAllByOrdertypeContaining(keyword);
+			}
+			else if (type.equals("orderdate")) {
+				return orderListRepository.findAllByOrderdateContaining(keyword);
+			}
+			else if (type.equals("orderstatus")) {
+				return orderListRepository.findAllByOrderstatusContaining(keyword);
+			}
+			else if (type.equals("totalprice")) {
+				return orderListRepository.findAllByTotalpriceContaining(keyword);
+			}
+			else if (type.equals("memberid")) {
+				return orderListRepository.findAllByMemberidContaining(keyword);
+			}
+			return null;
 	}
 }
 	
+		

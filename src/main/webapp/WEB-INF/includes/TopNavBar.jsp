@@ -85,8 +85,10 @@
 							aria-labelledby="profileDropdown">
 							<a class="dropdown-item"> <i class="ti-settings text-primary"></i>
 								Settings
-							</a> <a href="<c:url value="/logout" />" class="dropdown-item"> <i
-								class="ti-power-off text-primary" ></i> 管理員登出
+							</a> 
+							<a href="/logout" / class="dropdown-item"> <i
+								class="ti-power-off text-primary" ></i>
+								 管理員登出
 							</a>
 						</div></li>
 					<li class="nav-item nav-settings d-none d-lg-flex"><a

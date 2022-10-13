@@ -63,7 +63,7 @@ response.setCharacterEncoding("UTF-8");
 											<form:label path="attDescription"> 景點說明: </form:label>
 											<div >
 <%-- 										<form:textarea id="t1" rows="6" cols="50" path="attDescription" class="form-control" placeholder="請輸入修正的景點說明"></form:textarea>											</div> --%>
-										<form:textarea id="editor1" path="attDescription" rows="6" cols="50" class="form-control" placeholder="請輸入修正的景點說明"></form:textarea>											
+										<form:textarea id="attDescription" path="attDescription" rows="6" cols="50" class="form-control" placeholder="請輸入修正的景點說明"></form:textarea>											
 										</div>
 										</div>
 										

@@ -1,5 +1,6 @@
 package tw.luana.cart.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartRepository;
+import tw.luana.order.model.AttractionOrderDetail;
 import tw.luana.order.model.AttractionOrderDetailRepository;
 
 
@@ -43,6 +45,22 @@ public class CartService {
 		Optional<Cart> findById = cartRepository.findById(itemId);
 		findById.get().setQuantity(quantity);
 		cartRepository.save(findById.get());
+	}
+	
+	public List<AttractionOrderDetail> setCartPayment(List<Cart> cartList){
+		String tradeNo = "A"+Long.toHexString(System.currentTimeMillis());
+		ArrayList<AttractionOrderDetail> result = new ArrayList<AttractionOrderDetail>();
+		for(Cart c: cartList) {
+			AttractionOrderDetail order = new AttractionOrderDetail();
+			order.setOrderid(tradeNo);
+			order.setAttractionid(c.getAttractionid());
+			order.setAttractionname(c.getAttractionname());
+			order.setPlanname(c.getPlanname());
+			order.setQuantity(c.getQuantity());
+			order.setPrice(c.getPlanfee()*c.getQuantity());
+			result.add(order);
+		}
+		return result;
 	}
 	
 	public void clearCart(Integer memberid) {
