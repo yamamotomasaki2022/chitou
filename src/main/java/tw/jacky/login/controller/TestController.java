@@ -29,6 +29,12 @@ public class TestController {
 		return "boss inserted";
 	}
 	
+	@RequestMapping(path="/member/sss")
+	@ResponseBody
+	public String verifiedMember(){
+		return "你好";
+	}
+	
 	
 	
 	

@@ -23,9 +23,11 @@
 
 <style>
 
-div {
+.chartdiv {
   color: #26b72b;
   border:10px;
+  margin-top : 30px;
+  text-align: center;
 }
 
 
@@ -45,23 +47,18 @@ div {
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
-	<div>出國人口比例</div>
-<div style="width:400px;height:400px;border:3px #cccccc dashed;float:left">
-	<canvas id="myChart1" style="width:110%; max-width:600px"></canvas>
+<div class="chartdiv" style="width:300px;height:330px;border:3px #cccccc dashed;float: right">
+	<span>各洲旅游人口比例</span>	
+<canvas id="myChart2" style="width:100%;max-width:300px"></canvas>
+	
 </div>
-	
-	
-	<div style="width:600px;height:400px;border:3px #cccccc dashed; ;float:right">
-	
-	<canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
-
-	</div>
-	
 
 	
-	<div style="width:400px;height:200px;border:3px #cccccc dashed;float: left">
-		
-	<canvas id="myChart3" style="width:100%;max-width:600px"></canvas>
+	<div  class="chartdiv" style="width:400px;height:320px;border:3px #cccccc dashed;float: left">
+	<span>男女會員人數</span>	
+	<canvas id="myChart3" width="300px" height="200px" ></canvas>
+	
+<!-- 	style="width:100%;max-width:800px -->
 
 	</div>
 
@@ -96,19 +93,26 @@ div {
 
 
 
+
+
 <script>
-var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-var yValues = [55, 49, 44, 24, 15];
+
+
+
+
+
+var xValues = ["北美洲", "南美洲", "歐洲", "亞洲", "非洲"];
+var yValues = [30, 20, 45, 44, 15];
 var barColors = [
-  "#b91d47",
-  "#00aba9",
-  "#2b5797",
-  "#e8c3b9",
-  "#1e7145"
+  "#FF9797",
+  "#CA8EFF",
+  "#79FF79",
+  "#1AFD9C",
+  "#9AFF02"
 ];
 
-new Chart("myChart1", {
-  type: "pie",
+new Chart("myChart2", {
+  type: "doughnut",
   data: {
     labels: xValues,
     datasets: [{
@@ -123,40 +127,14 @@ new Chart("myChart1", {
     }
   }
 });
+
+
 </script>
 
 <script>
-
-var xValues = [100,200,300,400,500,600,700,800,900,1000];
-
-new Chart("myChart2", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{ 
-      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-      borderColor: "red",
-      fill: false
-    }, { 
-      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
-      borderColor: "green",
-      fill: false
-    }, { 
-      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
-      borderColor: "blue",
-      fill: false
-    }]
-  },
-  options: {
-    legend: {display: false}
-  }
-});
-</script>
-
-<script>
-var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-var yValues = [55, 49, 44, 24, 15];
-var barColors = ["red", "green","blue","orange","brown"];
+var xValues = ["男","女"];
+var yValues = [55, 49];
+var barColors = ["blue","red"];
 
 new Chart("myChart3", {
   type: "bar",
@@ -168,10 +146,9 @@ new Chart("myChart3", {
     }]
   },
   options: {
-    legend: {display: false},
+    legend: {display: true},
     title: {
-      display: true,
-      text: "World Wine Production 2018"
+      display: false
     }
   }
 });

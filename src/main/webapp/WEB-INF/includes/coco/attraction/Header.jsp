@@ -81,8 +81,8 @@
 					aria-labelledby="profileDropdown">
 					<a class="dropdown-item"> <i class="ti-settings text-primary"></i>
 						景點總覽
-					</a> <a href="" class="dropdown-item"> <i
-						class="ti-power-off text-primary"></i> 管理員登出
+					</a> <a href="/member/sss" class="dropdown-item"> <i
+						class="ti-power-off text-primary"></i> 發表文章
 					</a>
 				</div></li>
 		</ul>
