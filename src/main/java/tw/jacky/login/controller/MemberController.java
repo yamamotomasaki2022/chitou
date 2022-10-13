@@ -115,8 +115,10 @@ public class MemberController {
 
 	}
 
+	
+//	會員修改密碼
 	@PostMapping(path = "/MemberModifyPasswordToDB")
-	public String processMemberModifyPasswordToDB(@RequestParam("pwd") String password, HttpServletRequest request) {
+	public String processMemberModifyPasswordToDB(@RequestParam("password") String password, HttpServletRequest request) {
 		MemberBasicInfo memberbean = (MemberBasicInfo) request.getSession().getAttribute("memberbasicinfo");
 		System.out.println("我的memberbasicinfo bean是否取到值:" + memberbean.getEmail());
 		memberbean.setPassword(password);
@@ -146,7 +148,7 @@ public class MemberController {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String modifytime = simpleDateFormat.format(date);
 		
-		System.out.println("性別:" + gender);
+//		System.out.println("性別:" + gender);
 
 		memberbasicinfo.setEmail(email);
 
@@ -159,12 +161,12 @@ public class MemberController {
 		memberdetailinfo.setGender(gender);
 		memberdetailinfo.setModifytime(modifytime);
 		
-		
+		System.out.println("照片名稱:" +filename);
 
 		if (filename != "") {
-//			System.out.println("更改過圖片");
+			System.out.println("更改過圖片");
 			memberbasicinfo.setPhoto(pic_locaiton);
-		} 
+		}
 
 		lservice.adminModifyMember(memberbasicinfo);
 		lservice.adminInsertMemberDetailInfo(memberdetailinfo);

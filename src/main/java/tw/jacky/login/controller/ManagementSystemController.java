@@ -37,6 +37,9 @@ import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
+import com.lowagie.text.DocumentException;
+
+import tw.chitou.util.PdfExporter;
 import tw.jacky.login.model.AdminChitou;
 import tw.jacky.login.model.LoginService;
 import tw.jacky.login.model.MembeAllInfo;
@@ -424,6 +427,26 @@ public class ManagementSystemController {
 
 	}
 	
+//	export PDF
+	
+    @GetMapping("/exportPDF")
+    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+         
+//        List<User> listUsers = service.listAll();
+        List<MemberBasicInfo> memberbasicinfo = lservice.memberFindAll(); 
+        
+        
+        PdfExporter exporter = new PdfExporter(memberbasicinfo);
+        exporter.export(response);
+         
+    }
 	
 	
 

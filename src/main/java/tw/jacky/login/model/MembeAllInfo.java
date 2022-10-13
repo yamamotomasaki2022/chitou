@@ -46,7 +46,7 @@ public class MembeAllInfo {
 		this.address = detail.getAddress();
 		this.nickname = detail.getNickname();
 		this.nationality = detail.getNationality();
-		this.birth = detail.getBrith();
+		this.birth = detail.getBirth();
 		this.gender =detail.getGender();
 	}
 	
@@ -62,7 +62,7 @@ public class MembeAllInfo {
 		this.address = detail.getAddress();
 		this.nickname = detail.getNickname();
 		this.nationality = detail.getNationality();
-		this.birth = detail.getBrith();
+		this.birth = detail.getBirth();
 		this.gender =detail.getGender();
 	}
 	

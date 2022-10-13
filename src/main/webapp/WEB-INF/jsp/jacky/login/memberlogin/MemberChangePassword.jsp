@@ -22,7 +22,7 @@
                 <img src="/images/coco/logo2.png" alt="logo">
               </div>
 				<h4 class="card-title text-primary">修改密碼</h4>
-              <form class="pt-3">
+              <form action="MemberModifyPasswordToDB" method="post" class="pt-3">
                 <div class="form-group">
                 <label>請輸入要修改的密碼</label>
                   <input type="text" class="form-control form-control-lg" id="pwd"
@@ -43,7 +43,7 @@
                 
                 <br>
                 <div text-align: center>
-                <a href="toMemberHomePage"><button class="btn btn-light btn-sm" type="button">返回會員主頁</button></a>
+                <a href="/uvmember/toMemberHomePage"><button class="btn btn-light btn-sm" type="button">返回個人主頁</button></a>
                 </div>
               </form>
             </div>
@@ -86,10 +86,8 @@ else {
 
          $("#tishi").css("color","red")
 
-         $("button").attr("disabled","disabled"); 
-         
-         
-         
+//          $("button").attr("disabled","disabled"); 
+     
          $('#confirm').attr('disabled',true);
 
       }

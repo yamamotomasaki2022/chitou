@@ -19,6 +19,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.bytebuddy.utility.RandomString;
+import tw.chitou.exception.UserExistException;
 import tw.chitou.gmail.controller.GmailController;
 import tw.chitou.gmail.model.GmailService;
 import tw.jacky.login.model.LoginService;
@@ -151,7 +152,7 @@ public class LoginController {
 			@RequestParam("myFile") MultipartFile mf, @RequestParam("name") String name,
 			@RequestParam("phone") String phone, @RequestParam("address") String address,
 			@RequestParam("nickname") String nickname, @RequestParam("nationality") String nationality,
-			@RequestParam("birthday") String birthday, @RequestParam("gender") String gender) {
+			@RequestParam("birth") String birth, @RequestParam("gender") String gender) {
 
 		String photo = lservice.savePicToLocal(mf);
 		String pic_locaiton = piclocation + photo;
@@ -160,19 +161,30 @@ public class LoginController {
 		MemberBasicInfo bean = new MemberBasicInfo(4, username, password, pic_locaiton, email, randomCode);
 		String encrpytMemberPassword = managementSystemController.encrpytMemberPassword(bean);
 		bean.setPassword(encrpytMemberPassword);
-		MemberBasicInfo memberBasicInfo = lservice.adminInsertMember(bean);
-		Date date = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String createtime = simpleDateFormat.format(date);
-		String modifytime = createtime;
-		MemberDetailInfo memberDetailInfo = new MemberDetailInfo(memberBasicInfo.getMemberid(), name, phone, address,
-				nickname, nationality, birthday, gender, createtime, modifytime);
-		lservice.adminInsertMemberDetailInfo(memberDetailInfo);
-
-		gmailController.sendVerificationEmail(memberBasicInfo, memberDetailInfo);
+		
+		try {
+			MemberBasicInfo memberBasicInfo = lservice.adminInsertMember(bean);
+			Date date = new Date();
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			String createtime = simpleDateFormat.format(date);
+			String modifytime = createtime;
+			
+			System.out.println("我的生日:" + birth);
+			
+			MemberDetailInfo memberDetailInfo = new MemberDetailInfo(memberBasicInfo.getMemberid(), name, phone, address,
+					nickname, nationality, birth, gender, createtime, modifytime);
+			lservice.adminInsertMemberDetailInfo(memberDetailInfo);
+			
+			gmailController.sendVerificationEmail(memberBasicInfo, memberDetailInfo);
+			
+			return path_member_login + "MemberRegisterVerificationPage";
+		} catch (Exception e) {
+			throw new UserExistException();
+			
+		}
+		
 
 //		return "sss";
-		return path_member_login + "MemberRegisterVerificationPage";
 	}
 
 	
