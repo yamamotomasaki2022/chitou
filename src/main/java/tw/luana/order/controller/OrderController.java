@@ -75,19 +75,6 @@ public class OrderController {
 
 	}
 
-//	//結帳完導入個人訂單
-//	@RequestMapping(path = "order", method = RequestMethod.GET)
-//	public String afterCheckout(Model m) {
-//		
-//		MemberBasicInfo member = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
-//		Integer memberid = member.getMemberid();
-//		
-//		m.addAttribute("orders",orderService.showOrderLists(memberid));
-//		
-//		return path_Luana_Order + "Luana_order";
-//		
-//	}
-
 	// 查看訂單細項
 	@RequestMapping(path = "orderDetail", method = RequestMethod.POST)
 	public String OrderDetail(@RequestParam("orderid") String orderid,@RequestParam("ordertype") String ordertype, Model m1, Model m2) {
@@ -110,17 +97,6 @@ public class OrderController {
 		return null;
 	}
 
-	// 更改景點訂單狀態
-//	@RequestMapping(path = "orderStatus", method = RequestMethod.POST)
-//	public String updateStatusByOrderId(@RequestParam("orderStatus") int orderStatus,
-//			@RequestParam("orderid") String orderid, Model m) {
-//
-//
-//		orderService.updateAttractionOrderStatus(orderStatus, orderid);
-//		m.addAttribute("orders",orderService.showAttractionOrders(orderid));
-//
-//		 return path_Luana_Order + "Luana_order";
-//	}
 
 //後台
 

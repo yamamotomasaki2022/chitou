@@ -219,9 +219,9 @@ public class CartController {
 		//結帳完成移除購物車品項
 		cartService.clearCart(memberid);
 		
-		model.addAttribute("orders",orderService.showOrderLists(memberid));
+//		model.addAttribute("orders",orderService.showOrderLists(memberid));
 		
-		return path_Luana_Order + "Luana_order";
+		return "finish";
 	}
 	
 //	//整車購買

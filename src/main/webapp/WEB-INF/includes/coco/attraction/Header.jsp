@@ -36,26 +36,22 @@
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
-					<a class="dropdown-item"> <i class="ti-settings text-primary"></i>
+					<a href="AttractionList" class="dropdown-item"> <i class="ti-settings text-primary"></i>
 						景點總覽
-					</a> <a href="" class="dropdown-item"> <i
-						class="ti-power-off text-primary"></i> 管理員登出
-					</a>
+					</a> 
 				</div></li>
 		</ul>
 
 		<ul class="navbar-nav mr-lg-4">
 			<li class="nav-item dropdown"><a
-				class="dropdown-toggle btn btn-inverse-primary btn-sm" href="#"
+				class="dropdown-toggle btn btn-inverse-primary btn-sm" href=""
 				data-toggle="dropdown"> <i class="fa-solid fa-hotel"></i>&nbsp;住宿酒店
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
-					<a class="dropdown-item"> <i class="ti-settings text-primary"></i>
-						景點總覽
-					</a> <a href="" class="dropdown-item"> <i
-						class="ti-power-off text-primary"></i> 管理員登出
-					</a>
+					<a  href="searchHotel" class="dropdown-item"> <i class="ti-settings text-primary"></i>
+						飯店搜尋
+					</a> 
 				</div></li>
 		</ul>
 
@@ -94,49 +90,34 @@
 		<ul class="navbar-nav navbar-nav-right">
 			<li class="nav-item dropdown"><a
 				class="nav-link count-indicator dropdown-toggle"
-				id="notificationDropdown" href="#" data-toggle="dropdown"> <i
+				id="notificationDropdown" href="cart" data-toggle="dropdown"> <i
 					class="fa-solid fa-cart-shopping"></i> <span class="count"></span>
 			</a>
 				<div
 					class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
 					aria-labelledby="notificationDropdown">
-					<p class="mb-0 font-weight-normal float-left dropdown-header">購物車</p>
-					<a class="dropdown-item preview-item">
+					<p class="mb-0 font-weight-normal float-left dropdown-header"><a href="cart">購物車</a></p>
+					<a class="dropdown-item preview-item" href="cart">
 						<div class="preview-thumbnail">
 							<div class="preview-icon bg-success">
 								<i class="ti-info-alt mx-0"></i>
 							</div>
 						</div>
 						<div class="preview-item-content">
-							<h6 class="preview-subject font-weight-normal">Application
-								Error</h6>
-							<p class="font-weight-light small-text mb-0 text-muted">Just
-								now</p>
+							<h6 class="preview-subject font-weight-normal">購物車</h6>
+							<p class="font-weight-light small-text mb-0 text-muted"></p>
 						</div>
-					</a> <a class="dropdown-item preview-item">
+					</a> <a class="dropdown-item preview-item"  href="order">
 						<div class="preview-thumbnail">
 							<div class="preview-icon bg-warning">
 								<i class="ti-settings mx-0"></i>
 							</div>
 						</div>
 						<div class="preview-item-content">
-							<h6 class="preview-subject font-weight-normal">Settings</h6>
-							<p class="font-weight-light small-text mb-0 text-muted">
-								Private message</p>
+							<h6 class="preview-subject font-weight-normal">訂單</h6>
+							<p class="font-weight-light small-text mb-0 text-muted"></p>
 						</div>
-					</a> <a class="dropdown-item preview-item">
-						<div class="preview-thumbnail">
-							<div class="preview-icon bg-info">
-								<i class="ti-info-alt mx-0"></i>
-							</div>
-						</div>
-						<div class="preview-item-content">
-							<h6 class="preview-subject font-weight-normal">New user
-								registration</h6>
-							<p class="font-weight-light small-text mb-0 text-muted">2
-								days ago</p>
-						</div>
-					</a>
+					</a> 
 				</div></li>
 			<li class="nav-item nav-profile dropdown"><a
 				class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
