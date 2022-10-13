@@ -127,11 +127,6 @@ public class HotelFrontController {
 		return (MemberDetailInfo)model.getAttribute("memberdetailinfo");
 	}
 	
-	@GetMapping(path = "member/yee")
-	private String yee() {
-		return suffix+"ck";
-	}
-	
 	@PostMapping(path = "getECPay")
 	private String getECPay(@RequestBody Reservation reservation,Model model) {
 		Reservation checkOutRoom = fService.setPaymentInfo(reservation);
@@ -218,8 +213,8 @@ public class HotelFrontController {
 		model.addAttribute("checkInDate",dateStart);
 		model.addAttribute("checkOutDate",dateEnd);
 		model.addAttribute("number",number);
-//		return suffix + "HotelsOrder";
-		return suffix + "orderHotel";
+		return suffix + "HotelsOrder";
+//		return suffix + "orderHotel";
 	}
 	
 }
