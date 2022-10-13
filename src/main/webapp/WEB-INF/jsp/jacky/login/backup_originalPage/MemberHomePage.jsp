@@ -2,6 +2,7 @@
 <%@page import="tw.jacky.login.model.MemberBasicInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,48 +61,67 @@
 		class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
 		type="submit" value="login">一鍵修改</button>
 
-	<button
-		class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-		type="submit" value="login">更改密碼</button>
 
-	<button
-		class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-		type="submit" value="login">驗證郵箱</button>
-	<button
-		class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-		type="submit" value="login">
-		更改<·/button>
+	<a href="/uvmember/MemberModifyPassword">
 
 		<button
 			class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-			type="submit" value="login">確定</button>
+			type="button" value="login">更改密碼</button>
+
+	</a>
 
 
-		<!-- container-scroller -->
-		<!-- plugins:js -->
-		<script src="/js/coco/vendor.bundle.base.js"></script>
-
-		<!-- endinject -->
-		<!-- Plugin js for this page -->
-		<!-- End plugin js for this page -->
-		<!-- inject:js -->
-		<script src="/js/coco/off-canvas.js"></script>
-		<script src="/js/coco/hoverable-collapse.js"></script>
-		<script src="/js/coco/template.js"></script>
-		<script src="/js/coco/settings.js"></script>
-		<script src="/js/coco/todolist.js"></script>
-		<!-- endinject -->
+	<a href="/uvmember/MemberVerifyEmail">
+		<button
+			class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+			type="submit" value="login">驗證郵箱</button>
+	</a>
 
 
-		<script>
-			$('#fastinput').click(function() {
 
-				$('#username').val('jacky')
-				$('#password').val('123')
-				$('#email').val('learningma0926@gmail.com')
 
-			})
-		</script>
+	<button
+		class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+		type="submit" value="login">更改</button>
+
+	<button
+		class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+		type="submit" value="login">確定</button>
+
+
+	<a href="/logout"> 管理員登出 </a>
+
+
+	<!-- container-scroller -->
+	<!-- plugins:js -->
+	<script src="/js/coco/vendor.bundle.base.js"></script>
+
+	<!-- endinject -->
+	<!-- Plugin js for this page -->
+	<!-- End plugin js for this page -->
+	<!-- inject:js -->
+	<script src="/js/coco/off-canvas.js"></script>
+	<script src="/js/coco/hoverable-collapse.js"></script>
+	<script src="/js/coco/template.js"></script>
+	<script src="/js/coco/settings.js"></script>
+	<script src="/js/coco/todolist.js"></script>
+	<!-- endinject -->
+
+
+
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+		var op_status = ${operation_Status}
+
+
+		if (op_status == 1) {
+			Swal.fire(
+					  '已驗證過了!不需要重新驗證',
+					  '會員',
+					  'error'
+					)
+		}
+	</script>
 </body>
 
 </html>

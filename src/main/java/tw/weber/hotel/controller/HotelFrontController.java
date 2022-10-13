@@ -72,8 +72,8 @@ public class HotelFrontController {
 		model.addAttribute("dateEnd",dateEnd);
 		model.addAttribute("number",number);
 		model.addAttribute("hotelID",hotelID);
-//		Hotel hotel = fService.selectHotel(hotelID);
-//		model.addAttribute("hotel",hotel);
+		Hotel hotel = fService.selectHotel(hotelID);
+		model.addAttribute("hotel",hotel);
 		return hotelPage;
 	}
 	
@@ -125,11 +125,6 @@ public class HotelFrontController {
 	@ResponseBody
 	private MemberDetailInfo getAccountDetail(Model model) {
 		return (MemberDetailInfo)model.getAttribute("memberdetailinfo");
-	}
-	
-	@GetMapping(path = "member/yee")
-	private String yee() {
-		return suffix+"ck";
 	}
 	
 	@PostMapping(path = "getECPay")
@@ -218,8 +213,8 @@ public class HotelFrontController {
 		model.addAttribute("checkInDate",dateStart);
 		model.addAttribute("checkOutDate",dateEnd);
 		model.addAttribute("number",number);
-//		return suffix + "HotelsOrder";
-		return suffix + "orderHotel";
+		return suffix + "HotelsOrder";
+//		return suffix + "orderHotel";
 	}
 	
 }

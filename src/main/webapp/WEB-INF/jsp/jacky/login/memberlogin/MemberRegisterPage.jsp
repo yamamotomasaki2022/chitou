@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 response.setContentType("text/html;charset=UTF-8");
 response.setHeader("Cache-Control", "no-cache"); // HTTP 1.1
@@ -9,140 +7,186 @@ response.setHeader("Pragma", "no-cache"); // HTTP 1.0
 response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 %>
 
+<!DOCTYPE html>
 <html>
 <head>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
-<TITLE>創建會員</TITLE>
-<link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>ChiTou-創建會員</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<style>
-form label {
-	display: inline-block;
-	width: 100px;
-}
 
-form div {
-	margin-bottom: 10px;
-}
-
-.error {
-	color: red;
-	margin-left: 5px;
-}
-
-label.error {
-	display: inline;
-}
-</style>
-
+<%@ include file="/WEB-INF/includes/jacky/Member/MemberCSSAndJS.jsp"%>
 <script>
 	function getTime() {
 		var currentTime = new Date();
 		return currentTime
 	}
 </script>
-
-<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
-
-
 </head>
-
 <body>
+	<div class="container-scroller">
+		<div class="container-fluid page-body-wrapper full-page-wrapper">
+			<div class="content-wrapper d-flex align-items-center auth px-0">
+				<div class="row w-100 mx-0">
+					<div class="col-lg-10 mx-auto">
+						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
+							<div class="brand-logo ">
+								<img src="/images/coco/logo3.png" alt="logo"> <img
+									src="/images/coco/logo2.png" alt="logo">
+							</div>
+							<h4 class="card-title text-primary">創建會員</h4>
+							<h6 class="font-weight-light">請輸入您的個人資料</h6>
+							<form class="pt-3" ACTION="MemberRegisterIntoDB" method="post"
+								id="form" enctype="multipart/form-data">
 
-	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Username<code
+													class="text-danger">*</code></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="username" name="username"
+													autocomplete="off" placeholder="Username" />
+											</div>
+										</div>
+									</div>
 
-	<H1>創建會員</H1>
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">password<code
+													class="text-danger">*</code></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="password" name="password"
+													autocomplete="off" placeholder="password" />
+											</div>
+										</div>
+									</div>
+								</div>
 
-	<h5>jQuery 驗證其中幾個欄目</h5>
-	<FORM ACTION="MemberRegisterIntoDB" method="post" id="form"
-		enctype="multipart/form-data">
-		<!--  ><div><input type="hidden" name="memberid" value="1"></div> -->
 
-		<h1>必填資料</h1>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">email<code
+													class="text-danger">*</code></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="email" name="email"
+													autocomplete="off" placeholder="email" />
+											</div>
+										</div>
+									</div>
 
-		<div>
-			<label> username</label> <br> </a>
-			<input type="text" id="username"
-				name="username" autocomplete="off" size="10">
+
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Photo</label>
+											<div class="col-sm-9">
+											<img width="200px" height="200px" id="img1" alt="" src="images/jacky/login/default1.png">
+												<input class="form-control" id="myfile" type="file"
+													name="myFile" placeholder="Upload Image" />
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">名字</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="name" name="name"
+													autocomplete="off" placeholder="名字" />
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">電話</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="phone" name="phone"
+													autocomplete="off" placeholder="電話" />
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">地址</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="address" name="address"
+													autocomplete="off" placeholder="地址" />
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">昵稱</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="nickname" name="nickname"
+													autocomplete="off" placeholder="昵稱" />
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">國家</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="nationality" name="nationality"
+													autocomplete="off" placeholder="國家" />
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">生日</label>
+											<div class="col-sm-9">
+												<input type="date" class="form-control" id="birth" name="birth"
+													autocomplete="off" placeholder="生日" />
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">性別</label>
+											<div class="col-sm-9">
+												<select class="form-control" name="gender">
+													<option value="male">男</option>
+													<option value="female">女</option>
+												</select>
+											</div>
+										</div>
+									</div>
+
+									
+									
+									
+									
+								</div>
+
+<button type="submit" class="btn btn-primary mr-2" id="createmember" name="submit">提交</button>
+					<a href="home"><button type="button" class="btn btn-light">返回</button></a> 
+<button  type="button" class="btn btn-primary mr-2" id="fastinput" style="float:right;">一鍵輸入</button>
+				<!-- herf=總攬連結 -->
+
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-
-		<div>
-			<label for=""> password</label> <br> </a>
-			<input type="text"
-				id="password" name="password" autocomplete="off" size="10">
-		</div>
-
-		<div>
-			<label for=""> email</label> <br> </a>
-			<input type="text" id="email"
-				name="email" autocomplete="off" size="10">
-		</div>
-
-
-		<hr>
-
-		<h1>選填資料</h1>
-
-		<p>
-			Photo:<br /> <img id="img1" alt="" src=""><br> <input
-				id="myfile" type="file" name="myFile" />
-
-		</p>
-
-		<div>
-			<label> 名字</label> <br> </a><input type="text" id="" name="name"
-				autocomplete="off" size="10">
-		</div>
-
-		<div>
-			<label> 電話</label> <br> </a><input type="text" id="phone"
-				name="phone" autocomplete="off" size="10">
-		</div>
-
-		<div>
-			<label> 地址</label> <br> </a><input type="text" id="address"
-				name="address" autocomplete="off" size="10">
-		</div>
-
-		<div>
-			<label> 昵稱 </label> <br> </a><input type="text" id="nickname"
-				name="nickname" autocomplete="off" size="10">
-		</div>
-
-		<div>
-			<label> 國家</label> <br> </a><input type="text" id="" name="nationality"
-				autocomplete="off" size="10">
-		</div>
-
-		<div>
-			<label> 生日</label> <br> </a><input type="date" id="" name="birthday"
-				autocomplete="off" size="10">
-		</div>
-
-		<div>
-			<label> 性別 </label> <br> </a> <select name="gender">
-				<option value="0">請選擇你的性別</option>
-				<option value="female">女</option>
-				<option value="male">男</option>
-			</select>
-		</div>
-
-
-
-		<INPUT TYPE="submit" id="createmember" name="submit" value="提交">
-
-	</form>
-	<br>
-	<FORM ACTION="home" method="get">
-		<button onclick="">返回</button>
-	</form>
-	
-	<button id="fastinput">一鍵輸入</button>
-
+	</div>
 
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -162,7 +206,6 @@ label.error {
 			fr.readAsDataURL(file);
 		});
 	</script>
-
 
 
 	<script>
@@ -228,6 +271,12 @@ label.error {
 		$('#username').val('jacky')
 		$('#password').val('123')
 		$('#email').val('learningma0926@gmail.com')
+		$('#name').val('馬提莫')
+		$('#phone').val('0909223123')
+		$('#nationality').val('台灣')
+		$('#address').val('大園區大勇路444號')
+		$('#nickname').val('馬金剛')
+		
 		
 	})
 	
@@ -235,10 +284,5 @@ label.error {
 	
 
 	</script>
-
-
-	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
-
-
 </body>
 </html>

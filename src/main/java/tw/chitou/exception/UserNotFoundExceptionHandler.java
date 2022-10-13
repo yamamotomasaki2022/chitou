@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class UserNotFoundExceptionHandler {
 	
-//	404的頁面
-	@ExceptionHandler(UserNotFoundException.class)
-	public Object exceptionHandler(UserNotFoundException e) {
+	
+	@ExceptionHandler(UserExistException.class)
+	public Object exceptionHandler(UserExistException e) {
 //		String myMessage = e.getMyMessage();
 	
 //		String message ="錯誤咯~" + myMessage;

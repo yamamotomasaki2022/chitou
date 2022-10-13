@@ -69,18 +69,21 @@ public class ArticleController {
 //	●測試
 //	--主頁輪播測試
 //	●會員
-//	--文章管理主頁(會員)
+//	--文章管理(會員)
 //	--留言管理(會員)
 //	--前往新增文章
 //	--新增文章
 //	--前往更新文章
 //	--更新文章
 //	--查詢(會員)
-//	--會員刪除
+//	--文章刪除
+//	--評論刪除
 //	--顯示文章頁面(會員)
 //	●管理
 //	--文章首頁(管理員)
-//	--管理隱藏
+//	--評論首頁(管理員)
+//	--文章隱藏
+//	--評論隱藏
 //	--查詢(管理員)
 //	--顯示文章頁面(管理員)
 //	●
@@ -114,7 +117,7 @@ public class ArticleController {
 //	***       會員 會員 會員 會員 會員 會員 會員 會員 會員 會員              ***
 //	***************************************************************
 	
-//	**********文章管理主頁(會員)********************************************
+//	**********文章管理(會員)********************************************
 	@RequestMapping(path = "/article.user",method = RequestMethod.GET)
 	public String articleUserMain(Model m) {
 		MemberBasicInfo memberBasicInfo = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
@@ -127,10 +130,13 @@ public class ArticleController {
 	}	
 
 	//	**********留言管理(會員)********************************************
-	@RequestMapping(path = "/article.reply",method = RequestMethod.GET)
+	@RequestMapping(path = "/article.user.reply",method = RequestMethod.GET)
 	public String articleUserComment(Model m) {
+		MemberBasicInfo memberBasicInfo = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
+		int replyer = memberBasicInfo.getMemberid();
 		
-		List<Article> list = articleService.findAll();
+		List<Reply> list = replyService.findByReplyer(replyer);
+		
 		m.addAttribute("list", list);
 		//request.setAttribute("list",list);
 		return "georgia/article/articleUserComment";
@@ -265,7 +271,7 @@ public class ArticleController {
 		return "georgia/article/articleUserRead";
 	}
 
-//	*****************會員刪除******************************************
+//	*****************文章刪除******************************************
 	@RequestMapping(path = "/article.userDelete",method = RequestMethod.POST)
 	public String userDelete(@RequestParam("postID") int postID,
 								Model m) {
@@ -275,6 +281,20 @@ public class ArticleController {
 //		System.out.println(bean.getManageHidden());
 		
 		Article updateBean = articleService.update(bean);
+		
+		return "redirect:"+userUrl;
+	}
+	
+//	*****************評論刪除******************************************
+	@RequestMapping(path = "/article.userDelete.reply",method = RequestMethod.POST)
+	public String userDeleteReply(@RequestParam("replyID") int replyID,
+			Model m) {
+		Reply bean = replyService.findByID(replyID);
+		bean.setUserDelete(1);
+//		bean.setManageHidden(0);
+//		System.out.println(bean.getManageHidden());
+		
+		Reply updateBean = replyService.update(bean);
 		
 		return "redirect:"+userUrl;
 	}
@@ -306,7 +326,17 @@ public class ArticleController {
 		return "georgia/article/articleAdminMain";
 	}	
 	
-//	*****************管理隱藏******************************************
+//	**********評論首頁(管理員)********************************************
+	@RequestMapping(path = "/article.admin.reply",method = RequestMethod.GET)
+	public String articleAdminComment(Model m) {
+		
+		List<Reply> list = replyService.findAll();
+		m.addAttribute("list", list);
+		//request.setAttribute("list",list);
+		return "georgia/article/articleAdminComment";
+	}	
+	
+//	*****************文章隱藏******************************************
 	@RequestMapping(path = "/article.manageHidden",method = RequestMethod.POST)
 	public String manageHidden(@RequestParam("postID") int postID,
 			Model m) {
@@ -316,6 +346,20 @@ public class ArticleController {
 //		System.out.println(bean.getManageHidden());
 		
 		Article updateBean = articleService.update(bean);
+		
+		return "redirect:"+adminUrl;
+	}
+	
+//	*****************評論隱藏******************************************
+	@RequestMapping(path = "/article.manageHidden.reply",method = RequestMethod.POST)
+	public String manageHiddenReply(@RequestParam("replyID") int replyID,
+			Model m) {
+		Reply bean = replyService.findByID(replyID);
+		bean.setManageHidden(1);
+//		bean.setManageHidden(0);
+//		System.out.println(bean.getManageHidden());
+		
+		Reply updateBean = replyService.update(bean);
 		
 		return "redirect:"+adminUrl;
 	}

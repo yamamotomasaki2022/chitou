@@ -1,10 +1,13 @@
 package tw.jacky.login.controller;
 
+import java.beans.beancontext.BeanContextMembershipListener;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -29,13 +32,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.supercsv.io.AbstractCsvWriter;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
+import com.lowagie.text.DocumentException;
+
+import tw.chitou.util.PdfExporter;
 import tw.jacky.login.model.AdminChitou;
 import tw.jacky.login.model.LoginService;
+import tw.jacky.login.model.MembeAllInfo;
 import tw.jacky.login.model.MemberBasicInfo;
+import tw.jacky.login.model.MemberDetailInfo;
 
 @Controller
 @SessionAttributes({ "memberlist", "adminlist", "session_status", "crud" })
@@ -215,6 +224,10 @@ public class ManagementSystemController {
 		String filename = mf.getOriginalFilename();
 		String photo_path = lservice.savePicToLocal(mf);
 		String pic_locaiton = piclocation + photo_path;
+		
+		Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String modifytime = simpleDateFormat.format(date);
 
 //			System.out.println(bean.getPhoto());
 //			System.out.println(pic_locaiton);
@@ -225,12 +238,18 @@ public class ManagementSystemController {
 
 			MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password, pic_locaiton,
 					email);
+			MemberDetailInfo findDetailByMemberid = lservice.findDetailByMemberid(memberid);
+			findDetailByMemberid.setModifytime(modifytime);
+			lservice.adminInsertMemberDetailInfo(findDetailByMemberid);
 			lservice.adminInsertMember(memberBasicInfo);
 		} else {
 //				System.out.println("沒有更改圖片");
 			MemberBasicInfo memberBasicInfo = new MemberBasicInfo(memberid, statusid, username, password,
 					bean.getPhoto(), email);
-			lservice.adminModifyMember(memberBasicInfo);
+			MemberDetailInfo findDetailByMemberid = lservice.findDetailByMemberid(memberid);
+			findDetailByMemberid.setModifytime(modifytime);
+			lservice.adminInsertMemberDetailInfo(findDetailByMemberid);
+			lservice.adminInsertMember(memberBasicInfo);
 		}
 		m.addAttribute("crud", 3);
 
@@ -370,7 +389,7 @@ public class ManagementSystemController {
 	}
 
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
-// import csv
+// export csv
 
 	@GetMapping("/exportCSV")
 	public void processExportCSV(HttpServletResponse response) throws IOException {
@@ -379,24 +398,56 @@ public class ManagementSystemController {
 		String currentDateTime = dateFormatter.format(new Date());
 
 		String headerKey = "Content-Disposition";
-		String headerValue = "attachment; filename=users_" + currentDateTime + ".csv";
+		String headerValue = "attachment; filename=CustomerInfo" + currentDateTime + ".csv";
 		response.setHeader(headerKey, headerValue);
 
 //		List<User> listUsers = service.listAll();
 		List<MemberBasicInfo> memberlist = lservice.memberFindAll();
-
+		List<MemberDetailInfo> memberdetaillist = lservice.memberDetailFindAll();
+		
 		ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
-		String[] csvHeader = { "Username", "AuthLevel", "Full Name", "Roles", "Enabled" };
-		String[] nameMapping = { "id", "email", "fullName", "roles", "enabled" };
-
+		String[] csvHeader = { "Username", "Email","Name", "Phone", "address", "nickname", "nationality", "birth","gender" };
+		String[] nameMapping = { "username", "email","name" , "phone","address","nickname","nationality","birth","gender" };
 		csvWriter.writeHeader(csvHeader);
 
-		for (MemberBasicInfo memberbean : memberlist) {
-			csvWriter.write(memberbean, nameMapping);
+		MembeAllInfo all = new MembeAllInfo();
+
+		for(int i = 0 ; i < memberlist.size();i++) {
+			all.setAll(memberlist.get(i), memberdetaillist.get(i));
+			csvWriter.write(all,nameMapping);
 		}
+		
+//		for (MemberBasicInfo memberbean : memberlist) {
+//			
+//			
+//			csvWriter.write(memberbean, nameMapping);
+//		}
 
 		csvWriter.close();
 
 	}
+	
+//	export PDF
+	
+    @GetMapping("/exportPDF")
+    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+         
+//        List<User> listUsers = service.listAll();
+        List<MemberBasicInfo> memberbasicinfo = lservice.memberFindAll(); 
+        
+        
+        PdfExporter exporter = new PdfExporter(memberbasicinfo);
+        exporter.export(response);
+         
+    }
+	
+	
 
 }

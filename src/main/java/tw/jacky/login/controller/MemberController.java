@@ -38,7 +38,7 @@ import tw.jacky.login.model.MemberBasicInfo;
 import tw.jacky.login.model.MemberDetailInfo;
 
 @Controller
-@SessionAttributes({ "memberbean", "adminlist", "memberbasicinfo" ,"memberdetailinfo" })
+@SessionAttributes({ "memberbean", "adminlist", "memberbasicinfo", "memberdetailinfo" })
 @RequestMapping("/uvmember")
 public class MemberController {
 
@@ -82,57 +82,100 @@ public class MemberController {
 		return path_member_login + "MemberHomePage";
 	}
 
-
-
 // 會員更改密碼
 	@GetMapping("/MemberModifyPassword")
 	public String processMemberModifyPassword() {
 		return path_member_login + "MemberChangePassword";
 	}
-	
-	
+
 // 會員在homepage送信
 	@GetMapping("/MemberVerifyEmail")
 	public String processMemberVerifyEmail(Model m) {
-		
-	MemberBasicInfo memberbasicinfo = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
-	MemberDetailInfo memberdetailinfo = (MemberDetailInfo)m.getAttribute("memberdetailinfo");
-	
-	System.out.println("有無取得基本資料:" + memberbasicinfo.getLoginStatus().getStatusid());
-	
-	if( memberbasicinfo.getLoginStatus().getStatusid()== 4) {
+
+		MemberBasicInfo memberbasicinfo = (MemberBasicInfo) m.getAttribute("memberbasicinfo");
+		MemberDetailInfo memberdetailinfo = (MemberDetailInfo) m.getAttribute("memberdetailinfo");
+
+		System.out.println("有無取得基本資料:" + memberbasicinfo.getLoginStatus().getStatusid());
+
+		if (memberbasicinfo.getLoginStatus().getStatusid() == 4) {
 //		System.out.println("有無進到方法内");
-		String randomCode = RandomString.make(3);
+			String randomCode = RandomString.make(3);
 //		MemberBasicInfo memberbean = lservice.findByMemberid(memberbasicinfo.getMemberid());
 //		MemberDetailInfo memberdetailbean = lservice.findDetailByMemberid(memberbean.getMemberid());
-		memberbasicinfo.setVerificationcode(randomCode);		
+			memberbasicinfo.setVerificationcode(randomCode);
 //		System.out.println("member的狀態碼是:" + memberbean.getStatusid());
-		lservice.adminModifyMember(memberbasicinfo);
-		gmailController.sendVerificationEmailStatusId(memberbasicinfo, memberdetailinfo);
-	}else {
-		m.addAttribute("operation_Status", 1);
-		return path_member_login + "MemberHomePage";
+			lservice.adminModifyMember(memberbasicinfo);
+			gmailController.sendVerificationEmailStatusId(memberbasicinfo, memberdetailinfo);
+		} else {
+			m.addAttribute("operation_Status", 1);
+			return path_member_login + "MemberHomePage";
+		}
+
+		return path_member_login + "MemberRegisterVerificationPage";
+
 	}
+
 	
-	
-	return path_member_login + "MemberRegisterVerificationPage";
-	
-	}
-	
-	
-	@PostMapping(path="/MemberModifyPasswordToDB")
-	public String processMemberModifyPasswordToDB(@RequestParam("pwd") String password, HttpServletRequest  request) {
-		MemberBasicInfo memberbean =(MemberBasicInfo) request.getSession().getAttribute("memberbasicinfo");
+//	會員修改密碼
+	@PostMapping(path = "/MemberModifyPasswordToDB")
+	public String processMemberModifyPasswordToDB(@RequestParam("password") String password, HttpServletRequest request) {
+		MemberBasicInfo memberbean = (MemberBasicInfo) request.getSession().getAttribute("memberbasicinfo");
 		System.out.println("我的memberbasicinfo bean是否取到值:" + memberbean.getEmail());
 		memberbean.setPassword(password);
 		String newpassword = managementSystemController.encrpytMemberPassword(memberbean);
 		memberbean.setPassword(newpassword);
 		lservice.adminUpdateMember(memberbean);
-		
+
 		return path_member_login + "MemberHomePage";
 	}
-	
 
+//	會員修改詳細資料
+	@PostMapping(path = "/MemberModifyMemberDetail")
+	public String processMemberModifyMemberDetail(@RequestParam("memberid") String memberid_String,
+			@RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("phone") String phone,
+			@RequestParam("nickname") String nickname, @RequestParam("nationality") String nationality,
+			@RequestParam("birth") String birth, @RequestParam("gender") String gender,
+			@RequestParam("address") String address, @RequestParam("myFile") MultipartFile mf, Model m) {
 
+		String filename = mf.getOriginalFilename();
+		String photo_path = lservice.savePicToLocal(mf);
+		String pic_locaiton = piclocation + photo_path;
+
+		Integer memberid = Integer.parseInt(memberid_String);
+		MemberBasicInfo memberbasicinfo = lservice.findByMemberid(memberid);
+		MemberDetailInfo memberdetailinfo = lservice.findDetailByMemberid(memberid);
+		Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String modifytime = simpleDateFormat.format(date);
+		
+//		System.out.println("性別:" + gender);
+
+		memberbasicinfo.setEmail(email);
+
+		memberdetailinfo.setName(name);
+		memberdetailinfo.setAddress(address);
+		memberdetailinfo.setNickname(nickname);
+		memberdetailinfo.setPhone(phone);
+		memberdetailinfo.setBirth(birth);
+		memberdetailinfo.setNationality(nationality);
+		memberdetailinfo.setGender(gender);
+		memberdetailinfo.setModifytime(modifytime);
+		
+		System.out.println("照片名稱:" +filename);
+
+		if (filename != "") {
+			System.out.println("更改過圖片");
+			memberbasicinfo.setPhoto(pic_locaiton);
+		}
+
+		lservice.adminModifyMember(memberbasicinfo);
+		lservice.adminInsertMemberDetailInfo(memberdetailinfo);
+
+		m.addAttribute("memberdetailinfo", memberdetailinfo);
+		m.addAttribute("memberbasicinfo", memberbasicinfo);
+
+		return "redirect:toMemberHomePage";
+
+	}
 
 }

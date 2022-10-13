@@ -7,12 +7,6 @@
 <meta charset="UTF-8">
 <title>ChiTou-景點門票-景點說明</title>
 	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
-<style>
-
-.position-absolute {
-  position: absolute;
-}
-</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
@@ -169,7 +163,13 @@ $('.addToCart').on('click',function(e){
 					  position: 'top-end',
 					  toast: true,
 					  title: '尚未登入!',
-					})
+					  confirmButtonText:'<i class="fa fa-thumbs-up"></i>馬上登入',
+					  showCancelButton: true,
+				}).then((result) => {
+					if (result.isConfirmed) {
+						location.href='toAdminLoginPage'
+					}
+				})
 			}
 		}
 	});

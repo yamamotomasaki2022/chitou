@@ -156,7 +156,7 @@ button, .btn {
 					<td class=""><%=status%></td>
 					<td class="">
 
-						<form action="article.renew" method="post" style="">
+						<form action="article.mail" method="post" style="">
 							<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
 							<input type="submit" name="update" value="通知" class="btn btn-primary mr-2"
 								id="update">

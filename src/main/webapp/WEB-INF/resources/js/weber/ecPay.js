@@ -19,6 +19,7 @@
         dataType:'JSON',
         contentType:'application/json',
         success:function(data){
+			console.log(data)
             $('#phone').val(data.phone);
         }
     })
@@ -39,6 +40,7 @@ $('#toEC').on('click',function(e){
 	json.numberOfPeople = $('#numberOfPeople').val();
 	json.hotelName = $('#hotelName').val();
 	json.totalAmount = $('#totalAmount').val();
+	json.hotelID = $('#hotelID').val();
 	console.log(json);
 	$.ajax({
 		type:"POST",

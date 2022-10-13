@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import tw.weber.hotel.model.BookSearch;
 import tw.weber.hotel.model.Hotel;
+import tw.weber.hotel.model.Reservation;
+import tw.weber.hotel.model.Room;
 import tw.weber.hotel.model.RoomStyle;
 import tw.weber.hotel.model.RoomStyleBackService;
 
@@ -38,14 +41,14 @@ public class RoomStyleBackController {
 	private String insertPage = suffix + "RoomStyleInsert";
 	private String updatePage = suffix +"RoomStyleUpdate";
 	
-//	@GetMapping(path = "/room")
-//	public String SearchAllroom(Model model) {
-//		Hotel hotel = (Hotel)model.getAttribute("hotelResult");
-//		System.err.println("hotelID:"+hotel.getHotelID());
-//		List<RoomStyle> result = styleService.findAllByHotelID(hotel.getHotelID());
-//		model.addAttribute("result",result);
-//		return roomMainPage;
-//	}	
+	@GetMapping(path = "/room")
+	public String SearchAllroom(Model model) {
+		Hotel hotel = (Hotel)model.getAttribute("hotelResult");
+		System.err.println("hotelID:"+hotel.getHotelID());
+		List<RoomStyle> result = styleService.findAllByHotelID(hotel.getHotelID());
+		model.addAttribute("result",result);
+		return roomMainPage;
+	}	
 	
 	@GetMapping(path = "/searchRoom")
 	public String SearchByKey(@RequestParam("type")String type,@RequestParam("keyword")String keyword,Model model) {
@@ -123,6 +126,27 @@ public class RoomStyleBackController {
 		List<RoomStyle> result = styleService.findAllByHotelID(hotelID);
 		return result;
 	}
+	
+	@GetMapping(path = "/searchRoomStatus")
+	@ResponseBody
+	public List<Room> searchRoomStatus(int styleID){
+		return styleService.getRoomList(styleID);
+	}
+	
+	@GetMapping(path = "/searchRoomStatusByDate")
+	@ResponseBody
+	public List<BookSearch> searchRoomStatusByDate(int styleID,String date){
+		return styleService.getRoomStatusByDate(styleID, date);
+	}
+	
+	@GetMapping(path = "/searchRoomStatusByRoomID")
+	@ResponseBody
+	public Reservation searchRoomStatusByRoomID(int roomID,String date) {
+		return styleService.getReservationByDateAndRoom(roomID, date);
+	}
+//	@GetMapping(path = "search")
+	
+	
 	
 //	@GetMapping(path = "/roomAjax")
 //	@ResponseBody

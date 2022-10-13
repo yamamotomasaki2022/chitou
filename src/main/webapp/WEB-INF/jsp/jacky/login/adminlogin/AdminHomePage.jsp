@@ -218,14 +218,14 @@ if (request.getAttribute("crud") != null) {
 
 
 							<td>
-<!-- 							<input type=submit name="deletefromadmin" value="刪除"> -->
-							
-						
-							<button href="deleteAttraction?attid="
-								class="btn btn-inverse-danger btn-icon">
-								<i class="ti-trash"></i>
-							</button>
-						
+								<!-- 							<input type=submit name="deletefromadmin" value="刪除"> -->
+
+
+								<button href="deleteAttraction?attid="
+									class="btn btn-inverse-danger btn-icon">
+									<i class="ti-trash"></i>
+								</button>
+
 							</td>
 						</form>
 
@@ -239,11 +239,11 @@ if (request.getAttribute("crud") != null) {
 								name="permission" value="<%=bean.getPermission()%>">
 
 							<td>
-<!-- 							<input type=submit name="modifyfromadmin" value="更改"> -->
-							<button type="submit" name="modifyfromadmin"
-								class="btn btn-inverse-success btn-icon">
-								<i class="ti-pencil-alt"></i>
-							</button>
+								<!-- 							<input type=submit name="modifyfromadmin" value="更改"> -->
+								<button type="submit" name="modifyfromadmin"
+									class="btn btn-inverse-success btn-icon">
+									<i class="ti-pencil-alt"></i>
+								</button>
 							</td>
 						</form>
 					</tr>
@@ -260,10 +260,12 @@ if (request.getAttribute("crud") != null) {
 			<hr>
 
 			<FORM ACTION="/manager/ToAdminCreateAdmin" method="post">
-
 				<input class="bot" type="submit" name="addnewmember" value="新增管理員資料">
-				<hr>
 			</form>
+			<FORM ACTION="/manager/exportCSV" >
+				<input class="bot" type="submit" name="exportCSV" value="導出會員資料">
+			</form>
+			<hr>
 		</div>
 	</div>
 
@@ -289,7 +291,7 @@ if (request.getAttribute("crud") != null) {
 	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	
+
 	<script>
 		var status = "${session_status}";
 
@@ -305,7 +307,7 @@ if (request.getAttribute("crud") != null) {
 		}
 		
 	</script>
-	
+
 	<script>
 	
 	var welcome = ${welcome_message}
