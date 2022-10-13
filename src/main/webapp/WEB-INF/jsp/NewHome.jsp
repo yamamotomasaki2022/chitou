@@ -35,25 +35,38 @@
 
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	
+
 	<script>
-		var logout = ${logout}
+		var logout = $
+		{
+			logout
+		}
 		console.log('logout:' + logout)
 
 		if (logout == 1) {
 			Swal.fire('Thanks!', 'You have logged out!', 'success')
-			$('#img1').attr('src','/images/jacky/login/default1.png')
+			$('#img1').attr('src', '/images/jacky/login/default1.png')
 		}
-		
-// 		else{
-// 			$('#img1').attr('src','/${memberbasicinfo.photo}')}
-		
-	</script>
-	
-	
-	
 
-	
+		// 		else{
+		// 			$('#img1').attr('src','/${memberbasicinfo.photo}')}
+	</script>
+
+	<script>
+		var operation = ${operation}
+		console.log('operation:' + operation)
+
+		if (operation == 1) {
+			Swal.fire('登入成功!', '${memberbasicinfo.username}', 'success')
+			$('#img1').attr('src', '/images/jacky/login/google.png')
+		}
+
+		// 		else{
+		// 			$('#img1').attr('src','/${memberbasicinfo.photo}')}
+	</script>
+
+
+
 
 </body>
 </html>

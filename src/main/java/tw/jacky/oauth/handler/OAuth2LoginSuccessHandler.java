@@ -1,6 +1,7 @@
 package tw.jacky.oauth.handler;
 
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -47,6 +48,7 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
 			MemberDetailInfo memberdetailbean = lService.findDetailByMemberid(memberbean.getMemberid());
 			request.getSession().setAttribute("memberbasicinfo", memberbean);
 			request.getSession().setAttribute("memberdetailinfo", memberdetailbean);
+			request.setAttribute("operation", 1);
 
 		} catch (Exception e) {
 			String photo = "images/jacky/login/default1.png";
@@ -56,13 +58,20 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
 			lService.adminInsertMemberDetailInfo(memberDetailInfo);
 			request.getSession().setAttribute("memberbasicinfo", memberBasicInfo);
 			request.getSession().setAttribute("memberdetailinfo", memberDetailInfo);
-			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/memberlogin/MemberHomePage.jsp").forward(request,
+			request.setAttribute("operation", 1);
+//			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/memberlogin/MemberHomePage.jsp").forward(request,
+//					response);
+//			response.sendRedirect("toMemberHomePage");
+			request.getRequestDispatcher("/WEB-INF/jsp/NewHome.jsp").forward(request,
 					response);
 
 		}
 
 
-		request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/memberlogin/MemberHomePage.jsp").forward(request,
+//		request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/memberlogin/MemberHomePage.jsp").forward(request,
+//				response);
+//		response.sendRedirect("toMemberHomePage");
+		request.getRequestDispatcher("/WEB-INF/jsp/NewHome.jsp").forward(request,
 				response);
 	}
 

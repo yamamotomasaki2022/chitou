@@ -39,6 +39,7 @@ import org.supercsv.prefs.CsvPreference;
 
 import com.lowagie.text.DocumentException;
 
+import tw.chitou.exception.UserExistException;
 import tw.chitou.util.PdfExporter;
 import tw.jacky.login.model.AdminChitou;
 import tw.jacky.login.model.LoginService;
@@ -193,14 +194,20 @@ public class ManagementSystemController {
 		MemberBasicInfo bean = new MemberBasicInfo(4, username, password, pic_locaiton, email);
 		bean.setPassword(encrpytMemberPassword(bean));
 		System.out.println(bean.getPassword());
-		MemberBasicInfo adminInsertMember = lservice.adminInsertMember(bean);
-
+		
+		try {
+			MemberBasicInfo adminInsertMember = lservice.adminInsertMember(bean);
+			
 //		生成一個memberdetail的bean
-		lservice.adminInsertMemberDetailInfo(adminInsertMember);
-
+			lservice.adminInsertMemberDetailInfo(adminInsertMember);
+			
 //		1為create
-		m.addAttribute("crud", 1);
-		return "redirect:" + method_ShowTableInHomePage;
+			m.addAttribute("crud", 1);
+			return "redirect:" + method_ShowTableInHomePage;
+			
+		} catch (Exception e) {
+			throw new UserExistException();
+		}
 	}
 
 //	管理員刪除會員

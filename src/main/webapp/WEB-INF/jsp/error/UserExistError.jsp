@@ -11,7 +11,7 @@
 
 <h1>用戶已存在！請重新換一個賬號謝謝！</h1>
 
-<a href="home"><button >返回主頁</button></a>
+<a href="/home"><button >返回主頁</button></a>
 
 </body>
 </html>
