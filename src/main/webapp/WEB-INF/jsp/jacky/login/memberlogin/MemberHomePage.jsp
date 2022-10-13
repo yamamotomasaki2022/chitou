@@ -52,8 +52,8 @@
 										</div>
 
 										<br> <a href="/uvmember/MemberModifyPassword"><button
-												type="button" class="btn btn-light btn-sm">更改密碼</button></a> 
-										<a href="/uvmember/MemberVerifyEmail"><button type="button"
+												type="button" class="btn btn-light btn-sm">更改密碼</button></a> <a
+											href="/uvmember/MemberVerifyEmail"><button type="button"
 												class="btn btn-light btn-sm">驗證信箱</button></a>
 										<button type="button" id="modify" class="btn btn-light btn-sm">一鍵修改</button>
 										<div id="changepic" class="form-group" style="display: none">
@@ -125,14 +125,15 @@
 											<label class="col-sm-3 col-form-label">生日</label>
 											<div class="col-sm-9">
 												<input id="birth" type="date" class="form-control"
-													name="birth" placeholder="生日" value="${memberdetailinfo.birth}" disabled />
-													
+													name="birth" placeholder="生日"
+													value="${memberdetailinfo.birth}" disabled />
+
 											</div>
 
 											<label class="col-sm-3 col-form-label">性別</label>
 											<div class="col-sm-9">
 												<select id="gender" class="form-control" name="gender"
-													 disabled>
+													disabled>
 													<option value="${memberdetailinfo.gender}">${memberdetailinfo.gender}</option>
 													<option value="女">女</option>
 													<option value="男">男</option>
@@ -150,10 +151,10 @@
 									<button type="submit" class="btn btn-primary mr-2"
 										name="submit" style="float: right">更改</button>
 								</div>
-								
-								
-								<a href="/home"><button
-												type="button" class="btn btn-light btn-sm">返回主頁</button></a> 
+
+
+								<a href="/home"><button type="button"
+										class="btn btn-light btn-sm">返回主頁</button></a>
 
 							</form>
 						</div>
@@ -172,7 +173,7 @@
 			$('#nationality').prop('disabled', false)
 			$('#birth').prop('disabled', false)
 			$('#gender').prop('disabled', false)
-			$('#address').prop('disabled',false)
+			$('#address').prop('disabled', false)
 			$('#changepic').css('display', '')
 			$('#modifybtn').css('display', '')
 		})
@@ -191,6 +192,17 @@
 			// 使用 readAsDataURL 將圖片轉成 Base64
 			fr.readAsDataURL(file);
 		});
+	</script>
+
+
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
+	<script>
+		var op_status = ${operation_Status}
+
+		if (op_status == 1) {
+			Swal.fire('已驗證過了!不需要重新驗證', '會員', 'error')
+		}
 	</script>
 
 </body>
