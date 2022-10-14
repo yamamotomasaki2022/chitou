@@ -97,7 +97,7 @@
 					class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
 					aria-labelledby="notificationDropdown">
 					<p class="mb-0 font-weight-normal float-left dropdown-header"><a href="cart">購物車</a></p>
-					<a class="dropdown-item preview-item" href="cart">
+					<a class="dropdown-item preview-item" href="/cart">
 						<div class="preview-thumbnail">
 							<div class="preview-icon bg-success">
 								<i class="ti-info-alt mx-0"></i>
@@ -107,7 +107,7 @@
 							<h6 class="preview-subject font-weight-normal">購物車</h6>
 							<p class="font-weight-light small-text mb-0 text-muted"></p>
 						</div>
-					</a> <a class="dropdown-item preview-item"  href="order">
+					</a> <a class="dropdown-item preview-item"  href="/order">
 						<div class="preview-thumbnail">
 							<div class="preview-icon bg-warning">
 								<i class="ti-settings mx-0"></i>
