@@ -29,6 +29,11 @@ th {
 td {
 border: 2px solid;
 }
+
+#list {
+text-align:center;
+}
+
 </style>
 
 <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
@@ -46,25 +51,24 @@ border: 2px solid;
 		<h1>查詢主頁面</h1>
 
 	<div>
-	<select name="searchinfo">
+	<select name="searchinfo" style="float:left">
 				<option value="memberid">會員編號</option>	
 				<option value="username">賬號</option>
 				<option value="auth">身份</option>
 				<option value="email">郵箱</option>
 
-	</select> <br> 
+	</select>  <br><br><br>
 
-
-
-
-	<input type="text" name="searchtext" size="10">
-	<input class="bot" type="submit" name="searchmemberinDB"
-				value="查詢">
+	<input type="text" name="searchtext" size="5" style="float:left">
+	<input class="btn btn-inverse-primary btn-fw" type="submit" name="searchmemberinDB"
+				value="查詢" style="float:left">
 		<br>		
 
-
-		<label> 會員資料庫列表</label>
-		<table>
+		<div id="list" >
+		<label > 會員資料庫列表</label>
+		
+		</div>
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>會員編號</th>
@@ -103,7 +107,7 @@ for(MemberBasicInfo bean:result) { %>
 </FORM>
 <hr>
 <form action="AdminHomePage">
-<button onclick="">返回管理員主頁面</button>
+<button class="btn btn-inverse-primary btn-fw" onclick="">返回管理員主頁面</button>
 </form>
 
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>

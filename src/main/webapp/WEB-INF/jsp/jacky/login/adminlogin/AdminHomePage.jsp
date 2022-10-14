@@ -83,7 +83,7 @@ if (request.getAttribute("crud") != null) {
 
 	<FORM ACTION="/manager/ToAdminCreateMemberPage" method="post">
 
-		<input class="bot" type="submit" name="addnewmember" value="新增會員資料">
+		<input class="btn btn-inverse-primary btn-fw" type="submit" name="addnewmember" value="新增會員資料">
 		<hr>
 
 	</form>
@@ -96,7 +96,7 @@ if (request.getAttribute("crud") != null) {
 			<option value="email">郵箱</option>
 
 		</select> <label>查詢</label> <input type="text" name="searchtext" size="10">
-		<input class="bot" type="submit" name="searchmemberinDB" value="查詢">
+		<input class="btn btn-inverse-primary btn-fw" type="submit" name="searchmemberinDB" value="查詢">
 
 	</form>
 
@@ -260,17 +260,17 @@ if (request.getAttribute("crud") != null) {
 			<hr>
 
 			<FORM ACTION="/manager/ToAdminCreateAdmin" method="post">
-				<input class="bot" type="submit" name="addnewmember" value="新增管理員資料">
+				<input class="btn btn-inverse-primary btn-fw" type="submit" name="addnewmember" value="新增管理員資料" style="float:left">
 			</form>
 			<FORM ACTION="/manager/exportCSV" >
-				<input class="bot" type="submit" name="exportCSV" value="導出會員資料">
+				<input class="btn btn-inverse-primary btn-fw" type="submit" name="exportCSV" value="導出會員資料"  style="float:right">
 			</form>
 			<hr>
 		</div>
 	</div>
 
 
-	<a href="/logout">管理員登出 </a>
+	
 
 
 

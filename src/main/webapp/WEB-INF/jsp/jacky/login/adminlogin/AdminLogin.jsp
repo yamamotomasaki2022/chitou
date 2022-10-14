@@ -69,10 +69,10 @@
 								<!-- 									data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"> -->
 								<!-- 								</div> -->
 
-<!-- 								谷歌驗證 -->
-<!-- 								<div class="g-recaptcha" id="rcaptcha" -->
-<!-- 									data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"></div> -->
-<!-- 								<span id="captcha" style="color: red" /></span> -->
+								<!-- 								谷歌驗證 -->
+								<!-- 								<div class="g-recaptcha" id="rcaptcha" -->
+								<!-- 									data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"></div> -->
+								<!-- 								<span id="captcha" style="color: red" /></span> -->
 								<!-- this will show captcha errors -->
 
 								<div class="mt-3">
@@ -94,10 +94,7 @@
 									<a href="/toForgetPassword" class="auth-link .text-primary">忘記密碼</a>
 								</div>
 								<div class="mb-2">
-									<button type="button"
-										class="btn btn-social-icon btn-outline-facebook">
-										<i class="ti-facebook"></i>
-									</button>
+
 
 									<!-- 									<button type="button" -->
 									<!-- 										class="btn btn-social-icon btn-outline-google"> -->
@@ -105,62 +102,71 @@
 									<!-- 									</button> -->
 
 
-									<a href='/oauth2/authorization/google'>
-										<button type="button"
-											class="btn btn-social-icon btn-outline-google">
-											<i class="ti-google"></i>
-										</button>
-									</a>
 
-
-
-								</div>
-
-
-								<hr>
-							</form>
-							<div>
-
-								<input id="tomember" type="button" class="btn btn-primary mr-2"
-									value="會員" style="float: left; background-color: #2AAC16">
-
-								<!-- 								<form action="toAdminLoginPage"> -->
-								<input id="toadmin" type="button" class="btn btn-primary mr-2"
-									value="管理員" style="float: right; background-color: #2AAC16">
-								<!-- 								</form> -->
-							</div>
-
-							<br> <br> <br>
-
-							<div id="fastinputtotal">
-
-								<!-- 								<form action="toMemberRegisterPage"> -->
-								<!-- 									<input type="submit" class="btn btn-primary mr-2" value="注冊" -->
-								<!-- 										style=""background-color:#2AAC16"> -->
-
-								<!-- 								</form> -->
-
-
-								<button type="button" class="btn btn-primary mr-2"
-									id="fastinput" style="float: right">老闆一鍵登入</button>
-
-								<button type="button" class="btn btn-primary mr-2"
-									id="fastinput2" style="float: left">管理員一鍵登入</button>
-
-								<div style="text-align: center">
 									<button type="button" class="btn btn-primary mr-2"
-										id="fastinput3" style="float: left">會員一鍵登入</button>
+										id="fastinput" style="float: right">老闆一鍵登入</button>
+
+									<button type="button" class="btn btn-primary mr-2"
+										id="fastinput2" style="float: left">管理員一鍵登入</button>
+
+
+									<div style="text-align: center">
+										<button type="button" class="btn btn-primary mr-2"
+											id="fastinput3" style="float: left">會員一鍵登入</button>
+
+									</div>
 
 								</div>
 
-							</div>
+
+								<div>
+									<a href="toMemberRegisterPage"><button id="fastinput4"
+											type="button" class="btn btn-primary mr-2"
+											style="float: right">注冊</button></a>
+								</div>
+
+								<button type="button"
+									class="btn btn-social-icon btn-outline-facebook">
+									<i class="ti-facebook style="float: right"></i>
+								</button>
 
 
-							<div>
-								<a href="toMemberRegisterPage"><button id="fastinput4"
-										type="button" class="btn btn-primary mr-2"
-										style="float: right">注冊</button></a>
-							</div>
+								<a href='/oauth2/authorization/google'>
+									<button type="button"
+										class="btn btn-social-icon btn-outline-google">
+										<i class="ti-google"></i>
+									</button>
+								</a>
+						</div>
+
+
+						<hr>
+						</form>
+						<div>
+
+							<input id="tomember" type="button" class="btn btn-primary mr-2"
+								value="會員" style="float: left; background-color: #2AAC16">
+
+							<!-- 								<form action="toAdminLoginPage"> -->
+							<input id="toadmin" type="button" class="btn btn-primary mr-2"
+								value="管理員" style="float: right; background-color: #2AAC16">
+							<!-- 								</form> -->
+						</div>
+
+						<br> <br> <br>
+
+						<div id="fastinputtotal">
+
+							<!-- 								<form action="toMemberRegisterPage"> -->
+							<!-- 									<input type="submit" class="btn btn-primary mr-2" value="注冊" -->
+							<!-- 										style=""background-color:#2AAC16"> -->
+
+							<!-- 								</form> -->
+
+
+
+
+
 
 
 						</div>
