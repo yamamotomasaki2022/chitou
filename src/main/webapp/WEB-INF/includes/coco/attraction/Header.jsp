@@ -63,7 +63,7 @@
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
-					<a href="chitou.flightticket" class="dropdown-item"> <i
+					<a href="/chitou.flightticket" class="dropdown-item"> <i
 						class="ti-settings text-primary"></i> 機票總覽
 					</a>
 				</div></li>
@@ -143,19 +143,7 @@
 		</button>
 	</div>
 
-	<script>
-		var memberbasicinfo = ${memberbasicinfo};
-		
-		if(memberbasicinfo !=null){
-			var statusid = ${memberbasicinfo.statusid}
 
-		if (statusid != null) {
-				console.log('sss:' + memberbasicinfo)
-				$('#img1').attr('src', '/${memberbasicinfo.photo}')
-			}
-
-		}
-	</script>
 
 
 </nav>

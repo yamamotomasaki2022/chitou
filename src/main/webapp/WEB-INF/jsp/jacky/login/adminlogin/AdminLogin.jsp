@@ -69,7 +69,7 @@
 								<!-- 									data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"> -->
 								<!-- 								</div> -->
 
-								<!-- 谷歌驗證 -->
+<!-- 								谷歌驗證 -->
 <!-- 								<div class="g-recaptcha" id="rcaptcha" -->
 <!-- 									data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"></div> -->
 <!-- 								<span id="captcha" style="color: red" /></span> -->
