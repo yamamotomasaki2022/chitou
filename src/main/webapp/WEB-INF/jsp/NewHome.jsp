@@ -37,14 +37,12 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 	<script>
-		var logout = $
-		{
-			logout
-		}
+		var logout = ${logout}
+		
 		console.log('logout:' + logout)
 
 		if (logout == 1) {
-			Swal.fire('Thanks!', 'You have logged out!', 'success')
+			Swal.fire('謝謝', '登出成功', 'success')
 			$('#img1').attr('src', '/images/jacky/login/default1.png')
 		}
 
@@ -64,6 +62,22 @@
 		// 		else{
 		// 			$('#img1').attr('src','/${memberbasicinfo.photo}')}
 	</script>
+	
+	
+	<script>
+		var login = ${login}
+		
+		console.log('login:' + login)
+
+		if (login == 1) {
+			Swal.fire('登入成功!', '${memberbasicinfo.username}', 'success')
+		}
+
+		// 		else{
+		// 			$('#img1').attr('src','/${memberbasicinfo.photo}')}
+	</script>
+	
+	
 
 
 

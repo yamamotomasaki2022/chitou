@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.jasper.tagplugins.jstl.core.If;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -78,8 +79,25 @@ public class MemberController {
 //	------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	@RequestMapping(path = "toMemberHomePage")
-	public String MemberHomePage() {
-		return path_member_login + "MemberHomePage";
+	public String MemberHomePage(Model m) {
+		
+		try {
+			MemberBasicInfo memberbasicinfo =(MemberBasicInfo) m.getAttribute("memberbasicinfo");
+			
+			int memberid = memberbasicinfo.getMemberid();
+
+			System.out.println("此賬號的id:"+memberid);
+			
+
+				
+				return path_member_login + "MemberHomePage";
+			
+			
+		} catch (Exception e) {
+			return path_admin_login + "AdminLogin";
+		
+		}
+		
 	}
 
 // 會員更改密碼
@@ -95,7 +113,7 @@ public class MemberController {
 		MemberBasicInfo memberbasicinfo = (MemberBasicInfo) m.getAttribute("memberbasicinfo");
 		MemberDetailInfo memberdetailinfo = (MemberDetailInfo) m.getAttribute("memberdetailinfo");
 
-		System.out.println("有無取得基本資料:" + memberbasicinfo.getLoginStatus().getStatusid());
+//		System.out.println("有無取得基本資料:" + memberbasicinfo.getLoginStatus().getStatusid());
 
 		if (memberbasicinfo.getLoginStatus().getStatusid() == 4) {
 //		System.out.println("有無進到方法内");

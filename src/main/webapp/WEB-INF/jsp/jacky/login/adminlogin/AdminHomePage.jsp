@@ -261,11 +261,29 @@ if (request.getAttribute("crud") != null) {
 
 			<FORM ACTION="/manager/ToAdminCreateAdmin" method="post">
 				<input class="btn btn-inverse-primary btn-fw" type="submit" name="addnewmember" value="新增管理員資料" style="float:left">
-			</form>
-			<FORM ACTION="/manager/exportCSV" >
-				<input class="btn btn-inverse-primary btn-fw" type="submit" name="exportCSV" value="導出會員資料"  style="float:right">
-			</form>
-			<hr>
+			</form>&nbsp;
+			
+			<ul class="navbar-nav mr-lg-4" style="float:right">
+			<li class="nav-item dropdown"><a
+				class="dropdown-toggle btn btn-inverse-primary btn-sm" href="#"
+				data-toggle="dropdown"> <i ></i>&nbsp;導出會員資料
+			</a>
+				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+					aria-labelledby="profileDropdown">
+					<a href="/manager/exportCSV" class="dropdown-item"> <i
+						class="ti-settings text-primary"></i> CSV導出
+					</a> 
+					<a href="/manager/exportPDF" class="dropdown-item"> <i
+						class="ti-settings text-primary"></i> PDF導出
+					</a> 
+				</div></li>
+		</ul>
+			
+			
+<!-- 			<FORM ACTION="/manager/exportCSV" > -->
+<!-- 				<input class="btn btn-inverse-primary btn-fw" type="submit" name="exportCSV" value="導出會員資料"  style="float:right"> -->
+<!-- 			</form> -->
+			
 		</div>
 	</div>
 

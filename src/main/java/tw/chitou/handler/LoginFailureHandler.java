@@ -43,11 +43,11 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		request.setAttribute("errors", errors);
 		
 		if (username == null || username.length() == 0) {
-			errors.put("name", "name is required");
+			errors.put("name", "需要填寫賬號");
 		}
 
 		if (password == null || password.length() == 0) {
-			errors.put("pwd", "password is required");
+			errors.put("pwd", "需要填寫密碼");
 		}
 
 		if (errors != null && !errors.isEmpty()) {
@@ -55,7 +55,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		}
 		
 		
-		errors.put("msg", "please input correct username or passward");
+		errors.put("msg", "請輸入正確的賬號或密碼");
 		request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminLogin.jsp").forward(request, response);				
 	}
 

@@ -47,6 +47,9 @@
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
+<h1 style="text-align:center">統計數據</h1>
+
+
 <div class="chartdiv" style="width:300px;height:330px;border:3px #cccccc dashed;float: right">
 	<span>各洲旅游人口比例</span>	
 <canvas id="myChart2" style="width:100%;max-width:300px"></canvas>
@@ -153,6 +156,41 @@ new Chart("myChart3", {
   }
 });
 </script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script>
+	
+	var welcome = ${welcome_message}
+	
+	
+	if (welcome == 1) {
+		Swal.fire(
+				  'Welcome!',
+				  'Admin!',
+				  'success'
+				)
+	} else if (welcome == 2) {
+		Swal.fire(
+				  'Welcome!',
+				  'Manager!',
+				  'success'
+				)
+
+	} else if (welcome == 3) {
+		Swal.fire(
+				  'Welcome!',
+				  'Boss!',
+				  'success'
+				)
+
+	} else {
+		
+	}
+	
+	
+	</script>
+
 
 </body>
 </html>

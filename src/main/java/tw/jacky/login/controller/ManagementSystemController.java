@@ -105,6 +105,16 @@ public class ManagementSystemController {
 		m.addAttribute("welcome_message", id);
 		return page_adminhomepage;
 	}
+	
+	@RequestMapping(path = "/Chart/{id}")
+	public String toChart(@PathVariable("id") Integer id, Model m) {
+//		System.out.println("取到數字:" + id);
+		m.addAttribute("session_status", id);
+		m.addAttribute("welcome_message", id);
+		return "AdminChart";
+	}
+	
+	
 
 	@RequestMapping(path = "/AdminHomePage")
 	public String processAdminHomePage2(Model m) {

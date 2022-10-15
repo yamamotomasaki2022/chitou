@@ -4,7 +4,7 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 	<div
 		class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-		<a class="navbar-brand brand-logo mr-5" href="index.html"><img
+		<a class="navbar-brand brand-logo mr-5" href="/home"><img
 			src="/images/coco/logo3.png" class="mr-2" alt="logo" /> <img
 			src="/images/coco/logo2.png" class="mr-2" alt="logo" /></a>
 	</div>
@@ -36,9 +36,9 @@
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
-					<a href="AttractionList" class="dropdown-item"> <i class="ti-settings text-primary"></i>
-						景點總覽
-					</a> 
+					<a href="AttractionList" class="dropdown-item"> <i
+						class="ti-settings text-primary"></i> 景點總覽
+					</a>
 				</div></li>
 		</ul>
 
@@ -49,9 +49,9 @@
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
-					<a  href="searchHotel" class="dropdown-item"> <i class="ti-settings text-primary"></i>
-						飯店搜尋
-					</a> 
+					<a href="searchHotel" class="dropdown-item"> <i
+						class="ti-settings text-primary"></i> 飯店搜尋
+					</a>
 				</div></li>
 		</ul>
 
@@ -77,11 +77,9 @@
 					aria-labelledby="profileDropdown">
 					<a href="/article.main" class="dropdown-item"> <i
 						class="ti-settings text-primary"></i> 文章總覽
-					</a>
-					 <a href="/article.user" class="dropdown-item"> <i
+					</a> <a href="/article.user" class="dropdown-item"> <i
 						class="ti-settings text-primary"></i> 文章管理
-					</a> 
-					<a href="/member/sss" class="dropdown-item"> <i
+					</a> <a href="/member/sss" class="dropdown-item"> <i
 						class="ti-power-off text-primary"></i> 發表文章
 					</a>
 				</div></li>
@@ -96,7 +94,9 @@
 				<div
 					class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
 					aria-labelledby="notificationDropdown">
-					<p class="mb-0 font-weight-normal float-left dropdown-header"><a href="cart">購物車</a></p>
+					<p class="mb-0 font-weight-normal float-left dropdown-header">
+						<a href="cart">購物車</a>
+					</p>
 					<a class="dropdown-item preview-item" href="cart">
 						<div class="preview-thumbnail">
 							<div class="preview-icon bg-success">
@@ -107,7 +107,7 @@
 							<h6 class="preview-subject font-weight-normal">購物車</h6>
 							<p class="font-weight-light small-text mb-0 text-muted"></p>
 						</div>
-					</a> <a class="dropdown-item preview-item"  href="order">
+					</a> <a class="dropdown-item preview-item" href="order">
 						<div class="preview-thumbnail">
 							<div class="preview-icon bg-warning">
 								<i class="ti-settings mx-0"></i>
@@ -117,7 +117,7 @@
 							<h6 class="preview-subject font-weight-normal">訂單</h6>
 							<p class="font-weight-light small-text mb-0 text-muted"></p>
 						</div>
-					</a> 
+					</a>
 				</div></li>
 			<li class="nav-item nav-profile dropdown"><a
 				class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
@@ -127,6 +127,8 @@
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
 					<a href="/uvmember/toMemberHomePage" class="dropdown-item"> <i
+						class="ti-settings text-primary"></i> 會員登入
+					</a> <a href="/uvmember/toMemberHomePage" class="dropdown-item"> <i
 						class="ti-settings text-primary"></i> 個人頁面
 					</a> <a class="dropdown-item"> <i class="ti-settings text-primary"></i>
 						Settings
@@ -143,6 +145,20 @@
 		</button>
 	</div>
 
+	<script>
+
+		var username = ${memberbasicinfo.memberid};
+
+		if (username > 0) 
+			
+		{
+			console.log('測試是否進來:' + username)
+			$('#img1').attr('src', '/${memberbasicinfo.photo}')
+
+		}
+	</script>
+
+	
 
 
 

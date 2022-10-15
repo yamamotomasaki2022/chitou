@@ -31,6 +31,11 @@
 #auth_button {
 	background-color: pink
 }
+
+.errormsg{
+color:red;
+}
+
 </style>
 
 </head>
@@ -57,12 +62,12 @@
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
 										id="username" placeholder="Username" name="username">
-									<span>${errors.name}</span>
+									<span class="errormsg">${errors.name}</span>
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-lg"
 										id="password" placeholder="Password" name="password">
-									<span>${errors.pwd}</span>
+									<span class="errormsg">${errors.pwd}</span>
 								</div>
 
 								<!-- 								<div class="g-recaptcha" -->
@@ -79,7 +84,7 @@
 									<button
 										class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
 										type="submit" value="login">登入</button>
-									<span>${errors.msg}</span>
+									<span class="errormsg">${errors.msg}</span>
 								</div>
 
 								<div></div>
