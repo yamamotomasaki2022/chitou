@@ -1,65 +1,105 @@
-<%@page import="org.eclipse.jdt.internal.compiler.env.IBinaryAnnotation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page import="java.sql.Connection"%>
-<%@page import= "tw.luana.*" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="java.util.*"%>
-
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>ChiTou</title>
+	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 
-<title>訂單結果</title>
-<link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
 
-<%@ include file="../Luana_include/head.jsp" %>
+
 </head>
-<body>
+<body class="body2">
+	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
+	<!-- 封面滑動照片 -->
+	<div class="container my-4">
+		<div class="mb-4" style="height:100px">
 
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
-
-<%@ include file="../Luana_include/navbar.jsp" %>   
-
-<div class="container">
-		<div class="card-header my-3">
-		訂單詳細資料
 		</div>
-	
-		<table class="table table-light">
+
+		<br>
+
+		<div class="row justify-content-center">
+
+			<div class="col-12" style="display:inline-block;float:left;">
+			<table class="table table-light">
 			<thead>
 				<c:forEach var="order" items="${orderList}">
 				<tr>
 					<th scope="col">訂單編號：${order.orderid}</th>
 					<th scope="col">訂單類別：${order.ordertype}</th>
 					<th scope="col">下訂日：${order.orderdate}</th>
-					<th scope="col">總金額${order.totalprice}</th>
+					<th scope="col">總金額：${order.totalprice} 元</th>
 					<th scope="col">狀態：${order.orderstatus}</th>
 
 				</tr>
 				</c:forEach>
 			</thead>
 			<tbody>
-	<c:forEach var="aOrder" items="${aOrderDetail}">
+	<c:forEach var="fOrder" items="${fOrderDetail}">
 				
 					<tr>
-						
-						<td>${aOrder.attractionname}</td>
-						<td>${aOrder.planname}</td>
-						<td>${aOrder.quantity}</td>
-						<td>${aOrder.price}</td>
-						
-						
+						<td>航空公司：${fOrder.airline}</td>
+						<td>航班編號：${fOrder.flightid}</td>
+						<td>從：${fOrder.originid}<br><br>${fOrder.departuretime}出發</td>
+						<td>至：${fOrder.destinationid}<br><br>${fOrder.arrivaltime}抵達</td>
+						<td></td>
 						
 					</tr>
+					
+					<tr>
+						<td>乘客資訊：</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>姓氏：${fOrder.lastname}</td>
+						<td>名稱：${fOrder.firstname}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>聯絡信箱：${fOrder.emailaddress}</td>
+						<td>聯絡電話：${fOrder.phone}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					
 			</c:forEach>
-			</tbody>	
+			</tbody>		
 		</table>
 	</div>
 
 
-<%@ include file="../Luana_include/footer.jsp" %>
 
-   
+		</div>
+	</div>
+
+
+	<div class="untree_co-section">
+		<div class="container">
+		</div>
+		
+	</div>
+	<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
+
+	<div id="overlayer"></div>
+	<div class="loader">
+		<div class="spinner-border" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+
+
+	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
+
+
+
 </body>
 </html>

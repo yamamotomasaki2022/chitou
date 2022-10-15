@@ -1,39 +1,41 @@
-<%@page import="org.eclipse.jdt.internal.compiler.env.IBinaryAnnotation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page import="java.sql.Connection"%>
-<%@page import= "tw.luana.*" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="java.util.*"%>
-
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>ChiTou</title>
+	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 
-<title>訂單結果</title>
-<link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
+<style>
+th,td{
+text-align:center;
+}
+</style>
 
-<%@ include file="../Luana_include/head.jsp" %>
 </head>
-<body>
+<body class="body2">
+	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
+	<!-- 封面滑動照片 -->
+	<div class="container my-4">
+		<div class="mb-4" style="height:100px">
 
-	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
-
-<%@ include file="../Luana_include/navbar.jsp" %>   
-
-<div class="container">
-		<div class="card-header my-3">All Orders 
 		</div>
-		<table class="table table-light">
+
+		<br>
+
+		<div class="row justify-content-center">
+
+			<div class="col-12" style="display:inline-block;float:left;">
+			<table class="table table-light table-hover">
 			<thead>
 				<tr>
-					<th scope="col">Category</th>
-					<th scope="col">Date</th>
-					<th scope="col">Number</th>
-					<th scope="col">Price</th>
-					<th scope="col">Status</th>
-					<th scope="col"></th>
-					<th scope="col"></th>
+					<th scope="col" style="text-align:center;">分類</th>
+					<th scope="col">下定日</th>
+					<th scope="col">訂單編號</th>
+					<th scope="col">總金額</th>
+					<th scope="col">訂單狀態</th>
 					<th scope="col"></th>
 				</tr>
 			</thead>
@@ -45,7 +47,7 @@
 						<td>${order.ordertype}</td>
 						<td>${order.orderdate}</td>
 						<td>${order.orderid}</td>
-						<td>${order.totalprice}</td>
+						<td>${order.totalprice}元</td>
 						<td>狀態：${order.orderstatus}</td>
 	
 					 	<td>
@@ -60,11 +62,32 @@
 			</c:forEach>
 			</tbody>	
 		</table>
+			</div>
+
+
+
+		</div>
 	</div>
 
 
-<%@ include file="../Luana_include/footer.jsp" %>
+	<div class="untree_co-section">
+		<div class="container">
+		</div>
+		
+	</div>
+	<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
 
-   
+	<div id="overlayer"></div>
+	<div class="loader">
+		<div class="spinner-border" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+
+
+	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
+
+
+
 </body>
 </html>

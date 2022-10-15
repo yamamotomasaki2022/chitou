@@ -3,8 +3,10 @@ package tw.luana.order.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,6 +22,11 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +46,7 @@ import tw.luana.cart.model.CartService;
 import tw.luana.order.model.AttractionOrderDetail;
 import tw.luana.order.model.OrderList;
 import tw.luana.order.model.OrderService;
+import tw.trista.flightticket.model.flightticketorder;
 import tw.weber.hotel.model.Hotel;
 import tw.weber.hotel.model.Reservation;
 
@@ -90,6 +98,7 @@ public class OrderController {
 			return path_Luana_Order + "Luana_hotelOrderDetail";
 		
 		}else if (ordertype.equals("機票")) {
+			m2.addAttribute("fOrderDetail",orderService.showFlightticketorders(orderid));
 			return path_Luana_Order + "Luana_flightOrderDetail";
 		}
 		
@@ -144,6 +153,16 @@ public class OrderController {
 		return orderService.showHotelOrders(orderId);
 	}
 
+	// 查看機票訂單詳細資料
+	@RequestMapping(path = "flightOrderDetail", method = RequestMethod.POST)
+	@ResponseBody
+	public List<flightticketorder> showFlightHotelOrderDetail(@RequestParam("orderid") String orderId) {
+		System.err.println("orderid: " + orderId);
+		System.err.println(orderService.showFlightticketorders(orderId));
+		
+		return orderService.showFlightticketorders(orderId);
+	}
+	
 	// 更新訂單狀態
 	@RequestMapping(path = "updateOrderStatus", method = RequestMethod.POST)
 	@ResponseBody
@@ -170,5 +189,28 @@ public class OrderController {
 		System.err.println("orderBack: " + model);
 		return path_Luana_Order + "orderBack";
 	}
+	
+	//匯出訂單CSV檔
+	@RequestMapping(path = "downloadCSV", method = RequestMethod.GET)
+	  public ResponseEntity<Resource> getCSVFile() {
+		Date date = new Date();
+		String OrderDay = new SimpleDateFormat("yyyy/MM/dd").format(date);
 
+	    String filename = OrderDay+" OrderList.csv";
+	    InputStreamResource file = new InputStreamResource(orderService.load());
+
+	    return ResponseEntity.ok()
+	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+	        .contentType(MediaType.parseMediaType("application/csv"))
+	        .body(file);
+	  }
+	
+	//查看訂單統計圖表
+	@RequestMapping(path = "orderStatic", method = RequestMethod.GET)
+	@ResponseBody
+	public String showOrderStatics() {
+	
+		
+		return path_Luana_Order + "orderBackChart";
+	}
 }

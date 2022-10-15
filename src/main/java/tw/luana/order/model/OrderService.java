@@ -1,9 +1,18 @@
 package tw.luana.order.model;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.csv.QuoteMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartRepository;
 import tw.luana.order.model.AttractionOrderDetailRepository;
+import tw.trista.flightticket.model.flightticketorder;
 import tw.weber.hotel.model.Reservation;
 import tw.weber.hotel.model.ReservationRepository;
 
@@ -30,6 +40,9 @@ public class OrderService {
 	
 	@Autowired
 	private ReservationRepository reservationRepository;
+	
+	@Autowired
+	private tw.trista.flightticket.model.flightticketorderRepository flightticketorderRepository;
 	
 	
 //訂單總表
@@ -80,20 +93,10 @@ public class OrderService {
 	}
 
 	
-//	public void HotelToOrder(HotelOrder hotelOrder) {
-//		hotelOrderRepository.save(hotelOrder);
-//	}
-//	
-//	public List<HotelOrder> showHotelOrders(){
-//		return hotelOrderRepository.findAll();
-//	}
-//	
-//	public void updateHotelOrderStatus(Integer status, Integer reservationid) {
-//		
-//		HotelOrder hotelOrder = hotelOrderRepository.findByreservationid(reservationid);
-//		hotelOrder.setOrderstatus(status);
-//		hotelOrderRepository.save(hotelOrder);
-//	}
+//機票
+	public List<flightticketorder> showFlightticketorders(String orderId) {
+		return flightticketorderRepository.findAllByOrderid(orderId);
+	}
 	
 	
 //後台
@@ -143,6 +146,46 @@ public class OrderService {
 			}
 			return null;
 	}
+	
+	//匯出CSV
+	 public ByteArrayInputStream load() {
+		    List<OrderList> orderLists = orderListRepository.findAll();
+
+		    ByteArrayInputStream in = orderListsToCSV(orderLists);
+		    return in;
+		  }
+	
+	
+	  public static ByteArrayInputStream orderListsToCSV(List<OrderList> orderLists) {
+		    final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
+
+		    try (ByteArrayOutputStream out = new ByteArrayOutputStream();
+		        CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
+		      for (OrderList order : orderLists) {
+		       List<String> data = Arrays.asList(
+		    		   order.getOrderid(),
+		    		   order.getOrdertype(),
+		    		   order.getOrderdate(),
+		    		   order.getOrderstatus(),
+		    		   String.valueOf(order.getTotalprice()),
+		    		   String.valueOf(order.getMemberid())
+		    		   );
+//		       String[] title =new String[] {"訂單編號","訂單類別","下訂時間","訂單狀態","金額","訂購會員"};
+//		       list.add(0,title);
+		       System.err.println(data);
+		        csvPrinter.printRecord(data);
+		      }
+
+		      csvPrinter.flush();
+		      return new ByteArrayInputStream(out.toByteArray());
+		    } catch (IOException e) {
+		      throw new RuntimeException("fail to import data to CSV file: " + e.getMessage());
+		    }
+		  }
+	 
+	 
+	 
+	 
 }
 	
 		
