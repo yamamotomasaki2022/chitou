@@ -146,7 +146,9 @@
 	</div>
 
 	<script>
-
+	
+	try{
+		
 		var username = ${memberbasicinfo.memberid};
 
 		if (username > 0) 
@@ -156,6 +158,11 @@
 			$('#img1').attr('src', '/${memberbasicinfo.photo}')
 
 		}
+		
+	}catch(err){
+		alert("請先登入會員")
+	}
+
 	</script>
 
 	

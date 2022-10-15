@@ -12,6 +12,9 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 <head>
 <meta charset="UTF-8">
 <title>ChiTou-創建會員</title>
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <%@ include file="/WEB-INF/includes/jacky/Member/MemberCSSAndJS.jsp"%>
@@ -21,6 +24,34 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 		return currentTime
 	}
 </script>
+
+<style>
+
+form label {
+  display: inline-block;
+  width: 100px;
+}
+
+
+form div {
+  margin-bottom: 10px;
+}
+
+
+
+.error {
+  color: red;
+  margin-left: 5px;
+}
+
+
+
+label.error {
+  display: inline;
+}
+
+</style>
+
 </head>
 <body>
 	<div class="container-scroller">
@@ -36,7 +67,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 							<h4 class="card-title text-primary">創建會員</h4>
 							<h6 class="font-weight-light">請輸入您的個人資料</h6>
 							<form class="pt-3" ACTION="MemberRegisterIntoDB" method="post"
-								id="form" enctype="multipart/form-data">
+								id="form" enctype="multipart/form-data" onsubmit="return validateForm()">
 
 								<div class="row">
 									<div class="col-md-6">
@@ -44,8 +75,8 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 											<label class="col-sm-3 col-form-label">Username<code
 													class="text-danger">*</code></label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" id="username" name="username"
-													autocomplete="off" placeholder="Username" />
+												<input type="text" class="form-control" id="username"
+													name="username" autocomplete="off" placeholder="Username" />
 											</div>
 										</div>
 									</div>
@@ -55,8 +86,8 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 											<label class="col-sm-3 col-form-label">password<code
 													class="text-danger">*</code></label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" id="password" name="password"
-													autocomplete="off" placeholder="password" />
+												<input type="text" class="form-control" id="password"
+													name="password" autocomplete="off" placeholder="password" />
 											</div>
 										</div>
 									</div>
@@ -69,8 +100,8 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 											<label class="col-sm-3 col-form-label">email<code
 													class="text-danger">*</code></label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" id="email" name="email"
-													autocomplete="off" placeholder="email" />
+												<input type="text" class="form-control" id="email"
+													name="email" autocomplete="off" placeholder="email" />
 											</div>
 										</div>
 									</div>
@@ -80,9 +111,10 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group row">
 											<label class="col-sm-3 col-form-label">Photo</label>
 											<div class="col-sm-9">
-											<img width="200px" height="200px" id="img1" alt="" src="images/jacky/login/default1.png">
-												<input class="form-control" id="myfile" type="file"
-													name="myFile" placeholder="Upload Image" />
+												<img width="200px" height="200px" id="img1" alt=""
+													src="images/jacky/login/default1.png"> <input
+													class="form-control" id="myfile" type="file" name="myFile"
+													placeholder="Upload Image" />
 											</div>
 										</div>
 									</div>
@@ -93,8 +125,8 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group row">
 											<label class="col-sm-3 col-form-label">名字</label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" id="name" name="name"
-													autocomplete="off" placeholder="名字" />
+												<input type="text" class="form-control" id="name"
+													name="name" autocomplete="off" placeholder="名字" />
 											</div>
 										</div>
 									</div>
@@ -103,8 +135,8 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group row">
 											<label class="col-sm-3 col-form-label">電話</label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" id="phone" name="phone"
-													autocomplete="off" placeholder="電話" />
+												<input type="text" class="form-control" id="phone"
+													name="phone" autocomplete="off" placeholder="電話" />
 											</div>
 										</div>
 									</div>
@@ -115,8 +147,8 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group row">
 											<label class="col-sm-3 col-form-label">地址</label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" id="address" name="address"
-													autocomplete="off" placeholder="地址" />
+												<input type="text" class="form-control" id="address"
+													name="address" autocomplete="off" placeholder="地址" />
 											</div>
 										</div>
 									</div>
@@ -125,8 +157,8 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group row">
 											<label class="col-sm-3 col-form-label">昵稱</label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" id="nickname" name="nickname"
-													autocomplete="off" placeholder="昵稱" />
+												<input type="text" class="form-control" id="nickname"
+													name="nickname" autocomplete="off" placeholder="昵稱" />
 											</div>
 										</div>
 									</div>
@@ -137,8 +169,8 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group row">
 											<label class="col-sm-3 col-form-label">國家</label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" id="nationality" name="nationality"
-													autocomplete="off" placeholder="國家" />
+												<input type="text" class="form-control" id="nationality"
+													name="nationality" autocomplete="off" placeholder="國家" />
 											</div>
 										</div>
 									</div>
@@ -147,8 +179,8 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group row">
 											<label class="col-sm-3 col-form-label">生日</label>
 											<div class="col-sm-9">
-												<input type="date" class="form-control" id="birth" name="birth"
-													autocomplete="off" placeholder="生日" />
+												<input type="date" class="form-control" id="birth"
+													name="birth" autocomplete="off" placeholder="生日" />
 											</div>
 										</div>
 									</div>
@@ -168,16 +200,23 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 										</div>
 									</div>
 
-									
-									
-									
-									
+
+
+
+
 								</div>
 
-<button type="submit" class="btn btn-primary mr-2" id="createmember" name="submit">提交</button>
-					<a href="home"><button type="button" class="btn btn-light">返回</button></a> 
-<button  type="button" class="btn btn-primary mr-2" id="fastinput" style="float:right;">一鍵輸入</button>
-				<!-- herf=總攬連結 -->
+								<!-- 																								谷歌驗證 -->
+								<div class="g-recaptcha" id="rcaptcha"
+									data-sitekey="6LcI-2siAAAAAHuP2lvgTvgCDMK1zqeoog8wmoO1"></div>
+								<span id="captcha" style="color: red" /></span>
+
+								<button type="submit" class="btn btn-primary mr-2"
+									id="createmember" name="submit">提交</button>
+								<a href="home"><button type="button" class="btn btn-light">返回</button></a>
+								<button type="button" class="btn btn-primary mr-2"
+									id="fastinput" style="float: right;">一鍵輸入</button>
+								<!-- herf=總攬連結 -->
 
 
 							</form>
@@ -262,27 +301,50 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 					});
 		});
 	</script>
-	
-	<script>
-	
-	
-	$('#fastinput').click(function(){
-		
-		$('#username').val('jacky')
-		$('#password').val('123')
-		$('#email').val('learningma0926@gmail.com')
-		$('#name').val('馬提莫')
-		$('#phone').val('0909223123')
-		$('#nationality').val('台灣')
-		$('#address').val('大園區大勇路444號')
-		$('#nickname').val('馬金剛')
-		
-		
-	})
-	
-	
-	
 
+	<script>
+		$('#fastinput').click(function() {
+
+			$('#username').val('jacky')
+			$('#password').val('123')
+			$('#email').val('learningma0926@gmail.com')
+			$('#name').val('馬提莫')
+			$('#phone').val('0909223123')
+			$('#nationality').val('台灣')
+			$('#address').val('大園區大勇路444號')
+			$('birth').val('1994-09-22')
+			$('#nickname').val('馬金剛')
+
+		})
 	</script>
+
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script>
+		function get_action(form) {
+			var v = grecaptcha.getResponse();
+			if (v.length == 0) {
+				document.getElementById('captcha').innerHTML = "You can't leave Captcha Code empty";
+				return false;
+			} else {
+				document.getElementById('captcha').innerHTML = "Captcha completed";
+				return true;
+			}
+		}
+	</script>
+
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<script type="text/javascript">
+		function validateForm() {
+			if (grecaptcha.getResponse()) {
+				return true;
+			} else {
+				Swal.fire('Careful!', 'please prove you are not robot','error')
+				return false;
+			}
+		}
+	</script>
+
+
 </body>
 </html>

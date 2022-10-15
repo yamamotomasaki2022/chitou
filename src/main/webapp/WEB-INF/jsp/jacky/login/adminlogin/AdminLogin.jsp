@@ -14,7 +14,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title><spring:message code="title.login.page"/></title>
+<title><spring:message code="title.login.page" /></title>
 
 <!-- plugins:css -->
 <link rel="stylesheet" href="/css/coco/feather.css">
@@ -33,10 +33,9 @@
 	background-color: pink
 }
 
-.errormsg{
-color:red;
+.errormsg {
+	color: red;
 }
-
 </style>
 
 </head>
@@ -84,7 +83,9 @@ color:red;
 								<div class="mt-3">
 									<button
 										class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-										type="submit" value="login"><spring:message code="button.login"/></button>
+										type="submit" value="login">
+										<spring:message code="button.login" />
+									</button>
 									<span class="errormsg">${errors.msg}</span>
 								</div>
 
@@ -94,10 +95,12 @@ color:red;
 									<div class="form-check">
 										<label class="form-check-label text-muted"> <input
 											type="checkbox" class="form-check-input"
-											name="jacky-rememberme"> <spring:message code="label.login.header"/>
+											name="jacky-rememberme"> <spring:message
+												code="label.login.header" />
 										</label>
 									</div>
-									<a href="/toForgetPassword" class="auth-link .text-primary"><spring:message code="label.login.forgetpassword"/></a>
+									<a href="/toForgetPassword" class="auth-link .text-primary"><spring:message
+											code="label.login.forgetpassword" /></a>
 								</div>
 								<div class="mb-2">
 
@@ -110,15 +113,21 @@ color:red;
 
 
 									<button type="button" class="btn btn-primary mr-2"
-										id="fastinput" style="float: right"><spring:message code="button.fastlogin.Boss"/></button>
+										id="fastinput" style="float: right">
+										<spring:message code="button.fastlogin.Boss" />
+									</button>
 
 									<button type="button" class="btn btn-primary mr-2"
-										id="fastinput2" style="float: left"><spring:message code="button.fastlogin.Admin"/></button>
+										id="fastinput2" style="float: left">
+										<spring:message code="button.fastlogin.Admin" />
+									</button>
 
 
 									<div style="text-align: center">
 										<button type="button" class="btn btn-primary mr-2"
-											id="fastinput3" style="float: left"><spring:message code="button.fastlogin.Member"/></button>
+											id="fastinput3" style="float: left">
+											<spring:message code="button.fastlogin.Member" />
+										</button>
 
 									</div>
 
@@ -128,43 +137,65 @@ color:red;
 								<div>
 									<a href="toMemberRegisterPage"><button id="fastinput4"
 											type="button" class="btn btn-primary mr-2"
-											style="float: right"><spring:message code="button.register"/></button></a>
+											style="float: right">
+											<spring:message code="button.register" />
+										</button></a>
 								</div>
 
-								<button type="button"
-									class="btn btn-social-icon btn-outline-facebook">
-									<i class="ti-facebook style="float: right"></i>
-								</button>
+
+								<div class="container">
+									<div class="mb-2">
+										<button type="button"
+											class="btn btn-social-icon btn-outline-facebook">
+											<i class="fa-brands fa-facebook-f"></i>
+										</button>
+
+										<!--          <button type="button" -->
+										<!--           class="btn btn-social-icon btn-outline-google"> -->
+										<!--           <i class="ti-google"></i> -->
+										<!--          </button> -->
 
 
-								<a href='/oauth2/authorization/google'>
-									<button type="button"
-										class="btn btn-social-icon btn-outline-google">
-										<i class="ti-google"></i>
-									</button>
-								</a>
+
+										<a href='/oauth2/authorization/google'>
+											<button type="button" 
+												class="btn btn-social-icon btn-outline-google"
+												style="float: right;">
+												<i class="fa-brands fa-google"></i>
+											</button>
+										</a>
+
+
+
+									</div>
+
+								</div>
 						</div>
-
+						
 
 						<hr>
 						</form>
 						<div>
 
 							<input id="tomember" type="button" class="btn btn-primary mr-2"
-								value="<spring:message code="button.member"/>" style="float: left; background-color: #2AAC16">
+								value="<spring:message code="button.member"/>"
+								style="float: left; background-color: #2AAC16">
 
 							<!-- 								<form action="toAdminLoginPage"> -->
 							<input id="toadmin" type="button" class="btn btn-primary mr-2"
-								value="<spring:message code="button.admin"/>" style="float: right; background-color: #2AAC16">
+								value="<spring:message code="button.admin"/>"
+								style="float: right; background-color: #2AAC16">
 							<!-- 								</form> -->
 						</div>
 
 						<br> <br> <br>
 						<hr>
-						
-						
-						<a href="/toAdminLoginPage?lang=zh" style="float:right"><button class="btn btn-primary mr-2">中文</button></a>
-						<a href="/toAdminLoginPage?lang=en" style="float:right"><button class="btn btn-primary mr-2">English</button></a>
+
+
+						<a href="/toAdminLoginPage?lang=zh" style="float: right"><button
+								class="btn btn-primary mr-2">中文</button></a> <a
+							href="/toAdminLoginPage?lang=en" style="float: right"><button
+								class="btn btn-primary mr-2">English</button></a>
 
 
 					</div>

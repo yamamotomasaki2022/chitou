@@ -138,13 +138,14 @@ public class MemberController {
 	@PostMapping(path = "/MemberModifyPasswordToDB")
 	public String processMemberModifyPasswordToDB(@RequestParam("password") String password, HttpServletRequest request) {
 		MemberBasicInfo memberbean = (MemberBasicInfo) request.getSession().getAttribute("memberbasicinfo");
-		System.out.println("我的memberbasicinfo bean是否取到值:" + memberbean.getEmail());
+//		System.out.println("我的memberbasicinfo bean是否取到值:" + memberbean.getEmail());
 		memberbean.setPassword(password);
 		String newpassword = managementSystemController.encrpytMemberPassword(memberbean);
 		memberbean.setPassword(newpassword);
 		lservice.adminUpdateMember(memberbean);
+		
 
-		return path_member_login + "MemberHomePage";
+		return "NewHome";
 	}
 
 //	會員修改詳細資料

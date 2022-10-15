@@ -77,7 +77,7 @@ if (request.getAttribute("crud") != null) {
 	%>
 
 
-	<h1>管理員界面</h1>
+	<h1 class="card-title text-primary">管理員界面</h1>
 	<hr>
 
 
@@ -103,7 +103,7 @@ if (request.getAttribute("crud") != null) {
 	<div class="table-responsive">
 		<table class="table table-hover">
 
-			<h1>會員資料表</h1>
+			<h1 class="card-title text-primary">會員資料表</h1>
 
 
 			<hr>
@@ -146,7 +146,7 @@ if (request.getAttribute("crud") != null) {
 						<td>
 							<button href="deleteAttraction?attid="
 								class="btn btn-inverse-danger btn-icon">
-								<i class="ti-trash"></i>
+								<i class="fa-solid fa-trash-can"></i>
 							</button>
 						</td>
 					</form>
@@ -165,7 +165,7 @@ if (request.getAttribute("crud") != null) {
 						<td>
 							<button type="submit" name="update"
 								class="btn btn-inverse-success btn-icon">
-								<i class="ti-pencil-alt"></i>
+								<i class="fa-regular fa-pen-to-square"></i>
 							</button>
 						</td>
 					</form>
@@ -183,8 +183,8 @@ if (request.getAttribute("crud") != null) {
 				<hr>
 
 
-				<h1>管理員資料表</h1>
-				<div>一般管理員為 1， 主管為 2， 老闆為 3</div>
+				<h1 class="card-title text-primary">管理員資料表</h1>
+				
 
 				<thead id="tableHead">
 					<tr>
@@ -223,7 +223,7 @@ if (request.getAttribute("crud") != null) {
 
 								<button href="deleteAttraction?attid="
 									class="btn btn-inverse-danger btn-icon">
-									<i class="ti-trash"></i>
+									<i class="fa-solid fa-trash-can"></i>
 								</button>
 
 							</td>
@@ -242,7 +242,7 @@ if (request.getAttribute("crud") != null) {
 								<!-- 							<input type=submit name="modifyfromadmin" value="更改"> -->
 								<button type="submit" name="modifyfromadmin"
 									class="btn btn-inverse-success btn-icon">
-									<i class="ti-pencil-alt"></i>
+									<i class="fa-regular fa-pen-to-square"></i>
 								</button>
 							</td>
 						</form>

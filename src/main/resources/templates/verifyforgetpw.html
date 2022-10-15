@@ -3,21 +3,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>忘記密碼</title>
 </head>
 <body>
 
 
-<h1>測試thymeleaf是否能運行</h1>
+
+<img width="75px" height="75px" th:src="@{https://upload.cc/i1/2022/10/15/4L2Biq.png}"/>
+
+
+<div style="background-color:#FFE8FF;padding:10px">
+<h3>重新創建新密碼</h3>
 
 <p>
 親愛的用戶你好: <span th:text="${name}"> </span>
+<br>
+要好好記得新密碼哦
 <br>
 <!-- <span th:text= ${verificationcode}></span> -->
 <a th:href="@{http://localhost:8080/verifyPassword?code={code1}(code1=${code})}">忘記密碼的驗證</a>
 
 </p>
 
+</div>
 
 </body>
 </html>

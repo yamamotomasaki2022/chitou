@@ -3,21 +3,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>未驗證的會員進行驗證</title>
 </head>
 <body>
 
 
-<h1>未驗證會員登入之後驗證會員</h1>
+<!-- <div style="background-color:#3B3BFF;padding:10px;"> -->
+
+
+<img width="75px" height="75px" th:src="@{https://upload.cc/i1/2022/10/15/4L2Biq.png}"/>
+
+<!-- </div> -->
+
+<div style="background-color:#FFE8FF;padding:10px">
+
+<h3>未驗證會員登入之後驗證會員</h3>
 
 <p>
-親愛的用戶 會員 啦啦啦啦啦 <span th:text="${name}"> </span>
+親愛的會員：
+<span th:text="${name}"> </span>
+
+記得驗證哦~
+
 <br>
-<span th:text= ${verificationcode}></span>
+<!-- <span th:text= ${verificationcode}></span> -->
 <a th:href="@{http://localhost:8080/verify?code={code1}(code1=${code})}">會員驗證</a>
 
 </p>
 
+</div>
 
 </body>
 </html>
