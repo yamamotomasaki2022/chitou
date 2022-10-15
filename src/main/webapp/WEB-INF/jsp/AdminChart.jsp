@@ -19,18 +19,16 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 <!-- chart js api -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 
 <style>
-
 .chartdiv {
-  color: #26b72b;
-  border:10px;
-  margin-top : 30px;
-  text-align: center;
+	color: #26b72b;
+	border: 10px;
+	margin-top: 30px;
+	text-align: center;
 }
-
-
 </style>
 
 
@@ -47,21 +45,34 @@
 	<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
 
 
-<h1 style="text-align:center">統計數據</h1>
+	<h1 style="text-align: center">統計數據</h1>
 
 
-<div class="chartdiv" style="width:300px;height:330px;border:3px #cccccc dashed;float: right">
-	<span>各洲旅游人口比例</span>	
-<canvas id="myChart2" style="width:100%;max-width:300px"></canvas>
-	
-</div>
+	<div class="chartdiv"
+		style="width: 300px; height: 330px; border: 3px #cccccc dashed; float: right">
+		<span>各洲旅游人口比例</span>
+		<canvas id="myChart2" style="width:100%;max-width:300px"></canvas>
 
-	
-	<div  class="chartdiv" style="width:400px;height:320px;border:3px #cccccc dashed;float: left">
-	<span>男女會員人數</span>	
-	<canvas id="myChart3" width="300px" height="200px" ></canvas>
-	
-<!-- 	style="width:100%;max-width:800px -->
+	</div>
+
+
+	<div class="chartdiv"
+		style="width: 400px; height: 320px; border: 3px #cccccc dashed; float: left">
+		<span>男女會員人數</span>
+		<canvas id="myChart3" width="300px" height="200px"></canvas>
+
+		<!-- 	style="width:100%;max-width:800px -->
+	</div>
+
+
+	<canvas id="myChart5">chart</canvas>
+
+
+	<div class="chartdiv"
+		style="width: 400px; height: 200px; border: 3px #cccccc dashed; float: left">
+
+		<span>銷售成長情況</span>
+		<canvas id="myChart4" style="width:100%;max-width:600px"></canvas>
 
 	</div>
 
@@ -83,14 +94,13 @@
 		if (status == 1) {
 			document.getElementById('aaa').setAttribute("style",
 					"display : none")
-		}else if(status==2){
+		} else if (status == 2) {
 			document.getElementById('aaa').setAttribute("style",
-			"display : '' ")
-		}else if(status==3){
+					"display : '' ")
+		} else if (status == 3) {
 			document.getElementById('aaa').setAttribute("style",
-			"display : '' ")
+					"display : '' ")
 		}
-		
 	</script>
 
 
@@ -98,98 +108,117 @@
 
 
 
-<script>
-
-
-
-
-
-var xValues = ["北美洲", "南美洲", "歐洲", "亞洲", "非洲"];
-var yValues = [30, 20, 45, 44, 15];
-var barColors = [
-  "#FF9797",
-  "#CA8EFF",
-  "#79FF79",
-  "#1AFD9C",
-  "#9AFF02"
-];
-
-new Chart("myChart2", {
-  type: "doughnut",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "World Wide Wine Production 2018"
-    }
-  }
-});
-
-
-</script>
-
-<script>
-var xValues = ["男","女"];
-var yValues = [55, 49];
-var barColors = ["blue","red"];
-
-new Chart("myChart3", {
-  type: "bar",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-    legend: {display: true},
-    title: {
-      display: false
-    }
-  }
-});
-</script>
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script>
-	
-	var welcome = ${welcome_message}
-	
-	
-	if (welcome == 1) {
-		Swal.fire(
-				  'Welcome!',
-				  'Admin!',
-				  'success'
-				)
-	} else if (welcome == 2) {
-		Swal.fire(
-				  'Welcome!',
-				  'Manager!',
-				  'success'
-				)
+		var xValues = [ "北美洲", "南美洲", "歐洲", "亞洲", "非洲" ];
+		var yValues = [ 30, 20, 45, 44, 15 ];
+		var barColors = [ "#FF9797", "#CA8EFF", "#79FF79", "#1AFD9C", "#9AFF02" ];
 
-	} else if (welcome == 3) {
-		Swal.fire(
-				  'Welcome!',
-				  'Boss!',
-				  'success'
-				)
-
-	} else {
-		
-	}
-	
-	
+		new Chart("myChart2", {
+			type : "doughnut",
+			data : {
+				labels : xValues,
+				datasets : [ {
+					backgroundColor : barColors,
+					data : yValues
+				} ]
+			},
+			options : {
+				title : {
+					display : true,
+					text : "World Wide Wine Production 2018"
+				//       fontColor:'red',
+				//       fontSize:'24'
+				}
+			}
+		});
 	</script>
+
+	<script>
+		var xValues = [ "男", "女" ];
+		var yValues = [ 10, 5 ];
+		var barColors = [ "yellow", "green" ];
+
+		new Chart("myChart3", {
+			type : "bar",
+			data : {
+
+				labels : xValues,
+				datasets : [ {
+					label : '會員人數',
+					backgroundColor : barColors,
+					data : yValues
+				} ]
+			},
+			options : {
+				legend : {
+					display : true
+				},
+				title : {
+					display : true,
+					text : "ssss",
+					fontColor : 'red',
+					fontSize : '24'
+				}
+			}
+		});
+	</script>
+
+
+	<script>
+		var xValues = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
+		var yValues = [ 1, 1, 3, 5, 5, 6, 6, 7, 10, 13, 15, 20 ];
+
+		new Chart("myChart4", {
+			type : "line",
+			data : {
+				labels : xValues,
+				datasets : [ {
+					label : 'millions',
+					fill : true,
+					lineTension : 0,
+					backgroundColor : "rgba(0,0,255,255)",
+					borderColor : "rgba(0,0,255,255)",
+					data : yValues
+				} ]
+			},
+			options : {
+				legend : {
+					display : true
+				},
+				scales : {
+					yAxes : [ {
+						ticks : {
+							min : 6,
+							max : 16
+						}
+					} ],
+				}
+			}
+		});
+	</script>
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script>
+		var welcome = $
+		{
+			welcome_message
+		}
+
+		if (welcome == 1) {
+			Swal.fire('Welcome!', 'Admin!', 'success')
+		} else if (welcome == 2) {
+			Swal.fire('Welcome!', 'Manager!', 'success')
+
+		} else if (welcome == 3) {
+			Swal.fire('Welcome!', 'Boss!', 'success')
+
+		} else {
+
+		}
+	</script>
+
+
 
 
 </body>

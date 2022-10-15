@@ -305,10 +305,10 @@ label.error {
 	<script>
 		$('#fastinput').click(function() {
 
-			$('#username').val('jacky')
+			$('#username').val('kevin')
 			$('#password').val('123')
-			$('#email').val('learningma0926@gmail.com')
-			$('#name').val('馬提莫')
+			$('#email').val('kevin0323@gmail.com')
+			$('#name').val('馬新傑')
 			$('#phone').val('0909223123')
 			$('#nationality').val('台灣')
 			$('#address').val('大園區大勇路444號')

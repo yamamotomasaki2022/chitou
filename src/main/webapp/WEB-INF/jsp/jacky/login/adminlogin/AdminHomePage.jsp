@@ -83,7 +83,8 @@ if (request.getAttribute("crud") != null) {
 
 	<FORM ACTION="/manager/ToAdminCreateMemberPage" method="post">
 
-		<input class="btn btn-inverse-primary btn-fw" type="submit" name="addnewmember" value="新增會員資料">
+		<input class="btn btn-inverse-primary btn-fw" type="submit"
+			name="addnewmember" value="新增會員資料">
 		<hr>
 
 	</form>
@@ -96,7 +97,8 @@ if (request.getAttribute("crud") != null) {
 			<option value="email">郵箱</option>
 
 		</select> <label>查詢</label> <input type="text" name="searchtext" size="10">
-		<input class="btn btn-inverse-primary btn-fw" type="submit" name="searchmemberinDB" value="查詢">
+		<input class="btn btn-inverse-primary btn-fw" type="submit"
+			name="searchmemberinDB" value="查詢">
 
 	</form>
 
@@ -134,8 +136,7 @@ if (request.getAttribute("crud") != null) {
 				<tr>
 					<form action="/manager/AdminDeleteMember" method="post">
 						<input type="hidden" name="_method" value="DELETE">
-						<td><input type="hidden" name="td_memberid"
-							value="<%=bean.getMemberid()%>"><%=bean.getMemberid()%></td>
+						<td><input type="hidden" id="td_memberid" name="td_memberid" value="<%=bean.getMemberid()%>"><%=bean.getMemberid()%></td>
 						<!--  <td><%=bean.getStatusid()%></td>-->
 						<td><%=bean.getUsername()%></td>
 						<td><%=bean.getLoginStatus().getStatusname()%></td>
@@ -144,12 +145,29 @@ if (request.getAttribute("crud") != null) {
 						<td><%=bean.getEmail()%></td>
 
 						<td>
-							<button href="deleteAttraction?attid="
-								class="btn btn-inverse-danger btn-icon">
+							<button type="button" class="btn-inverse-danger">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
 						</td>
 					</form>
+
+
+					<!-- 					<form action="/manager/AdminDeleteMember" method="post" style=""> -->
+					<%-- 						<INPUT TYPE="HIDDEN" value=<%=bean.getMemberid()%> name="td_memberid"> --%>
+					<!-- 						<input type="hidden" name="_method" value="DELETE"> -->
+					<%-- 						<td><%=bean.getMemberid()%></td> --%>
+					<%-- 						<td><%=bean.getUsername()%></td> --%>
+					<%-- 						<td><%=bean.getLoginStatus().getStatusname()%></td> --%>
+					<!-- 						<td><img width="500px" height="500px" -->
+					<%-- 							src="/<%=bean.getPhoto()%>"></td> --%>
+					<%-- 						<td><%=bean.getEmail()%></td> --%>
+
+					<!-- 						<td> -->
+					<%-- 						<input type="submit" name="delete" value="<i class="fa-solid fa-trash-can">" --%>
+					<!-- 							class="btn btn-inverse-danger btn-icon"  id=""> -->
+
+					<!-- 						</td>	 -->
+					<!-- 					</form> -->
 
 					<form action="/manager/ToAdminModifyMember" method="post">
 						<input type="hidden" name="memberid"
@@ -163,8 +181,7 @@ if (request.getAttribute("crud") != null) {
 							type="hidden" name="email" value="<%=bean.getEmail()%>">
 
 						<td>
-							<button type="submit" name="update"
-								class="btn btn-inverse-success btn-icon">
+							<button type="submit" name="update" class="btn-inverse-success">
 								<i class="fa-regular fa-pen-to-square"></i>
 							</button>
 						</td>
@@ -184,7 +201,7 @@ if (request.getAttribute("crud") != null) {
 
 
 				<h1 class="card-title text-primary">管理員資料表</h1>
-				
+
 
 				<thead id="tableHead">
 					<tr>
@@ -218,7 +235,8 @@ if (request.getAttribute("crud") != null) {
 
 
 							<td>
-								<!-- 							<input type=submit name="deletefromadmin" value="刪除"> -->
+								<!-- 								<input type=submit name="deletefromadmin" value="刪除"> -->
+
 
 
 								<button href="deleteAttraction?attid="
@@ -260,35 +278,36 @@ if (request.getAttribute("crud") != null) {
 			<hr>
 
 			<FORM ACTION="/manager/ToAdminCreateAdmin" method="post">
-				<input class="btn btn-inverse-primary btn-fw" type="submit" name="addnewmember" value="新增管理員資料" style="float:left">
-			</form>&nbsp;
-			
-			<ul class="navbar-nav mr-lg-4" style="float:right">
-			<li class="nav-item dropdown"><a
-				class="dropdown-toggle btn btn-inverse-primary btn-sm" href="#"
-				data-toggle="dropdown"> <i ></i>&nbsp;導出會員資料
-			</a>
-				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-					aria-labelledby="profileDropdown">
-					<a href="/manager/exportCSV" class="dropdown-item"> <i
-						class="ti-settings text-primary"></i> CSV導出
-					</a> 
-					<a href="/manager/exportPDF" class="dropdown-item"> <i
-						class="ti-settings text-primary"></i> PDF導出
-					</a> 
-				</div></li>
-		</ul>
-			
-			
-<!-- 			<FORM ACTION="/manager/exportCSV" > -->
-<!-- 				<input class="btn btn-inverse-primary btn-fw" type="submit" name="exportCSV" value="導出會員資料"  style="float:right"> -->
-<!-- 			</form> -->
-			
+				<input class="btn btn-inverse-primary btn-fw" type="submit"
+					name="addnewmember" value="新增管理員資料" style="float: left">
+			</form>
+			&nbsp;
+
+			<ul class="navbar-nav mr-lg-4" style="float: right">
+				<li class="nav-item dropdown"><a
+					class="dropdown-toggle btn btn-inverse-primary btn-sm" href="#"
+					data-toggle="dropdown"> <i></i>&nbsp;導出會員資料
+				</a>
+					<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+						aria-labelledby="profileDropdown">
+						<a href="/manager/exportCSV" class="dropdown-item"> <i
+							class="ti-settings text-primary"></i> CSV導出
+						</a> <a href="/manager/exportPDF" class="dropdown-item"> <i
+							class="ti-settings text-primary"></i> PDF導出
+						</a>
+					</div></li>
+			</ul>
+
+
+			<!-- 			<FORM ACTION="/manager/exportCSV" > -->
+			<!-- 				<input class="btn btn-inverse-primary btn-fw" type="submit" name="exportCSV" value="導出會員資料"  style="float:right"> -->
+			<!-- 			</form> -->
+
 		</div>
 	</div>
 
 
-	
+
 
 
 
@@ -426,6 +445,98 @@ if (request.getAttribute("crud") != null) {
 	}else {
 		
 	}
+	</script>
+
+	<script>
+	
+
+		
+// 	$(".btn-inverse-danger").on('click',function(){
+		
+// 		console.log("ssaaaS")
+
+		
+		
+// 		const swalWithBootstrapButtons = Swal.mixin({
+// 			  customClass: {
+// 			    confirmButton: 'btn btn-success',
+// 			    cancelButton: 'btn btn-danger'
+// 			  },
+// 			  buttonsStyling: false
+// 			})
+		
+
+		
+// 		swalWithBootstrapButtons.fire({
+// 			  title: 'Are you sure?',
+// 			  text: "You won't be able to revert this!",
+// 			  icon: 'warning',
+// 			  showCancelButton: true,
+// 			  confirmButtonText: 'Yes, delete it!',
+// 			  cancelButtonText: 'No, cancel!',
+// 			  reverseButtons: true
+// 			}).then((result) => {
+// 			  if (result.isConfirmed) {
+// 			    swalWithBootstrapButtons.fire(
+// 			      'Deleted!',
+// 			      'Member Information has been deleted.',
+// 			      'success'
+// 			    )
+// 			    $.ajax({
+// 					type:'get',
+// 					url:'/manager/AdminDeleteMember',
+// 					data:{
+// 						td_memberid:$('#td_memberid').val(),
+// 					}
+// 					success:function(data){
+// 						console.log(data);
+// 					}
+					
+// 					}
+// 					)
+// 			  } else if (
+// 			    /* Read more about handling dismissals below */
+// 			    result.dismiss === Swal.DismissReason.cancel
+// 			  ) {
+// 			    swalWithBootstrapButtons.fire(
+// 			      'Cancelled',
+// 			      'Your Data is safe :)',
+// 			      'error'
+// 			    )
+// 			  }
+// 			})
+		
+// 	})
+	</script>
+
+	<script>
+	
+	
+	$('form').on('click', ':submit', function() {
+	     console.log('button click')
+// 	     return check($(this).val());
+// 	    });
+
+// 	    function check(action) {
+// 	     let msg = '';
+// 	     if (action === '刪除') {
+// 	      return message('確定刪除嗎?');
+// 	     } else if (action === '修改') {
+// 	      return message('確定更新嗎?');
+// 	     } else {
+// 	      return true;
+// 	     }
+// 	    }
+
+// 	    function message(msg) {
+// 	     if (confirm(msg)) {
+// 	      return true
+// 	     } else {
+// 	      return false
+// 	     }
+// 	    }
+	
+	
 	</script>
 
 

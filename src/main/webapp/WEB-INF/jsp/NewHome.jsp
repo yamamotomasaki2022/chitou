@@ -42,7 +42,7 @@
 		console.log('logout:' + logout)
 
 		if (logout == 1) {
-			Swal.fire('謝謝', '登出成功', 'success')
+			Swal.fire('謝謝', '退出成功', 'success')
 			$('#img1').attr('src', '/images/jacky/login/default1.png')
 		}
 
