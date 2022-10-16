@@ -166,7 +166,7 @@
 function country(){
 	let form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","article.country");
 	 /* let eleFileName=$(document.createElement('input')).attr('name','file_name').val(file_name.substring(pos+1));
-	  form.append(eleProduct).append(eleFileName);*/
+	  form.append(eleFileName);*/
 	  $("body").append(form);
 	  form.submit();
 }

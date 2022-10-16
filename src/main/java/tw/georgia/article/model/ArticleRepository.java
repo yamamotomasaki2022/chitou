@@ -11,7 +11,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	@Query("from Article where categoryID= :categoryID and posterID= :posterID")
 	public List<Article> findByCategoryIDForUser(int categoryID,int posterID);
 	
-	@Query("from Article where categoryID= :categoryID")
+	@Query("from Article where categoryID= :categoryID order by postID DESC")
 	public List<Article> findByCategoryID(int categoryID);
 	
 	@Query("from Article where posterID= :posterID")

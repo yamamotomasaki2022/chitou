@@ -41,19 +41,30 @@ button, .btn {
 
 #BackTop	{
 				position:fixed;				
-				bottom:140px;
-				right:31px;
+				bottom:60px;
+				right:10px;
 				}
 #ToBottom	{
 				position:fixed;				
-				bottom:90px;
-				right:31px;
+				bottom:10px;
+				right:10px;
 				}
 .jiantou	{
 				width: 2.7rem;
 				height: 2.7rem;
-				color:rgb(75,73,172);
+				color:rgb(69,71,155);
 				}
+.bigFont{
+	font-size: 20px;
+}
+
+.table_class tr td{
+	font-size: 20px;
+}
+
+.table_class thead tr th{
+	font-size: 25px;
+}
 </style>
 
 <%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
@@ -66,12 +77,13 @@ button, .btn {
 
 
 
-	<br>
+	<br><br><br><br>
 	<form action="article.new" method="get">
 		<INPUT TYPE="SUBMIT" value="新增文章" name="newarticle" class="btn btn-primary mr-2">
 	</form>
 
 	<br>
+	<div class="bigFont">
 	<form action="article.user.read" method="post">
 	<input type="hidden" name="_method" value="POST">
 		選擇國家<select name="chooseCountry">
@@ -110,8 +122,9 @@ button, .btn {
 		</select> <INPUT TYPE="SUBMIT" value="查詢" name="chooseArticle" class="btn btn-primary mr-2"><br>
 		<br>
 	</form>
+		</div>
 	<div class="table-responsive">
-		<table class="table table-hover">
+		<table class="table table-hover table_class">
 			<thead id="tableHead">
 				<tr>
 					<!--  <th class="card-title text-primary">會員ID</th>-->
@@ -143,24 +156,20 @@ button, .btn {
 					<td class=""><img id="img" src="images/georgia/picture/<%=bean.getPhoto()%>" class="box" style="width:100px;height:100px"></td>
 					<td><%=(title<20)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,20)%><HR><%=bean.getSubtitle()%></td>
 					<td class=""><%=bean.getDate()%></td>
-					<td><form action="article.user.show" method="post">
-					<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
-					<input type="submit" name="toShow" value="查看詳細內文" class="btn btn-light">
-					</form></td>
+					<td>
+					<button type="button" name="toShow" value="<%=bean.getPostID()%>" class="btn btn-light readClass" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#exampleModal">Read More...</button>
+					</td>
 					<td class="">
 
 						<form action="article.renew" method="post" style="">
 							<INPUT TYPE="HIDDEN" value=<%=bean.getPostID()%> name="postID">
 							<input type="submit" name="update" value="修改" class="btn btn-primary mr-2"
-								id="update">
+								id="update" style="font-size: 18px;">
 						</form>
 
-						<form action="article.userDelete" method="post" style="">
 							<!--  <input type="hidden" name="_method" value="DELETE">--> 
-							<input type="hidden" name="postID" value=<%=bean.getPostID()%>>
-							<input type="submit" name="userDelete" value="刪除" class="btn btn-light"
-								id="check">
-						</form>
+							<button type="button" name="" class="btn btn-light"
+								id="check" style="font-size: 18px;" onclick="delete_data(<%=bean.getPostID()%>);">刪除</button>
 
 
 					</td>
@@ -171,6 +180,32 @@ button, .btn {
 			</tbody>
 		</table>
 		</div>
+		
+		
+		<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="detailTitle"></h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div id="hiddenValue">
+      </div>
+		<div id="detailContent">
+		</div>
+		<div id="detailReply" style="background-color: rgb(240, 240, 240);">
+     	 </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 		
 				<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
 		<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
@@ -183,41 +218,216 @@ button, .btn {
 </svg>
 
 		<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
-		<script>
-			$(function() {
-				$('#BackTop').click(function(){ 
-					$('html,body').animate({scrollTop:0}, 200);
-				});
-				$('#ToBottom').click(function(){ 
-					$('html,body').animate({scrollTop:document.body.scrollHeight}, 200);
-				});
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+		$(function(){
+			$('#BackTop').click(function(){ 
+				$('html,body').animate({scrollTop:0},10);
+			});
+			$('#ToBottom').click(function(){ 
+				$('html,body').animate({scrollTop:document.body.scrollHeight}, 10);
+			});
+			
+			$(".country").click(function(){
+				let countryNo = $(this).attr("name");
+				console.log(countryNo);
+				let form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","article.country");
+				  let eleFileName=$(document.createElement('input')).attr('name','countryID').val(countryNo);
+				  form.append(eleFileName);
+				  $("body").append(form);
+				  form.submit();
+			});
+		
+			
+			$(".readClass").click(function(){
+				let postID=$(this).val();
+				console.log(postID);
+				$.getJSON({
+                    type: "GET",
+                    url: "/article.fake.detail",
+                    async: "true",
+                    data: "postID=" + postID,
+                    success: function (data) {
+                        console.log("讀取成功");
+                        //
+                        $('#detailTitle').html(data.title);
+                        $('#detailContent').html(data.content);
+                        $('#hiddenValue').append(
+           	                 $('<tr/>')
+           	                     .append(
+           	                         $('<td/>')
+           	                             .append(
+           	                                 $('<input/>')
+           	                                     .attr('type', 'hidden')
+           	                                     .attr('value', data.postID)
+           	                                     .attr('id', 'postID')
+           	                             )
+           	                     )
+           	             );
+                        
+                    }, error: function (data) {
+                        console.log("讀取失敗");
+                    }
+                });
+				$.getJSON({
+                    type: "GET",
+                    url: "/article.comment",
+                    async: "true",
+                    data: "postID=" + postID,
+                    success: function (data) {
+                        console.log("讀取成功");
+                        detailComment(data);
+                        
+                    }, error: function (data) {
+                        console.log("讀取失敗");
+                    }
+                });
 				
-				$('form').on('click', ':submit', function() {
-					console.log('button click')
-					return check($(this).val());
-				});
-
-				function check(action) {
-					let msg = '';
-					if (action === '刪除') {
-						return message('確定刪除嗎?');
-					} else if (action === '修改') {
-						return message('確定更新嗎?');
-					} else {
-						return true;
-					}
-				}
-
-				function message(msg) {
-					if (confirm(msg)) {
-						return true
-					} else {
-						return false
-					}
-				}
-
 			})
-		</script>
+			
+			$(document).on("click",".btn_comment",function(){
+				let comment = $(this).closest('td').prev().find('#comment').val();
+				console.log(comment);
+				var postID=$('#postID').val();
+				
+				$.ajax({
+				      type: "POST",
+				      url: "/article.commentinsert",
+				      data: "postID=" + postID+"&comment="+comment,
+				      async: "false",//等他回來
+				      success: function (resopnse, status, xhr) {
+				        console.log("連線成功");
+				        console.log(xhr.status);
+				        console.log(xhr.readyState);
+				        //判斷新增是否成功
+				        if (xhr.readyState == 4 && xhr.status == 200) {
+				          if (xhr.responseText == "ok") {
+				            console.log("新增成功!");
+				            $.getJSON({
+			                    type: "GET",
+			                    url: "/article.comment",
+			                    async: "true",
+			                    data: "postID=" + postID,
+			                    success: function (data) {
+			                        console.log("讀取成功");
+			                        //清空商品列表
+			                        detailComment(data);
+			                    }, error: function (data) {
+			                        console.log("讀取失敗");
+			                    }
+			                });
+				          } else {
+				            console.log("新增分類失敗!");
+				          }
+				        }
+				      }
+				    })
+			})
+			
+			
+		})
+		
+		//會員刪除
+ function delete_data(post_id){
+    swal.fire({
+       title: '確定刪除此文章嗎?',
+       icon: 'warning',
+       showCancelButton: true,
+       confirmButtonText: '好',
+       cancelButtonText: '不要',
+       reverseButtons: true
+     }).then((result) => {
+       if (result.isConfirmed) {
+         swal.fire(
+           'Deleted!',
+           '已成功刪除',
+           'success'
+         )
+          
+    let form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","article.userDelete");
+    let manageHidden=$(document.createElement('input')).attr('name','postID').val(post_id);
+    //let eleAction=$(document.createElement('input')).attr('name','action').val("delete_combo");
+     form.append(manageHidden);
+     $("body").append(form);
+     form.submit();
+         
+       } else if (
+         /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+       ) 
+       {
+         swal.fire(
+           '取消刪除',
+           '已取消'
+         )
+       }
+     }) 
+ }
+		
+			function detailComment(data) {
+			    console.log('123');
+			    $("#detailReply").empty();
+			    let floor=0;
+			    $.each(data, function (index, value) {
+			    	floor++;
+	    		 $('#detailReply').append(
+	                 $('<tr/>')
+	                     .append(
+	                         $('<td/>')
+	                             .append(
+	                                 $('<img/>')
+	                                     .attr('src', value.member.photo)
+	                                     .css("height", '100px')
+	                                     .css("width", '100px')
+	                             )
+	                     )
+	                     .append(
+	                         $('<td/>').addClass('edit_td')
+	                             .text(floor+'樓的 '+value.member.username+'說：'+value.comment)
+	                     )
+	                     .append(
+	                         $('<td/>')
+	                             
+	                     )
+	             )
+        });
+	    $('#detailReply').append(
+                $('<tr/>')
+                    .append(
+                        $('<td/>')
+                            .append(
+                                $('<img/>')
+                                    .attr('src', 'images/georgia/picture/留言.png')
+                                    .css("height", '100px')
+                                    .css("width", '100px')
+                            )
+                    )
+                    .append(
+                        $('<td/>').addClass('edit_td')
+                            .append(
+                                $('<input/>')
+                                    .attr('type', 'text')
+                                    .attr('id', 'comment')
+                            )
+                    )
+                    .append(
+                        $('<td/>')
+                            .append(
+                                $('<input/>').addClass("btn_comment")
+                                    .attr('type', 'button')
+                                    .attr('value', '送出')
+                                    .attr('id', 'commentNew')
+                                    
+                            )
+                    )
+            );
+	} 
+
+		
+
+</script>
+		
 </body>
 </html>
 

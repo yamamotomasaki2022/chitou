@@ -16,6 +16,7 @@
     <meta content="All posts" property="twitter:title" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Webflow" name="generator" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/georgia/article.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
     <script
@@ -28,33 +29,291 @@
         crossorigin="anonymous"></script>
     <script src="https://assets.website-files.com/5e4b1a54e48aed761d1ff229/js/webflow.bf6a5095c.js"
         type="text/javascript"></script>
+        
     <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
     <link href="https://assets.website-files.com/img/webclip.png" rel="apple-touch-icon" />
+    <%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
+    
+    <style type="text/css">
+    	.accordion-body p{
+    		font-size: 30px;
+    	}
+    	
+    	.accordion-body a{
+    		font-size: 25px;
+    	}
+    	.accordion-body a:hover{
+    		color:rgb(150,84,85);
+    		font-weight:bold;
+    		font-size: 30px
+    	}
+    	
+    	.bigFont{
+    		font-size: 20px;
+    	}
+    	#BackTop	{
+				position:fixed;				
+				bottom:60px;
+				right:10px;
+				}
+#ToBottom	{
+				position:fixed;				
+				bottom:10px;
+				right:10px;
+				}
+.jiantou	{
+				width: 2.7rem;
+				height: 2.7rem;
+				color:rgb(69,71,155);
+				}
+    </style>
+    
+    
 </head>
 <body>
+<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
+<br><br>
+                <%List<Article> list=(List)request.getAttribute("search"); %>
     <div class="content-wrapper">
         <div class="w-container">
             <div class="w-row">
                 <div class="w-hidden-small w-hidden-tiny w-col w-col-3">
-                    <div class="white-wrapper"><img id="img" src="images/georgia/picture/101.jpg" class="box">
-                        <p class="site-description">臺灣（俗字寫作台灣；臺灣話：Tâi-oân，臺羅：Tâi-uân；客家話：Thòi-vàn），西方世界亦稱福爾摩沙（葡萄牙語：Formosa），是位於東亞、太平洋西北側的島嶼，地處琉球群島與菲律賓群島之間，西隔臺灣海峽與中國大陸相望，海峽距離約130公里，周圍海域從3點鐘方向以順時鐘排序分別為太平洋（菲律賓海）、巴士海峽、南海、臺灣海峽、東海所環繞，為東亞島弧中一島。</p>
-                        <div class="grey-rule"></div>
-                        <h2 class="small-heading">照片:<br>台北101大樓</h2>
+                    <div class="white-wrapper">
+                    <!-- 國家表單 -->
+                    <div class="custom-block" data-aos="fade-up">
+        <div class="custom-accordion" id="accordion_1">
+        <!-- *******************************************國家：亞洲******************************************************* -->
+            <div class="accordion-item">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne" onclick="country();" style="font-size: 35px;">亞洲</button>
+                </h2>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion_1">
+                    <div class="accordion-body">
+                        <p>・ 東亞</p>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >台灣</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >日本</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >韓國</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >北韓</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >中國</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >香港</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >澳門</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >蒙古</a><br>
+                        <p>・ 東南亞</p>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >新加坡</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >馬來西亞</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >泰國</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >越南</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >菲律賓</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >柬埔寨</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >寮國</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >緬甸</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >汶萊</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >東帝汶</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >沙巴</a><br>
+                        <p>・ 南亞</p>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >馬爾地夫</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >印度</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >斯里蘭卡</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >尼泊爾</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >不丹</a><br>
+                        <p>・ 西亞</p>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >杜拜</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >土耳其</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >俄羅斯</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >烏克蘭</a><br>
                     </div>
                 </div>
+            </div>
+        <!-- *******************************************國家：歐洲******************************************************* -->
+            <div class="accordion-item">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo" aria-expanded="false"
+                        aria-controls="collapseTwo" style="font-size: 35px;">歐洲</button>
+                </h2>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_1">
+                    <div class="accordion-body">
+                        <p>・ 西歐</p>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >英國</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >荷蘭</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >愛爾蘭</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >比利時</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >盧森堡</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >摩納哥</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >德國</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >瑞士</a><br>
+                        <p>・ 北歐</p>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >挪威</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >瑞典</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >丹麥</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >芬蘭</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >冰島</a><br>
+                        <p>・ 南歐</p>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >法國</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >義大利</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >葡萄雅</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >西班牙</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >希臘</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >賽普勒斯</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >馬爾他</a><br>
+                    	<p>・ 東歐</p>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >羅馬尼亞</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >匈牙利</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >捷克</a><br>
+                        <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >波蘭</a><br>
+                    </div>
+                </div>
+            </div>
+        <!-- *******************************************國家：北美洲******************************************************* -->
+            <div class="accordion-item">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseThree" aria-expanded="false"
+                        aria-controls="collapseThree" style="font-size: 35px;">北美洲</button>
+                </h2>
+
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion_1">
+                    <div class="accordion-body">
+                    
+                    </div>
+                </div>
+            </div> 
+        <!-- *******************************************國家：南美洲******************************************************* -->
+            <div class="accordion-item">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseFour" aria-expanded="false"
+                        aria-controls="collapseFour" style="font-size: 35px;">南美洲</button>
+                </h2>
+
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion_1">
+                    <div class="accordion-body">
+                        
+                    </div>
+                </div>
+            </div> 
+        
+        <!-- *******************************************國家：大洋洲******************************************************* -->
+            <div class="accordion-item">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseFive" aria-expanded="false"
+                        aria-controls="collapseFive" style="font-size: 35px;">大洋洲</button>
+                </h2>
+
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion_1">
+                    <div class="accordion-body">
+                        
+                    </div>
+                </div>
+            </div> 
+      
+        <!-- *******************************************國家：非洲******************************************************* -->
+            <div class="accordion-item">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseSix" aria-expanded="false"
+                        aria-controls="collapseSix" style="font-size: 35px;">非洲</button>
+                </h2>
+
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion_1">
+                    <div class="accordion-body">
+                        
+                    </div>
+                </div>
+            </div> 
+        <!-- *******************************************國家：南極洲******************************************************* -->
+            <div class="accordion-item">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseSeven" aria-expanded="false"
+                        aria-controls="collapseSeven" style="font-size: 35px;">南極洲</button>
+                </h2>
+
+                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion_1">
+                    <div class="accordion-body">
+                        
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+                    </div>
+                </div>
+        <!-- *******************************///////國家表單 *********************************************************-->
                 <div class="content-column w-col w-col-9">
-                    <h1 class="white-bg-heading">最新文章</h1>
+                    <h1 class="white-bg-heading"><%=list.get(0).getCategory().getCountry() %>最新文章</h1>
+                <table>
+                    	<tr>
+                    		<td class="bigFont">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分類&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    		<td>
+                    			<p class="mb-0">
+                    				<a class="button w-button text-white country bigFont" name="<%=list.get(0).getCategory().getCountryID() %>">
+                    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;全部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    				</a>
+                   				 </p>
+                    		</td>
+                    		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    		<td>
+                    			<p class="mb-0">
+                    				<a class="button w-button text-white category bigFont" name="<%=list.get(0).getCategory().getCountryID() %>91">
+                    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;遊記&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    				</a>
+                   				 </p>
+                    		</td>
+                    		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    		<td>
+                    			<p class="mb-0">
+                    				<a class="button w-button text-white category bigFont" name="<%=list.get(0).getCategory().getCountryID() %>92">
+                    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食記&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    				</a>
+                   				 </p>
+                    		</td>
+                    		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    		<td>
+                    			<p class="mb-0">
+                    				<a class="button w-button text-white category bigFont" name="<%=list.get(0).getCategory().getCountryID() %>93">
+                    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;資訊&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    				</a>
+                   				 </p>
+                    		</td>
+                    		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    		<td>
+                    			<p class="mb-0">
+                    				<a class="button w-button text-white category bigFont" name="<%=list.get(0).getCategory().getCountryID() %>94">
+                    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;問題&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    				</a>
+                   				 </p>
+                    		</td>
+                    		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    		<td>
+                    			<p class="mb-0">
+                    				<a class="button w-button text-white category bigFont" name="<%=list.get(0).getCategory().getCountryID() %>95">
+                    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;攻略&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    				</a>
+                   				 </p>
+                    		</td>
+                    	</tr>
+                    </table>
+                    <br>
                     <div class="w-dyn-list">
+                
                         <!--從這底下加-->
-<%
-List<Article> list = (List) request.getAttribute("search");
+ 
+ <%
+
 for (Article tt : list) {
-%> 
+	String country=tt.getCategory().getCountry();
+%>                
+                    
+                    
                         <div role="listitem" class="w-dyn-item">
                             <div data-w-id="53cc7567-513c-3103-cd72-dfb075f10bef" class="post-wrapper">
                                 <div class="post-content">
                                     <div class="w-row">
-                                        <div class="w-col w-col-4 w-col-medium-4"><img id="img" src="images/georgia/picture/<%=tt.getPhoto()%>" class="box"></div>
+                                        <div class="w-col w-col-4 w-col-medium-4"><img id="img" src="images/georgia/picture/<%=tt.getPhoto()%>" class="box" style="height:165px;"></div>
                                         <div class="w-col w-col-8 w-col-medium-8"><a
                                                 href="/posts/coffee-variety-macchiato-as-organic-ut-variety-caffeine-americano"
                                                 class="blog-title-link w-inline-block">
@@ -63,20 +322,16 @@ for (Article tt : list) {
                                             <BR></BR>
                                             <a href="/posts/coffee-variety-macchiato-as-organic-ut-variety-caffeine-americano"
                                                 class="blog-title-link w-inline-block">
-                                                <h1 foo="bar" class="blog-title"><%=tt.getSubtitle()%></h1>
+                                                <h1 foo="bar" class="blog-title"><%=tt.getMember().getUsername()%>說：<%=tt.getSubtitle()%></h1>
                                             </a>
+                                            <BR></BR>
                                             <div class="details-wrapper">
-                                                <div class="post-info"><%=tt.getDate()%></div>
-                                                <div class="post-info">|</div><a href="/categories/travel"
-                                                    class="post-info when-link">Travel</a>
+                                                <div class="post-info bigFont"><%=tt.getDate()%></div>
+                                                <div class="post-info bigFont">|</div><a href="/categories/travel"
+                                                    class="post-info bigFont when-link"><%=tt.getCategory().getType()%></a>
                                             </div>
                                             <div class="post-summary-wrapper">
-                                                <p class="post-summary">Saucer, crema carajillo, bar, mocha medium,
-                                                    latte cappuccino and espresso acerbic to go. Coffee, irish foam
-                                                    turkish coffee blue mountain seasonal. Turkish grinder medium,
-                                                    plunger pot, coffee viennese crema galão macchiato. </p><a
-                                                    href="/posts/coffee-variety-macchiato-as-organic-ut-variety-caffeine-americano"
-                                                    class="read-more-link">Read more...</a>
+                                                <button type="button" name="toShow" value="<%=tt.getPostID()%>" class="btn btn-light readClass" style="float:right;" data-bs-toggle="modal" data-bs-target="#exampleModal">Read More...</button>
                                             </div>
                                         </div>
                                     </div>
@@ -84,6 +339,232 @@ for (Article tt : list) {
                             </div>
                         </div>
 <%}%>
+      </div>
+                            </div>
+                        </div>
+
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="detailTitle"></h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div id="hiddenValue">
+      </div>
+		<div id="detailContent">
+		</div>
+		<div id="detailReply" style="background-color: rgb(240, 240, 240);">
+     	 </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+                        
+                        
+                        
+                        
+                        
+                        
+				<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
+				<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
+
+<svg type="button" id="BackTop" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill jiantou" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+</svg>
+<svg type="button" id="ToBottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill jiantou" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+</svg>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+<script type="text/javascript">
+		$(function(){
+			$('#BackTop').click(function(){ 
+				$('html,body').animate({scrollTop:0},10);
+			});
+			$('#ToBottom').click(function(){ 
+				$('html,body').animate({scrollTop:document.body.scrollHeight}, 10);
+			});
+			
+			$(".country").click(function(){
+				let countryNo = $(this).attr("name");
+				console.log(countryNo);
+				let form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","article.country");
+				  let eleFileName=$(document.createElement('input')).attr('name','countryID').val(countryNo);
+				  form.append(eleFileName);
+				  $("body").append(form);
+				  form.submit();
+			});
+		
+
+			$(".category").click(function(){
+				let category_id = $(this).attr("name");
+				console.log(category_id);
+				let form=$(document.createElement('form')).css({display:'none'}).attr("method","POST").attr("action","article.fakeread");
+				  let eleFileName=$(document.createElement('input')).attr('name','categoryID').val(category_id);
+				  form.append(eleFileName);
+				  $("body").append(form);
+				  form.submit();
+			});
+				
+			$(".readClass").click(function(){
+				let postID=$(this).val();
+				console.log(postID);
+				$.getJSON({
+                    type: "GET",
+                    url: "/article.fake.detail",
+                    async: "true",
+                    data: "postID=" + postID,
+                    success: function (data) {
+                        console.log("讀取成功");
+                        //
+                        $('#detailTitle').html(data.title);
+                        $('#detailContent').html(data.content);
+                        $('#hiddenValue').append(
+           	                 $('<tr/>')
+           	                     .append(
+           	                         $('<td/>')
+           	                             .append(
+           	                                 $('<input/>')
+           	                                     .attr('type', 'hidden')
+           	                                     .attr('value', data.postID)
+           	                                     .attr('id', 'postID')
+           	                             )
+           	                     )
+           	             );
+                        
+                    }, error: function (data) {
+                        console.log("讀取失敗");
+                    }
+                });
+				$.getJSON({
+                    type: "GET",
+                    url: "/article.comment",
+                    async: "true",
+                    data: "postID=" + postID,
+                    success: function (data) {
+                        console.log("讀取成功");
+                        detailComment(data);
+                        
+                    }, error: function (data) {
+                        console.log("讀取失敗");
+                    }
+                });
+				
+			})
+			
+			$(document).on("click",".btn_comment",function(){
+				let comment = $(this).closest('td').prev().find('#comment').val();
+				console.log(comment);
+				var postID=$('#postID').val();
+				
+				$.ajax({
+				      type: "POST",
+				      url: "/article.commentinsert",
+				      data: "postID=" + postID+"&comment="+comment,
+				      async: "false",//等他回來
+				      success: function (resopnse, status, xhr) {
+				        console.log("連線成功");
+				        console.log(xhr.status);
+				        console.log(xhr.readyState);
+				        //判斷新增是否成功
+				        if (xhr.readyState == 4 && xhr.status == 200) {
+				          if (xhr.responseText == "ok") {
+				            console.log("新增成功!");
+				            $.getJSON({
+			                    type: "GET",
+			                    url: "/article.comment",
+			                    async: "true",
+			                    data: "postID=" + postID,
+			                    success: function (data) {
+			                        console.log("讀取成功");
+			                        //清空商品列表
+			                        detailComment(data);
+			                    }, error: function (data) {
+			                        console.log("讀取失敗");
+			                    }
+			                });
+				          } else {
+				            console.log("新增分類失敗!");
+				          }
+				        }
+				      }
+				    })
+			})
+			
+			
+		})
+			function detailComment(data) {
+			    console.log('123');
+			    $("#detailReply").empty();
+			    let floor=0;
+			    $.each(data, function (index, value) {
+			    	floor++;
+	    		 $('#detailReply').append(
+	                 $('<tr/>')
+	                     .append(
+	                         $('<td/>')
+	                             .append(
+	                                 $('<img/>')
+	                                     .attr('src', value.member.photo)
+	                                     .css("height", '100px')
+	                                     .css("width", '100px')
+	                             )
+	                     )
+	                     .append(
+	                         $('<td/>').addClass('edit_td')
+	                             .text(floor+'樓的 '+value.member.username+'說：'+value.comment)
+	                     )
+	                     .append(
+	                         $('<td/>')
+	                             
+	                     )
+	             )
+        });
+	    $('#detailReply').append(
+                $('<tr/>')
+                    .append(
+                        $('<td/>')
+                            .append(
+                                $('<img/>')
+                                    .attr('src', 'images/georgia/picture/留言.png')
+                                    .css("height", '100px')
+                                    .css("width", '100px')
+                            )
+                    )
+                    .append(
+                        $('<td/>').addClass('edit_td')
+                            .append(
+                                $('<input/>')
+                                    .attr('type', 'text')
+                                    .attr('id', 'comment')
+                            )
+                    )
+                    .append(
+                        $('<td/>')
+                            .append(
+                                $('<input/>').addClass("btn_comment")
+                                    .attr('type', 'button')
+                                    .attr('value', '送出')
+                                    .attr('id', 'commentNew')
+                                    
+                            )
+                    )
+            );
+	} 
+
+		
+
+</script>
 </body>
 
 </html>
