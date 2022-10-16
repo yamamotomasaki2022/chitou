@@ -31,11 +31,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import tw.chitou.gmail.controller.GmailController;
+import tw.chitou.gmail.model.GmailService;
 import tw.chitou.util.ECPayHelper;
 import tw.cocokang.attraction.model.Attraction;
 import tw.cocokang.attraction.model.AttractionService;
 import tw.cocokang.attraction.model.Pricingplan;
 import tw.jacky.login.model.MemberBasicInfo;
+import tw.jacky.login.model.MemberDetailInfo;
 import tw.luana.attraction.model.AttractionService_Luana;
 import tw.luana.cart.model.Cart;
 import tw.luana.cart.model.CartService;
@@ -45,7 +48,7 @@ import tw.luana.order.model.AttractionOrderDetail;
 import tw.luana.order.model.OrderList;
 
 @Controller
-@SessionAttributes({"memberbasicinfo","TradeNo","paymentDate","TotalAmount","totalprice","checkOutCart"})
+@SessionAttributes({"memberbasicinfo","memberdetailinfo","TradeNo","paymentDate","TotalAmount","totalprice","checkOutCart"})
 public class CartController {
 
 	@Autowired
@@ -59,6 +62,12 @@ public class CartController {
 
 	@Autowired
 	private HttpSession session;
+	
+	@Autowired
+	private GmailController gmailController;
+
+	@Autowired
+	private GmailService gService;
 
 	String path_Luana_Atttraction = "luana/attraction/";
 	String path_Luana_Cart = "luana/cart/";
@@ -102,12 +111,12 @@ public class CartController {
 		MemberBasicInfo member = (MemberBasicInfo)m.getAttribute("memberbasicinfo");
 		Integer memberid = member.getMemberid();
 		
-		if(cartService.showCart(memberid).isEmpty()) {
-			return path_Luana_Cart + "Luana_cartEmpty";
-		}else {		
+//		if(cartService.showCart(memberid).isEmpty()) {
+//			return path_Luana_Cart + "Luana_cartEmpty";
+//		}else {		
 		m.addAttribute("cartList", cartService.showCart(memberid));
 		return path_Luana_Cart + "Luana_cart";
-		}
+//		}
 	}
 
 	// 移除購物車商品
@@ -196,12 +205,8 @@ public class CartController {
 		String totalprice = (String) model.getAttribute("TotalAmount");
 		Integer totalInt = Integer.parseInt(totalprice);
 		String orderTypeName = "景點";
-		System.err.println("orderid"+ orderid);
-		System.err.println("orderid"+ orderid);
-		System.err.println("orderid"+ orderid);
-		System.err.println("orderid"+ orderid);
-		System.err.println("orderid"+ orderid);
 		MemberBasicInfo member = (MemberBasicInfo)model.getAttribute("memberbasicinfo");
+		MemberDetailInfo memberDetail = (MemberDetailInfo)model.getAttribute("memberdetailinfo");
 		Integer memberid = member.getMemberid();
 		
 		OrderList orderList = new OrderList();
@@ -216,45 +221,57 @@ public class CartController {
 		orderService.AttractionToOrder(checkOutCart);
 		orderService.addToOrderList(orderList);
 		
+		List<String> toEmaiList = new ArrayList<String>();
+//		toEmaiList.add(member.getEmail());
+		toEmaiList.add("learningma0926@gmail.com");
+	    String fromAddress = "eeit49group1chitou@gmail.com";
+	    String subject = "已確認您的訂單";
+	    
+	    StringBuilder builder = new StringBuilder();
+	    for(AttractionOrderDetail aDetail : checkOutCart) {
+	    	builder.append("<li>"+"名稱："+ aDetail.getAttractionname()+" "+aDetail.getPlanname()+"<br>數量："+aDetail.getQuantity()+"<br>價格："+aDetail.getPrice()*aDetail.getQuantity()+" 元</li>");
+	    }
+	    
+	    String html = "<!DOCTYPE html>"
+	    		+ "<html lang=\"en\">"
+	    		
+	    		+ "<head> <meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Document</title></head><body>"
+	    		+ "<ul style=\"list-style:none\">"
+	    		+ "<li>"
+	    		+ memberDetail.getName()+" 您好，感謝在Chi Tou規劃您的旅程，以下是您本次的訂單內容："
+	    		+ "</li><br>"
+	    		+ "<li>"
+	    			+ "訂單編號： "+ orderid
+	    		+ "</li>"
+	    		+ "<li>訂單項目："
+	    			+ "<ul style=list-style:none>"
+	    				+ builder
+	   				+ "</ul>"
+	   			+ "</li>"
+    			+ "<li>"	    		
+    				+ "總金額："+totalprice+" 元"
+	    		+ "</li>"
+	    		+ " <li>"
+	    			+ "下訂時間："+OrderDay
+	    		+ "</li>"
+	    		+ "<li>"
+	    			+ "Chi Tou祝您旅途愉快！"
+	    		+ "</li>"
+	    		+ "</ul>"
+	    		+ "</body>"
+	    		+ "</html>";
+	    gService.mimemail(fromAddress, toEmaiList, subject, html);
+		
 		//結帳完成移除購物車品項
 		cartService.clearCart(memberid);
-		
-//		model.addAttribute("orders",orderService.showOrderLists(memberid));
 		
 		return "finish";
 	}
 	
-//	//整車購買
-//	@RequestMapping(path = "buyFromCart", method = RequestMethod.POST)
-//	public String buyFromCart(@RequestParam("memberid") Integer memberid, @RequestParam("totalPrice") Integer totalprice, Model m,
-//			OrderList orderList) {
-//		String orderTypeName = "景點";
-//		String orderType = "A";
-//		String orderStatus = "1";
-//		String orderId = orderType + Long.toHexString(System.currentTimeMillis());
-//		
-//		Date date = new Date();
-//		String OrderDay = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
-//		
-//		//加入訂單總表
-//		orderList.setOrdertype(orderTypeName);
-//		orderList.setOrderid(orderId);
-//		orderList.setOrderdate(OrderDay);
-//		orderList.setOrderstatus(orderStatus);
-//		orderList.setTotalprice(totalprice);
-//		
-//		orderService.addToOrderList(orderList);	
-//		
-//		//加入景點詳細訂單
-//		orderService.AttractionToOrder(memberid, orderId);
-//		
-//		//結帳完成移除購物車品項
-//		cartService.clearCart(memberid);
-//		
-//		m.addAttribute("cartList", cartService.showCart(memberid));
-//		
-//		return path_Luana_Cart + "Luana_cart";
-//	}
+	//確認購買信件
+	public void sendOrderConfirmMail() {
+		
+	}
 
 
 }

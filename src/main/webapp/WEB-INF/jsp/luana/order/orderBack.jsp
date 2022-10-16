@@ -84,6 +84,17 @@
 			</div>
 		</form>
 		
+		<form action="downloadCSV" method="get">
+			<div style="display:inline-block;float:right;">
+				<input type="submit" class="btn btn-primary mr-2" value="匯出CSV檔">
+			</div>
+		</form>
+		<form action="orderStatic" method="get">
+			<div style="display:inline-block;float:right;">
+				<input type="submit" class="btn btn-primary mr-2" value="chart">
+			</div>
+		</form>
+		
 	
 	
 	<div class="table-responsive">
@@ -228,6 +239,43 @@
 						"人數："+detail[i].numberOfPeople +"</br>"+
 						"入住日："+detail[i].checkInDate +"</br>"+
 						"退房日："+detail[i].checkOutDate +"<br><hr>";
+						
+				};
+		
+			$("#orderDetail").html(orderList);					
+    		//console.log(orderdetail.attractionname);
+    	  	},
+    	  	error: function () {
+    			console.log("Oh no...");
+    	  	},
+    	 });
+    }
+    
+    function btnFlight(data) {
+    
+    	 $.ajax({
+    	  	url: "flightOrderDetail",
+    	  	type: "POST",
+    	  	data: {"orderid": data},
+    	  	//contentType:"application/json",
+    	  	dataType: "JSON", 
+    	  	success: function (detail) {
+    	  	console.log(detail);
+
+    	  	$("#title").html("訂單編號："+ data );
+			
+    	  	let orderList="";
+			
+    			for(i = 0 ; i < detail.length ; i++){
+				
+					orderList += 
+						"航空公司："+detail[i].airline +" "+
+						detail[i].flightid +"</br>"+
+						"於：　"+detail[i].departuretime+"　從 "+detail[i].originid +"　出發</br>"+
+						"於：　"+detail[i].arrivaltime+"　至 "+detail[i].destinationid +"　抵達<br><hr>"+
+						"乘客資訊：<br>"+
+						"姓："+detail[i].lastname+"　名："+detail[i].firstname+"<br>"+
+						"聯絡信箱："+detail[i].emailaddress+"　聯絡電話："+detail[i].phone;
 						
 				};
 		

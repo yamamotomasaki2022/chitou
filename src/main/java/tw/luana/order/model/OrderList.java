@@ -122,6 +122,27 @@ public class OrderList implements Serializable {
 
 
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("OrderList [orderid=");
+		builder.append(orderid);
+		builder.append(", ordertype=");
+		builder.append(ordertype);
+		builder.append(", orderdate=");
+		builder.append(orderdate);
+		builder.append(", orderstatus=");
+		builder.append(orderstatus);
+		builder.append(", totalprice=");
+		builder.append(totalprice);
+		builder.append(", memberid=");
+		builder.append(memberid);
+		builder.append("]");
+		return builder.toString();
+	}
+
+
+
 //	public Set<AttractionOrderDetail> getaDetails() {
 //		return aDetails;
 //	}

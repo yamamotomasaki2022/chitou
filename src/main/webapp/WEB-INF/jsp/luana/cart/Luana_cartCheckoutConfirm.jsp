@@ -1,39 +1,28 @@
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import= "tw.luana.*" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-  
-    <!DOCTYPE html>
-    <html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ChiTou</title>
+	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 
-    <head>
-        <title>購物車</title>
-<link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
 
-        <%@ include file="../Luana_include/head.jsp" %>
-            <style type="text/css">
-                .table tbody td {
-                    vartical-align: middle;
-                }
+</head>
+<body class="body2">
+	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
+	<div class="container my-4">
+		<div class="mb-4" style="height:100px">
 
-                .btn-incre,
-                .btn-decre {
+		</div>
 
-                    box-shadow: none;
-                    font-size: 25px;
-                }
-            </style> 
-    </head>
-    <body>
-    
-    	<%@ include file="/WEB-INF/includes/Header.jsp"  %>
-        <%@ include file="../Luana_include/navbar.jsp" %>
-       
-            <div class="container">                
-                <div>
-                <table class="table table-loght">
+		<br>
+
+		<div class="row justify-content-center">
+
+			<div class="col-10" >
+			<table class="table">
 					<thead>
 						<tr>
 							<th>確認結帳內容</th>
@@ -52,29 +41,27 @@
                         
                         	<td>${Cart.attractionname}</td>
                             <td>${Cart.planname}</td>
-                            <td>${Cart.planfee}</td>                     
+                            <td>單價：${Cart.planfee}元</td>                     
 							
-                            <td>${Cart.quantity}"
-                            <td>小計：<c:out value="${Cart.planfee * Cart.quantity}" /></td>
+                            <td>數量：${Cart.quantity}
+                            <td>小計：<c:out value="${Cart.planfee * Cart.quantity}" />元</td>
                             <td></td>
                             <td></td>
                         </tr>                      
                             </c:forEach>
                     </tbody>
-                </table>
-            </div>
-            
-            
-            <div>
-                 
-                 
-            	<div class="card">
-      				<div class="card-body">
+                </table>	
+			</div>
+
+
+			<div class="col-2" >
+				<div class="card" style="width:18rem; background-color:#dbdbee;position:sticky;top:10" >
+      				<div class="card-body" >
                   	<c:set var="total" value="${0}" />
                     <c:forEach var="Cart" items="${cartList}">
                     <c:set var="total" value="${total+Cart.planfee * Cart.quantity}" />
                     </c:forEach>	
-       					<h5 class="card-title">Total: ${total}</h5>
+       					<h5 class="card-title">總計: ${total} 元</h5>
                  
                  
 					 <form action="buyFromCart" method="post" class="form-inline" >
@@ -84,11 +71,29 @@
 		                 
               		</div>
 				</div>
-           </div>
-            
-            
-           </div>
-            <%@ include file="../Luana_include/footer.jsp" %>
-    </body>
+			</div>
+		</div>
+	</div>
 
-    </html>
+
+	<div class="untree_co-section">
+		<div class="container">
+		</div>
+		
+	</div>
+	<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
+
+	<div id="overlayer"></div>
+	<div class="loader">
+		<div class="spinner-border" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+
+
+	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
+
+
+
+</body>
+</html>
