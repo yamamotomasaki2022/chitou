@@ -98,13 +98,13 @@ public class ArticleController {
 	}
 	
 	//***************假細項***************
-		@RequestMapping(path = "/article.fake.detail",method = RequestMethod.POST)
-		public String fakeDetail(@RequestParam("postID") String postID,
-				Model m) {
-			System.out.println(postID);
-Article findByID = articleService.findByID(Integer.parseInt(postID));
-m.addAttribute("findByID", findByID);
-			return "georgia/article/gigiDetail";
+		@RequestMapping(path = "/article.fake.detail",method = RequestMethod.GET)
+		@ResponseBody
+		public Article fakeDetail(@RequestParam("postID") int postID
+				) {
+//			System.out.println(postID);
+Article article = articleService.findByID(postID);
+			return article;
 		}
 	
 	//***************假主頁***************
@@ -118,46 +118,40 @@ m.addAttribute("findByID", findByID);
 	
 	//***************假查詢***************
 	@RequestMapping(path = "/article.fakeread",method = RequestMethod.POST)
-	public String fakeread(@RequestParam("chooseCountry") String chooseCountry,
-			@RequestParam("chooseType") String chooseType,
+	public String fakeread(@RequestParam("categoryID") int categoryID,
 			Model m) {
+		
+			List<Article> search = articleService.findType(categoryID);
+			m.addAttribute("search", search);
+		
+		return "georgia/article/gigiFakeRead";
+	}
+	
+	//***************XXXXXXXXXXXXXX***************
+	@RequestMapping(path = "/article.country",method = RequestMethod.POST)
+	public String country(Model m,
+							@RequestParam("countryID") int countryID) {
+		System.out.println("***********************************"+countryID);
 		List<Article> search = new LinkedList<Article>();
-		if (chooseType == "") {
-			int countryID = Integer.parseInt(chooseCountry);
+		
 			List<Category> cateList = categoryService.findCountry(countryID);
 			for(Category cateBean:cateList) {
 				Set<Article> articleSet = cateBean.getArticle();
 				for (Article article : articleSet) {
 					search.add(article);
 				}
-				Collections.sort(search, new Comparator<Article>(){
-					public int compare(Article a1, Article a2) {
-						if(a1.getPostID() > a2.getPostID()){
-							return 1;
-						}
-						if(a1.getPostID() == a2.getPostID()){
-							return 0;
-						}
-						return -1;
-					}
-				}); 
-			}
-//				List<Article> search = articleService.findType(cateBean.getCategoryID());
-			m.addAttribute("search", search);
-//			List<Article> searchBean = articleService.findCountry(countryID);
-//			m.addAttribute("searchBean", searchBean);
-		}else {
-			int categoryID = Integer.parseInt(chooseCountry+chooseType);
-			List<Article> searchType = articleService.findType(categoryID);
-			m.addAttribute("search", searchType);
-		}
-		return "georgia/article/gigiFakeRead";
-	}
-	
-	//***************XXXXXXXXXXXXXX***************
-	@RequestMapping(path = "/article.country",method = RequestMethod.POST)
-	public String country(Model m) {
-		List<Article> search = articleService.findType(10191);
+		        Collections.sort(search, new Comparator<Article>(){
+		        	public int compare(Article a1, Article a2) {
+		        		if(a1.getPostID() < a2.getPostID()){
+		                    return 1;
+		                }
+		                if(a1.getPostID() == a2.getPostID()){
+		                    return 0;
+		                }
+		                return -1;
+		            }
+		        }); 
+		        	}
 		m.addAttribute("search", search);
 		return "georgia/article/gigiCountry";
 	}

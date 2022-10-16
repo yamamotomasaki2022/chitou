@@ -26,7 +26,7 @@ button, .btn {
 <%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
 </head>
 <body>
 
@@ -81,15 +81,28 @@ button, .btn {
 <!--國家編號:  <BR><INPUT TYPE="TEXT" NAME="bigClassID" VALUE="" id="bigClassIDInput"><BR>-->
 <!--文章類型編號:  <BR><INPUT TYPE="TEXT" NAME="articleClassID" VALUE="" id="articleClassIDInput"><BR>-->
 <!-- 文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="" id="contentInput"><BR> -->
-文章內文：<BR><textarea id="contentInput" name="content"></textarea><BR>
+文章內文：<textarea id="contentInput" name="content"></textarea>
 <INPUT TYPE="SUBMIT" value="發表文章" name="sentarticle" class="btn btn-primary mr-2">
 </form>
-<button id="fastInput" class="btn btn-light">一鍵輸入</button>
+<button  onclick="oneInput();" class="btn btn-light">一鍵輸入</button>
 
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
+<script src="/js/georgia/ckeditorGeorgia.js"></script>
 
 <script>
+var myEditor;
+	ClassicEditor
+	.create( document.querySelector( '#contentInput' ) )
+	.then( editor => {
+		myEditor = editor ;
+	} )
+	.catch( error => {
+	    console.error( error );
+	} );
+	
+
+
 function back(){
 	history.back();
 }
@@ -107,6 +120,8 @@ $('#upload').on('change',function(e){
 });
 
 $(function() {
+	
+	
 	$('#check').validate({
 		onkeyup : function(element, event) {
 			var value = this.elementValue(element).replace(/^\s+/g, "");
@@ -132,13 +147,42 @@ $(function() {
 	   
 $('#fastInput').click(function(){
 	//$('#posterIDInput').val('6666');
+	
+})
+
+function oneInput(){
+	
+	
+	
 	$('#titleInput').val('中壢必吃牛排店');
 	$('#subtitleInput').val('好牛排，不吃嗎？');
-	$('#contentInput').val('求分享，求推薦');
-})
+	myEditor.setData('132');
+	
+	
+	
+/*	document.form.contentInput.value = CKEDITOR.instances.contentInput.insertHtml
+	  ( ' <p>椒麻雞主食與飯有分隔 （大推👍<br/>'+
+	'回家吃雞腿皮還是脆口的！<br />'+
+	'椒麻雞醬汁的味道有添加檸檬增加清爽口感<br />'+
+	'該有的花椒香也沒有忘記唷！<br />'+
+	'<br />'+
+	'綠咖哩雞的雞肉帶皮口感很好<br />'+
+	'椰奶的風味完全完美的巴在雞腿肉上面不放了！<br />'+
+	'<br />'+
+	'今天吃的配菜裡面的番茄炒蛋🍅<br />'+
+	'好好吃！！！！！<br />'+
+	'許願常常出現❤️❤️❤️<br />'+
+	'<br />'+
+	'泰式香蘭豆花店裡頭的招牌特色！<br />'+
+	'外面從未吃過的口味！值得一試<br />'+
+	'<br />'+
+	'泰式奶茶也好好喝 不會過甜～<br />'+
+	'符合我們的口味🥤</p>'+
+	'<img alt="" height="300" src="http://localhost:8080/EatWorld/photo/post11.PNG" width="300" />  ' ) ;*/
+	
+}
 </script>
-<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
-<script src="/js/georgia/ckeditorGeorgia.js"></script>
+
 <script>
 // ClassicEditor
 // .create(document.querySelector('#contentInput'),{
