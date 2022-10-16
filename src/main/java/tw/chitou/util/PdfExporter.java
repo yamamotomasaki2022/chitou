@@ -30,7 +30,7 @@ public class PdfExporter {
  
     private void writeTableHeader(PdfPTable table) {
         PdfPCell cell = new PdfPCell();
-        cell.setBackgroundColor(Color.BLUE);
+        cell.setBackgroundColor(Color.GREEN);
         cell.setPadding(5);
          
         Font font = FontFactory.getFont(FontFactory.HELVETICA);

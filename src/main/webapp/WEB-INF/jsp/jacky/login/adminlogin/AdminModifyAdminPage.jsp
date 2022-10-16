@@ -37,7 +37,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label>密碼</label> <input type="password"
+						<label>密碼</label> <input type="text"
 							class="form-control" id="password" name="password"
 							autocomplete="off" placeholder="Password" value="${modifyadminbean.password}"">
 					</div>

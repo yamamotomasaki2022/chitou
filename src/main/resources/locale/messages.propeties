@@ -1,0 +1,9 @@
+#login page
+
+
+
+title.login.page= Login Page
+
+label.login.header= 中文
+label.login.forgetpassword= Forget PassWord
+label.button.login=Login

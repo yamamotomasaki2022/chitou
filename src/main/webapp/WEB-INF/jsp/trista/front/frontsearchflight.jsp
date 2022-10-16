@@ -55,7 +55,7 @@ response.setCharacterEncoding("UTF-8");
 					<td>
 					<a href="frontaddFlightTicket">
 			<button id="receive" type="button" class="btn btn-inverse-primary btn-fw">
-				<i class="ti-plus"></i>
+				<i class="ti-plus">購買</i>
 			</button>
 			</td>
 		</a>

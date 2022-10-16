@@ -4,13 +4,13 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
 	<ul class="nav">
 		<li class="nav-item"><a class="nav-link" href="/manager/chart"> <i
-				class="icon-grid menu-icon"></i> <span class="menu-title">首頁</span>
+				class="fa-solid fa-house"></i> <span class="menu-title">&emsp;首頁</span>
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
 			href="#auth" aria-expanded="false" aria-controls="auth"> <i
-				class="icon-head menu-icon"></i> <span class="menu-title">會員管理</span>
-				<i class="menu-arrow"></i>
+				class="fa-solid fa-user"></i> <span class="menu-title">&emsp;會員管理&emsp;</span>
+				<i class="fa-solid fa-chevron-down"></i>
 		</a>
 			<div class="collapse" id="auth">
 				<ul class="nav flex-column sub-menu">
@@ -21,7 +21,7 @@
 			</div>
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
 			href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-				<i class="icon-map menu-icon"></i> <span class="menu-title">景點管理</span>
+				<i class="fa-solid fa-map"></i> <span class="menu-title">&emsp;景點管理</span>
 				<i class="menu-arrow"></i>
 		</a>
 			<div class="collapse" id="ui-basic">
@@ -34,8 +34,8 @@
 			</div>
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
 			href="#form-elements" aria-expanded="false"
-			aria-controls="form-elements"> <i class="icon-columns menu-icon"></i>
-				<span class="menu-title">機票管理</span> <i class="menu-arrow"></i>
+			aria-controls="form-elements"> <i class="fa-solid fa-ticket"></i>
+				<span class="menu-title">&emsp;機票管理</span> <i class="menu-arrow"></i>
 		</a>
 			<div class="collapse" id="form-elements">
 				<ul class="nav flex-column sub-menu">
@@ -46,7 +46,7 @@
 
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
 			href="#tables" aria-expanded="false" aria-controls="tables"> <i
-				class="icon-grid-2 menu-icon"></i> <span class="menu-title">飯店管理</span>
+				class="fa-solid fa-square-h"></i> <span class="menu-title">&emsp;飯店管理</span>
 				<i class="menu-arrow"></i>
 		</a>
 			<div class="collapse" id="tables">
@@ -57,7 +57,7 @@
 
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
 			href="#icons" aria-expanded="false" aria-controls="icons"> <i
-				class="icon-contract menu-icon"></i> <span class="menu-title">討論區管理</span>
+				class="fa-solid fa-newspaper"></i> <span class="menu-title">&emsp;討論區管理</span>
 				<i class="menu-arrow"></i>
 		</a>
 			<div class="collapse" id="icons">
@@ -68,14 +68,14 @@
 
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
 			href="#charts" aria-expanded="false" aria-controls="charts"> <i
-				class="icon-paper menu-icon"></i> <span class="menu-title">購物車與訂單管理</span>
+				class="fa-solid fa-cart-shopping"></i> <span class="menu-title">&emsp;購物車與訂單管理</span>
 				<i class="menu-arrow"></i>
 		</a>
 			<div class="collapse" id="charts">
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item"><a class="nav-link"
 						href="/allAttractions">景點加入</a></li>
-					<li class="nav-item"><a class="nav-link" href="/cart">訂單</a></li>
+					<li class="nav-item"><a class="nav-link" href="/backOrderList">訂單</a></li>
 					<li class="nav-item"><a class="nav-link" href="/order">購物車</a></li>
 				</ul>
 			</div></li>

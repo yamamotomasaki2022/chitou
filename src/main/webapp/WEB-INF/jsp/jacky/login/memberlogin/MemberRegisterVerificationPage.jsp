@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>注冊成功！</title>
+<title>收取驗證碼</title>
 </head>
 <body>
 

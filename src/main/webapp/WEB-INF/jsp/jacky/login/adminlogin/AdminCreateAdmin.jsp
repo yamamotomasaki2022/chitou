@@ -32,7 +32,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 					id="form">
 					<div class="form-group">
 						<label>Adminstatus</label> <input type="text" class="form-control"
-							id="username" name="adminstatus" autocomplete="off"
+							id="adminstatus" name="adminstatus" autocomplete="off"
 							placeholder="Adminstatus">
 					</div>
 
@@ -47,12 +47,17 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 							class="form-control" id="password" name="password"
 							autocomplete="off" placeholder="Password">
 					</div>
-					<div  class="form-group">
+					<div class="form-group">
 						<input type="hidden" name="permission" value="1">
 					</div>
 
-					<button type="submit" class="btn btn-primary mr-2"  id="createmember" name="submit">提交</button>
-					<a href="/manager/AdminHomePage"><button type="button" class="btn btn-light">返回</button></a> 
+					<button type="button" class="btn btn-primary mr-2" id="fastinput"
+						style="float: right;">一鍵輸入</button>
+
+					<button type="submit" class="btn btn-primary mr-2"
+						id="createmember" name="submit">提交</button>
+					<a href="/manager/AdminHomePage"><button type="button"
+							class="btn btn-light">返回</button></a>
 				</form>
 			</div>
 		</div>
@@ -60,6 +65,19 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 
 
 	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script>
+		$('#fastinput').click(function() {
+			
+			
+			$('#adminstatus').val('1')
+			$('#username').val('admin2')
+			$('#password').val('123')
+
+
+		})
+	</script>
 
 </body>
 </html>

@@ -8,12 +8,12 @@
 <body>
 
 
-<h1>測試thymeleaf是否能運行</h1>
+<h1>注冊會員驗證</h1>
 
 <p>
 親愛的用戶你好: <span th:text="${name}"> </span>
 <br>
-<span th:text= ${verificationcode}></span>
+<!-- <span th:text= ${verificationcode}></span> -->
 <a th:href="@{http://localhost:8080/verify?code={code1}(code1=${code})}">會員驗證</a>
 
 </p>
