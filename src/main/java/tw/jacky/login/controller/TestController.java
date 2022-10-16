@@ -30,9 +30,8 @@ public class TestController {
 	}
 	
 	@RequestMapping(path="/member/sss")
-	@ResponseBody
 	public String verifiedMember(){
-		return "你好";
+		return "/weber/front/SearchResult";
 	}
 	
 	

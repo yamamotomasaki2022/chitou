@@ -57,6 +57,8 @@
 		if (operation == 1) {
 			Swal.fire('登入成功!', '${memberbasicinfo.username}', 'success')
 			$('#img1').attr('src', '/images/jacky/login/google.png')
+		}else if(operation == 2){
+			Swal.fire('修改密碼成功!', '${memberbasicinfo.username}', 'success')
 		}
 
 		// 		else{

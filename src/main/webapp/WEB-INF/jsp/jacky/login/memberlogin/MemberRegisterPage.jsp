@@ -312,7 +312,7 @@ label.error {
 			$('#phone').val('0909223123')
 			$('#nationality').val('台灣')
 			$('#address').val('大園區大勇路444號')
-			$('birth').val('1994-09-22')
+			$('#birth').val('1994-09-22')
 			$('#nickname').val('馬金剛')
 
 		})

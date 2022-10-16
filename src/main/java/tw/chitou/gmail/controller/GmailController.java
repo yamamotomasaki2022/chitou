@@ -129,7 +129,7 @@ public class GmailController {
 			toEmaiList.add(member.getEmail());
 		    String fromAddress = "eeit49group1chitou@gmail.com";
 //		    String senderName = "Your company name";
-		    String subject = "Please verify your registration";
+		    String subject = "會員權限驗證";
 		    Map<String,String> params= new HashMap<>();
 		    params.put("name", member.getUsername());
 		    params.put("code", verification_code);
@@ -162,7 +162,7 @@ public class GmailController {
 			toEmaiList.add(member.getEmail());
 		    String fromAddress = "eeit49group1chitou@gmail.com";
 //		    String senderName = "Your company name";
-		    String subject = "忘記密碼驗證";
+		    String subject = "會員權限驗證";
 		    Map<String,String> params= new HashMap<>();
 		    params.put("name", member.getUsername());
 		    params.put("code", verification_code);

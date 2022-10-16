@@ -174,18 +174,18 @@ if (request.getAttribute("crud") != null) {
 
 		
 		swalWithBootstrapButtons.fire({
-			  title: 'Are you sure?',
-			  text: "You won't be able to revert this!",
+			  title: '你確定嗎?',
+			  text: "你沒辦法重新取回資料哦!",
 			  icon: 'warning',
 			  showCancelButton: true,
-			  confirmButtonText: 'Yes, delete it!',
-			  cancelButtonText: 'No, cancel!',
+			  confirmButtonText: '是, 請刪除!',
+			  cancelButtonText: '不, 取消吧!',
 			  reverseButtons: true
 			}).then((result) => {
 			  if (result.isConfirmed) {
 			    swalWithBootstrapButtons.fire(
-			      'Deleted!',
-			      'Member Information has been deleted.',
+			      '刪除',
+			      '會員資訊成功刪除',
 			      'success'
 			    )
 			    $.ajax({
@@ -206,8 +206,8 @@ if (request.getAttribute("crud") != null) {
 			    result.dismiss === Swal.DismissReason.cancel
 			  ) {
 			    swalWithBootstrapButtons.fire(
-			      'Cancelled',
-			      'Your Data is safe :)',
+			      '取消了！',
+			      '資訊還在 :)',
 			      'error'
 			    )
 			  }

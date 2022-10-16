@@ -51,6 +51,8 @@
 					aria-labelledby="profileDropdown">
 					<a href="searchHotel" class="dropdown-item"> <i
 						class="ti-settings text-primary"></i> 飯店搜尋
+					</a> <a href="/member/sss" class="dropdown-item"> <i
+						class="ti-power-off text-primary"></i> 簡單搜索頁面
 					</a>
 				</div></li>
 		</ul>
@@ -79,9 +81,8 @@
 						class="ti-settings text-primary"></i> 文章總覽
 					</a> <a href="/article.user" class="dropdown-item"> <i
 						class="ti-settings text-primary"></i> 文章管理
-					</a> <a href="/member/sss" class="dropdown-item"> <i
-						class="ti-power-off text-primary"></i> 發表文章
 					</a>
+
 				</div></li>
 		</ul>
 
@@ -146,26 +147,21 @@
 	</div>
 
 	<script>
-	
-	try{
-		
-		var username = ${memberbasicinfo.memberid};
 
-		if (username > 0) 
-			
-		{
-			console.log('測試是否進來:' + username)
-			$('#img1').attr('src', '/${memberbasicinfo.photo}')
+			var username = ${memberbasicinfo.memberid}
+			;
 
-		}
-		
-	}catch(err){
-		alert("請先登入會員")
-	}
+			if (username > 0)
+
+			{
+				console.log('測試是否進來:' + username)
+				$('#img1').attr('src', '/${memberbasicinfo.photo}')
+
+			}
 
 	</script>
 
-	
+
 
 
 

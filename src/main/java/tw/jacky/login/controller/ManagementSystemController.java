@@ -102,7 +102,7 @@ public class ManagementSystemController {
 		processShowTableInHomePage(m);
 //		System.out.println("取到數字:" + id);
 		m.addAttribute("session_status", id);
-		m.addAttribute("welcome_message", id);
+//		m.addAttribute("welcome_message", id);
 		return page_adminhomepage;
 	}
 	
