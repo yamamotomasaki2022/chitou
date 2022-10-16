@@ -129,14 +129,16 @@ public class LoginController {
 	
 //	會員忘記密碼并且修改
 	@PostMapping(path="/MemberForgetPasswordAndModify")
-	public String processMemberForgetPasswordAndModify(@RequestParam("username") String username,@RequestParam("password") String password) {
+	public String processMemberForgetPasswordAndModify(@RequestParam("username") String username,@RequestParam("password") String password,Model m) {
 		System.out.println("要修改的密碼："+ password);
 		System.out.println("要修改的賬號："+ username);
 		
 		MemberBasicInfo memberbean = lservice.findBasicInfobyUsername(username);
+		memberbean.setPassword(password);
 		password=managementSystemController.encrpytMemberPassword(memberbean);
 		memberbean.setPassword(password);
 		lservice.adminUpdateMember(memberbean);
+		m.addAttribute("operation",2);
 		
 		return "NewHome";
 	}

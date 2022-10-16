@@ -49,7 +49,8 @@ public class LoginSucessHandler implements AuthenticationSuccessHandler {
 			MemberDetailInfo memberdetailinfo = lService.findDetailByMemberid(memberbasicinfo.getMemberid());
 			request.getSession().setAttribute("memberbasicinfo", memberbasicinfo);
 			request.getSession().setAttribute("memberdetailinfo", memberdetailinfo);
-			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/memberlogin/MemberHomePage.jsp").forward(request, response);
+			request.setAttribute("login", 1);
+			request.getRequestDispatcher("/WEB-INF/jsp/NewHome.jsp").forward(request, response);
 		}
 		
 		else if (authorities.toString().equals("[verified_member]")) {
@@ -59,7 +60,8 @@ public class LoginSucessHandler implements AuthenticationSuccessHandler {
 			MemberDetailInfo memberdetailinfo = lService.findDetailByMemberid(memberbasicinfo.getMemberid());
 			request.getSession().setAttribute("memberbasicinfo", memberbasicinfo);
 			request.getSession().setAttribute("memberdetailinfo", memberdetailinfo);
-			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/memberlogin/MemberHomePage.jsp").forward(request, response);
+			request.setAttribute("login", 1);
+			request.getRequestDispatcher("/WEB-INF/jsp/NewHome.jsp").forward(request, response);
 		}
 		
 		else if(authorities.toString().equals("[boss777]")) {
@@ -75,7 +77,7 @@ public class LoginSucessHandler implements AuthenticationSuccessHandler {
 			
 			
 //			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
-			response.sendRedirect("/manager/AdminHomePage/"+"3");
+			response.sendRedirect("/manager/Chart/"+"3");
 //			response.sendRedirect("/manager/AdminHomePage");
 		}
 		else if(authorities.toString().equals("[admin]")){

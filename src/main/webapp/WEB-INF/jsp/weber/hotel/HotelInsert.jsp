@@ -105,7 +105,7 @@
 		$('#fastInput')
 				.click(
 						function() {
-							$('#name').val('台北大倉久和大飯店');
+							$('#name').val('台北大倉久和大飯店 The Okura Prestige Taipei');
 							$('#address').val('南京東路一段 9 號, 台北市, 10450');
 							$('#type').val('飯店');
 							$('#intro')

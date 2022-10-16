@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -38,12 +39,14 @@ public class WebAppConfig implements WebMvcConfigurer {
 	@Bean
 	public LocaleResolver localeResolver() {
 		SessionLocaleResolver slr= new SessionLocaleResolver();
-		slr.setDefaultLocale(Locale.TAIWAN);
+		slr.setDefaultLocale(Locale.US);
 		
 		return slr;
 	}
 	
 	
+	
+//	參數可以設置語言 (i18n）
 	@Bean
 	public LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor lci= new LocaleChangeInterceptor();
@@ -55,6 +58,14 @@ public class WebAppConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
+	}
+	
+	@Bean
+	public ReloadableResourceBundleMessageSource messageSource(){
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("classpath:locale/messages");
+		messageSource.setCacheSeconds(3600);//refresh cache once per hour
+		return messageSource;
 	}
 	
 	
