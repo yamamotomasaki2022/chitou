@@ -200,10 +200,7 @@
 
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script>
-		var welcome = $
-		{
-			welcome_message
-		}
+		var welcome = ${welcome_message}
 
 		if (welcome == 1) {
 			Swal.fire('Welcome!', 'Admin!', 'success')

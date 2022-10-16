@@ -221,12 +221,10 @@ public class ManagementSystemController {
 	}
 
 //	管理員刪除會員
-	@DeleteMapping(path = "/AdminDeleteMember")
+	@PostMapping(path = "/AdminDeleteMember")
 	public String processAdminDeleteMember(@RequestParam("td_memberid") int memberid, Model m) {
 		System.out.println("檢查刪除的ID：" + memberid);
 		lservice.adminDeleteMember(memberid);
-//	    4為刪除
-		m.addAttribute("crud", 4);
 		return "redirect:" + method_ShowTableInHomePage;
 	}
 
@@ -454,7 +452,7 @@ public class ManagementSystemController {
         String currentDateTime = dateFormatter.format(new Date());
          
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
+        String headerValue = "attachment; filename=memberbasicinfo_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
          
 //        List<User> listUsers = service.listAll();

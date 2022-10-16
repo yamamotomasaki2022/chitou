@@ -135,8 +135,9 @@ if (request.getAttribute("crud") != null) {
 
 				<tr>
 					<form action="/manager/AdminDeleteMember" method="post">
-						<input type="hidden" name="_method" value="DELETE">
-						<td><input type="hidden" id="td_memberid" name="td_memberid" value="<%=bean.getMemberid()%>"><%=bean.getMemberid()%></td>
+						<!-- 						<input type="hidden" name="_method" value="DELETE"> -->
+						<td><input type="hidden" id="<%=bean.getMemberid()%>"
+							name="td_memberid" value="<%=bean.getMemberid()%>"><%=bean.getMemberid()%></td>
 						<!--  <td><%=bean.getStatusid()%></td>-->
 						<td><%=bean.getUsername()%></td>
 						<td><%=bean.getLoginStatus().getStatusname()%></td>
@@ -152,6 +153,73 @@ if (request.getAttribute("crud") != null) {
 					</form>
 
 
+
+<!-- ajax版本 -->
+
+	<script>
+	
+
+	
+		
+	$(".btn-inverse-danger").on('click',function(){
+		
+		const swalWithBootstrapButtons = Swal.mixin({
+			  customClass: {
+			    confirmButton: 'btn btn-success',
+			    cancelButton: 'btn btn-danger'
+			  },
+			  buttonsStyling: false
+			})
+		
+
+		
+		swalWithBootstrapButtons.fire({
+			  title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonText: 'Yes, delete it!',
+			  cancelButtonText: 'No, cancel!',
+			  reverseButtons: true
+			}).then((result) => {
+			  if (result.isConfirmed) {
+			    swalWithBootstrapButtons.fire(
+			      'Deleted!',
+			      'Member Information has been deleted.',
+			      'success'
+			    )
+			    $.ajax({
+					type:'post',
+					url:'/manager/AdminDeleteMember',
+					data:{
+						td_memberid:<%=bean.getMemberid()%>
+					},
+					success:function(data){
+						console.log(data);
+// 						自動刷新
+						setTimeout("location.reload()",1500);
+					}
+					
+					})
+			  } else if (
+			    /* Read more about handling dismissals below */
+			    result.dismiss === Swal.DismissReason.cancel
+			  ) {
+			    swalWithBootstrapButtons.fire(
+			      'Cancelled',
+			      'Your Data is safe :)',
+			      'error'
+			    )
+			  }
+			})
+		
+	})
+	</script>
+
+
+
+
+<!-- 原始版本 -->
 					<!-- 					<form action="/manager/AdminDeleteMember" method="post" style=""> -->
 					<%-- 						<INPUT TYPE="HIDDEN" value=<%=bean.getMemberid()%> name="td_memberid"> --%>
 					<!-- 						<input type="hidden" name="_method" value="DELETE"> -->
@@ -209,7 +277,7 @@ if (request.getAttribute("crud") != null) {
 						<th>權限</th>
 						<th>賬號</th>
 						<!-- 						<th>密碼</th> -->
-						<th>禁止</th>
+<!-- 						<th>禁止</th> -->
 						<th>刪除</th>
 						<th>修改</th>
 
@@ -231,7 +299,7 @@ if (request.getAttribute("crud") != null) {
 							<td><%=bean.getLoginStatus().getStatusname()%></td>
 							<td><%=bean.getUsername()%></td>
 							<%-- 							<td><%=bean.getPassword()%></td> --%>
-							<td><%=bean.getPermission()%></td>
+<%-- 							<td><%=bean.getPermission()%></td> --%>
 
 
 							<td>
@@ -253,7 +321,8 @@ if (request.getAttribute("crud") != null) {
 								name="adminstatus" value="<%=bean.getAdminstatus()%>"> <input
 								type="hidden" name="username" value="<%=bean.getUsername()%>">
 							<input type="hidden" name="password"
-								value="<%=bean.getPassword()%>"> <input type="hidden"
+								value="<%=bean.getPassword()%>"> 
+								<input type="hidden"
 								name="permission" value="<%=bean.getPermission()%>">
 
 							<td>
@@ -381,36 +450,11 @@ if (request.getAttribute("crud") != null) {
 	<script>
 	
 	
-	var crud = "${crud}";
+	var crude = ${crud};
 	
-	console.log("crud:" +crud)
+	console.log("得到狀態更新:" + crude);
 	
-	if (crud == 1) {
-		Swal.fire(
-				  '讚！',
-				  '新增成功',
-				  'success'
-				).then((result) => 
-				$.ajax({
-				type:'get',
-				url:'/manager/crudBean',
-				success:function(data){
-					console.log(data);
-				}
-				
-				}
-				)
-				
-				
-				)
-				
-	} else if (crud == 2) {
-		Swal.fire(
-				  '',
-				  'Manager!',
-				  'success'
-				)
-	} else if (crud == 3) {
+	if (crude == 3) {
 		Swal.fire(
 				  '讚!',
 				  '更新成功!',
@@ -424,120 +468,44 @@ if (request.getAttribute("crud") != null) {
 					}
 					
 					}
-					)
-	} else if (crud == 4) {
+				))
+	}else if (crude == 1) {
 		Swal.fire(
-				  '讚！',
-				  '刪除成功！',
+				  '讚!',
+				  '新增成功!',
 				  'success'
-				)
-				.then((result) => 
+				).then((result) => 
 				$.ajax({
-				type:'get',
-				url:'/manager/crudBean',
-				success:function(data){
-					console.log(data);
-				}
-				
-				}
-				)
-				
-	}else {
-		
+					type:'get',
+					url:'/manager/crudBean',
+					success:function(data){
+						console.log(data);
+					}
+					
+					}
+				))
+	
+	}else if(crude == 4){
+		Swal.fire(
+				  'OK!',
+				  '刪除成功!',
+				  'success'
+				).then((result) => 
+				$.ajax({
+					type:'get',
+					url:'/manager/crudBean',
+					success:function(data){
+						console.log(data);
+					}
+					
+					}
+				))
 	}
 	</script>
 
-	<script>
-	
 
-		
-// 	$(".btn-inverse-danger").on('click',function(){
-		
-// 		console.log("ssaaaS")
 
-		
-		
-// 		const swalWithBootstrapButtons = Swal.mixin({
-// 			  customClass: {
-// 			    confirmButton: 'btn btn-success',
-// 			    cancelButton: 'btn btn-danger'
-// 			  },
-// 			  buttonsStyling: false
-// 			})
-		
 
-		
-// 		swalWithBootstrapButtons.fire({
-// 			  title: 'Are you sure?',
-// 			  text: "You won't be able to revert this!",
-// 			  icon: 'warning',
-// 			  showCancelButton: true,
-// 			  confirmButtonText: 'Yes, delete it!',
-// 			  cancelButtonText: 'No, cancel!',
-// 			  reverseButtons: true
-// 			}).then((result) => {
-// 			  if (result.isConfirmed) {
-// 			    swalWithBootstrapButtons.fire(
-// 			      'Deleted!',
-// 			      'Member Information has been deleted.',
-// 			      'success'
-// 			    )
-// 			    $.ajax({
-// 					type:'get',
-// 					url:'/manager/AdminDeleteMember',
-// 					data:{
-// 						td_memberid:$('#td_memberid').val(),
-// 					}
-// 					success:function(data){
-// 						console.log(data);
-// 					}
-					
-// 					}
-// 					)
-// 			  } else if (
-// 			    /* Read more about handling dismissals below */
-// 			    result.dismiss === Swal.DismissReason.cancel
-// 			  ) {
-// 			    swalWithBootstrapButtons.fire(
-// 			      'Cancelled',
-// 			      'Your Data is safe :)',
-// 			      'error'
-// 			    )
-// 			  }
-// 			})
-		
-// 	})
-	</script>
-
-	<script>
-	
-	
-	$('form').on('click', ':submit', function() {
-	     console.log('button click')
-// 	     return check($(this).val());
-// 	    });
-
-// 	    function check(action) {
-// 	     let msg = '';
-// 	     if (action === '刪除') {
-// 	      return message('確定刪除嗎?');
-// 	     } else if (action === '修改') {
-// 	      return message('確定更新嗎?');
-// 	     } else {
-// 	      return true;
-// 	     }
-// 	    }
-
-// 	    function message(msg) {
-// 	     if (confirm(msg)) {
-// 	      return true
-// 	     } else {
-// 	      return false
-// 	     }
-// 	    }
-	
-	
-	</script>
 
 
 </body>
