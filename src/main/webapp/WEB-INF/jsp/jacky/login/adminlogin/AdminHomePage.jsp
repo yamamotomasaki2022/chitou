@@ -195,7 +195,8 @@ if (request.getAttribute("crud") != null) {
 						td_memberid:<%=bean.getMemberid()%>
 					},
 					success:function(data){
-						console.log(data);
+// 						document.write(data);
+// 						console.log(data);
 // 						自動刷新
 						setTimeout("location.reload()",1500);
 					}
