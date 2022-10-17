@@ -141,6 +141,7 @@ color:rgb(255,192,0);
 				List<Article> list = (List) request.getAttribute("search");
 				for (Article bean : list) {
 					int title=bean.getTitle().length();
+					int subTitle=bean.getSubtitle().length();
 					String status="";
 					String light="";
 					if(bean.getUserDelete()==1){
@@ -160,11 +161,12 @@ color:rgb(255,192,0);
 				<tr>
 					<td class=""><%=bean.getMember().getMemberid()%><HR><%=bean.getMember().getUsername()%></td>
 					<td class=""><%=bean.getCategory().getCountry()%><HR><%=bean.getCategory().getType()%></td>
-					<td><%=(title<15)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,15)%><HR><%=bean.getSubtitle()%></td>
+					<td><%=(title<15)?bean.getTitle().substring(0,title):bean.getTitle().substring(0,15)%><HR>
+					<%=(subTitle<15)?bean.getSubtitle().substring(0,subTitle):bean.getSubtitle().substring(0,15)%></td>
 					<td>
 					<button type="button" name="toShow" value="<%=bean.getPostID()%>" class="btn btn-light readClass" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#exampleModal">Read More...</button>
 					</td>
-					<td class=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sign-stop-lights-fill" viewBox="0 0 16 16" id=<%=light%>>
+					<td class=""><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-sign-stop-lights-fill" viewBox="0 0 16 16" id=<%=light%>>
   <path d="M8 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm0 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm1 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/>
   <path fill-rule="evenodd" d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435ZM6 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4Z"/>
 </svg><%=status%></td>
@@ -194,8 +196,8 @@ color:rgb(255,192,0);
 		<!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="detailTitle"></h3>

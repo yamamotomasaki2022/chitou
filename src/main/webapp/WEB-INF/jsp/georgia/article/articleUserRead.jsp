@@ -180,8 +180,8 @@ for (Article bean : list) {
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="detailTitle"></h3>
@@ -217,6 +217,7 @@ for (Article bean : list) {
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
 		$(function(){
+			var post_id=0;
 			$('#BackTop').click(function(){ 
 				$('html,body').animate({scrollTop:0},10);
 			});
@@ -245,10 +246,11 @@ for (Article bean : list) {
                     data: "postID=" + postID,
                     success: function (data) {
                         console.log("讀取成功");
+                        post_id=data.postID;
                         //
                         $('#detailTitle').html(data.title);
                         $('#detailContent').html(data.content);
-                        $('#hiddenValue').append(
+                        /*$('#hiddenValue').append(
            	                 $('<tr/>')
            	                     .append(
            	                         $('<td/>')
@@ -259,7 +261,8 @@ for (Article bean : list) {
            	                                     .attr('id', 'postID')
            	                             )
            	                     )
-           	             );
+           	             );*/
+
                         
                     }, error: function (data) {
                         console.log("讀取失敗");
@@ -281,15 +284,15 @@ for (Article bean : list) {
 				
 			})
 			
-			$(document).on("click",".btn_comment",function(){
+			$(document).on("click",".btn_comment_user_s",function(){
 				let comment = $(this).closest('td').prev().find('#comment').val();
-				console.log(comment);
+				console.log("US"+comment);
 				var postID=$('#postID').val();
 				
 				$.ajax({
 				      type: "POST",
 				      url: "/article.commentinsert",
-				      data: "postID=" + postID+"&comment="+comment,
+				      data: "postID=" + post_id+"&comment="+comment,
 				      async: "false",//等他回來
 				      success: function (resopnse, status, xhr) {
 				        console.log("連線成功");
@@ -303,7 +306,7 @@ for (Article bean : list) {
 			                    type: "GET",
 			                    url: "/article.comment",
 			                    async: "true",
-			                    data: "postID=" + postID,
+			                    data: "postID=" + post_id,
 			                    success: function (data) {
 			                        console.log("讀取成功");
 			                        //清空商品列表
@@ -410,7 +413,7 @@ for (Article bean : list) {
                     .append(
                         $('<td/>')
                             .append(
-                                $('<input/>').addClass("btn_comment")
+                                $('<input/>').addClass("btn_comment_user_s")
                                     .attr('type', 'button')
                                     .attr('value', '送出')
                                     .attr('id', 'commentNew')
