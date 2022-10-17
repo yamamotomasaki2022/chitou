@@ -61,7 +61,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group">
 											<label> 方案內容: </label>
 											<div >
-												<textarea id="editor1" name="plandiscript" placeholder="請輸入方案的內容">${plan.plandiscript}</textarea>
+												<textarea id="editor" name="plandiscript" placeholder="請輸入方案的內容"></textarea>
 											</div>
 										</div>
 										
@@ -104,18 +104,19 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 
 	<!-- ckeditor:js & function-->
 	<script src="/js/coco/ckeditor.js"></script>
-	<script>
-	 	ClassicEditor
-		   .create(document.querySelector('#editor'),{
-			    ckfinder: {
-			        uploadUrl: '/ckUploadCoco'
-			    },
-			}).then(editor => {      
-				myEditor = editor;
-			         // 设置初始值
-			         myEditor.setData('');
-		    	  console.log("editor success");
-		   });
+<script type="text/javascript">
+ClassicEditor
+.create(document.querySelector('#editor'),{
+	    ckfinder: {
+	        uploadUrl: '/ckUploadCoco'
+	    },
+	}).then(editor => {      
+		myEditor = editor;
+	         // 设置初始值
+	         myEditor.setData('${plan.plandiscript}');
+ 	  console.log("editor success");
+});
+</script>
 </body>
 
 </html>

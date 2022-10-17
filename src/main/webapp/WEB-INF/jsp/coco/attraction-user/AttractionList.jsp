@@ -208,12 +208,16 @@
 											<i class="fa fa-angle-right"></i>${attraction.attLocation}
 										</p>
 										<p>
-											<i class="fa fa-angle-right"></i>${attraction.attDescription.substring(3,22)}
+											<i class="fa fa-angle-right"></i><br>
 										</p>
-										<p>
-											${attraction.attDescription.substring(22,35)+="......"}<a
-												href="AttractionPage?attID=${attraction.attid}">詳細</a>
-										</p>
+										
+<!-- 										<p> -->
+<%-- 											<i class="fa fa-angle-right"></i>${attraction.attDescription.substring(3,22)} --%>
+<!-- 										</p> -->
+<!-- 										<p> -->
+<%-- 											${attraction.attDescription.substring(22,35)+="......"}<a --%>
+<%-- 												href="AttractionPage?attID=${attraction.attid}">詳細</a> --%>
+<!-- 										</p> -->
 
 									</div>
 									<!--/.packages-review-->
