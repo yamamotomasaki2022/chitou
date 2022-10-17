@@ -211,7 +211,7 @@ public class OrderController {
 	  }
 	
 	//查看所有統計圖表
-	@RequestMapping(path = "orderStatic", method = RequestMethod.GET)
+	@RequestMapping(path = "/orderStatic", method = RequestMethod.GET)
 	public String showOrderStatics(Model m) {
 		
 		List<OrderList> list = orderService.backOrderLists();
@@ -253,11 +253,18 @@ public class OrderController {
 			int female = 0;
 		
 				for(MemberDetailInfo mInfo : memberlist) {
+					System.out.println(mInfo.toString());
+					
+					if(mInfo.getGender()==null) {
+						continue;
+					}
+					
 					if(mInfo.getGender().equals("Male")) {
 						male++;
-					}
-					if(mInfo.getGender().equals("Female")) {
+					}else if(mInfo.getGender().equals("Female")) {
 						female++;
+					}else {
+						
 					}
 				}
 				
@@ -283,4 +290,6 @@ public class OrderController {
 		
 		return path_Luana_Order + "orderBack2";
 	}
+	
+
 }

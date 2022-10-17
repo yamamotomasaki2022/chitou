@@ -46,6 +46,7 @@ import tw.jacky.login.model.LoginService;
 import tw.jacky.login.model.MembeAllInfo;
 import tw.jacky.login.model.MemberBasicInfo;
 import tw.jacky.login.model.MemberDetailInfo;
+import tw.luana.order.controller.OrderController;
 
 @Controller
 @SessionAttributes({ "memberlist", "adminlist", "session_status", "crud" })
@@ -54,6 +55,10 @@ public class ManagementSystemController {
 
 	@Autowired
 	private LoginService lservice;
+	
+	@Autowired
+	private OrderController orderController;
+	
 
 //	 測試Merge后版本
 
@@ -111,7 +116,8 @@ public class ManagementSystemController {
 //		System.out.println("取到數字:" + id);
 		m.addAttribute("session_status", id);
 		m.addAttribute("welcome_message", id);
-		return "AdminChart";
+		orderController.showOrderStatics(m);
+		return "/luana/order/orderBack2";
 	}
 	
 	

@@ -88,7 +88,7 @@ public class LoginSucessHandler implements AuthenticationSuccessHandler {
 			request.getSession().setAttribute("memberlist", memberlist);
 			request.getSession().setAttribute("session_status", 1);
 //			request.getRequestDispatcher("/WEB-INF/jsp/jacky/login/adminlogin/AdminHomePage.jsp").forward(request, response);	
-			response.sendRedirect("/manager/AdminHomePage/"+"1");
+			response.sendRedirect("/manager/Chart/"+"1");
 		}
 		
 //		super.onAuthenticatioSuccess(request, response, authentication);

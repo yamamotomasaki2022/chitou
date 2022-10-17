@@ -49,9 +49,8 @@
 			<div class="card-header text-white"></div>
 			<div class="card-body">
 				<h3 class="card-title text-white">會員人數</h3>
-				<p class="card-text text-white" style="font-weight: bolder">
-				</p>
-				<h2>${memberCount} 位</h2>
+				<p class="card-text text-white" style="font-weight: bolder"></p>
+				<h2>${memberCount}位</h2>
 			</div>
 
 		</div>
@@ -60,9 +59,8 @@
 			<div class="card-header"></div>
 			<div class="card-body">
 				<h3 class="card-title text-white">訂單總數</h3>
-				<p class="card-text text-white" style="font-weight: bolder">
-				</p>
-				<h2>${orderCount} 筆</h2>
+				<p class="card-text text-white" style="font-weight: bolder"></p>
+				<h2>${orderCount}筆</h2>
 			</div>
 
 		</div>
@@ -71,9 +69,8 @@
 			<div class="card-header"></div>
 			<div class="card-body">
 				<h3 class="card-title text-white">訂單總銷售額</h3>
-				<p class="card-text text-white" style="font-weight: bolder">
-				</p>
-				<h2>${orderSale} $</h2>
+				<p class="card-text text-white" style="font-weight: bolder"></p>
+				<h2>${orderSale}$</h2>
 			</div>
 		</div>
 
@@ -83,18 +80,31 @@
 	</div>
 	<div class="container">
 		<div class="chartdiv"
-			style="width: 350px; height: 400px; border: 2px #cccccc solid; margin: 15px">
+			style="width: 350px; height: 350px; border: 2px #cccccc solid; margin: 15px;float: left">
 			<span>會員性別比</span>
 			<canvas id="myChart1" width="200px" style="padding: 20px 10px"></canvas>
 
 		</div>
+	
+
+	<div class="container">
+		<div class="chartdiv"
+			style="width: 500px; height: 400px; border: 3px #cccccc solid; float: right">
+
+			<span>銷售成長情況</span>
+			<canvas id="myChart4" style="width: 100%; max-width: 600px"></canvas>
+
+		</div>
 	</div>
+</div>
+
+
 
 	<div class="container">
 
 
 		<div class="chartdiv"
-			style="width: 350px; height: 400px; border: 2px #cccccc solid; float: right; margin: 15px">
+			style="width: 350px; height: 400px; border: 3px #cccccc solid; margin: 15px ; float: left" >
 			<span>訂單數比例</span>
 			<canvas id="myChart2" width="200px" style="padding: 20px 10px"></canvas>
 
@@ -102,7 +112,7 @@
 
 
 		<div class="chartdiv"
-			style="width: 480px; height: 400px; border: 2px #cccccc solid; float: left; margin: 15px">
+			style="width: 480px; height: 400px; border: 3px #cccccc solid; float: right; margin: 15px">
 			<span>訂單營業額</span>
 			<canvas id="myChart3" width="300px" height="200px"
 				style="margin: 20px"></canvas>
@@ -188,7 +198,72 @@
 			}
 		});
 		
+		
+		var xValues = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
+		var yValues = [ 1, 1, 3, 5, 5, 3, 4, 7, 10, 15, 10, 20 ];
 
+		new Chart("myChart4", {
+			type : "line",
+			data : {
+				labels : xValues,
+				datasets : [ {
+					label : 'millions',
+					fill : true,
+					lineTension : 0,
+					backgroundColor :"#c7ecfb",
+					borderColor : "rgba(0,0,255,255)",
+					data : yValues
+				} ]
+			},
+			options : {
+				legend : {
+					display : true
+				},
+				scales : {
+					yAxes : [ {
+						ticks : {
+							min : 6,
+							max : 16
+						}
+					} ],
+				}
+			}
+		});
+	
+
+	</script>
+
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+	
+	var welcome = ${welcome_message}
+	
+	
+	if (welcome == 1) {
+		Swal.fire(
+				  'Welcome!',
+				  'Admin!',
+				  'success'
+				)
+	} else if (welcome == 2) {
+		Swal.fire(
+				  'Welcome!',
+				  'Manager!',
+				  'success'
+				)
+
+	} else if (welcome == 3) {
+		Swal.fire(
+				  'Welcome!',
+				  'Boss!',
+				  'success'
+				)
+
+	} else {
+		
+	}
+	
+	
 	</script>
 </body>
 </html>
