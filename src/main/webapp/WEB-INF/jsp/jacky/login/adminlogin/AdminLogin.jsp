@@ -237,7 +237,7 @@
 
 		$('#fastinput3').click(function() {
 
-			$('#username').val('jacky')
+			$('#username').val('jacky850926')
 			$('#password').val('123')
 
 		})

@@ -87,6 +87,28 @@ public class Reservation{
 		this.hotelName = hotelName;
 	}
 
+	public Reservation(int reservationID, String orderId, int memberID, String booker, String email, String phone,
+			String roomID, String roomName, String checkInDate, String checkOutDate, String paymentDate, String addBed,
+			int numberOfPeople, String hotelName, String orderStatus, Integer hotelID) {
+		super();
+		this.reservationID = reservationID;
+		this.orderId = orderId;
+		this.memberID = memberID;
+		this.booker = booker;
+		this.email = email;
+		this.phone = phone;
+		this.roomID = roomID;
+		this.roomName = roomName;
+		this.checkInDate = checkInDate;
+		this.checkOutDate = checkOutDate;
+		this.paymentDate = paymentDate;
+		this.addBed = addBed;
+		this.numberOfPeople = numberOfPeople;
+		this.hotelName = hotelName;
+		this.orderStatus = orderStatus;
+		this.hotelID = hotelID;
+	}
+
 	public int getReservationID() {
 		return reservationID;
 	}

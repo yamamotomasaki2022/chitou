@@ -163,25 +163,6 @@ response.setContentType("text/html;charset=UTF-8");
 	    
 	    
 	    
-	    function btn(data) {
-	    	  	console.log(detail);
-
-	    	  	$("#title").html("訂單編號："+ data );
-				
-	    	  	let orderList="";
-				
-	    			for(i = 0 ; i < detail.length ; i++){
-					
-						orderList += 
-							"名稱："+detail[i].attractionname +" "+
-							detail[i].planname +"</br>"+
-							"數量："+detail[i].quantity +"</br>"+
-							"金額："+detail[i].price +"<br><hr>";
-					};
-			
-				$("#orderDetail").html(orderList);					
-	    		//console.log(orderdetail.attractionname);
-	    }
 		</script>
   </body>
 </html>

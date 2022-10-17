@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import net.bytebuddy.asm.Advice.This;
+import tw.chitou.gmail.controller.GmailController;
 import tw.jacky.login.model.MemberBasicInfo;
 import tw.luana.order.model.OrderList;
 import tw.luana.order.model.OrderService;
@@ -39,6 +40,11 @@ public class FlightTicketFrontController {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	
+	@Autowired 
+	GmailController gmailController;
+	
 	
 	public String company;
 	public String id;
@@ -162,6 +168,8 @@ public class FlightTicketFrontController {
 		flightorderbean.setOrderid(orderId);
 //		flightorderbean.setMember(memberBasicInfo);
 		ooservice.insert(flightorderbean);
+		gmailController.sendEmailFlightTicket(flightorderbean.getLastname(),flightorderbean.getEmailaddress());
+		
 		
 		m.addAttribute("ordersuccess",1);
 

@@ -125,7 +125,6 @@ public class HotelBackController {
 	}
 
 	
-	
 //-----------------------------------------廢案------------------------------------------------------------	
 //	@GetMapping(path = "/hotelAjax/{hotelID}")
 //	@ResponseBody

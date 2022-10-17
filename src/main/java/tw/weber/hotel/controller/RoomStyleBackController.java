@@ -144,9 +144,15 @@ public class RoomStyleBackController {
 	public Reservation searchRoomStatusByRoomID(int roomID,String date) {
 		return styleService.getReservationByDateAndRoom(roomID, date);
 	}
-//	@GetMapping(path = "search")
-	
-	
+//
+//	@GetMapping(path = "/addDemoReservation")
+//	@ResponseBody
+//	public boolean addDemoReservation() {
+//		System.out.println("增加Demo資料");
+//		Reservation reservation = new Reservation();
+//		
+//	}	
+//	
 	
 //	@GetMapping(path = "/roomAjax")
 //	@ResponseBody

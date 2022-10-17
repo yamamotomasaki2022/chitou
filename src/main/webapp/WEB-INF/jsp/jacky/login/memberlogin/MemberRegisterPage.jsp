@@ -305,15 +305,15 @@ label.error {
 	<script>
 		$('#fastinput').click(function() {
 
-			$('#username').val('kevin')
+			$('#username').val('kevinmao0326')
 			$('#password').val('123')
-			$('#email').val('kevin0323@gmail.com')
-			$('#name').val('馬新傑')
+			$('#email').val('kevinmao0326@gmail.com')
+			$('#name').val('毛同恩')
 			$('#phone').val('0909223123')
 			$('#nationality').val('台灣')
 			$('#address').val('大園區大勇路444號')
-			$('#birth').val('1994-09-22')
-			$('#nickname').val('馬金剛')
+			$('#birth').val('1994-03-26')
+			$('#nickname').val('毛毛')
 
 		})
 	</script>
