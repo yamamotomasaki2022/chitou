@@ -431,7 +431,7 @@ $("#date").daterangepicker({
     <c:if test="${dateEnd!=null}">
     "endDate": "${dateEnd}",
     </c:if>
-    // "minDate": new Date(),
+    "minDate": new Date(),
     locale: {
         applyLabel: "確定",
         cancelLabel: "取消",

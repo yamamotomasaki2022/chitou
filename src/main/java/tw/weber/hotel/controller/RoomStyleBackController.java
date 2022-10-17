@@ -67,18 +67,26 @@ public class RoomStyleBackController {
 	}
 	
 	@PostMapping(path = "/insertStyle")
-	public String insertroom(@ModelAttribute("room")RoomStyle style,@RequestParam("roomAmount")int roomAmount,
-			@RequestParam("upload")MultipartFile[] mfiles,Model model) throws IllegalStateException, IOException {
+	public String insertroom(@ModelAttribute("room")RoomStyle style,
+							 @RequestParam("roomAmount")int roomAmount,
+							 @RequestParam(name = "upload",required = false)MultipartFile[] mfiles,
+							 Model model) throws IllegalStateException, IOException {
 		System.out.println("確認接值"+style.getName()+","+roomAmount);
 		Hotel hotel = (Hotel)model.getAttribute("hotelResult");
 		style.setHotel(hotel);
 		style.setRoomAmount(roomAmount);
 		RoomStyle result = styleService.insert(style);
-		if(!mfiles[0].isEmpty()) {
+		
+		if(mfiles!=null) {
 			styleService.insertPhoto(result.getStyleID(), mfiles);
 		}else {
 			System.out.println("沒有照片");
 		}
+//		if(!mfiles[0].isEmpty()) {
+//			styleService.insertPhoto(result.getStyleID(), mfiles);
+//		}else {
+//			System.out.println("沒有照片");
+//		}
 		
 		return returnRoom;
 	}
@@ -98,10 +106,15 @@ public class RoomStyleBackController {
 	
 	@PostMapping(path = "/updateStyle")
 	public String updateHotel(@ModelAttribute("Style")RoomStyle style,
-			@RequestParam("upload")MultipartFile[] mfiles,Model model) throws IllegalStateException, IOException {
+			@RequestParam(name = "upload",required = false)MultipartFile[] mfiles,Model model) throws IllegalStateException, IOException {
 		
 		System.out.println("修改:sylteID"+style.getStyleID());
-		if(!mfiles[0].isEmpty()) {
+//		if(!mfiles[0].isEmpty()) {
+//			styleService.insertPhoto(style.getStyleID(), mfiles);
+//		}else {
+//			System.out.println("沒有新增照片");
+//		}
+		if(mfiles!=null) {
 			styleService.insertPhoto(style.getStyleID(), mfiles);
 		}else {
 			System.out.println("沒有新增照片");

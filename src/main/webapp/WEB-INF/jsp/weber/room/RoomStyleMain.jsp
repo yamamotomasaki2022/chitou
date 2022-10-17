@@ -70,7 +70,7 @@ response.setContentType("text/html;charset=UTF-8");
 			            			<form action="toUpdateStyle" method="post">
 			            				<input type="hidden" name="styleID" value="${bean.styleID}">
 			                			<button type="submit" class="btn btn-inverse-success btn-icon" style="width:30px;height:30px;" name="toUpdatePage">
-		                					<i class="ti-pencil-alt"></i>
+		                					<i class="fa-regular fa-pen-to-square"></i>
 		                				</button>
 		                			</form>
 		                		</div>
@@ -79,7 +79,7 @@ response.setContentType("text/html;charset=UTF-8");
 <!-- 										<input type="hidden" name="_method" value="DELETE"/> -->
 				                		<input type="hidden" name="styleID" value="${bean.styleID}">
 				                		<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" name="delete">
-			    		            		<i class="ti-trash"></i>
+			    		            		<i class="fa-solid fa-trash-can"></i>
 			            	    		</button>
 			            			</form>
 		                		</div>

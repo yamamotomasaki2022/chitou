@@ -123,6 +123,12 @@ public class HotelFrontController {
 		model.addAttribute("checkInDate",dateStart);
 		model.addAttribute("checkOutDate",dateEnd);
 		model.addAttribute("number",number);
+		int numberOfHotelPhoto = fService.getNumberOfHotelPhoto(hotelID);
+		ArrayList<String> photos = new ArrayList<String>();
+		for(int i = 1;i <= numberOfHotelPhoto;i++) {
+			photos.add("/images/weber/hotel/hotelNB"+ hotelID +"/photo"+ i +".jpg");
+		}
+		model.addAttribute("photos",photos);
 		return bookingPage;
 	}
 	

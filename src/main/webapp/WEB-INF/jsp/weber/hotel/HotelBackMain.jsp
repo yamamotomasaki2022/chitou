@@ -52,7 +52,7 @@
 			            			<form action="/admin/toUpdateHotel" method="post">
 			            				<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
 			                			<button type="submit" class="btn btn-inverse-success btn-icon" style="width:30px;height:30px;" name="toUpdatePage">
-		                					<i class="ti-pencil-alt"></i>
+		                					<i class="fa-regular fa-pen-to-square"></i>
 		                				</button>
 		                			</form>
 		                		</div>
@@ -61,7 +61,7 @@
 <!-- 										<input type="hidden" name="_method" value="DELETE"/> -->
 			                			<input type="hidden" id="hotelID" class="hotelID" name="hotelID" value="${bean.hotelID}">
 			                			<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" >
-			                				<i class="ti-trash"></i>
+			                				<i class="fa-solid fa-trash-can"></i>
 			                			</button>
 			            			</form>
 			            		</div>

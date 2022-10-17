@@ -38,19 +38,19 @@
 		        <form:input type="text" path="status" class="form-control" name="status" id="status"/><br>
 		        <label>房間數量:</label>
 		        <form:input type="text" path="roomAmount" class="form-control" name="roomAmount"/><br>
-		        <label>照片:</label>
-		    	<div class="input-group col-xs-12" >
-					<span class="input-group-append">
-		    			<input id="upload" type="file" class="file-upload-browse btn btn-primary" name="upload" accept="image/*" multiple="multiple">
-					</span>
-				</div>
+<!-- 		        <label>照片:</label> -->
+<!-- 		    	<div class="input-group col-xs-12" > -->
+<!-- 					<span class="input-group-append"> -->
+<!-- 		    			<input id="upload" type="file" class="file-upload-browse btn btn-primary" name="upload" accept="image/*" multiple="multiple"> -->
+<!-- 					</span> -->
+<!-- 				</div> -->
 		    </div>
 			<input type="submit" class="btn btn-primary mr-2" name="update" value="更新">
 	    </form:form>
-	    原有照片:
-	    <div id="oldpics">沒有照片</div>
-	    更新照片:
-	    <div id="newpics"></div>
+<!-- 	    原有照片: -->
+<!-- 	    <div id="oldpics">沒有照片</div> -->
+<!-- 	    更新照片: -->
+<!-- 	    <div id="newpics"></div> -->
     </div>
     
     	<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>

@@ -72,10 +72,8 @@
 		</a>
 			<div class="collapse" id="charts">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link"
-						href="/allAttractions">景點加入</a></li>
-					<li class="nav-item"><a class="nav-link" href="/backOrderList">訂單</a></li>
-					<li class="nav-item"><a class="nav-link" href="/order">購物車</a></li>
+					<li class="nav-item"><a class="nav-link" href="/backOrderList">訂單管理</a></li>
+					
 				</ul>
 			</div></li>
 

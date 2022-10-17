@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,21 +37,11 @@
                                             class="property-images-carousel widget-carousel di-t w-full mb-mouse bw-bee bs-solid bc-hds-colour-white">
                                             <div class="cont-bd widget-carousel-enabled">
                                                 <ul role="listbox">
-                                                    <li role="option"
-                                                        style="background-image: url('https://exp.cdn-hotels.com/hotels/10000000/9340000/9338900/9338802/55a69f7f_z.jpg?impolicy=fcrop&w=702&h=468&q=high');">
-                                                    </li>
-                                                    <li role="option"
-                                                        style="background-image: url('https://exp.cdn-hotels.com/hotels/10000000/9340000/9338900/9338802/62af0104_z.jpg?impolicy=fcrop&w=702&h=468&q=high');">
-                                                    </li>
-                                                    <li role="option"
-                                                        style="background-image: url('https://exp.cdn-hotels.com/hotels/10000000/9340000/9338900/9338802/731de6c9_z.jpg?impolicy=fcrop&w=702&h=468&q=high');">
-                                                    </li>
-                                                    <li role="option"
-                                                        style="background-image: url('https://exp.cdn-hotels.com/hotels/10000000/9340000/9338900/9338802/856dc31b_z.jpg?impolicy=fcrop&w=702&h=468&q=high');">
-                                                    </li>
-                                                    <li role="option"
-                                                        style="background-image: url('https://exp.cdn-hotels.com/hotels/10000000/9340000/9338900/9338802/8201a982_z.jpg?impolicy=fcrop&w=702&h=468&q=high');">
-                                                    </li>
+                                                	<c:forEach  var="photo" items="${photos}">
+	                                                    <li role="option"
+	                                                        style="background-image: url('${photo}?impolicy=fcrop&w=702&h=468&q=high');">
+	                                                    </li>
+                                                    </c:forEach>
                                                 </ul>
                                             </div>
                     

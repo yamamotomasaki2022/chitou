@@ -12,7 +12,7 @@
 	                                                <label for="checkin_date"
 	                                                    class="font-weight-bold text-black">入住日期</label>
 	                                                <div class="field-icon-wrap">
-	                                                    <div class="icon"><span class="icon-calendar"></span></div>
+	                                                    <div class="icon"><i class="fa-solid fa-calendar-days"></i></div>
 	                                                    <input type="text" name="dateStart" id="checkin_date" class="form-control">
 	                                                </div>
 	                                            </div>
@@ -20,7 +20,7 @@
 	                                                <label for="checkout_date"
 	                                                    class="font-weight-bold text-black">退住日期</label>
 	                                                <div class="field-icon-wrap">
-	                                                    <div class="icon"><span class="icon-calendar"></span></div>
+	                                                    <div class="icon"><i class="fa-solid fa-calendar-days"></i></div>
 	                                                    <input type="text" name="dateEnd" id="checkout_date" class="form-control">
 	                                                </div>
 	                                            </div>

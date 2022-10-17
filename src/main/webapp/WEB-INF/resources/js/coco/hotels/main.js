@@ -159,6 +159,7 @@
 //      'autoclose': true
 //    });
     $('#checkin_date, #checkout_date').datepicker({
+	  'startDate': new Date(),
       'format': 'mm/dd/yyyy',
       'autoclose': true,
     });

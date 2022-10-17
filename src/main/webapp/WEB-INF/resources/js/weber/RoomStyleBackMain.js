@@ -94,7 +94,7 @@ $(document).on('click','#showReservation',function(e){
 					<tr style="border: 1px solid gray;"><td>房間號碼</td><td>${data.roomID}</td></tr>
 					<tr style="border: 1px solid gray;"><td>房間名稱</td><td>${data.roomName}</td></tr>
 					<tr style="border: 1px solid gray;"><td>入住日期</td><td>${data.checkInDate}</td></tr>
-					<tr style="border: 1px solid gray;"><td>退房日期</td><td>${data.checkInDate}</td></tr>
+					<tr style="border: 1px solid gray;"><td>退房日期</td><td>${data.checkOutDate}</td></tr>
 					<tr style="border: 1px solid gray;"><td>付款時間</td><td>${data.paymentDate}</td></tr>
 					<tr style="border: 1px solid gray;"><td>是否加床</td><td>${data.addBed}</td></tr>
 					<tr style="border: 1px solid gray;"><td>人數</td><td>${data.numberOfPeople}</td></tr>

@@ -40,12 +40,12 @@
 			        <label>房間數量:</label><br>
 			        <form:input type="number" path="price" class="form-control" style="width:48%;display:inline-block;" name="price" id="price"/>
 			        <input type="number" id="roomAmount" class="form-control" style="width:48%;display:inline-block;float:right;" name="roomAmount"><br>
-			    	<label>照片:</label>
-			    			<div class="input-group col-xs-12" >
-								<span class="input-group-append">
-				    				<input id="upload" type="file" class="file-upload-browse btn btn-primary" name="upload" accept="image/*" multiple="multiple">
-								</span>
-							</div>
+<!-- 			    	<label>照片:</label> -->
+<!-- 			    			<div class="input-group col-xs-12" > -->
+<!-- 								<span class="input-group-append"> -->
+<!-- 				    				<input id="upload" type="file" class="file-upload-browse btn btn-primary" name="upload" accept="image/*" multiple="multiple"> -->
+<!-- 								</span> -->
+<!-- 							</div> -->
 		    	</div>
 			    	<input type="submit" class="btn btn-primary mr-2" name="insert" value="加入一筆資料">
 			    	<button type="button" class="btn btn-primary mr-2" id="fastInput">一鍵輸入</button>
