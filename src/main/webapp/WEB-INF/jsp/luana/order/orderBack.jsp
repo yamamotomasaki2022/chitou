@@ -236,9 +236,13 @@
 					orderList += 
 						"名稱："+detail[i].hotelName +" "+
 						detail[i].roomName +"</br>"+
-						"人數："+detail[i].numberOfPeople +"</br>"+
 						"入住日："+detail[i].checkInDate +"</br>"+
-						"退房日："+detail[i].checkOutDate +"<br><hr>";
+						"退房日："+detail[i].checkOutDate +"</br><hr>"
+						"人數："+detail[i].numberOfPeople +" "+
+						"加床："+detail[i].addBed +"</br>"+
+						"訂房者："+detail[i].booker +"</br>"+
+						"聯絡信箱："+detail[i].email +" "+
+						"聯絡電話："+detail[i].phone +"</br>";
 						
 				};
 		
