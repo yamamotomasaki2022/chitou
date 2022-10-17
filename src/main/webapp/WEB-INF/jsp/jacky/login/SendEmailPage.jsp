@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>VerificationSuccess</title>
+<title>SendEmailPage</title>
 <%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 </head>
 <body>
@@ -14,10 +14,10 @@
     <br>
 
     <div class="container">
-        <div class="zoomImage" style="background-image:url(images/coco/VerificationSuccess.jpg)">
+        <div class="zoomImage" style="background-image:url(images/coco/SendEmailPage.jpg)">
             <a href="home"><button type="button" class="btn btn-primary" style=" left:290px; top:400px">返回主頁</button></a>
         </div>
-        <img src="images/coco/VerificationSuccess.jpg" style="width: 100%">
+        <img src="images/coco/SendEmailPage.jpg" style="width: 100%">
 
     </div>
 

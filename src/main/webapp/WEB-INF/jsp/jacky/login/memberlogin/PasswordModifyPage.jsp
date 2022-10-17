@@ -4,52 +4,82 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ChiTou-忘記密碼-修改密碼</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
+<%@ include file="/WEB-INF/includes/jacky/Member/MemberCSSAndJS.jsp"%>
+
 </head>
 <body>
 
-<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
-	<h1>請修改密碼(忘記密碼的人)！！！</h1>
+	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
 
 
+	<div class="container-scroller">
+		<div class="container-fluid page-body-wrapper full-page-wrapper">
+			<div class="content-wrapper d-flex align-items-center auth px-0">
+				<div class="row w-100 mx-0">
+					<div class="col-lg-4 mx-auto">
+						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
+							<div class="brand-logo">
+								<img src="/images/coco/logo3.png" alt="logo"> <img
+									src="/images/coco/logo2.png" alt="logo">
+							</div>
+							<h4 class="card-title text-primary">忘記密碼-修改新密碼</h4>
+							<form action="/MemberForgetPasswordAndModify" method="post"
+								class="pt-3">
+								<div>
+									<input name="username" type="hidden"
+										value="${memberbasicinfo.username}">
+								</div>
 
-	<form action="/MemberForgetPasswordAndModify" method="post">
+								<div class="form-group">
+									<label>請輸入要修改的密碼</label> <input type="text"
+										class="form-control form-control-lg" id="pwd"
+										placeholder="password" name="password">
+								</div>
 
-		<div>
+								<div class="form-group">
+									<label>請重新確認密碼</label> <input type="password"
+										class="form-control form-control-lg" id="pwd1"
+										placeholder="Reconfirmpassword" name="reconfirmpassword"
+										onkeyup="validate()"> <span id="tishi"></span>
+								</div>
 
-			<input name="username" type="hidden"  value="${memberbasicinfo.username}" >
+
+								<div class="mt-3">
+									<button id="confirm"
+										class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+										type="submit" value="login">修改密碼</button>
+								</div>
+
+								<br>
+								<div text-align: center>
+									<a href="/uvmember/toMemberHomePage"><button
+											class="btn btn-light btn-sm" type="button">返回個人主頁</button></a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+	</div>
 
-		<div>
-		    <span>密碼</span>
-			<input id="password" placeholder="password" name="password">
-			<span>${errors.name}</span>
-		</div>
-		<div>
-			<span>確認密碼</span>
-			<input type="password" id="password2" placeholder="Reconfirmed"
-				name="password2" onkeyup="validate()"> <span id="tishi"></span>
-		</div>
-		
-		<div class="mt-3">
-			<button id="confirm" type="submit" value="login">修改密碼</button>
 
-		</div>
 
-	</form>
-	
-	
-	<script type="text/javascript">
-	
-	function validate() {
+
+
+	<script>
+
+
+
+function validate() {
 
       
 
-    var pwd = $("#password").val();
+    var pwd = $("#pwd").val();
 
-    var pwd1 = $("#password2").val();
+    var pwd1 = $("#pwd1").val();
 
 <!-- 对比两次输入的密码 -->
 
@@ -79,8 +109,10 @@ else {
       }
 
 }
-	
+
 </script>
+
+
 
 </body>
 </html>

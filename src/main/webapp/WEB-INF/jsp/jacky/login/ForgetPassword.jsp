@@ -7,15 +7,24 @@
 <title>忘記密碼頁面</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
+<%@ include
+	file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 
 </head>
 <body>
 
 
-<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
+	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
 
-<br><br><br><br><br><br><br><br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 
 	<h1 id="fun">笑死，誰叫你忘記密碼，重辦！</h1>
@@ -23,24 +32,28 @@
 	<form action="/sendVerificationMailFromForgetPassword">
 
 
+
+
 		<div class="form-group">
-			<input type="text" class="form-control form-control-lg" id="email"
-				placeholder="your email" name="email">
+			<label>請輸入您的郵箱</label> 
+			<input type="text"
+				class="form-control form-control-lg" id="email" placeholder="email"
+				name="email">
 		</div>
 
 
 
-		<div class="mt-3">
-			<button id="availablecheck" type="button" value="login">檢查賬號是否可用</button>
+		<div class="mt-3" style="float:left">
+			<button class="btn btn-inverse-primary btn-fw" id="availablecheck" type="button" value="login">檢查賬號是否可用</button>
 		</div>
 
 		<span id="infobox"></span>
 
-
+<br>
 
 
 		<div id="btn">
-			<a href="/home"><button type="button">返回主頁面</button></a>
+			<a href="/home"><button class="btn btn-inverse-primary btn-fw" type="button">返回主頁面</button></a>
 
 		</div>
 
@@ -74,7 +87,7 @@
 						var button = ''
 						button += 
 							`
-							<button type="submit">提交</button>
+							<button class="btn btn-inverse-primary btn-fw" type="submit">提交</button>
 							`
 						$('#btn').append(button)
 						

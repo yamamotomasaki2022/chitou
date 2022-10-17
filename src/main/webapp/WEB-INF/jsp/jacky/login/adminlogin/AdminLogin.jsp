@@ -221,7 +221,7 @@
 
 						<a href="/toAdminLoginPage?lang=zh" style="float: right"><button
 								class="btn btn-primary mr-2">中文</button></a> <a
-							href="/toAdminLoginPage?lang=en" style="float: right"><button
+							href="/toAdminLoginPage?lang=" style="float: right"><button
 								class="btn btn-primary mr-2">English</button></a>
 
 
