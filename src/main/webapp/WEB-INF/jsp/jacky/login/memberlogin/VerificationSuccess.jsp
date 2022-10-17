@@ -17,7 +17,7 @@
         <div class="zoomImage" style="background-image:url(/images/coco/VerificationSuccess.jpg)">
             <a href="/home"><button type="button" class="btn btn-primary" style=" left:290px; top:400px">返回主頁</button></a>
         </div>
-        <img src="images/coco/VerificationSuccess.jpg" style="width: 100%">
+        <img src="/images/coco/VerificationSuccess.jpg" style="width: 100%">
 
     </div>
 

@@ -1,19 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>權限不足！！</title>
+<title>MemberRegisterVerificationPage</title>
+<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 </head>
 <body>
+<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
+<br>
+    <br>
+    <br>
 
-	<h1>權限不足！請聯絡管理員！！！</h1>
+    <div class="container">
+        <div class="zoomImage" style="background-image:url(/images/coco/AuthenticationFailure.jpg)">
+            <a href="/home"><button type="button" class="btn btn-primary" style=" left:290px; top:400px">返回主頁</button></a>
+        </div>
+        <img src="/images/coco/AuthenticationFailure.jpg" style="width: 100%">
 
+    </div>
 
-	<form action="/logout">
-		<button onclick="">返回登入界面</button>
-	</form>
-
+<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
 </body>
 </html>
