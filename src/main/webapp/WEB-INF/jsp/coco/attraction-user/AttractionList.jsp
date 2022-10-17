@@ -48,44 +48,47 @@
 
 <script src="assets/js/jquery.js"></script>
 
-		<!--modernizr.min.js-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<!--modernizr.min.js-->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
 
-		<!--bootstrap.min.js-->
-		<script src="assets/js/bootstrap.min.js"></script>
+<!--bootstrap.min.js-->
+<script src="assets/js/bootstrap.min.js"></script>
 
-		<!-- bootsnav js -->
-		<script src="assets/js/bootsnav.js"></script>
+<!-- bootsnav js -->
+<script src="assets/js/bootsnav.js"></script>
 
-		<!-- jquery.filterizr.min.js -->
-		<script src="assets/js/jquery.filterizr.min.js"></script>
+<!-- jquery.filterizr.min.js -->
+<script src="assets/js/jquery.filterizr.min.js"></script>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
-		<!--jquery-ui.min.js-->
-		<script src="assets/js/jquery-ui.min.js"></script>
+<!--jquery-ui.min.js-->
+<script src="assets/js/jquery-ui.min.js"></script>
 
-		<!-- counter js -->
-		<script src="assets/js/jquery.counterup.min.js"></script>
-		<script src="assets/js/waypoints.min.js"></script>
+<!-- counter js -->
+<script src="assets/js/jquery.counterup.min.js"></script>
+<script src="assets/js/waypoints.min.js"></script>
 
-		<!--owl.carousel.js-->
-		<script src="assets/js/owl.carousel.min.js"></script>
+<!--owl.carousel.js-->
+<script src="assets/js/owl.carousel.min.js"></script>
 
-		<!-- jquery.sticky.js -->
-		<script src="assets/js/jquery.sticky.js"></script>
+<!-- jquery.sticky.js -->
+<script src="assets/js/jquery.sticky.js"></script>
 
-		<!--datepicker.js-->
-		<script src="assets/js/datepicker.js"></script>
+<!--datepicker.js-->
+<script src="assets/js/datepicker.js"></script>
 
-		<!--Custom JS-->
-		<script src="assets/js/custom.js"></script>
-		
-			<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
-		
+<!--Custom JS-->
+<script src="assets/js/custom.js"></script>
+
+<%@ include
+	file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
+
 </head>
-<body>
+<body style="margin: 0;">
 	<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
 
 	<!--about-us start -->
@@ -97,10 +100,7 @@
 						<div class="single-about-us">
 							<div class="about-us-txt">
 								<br>
-								<h2>
-
-
-								</h2>
+								<h2></h2>
 
 							</div>
 							<!--/.about-us-txt-->
@@ -109,9 +109,7 @@
 					</div>
 					<!--/.col-->
 					<div class="col-sm-0">
-						<div class="single-about-us">
-
-						</div>
+						<div class="single-about-us"></div>
 						<!--/.single-about-us-->
 					</div>
 					<!--/.col-->
@@ -132,127 +130,96 @@
 				<div class="col-md-12">
 					<div class="single-travel-boxes">
 						<div id="desc-tabs" class="desc-tabs">
-																	<div class="col-lg-12 col-md-4 col-sm-12">
-						
-
-<div class="single-tab-select-box">
-<br>
-													<h2 class="container">搜尋景點</h2>
-
-													<div class="custom-input-group">
-														<form action="AttracionSearchName" method="get">
-															<input type="text" name="keyword" class="form-control"
-																placeholder="輸入您想查詢的景點">
-															<button type="submit" class="appsLand-btn subscribe-btn">搜尋</button>
-														</form>
-														<div class="clearfix"></div>
-
-													</div>
+							<div class="col-lg-12 col-md-4 col-sm-12">
 
 
+								<div class="single-tab-select-box">
+									<br>
+									<h2 class="container">搜尋景點</h2>
 
-												</div>
-																								</div>
-												
+									<div class="custom-input-group">
+										<form action="AttracionSearchName" method="get">
+											<input type="text" name="keyword" class="form-control"
+												placeholder="輸入您想查詢的景點">
+											<button type="submit" class="appsLand-btn subscribe-btn">搜尋</button>
+										</form>
+										<div class="clearfix"></div>
 
-							<!-- Tab panes -->
-<!-- 							<div class="tab-content"> -->
-
-								<div role="tabpanel" class="tab-pane active fade in" id="tours">
-									<div class="tab-para">
-
-										<div class="row">
-											<div class="col-lg-12 col-md-4 col-sm-12">
-<!-- 												<div class="single-tab-select-box"> -->
-
-<!-- 													<h2>搜尋景點</h2> -->
-
-<!-- 													<div class="custom-input-group"> -->
-<!-- 														<form action="AttracionSearchName" method="get"> -->
-<!-- 															<input type="text" name="keyword" class="form-control" -->
-<!-- 																placeholder="輸入您想查詢的景點"> -->
-<!-- 															<button type="submit" class="appsLand-btn subscribe-btn">搜尋</button> -->
-<!-- 														</form> -->
-<!-- 														<div class="clearfix"></div> -->
-
-<!-- 													</div> -->
+									</div>
 
 
 
-<!-- 												</div> -->
-												<!--/.single-tab-select-box-->
-											</div>
-											<!--/.col-->
+								</div>
+							</div>
 
+
+			
+
+							<div role="tabpanel" class="tab-pane active fade in" id="tours">
+								<div class="tab-para">
+
+									<div class="row">
+										<div class="col-lg-12 col-md-4 col-sm-12">
+									
 										</div>
-										<!--/.row-->
 
 
 									</div>
-									<!--/.tab-para-->
+									<!--/.row-->
 
 								</div>
-								<!--/.tabpannel-->
+								<!--/.tab-para-->
 
-
-
-
-<!-- 							</div> -->
-							<!--/.tab content-->
+							</div>
 						</div>
-						<!--/.desc-tabs-->
 					</div>
-					<!--/.single-travel-box-->
 				</div>
-				<!--/.col-->
 			</div>
-			<!--/.row-->
 		</div>
 		<!--/.container-->
 
 	</section>
-	<!--/.travel-box-->
-	<!--travel-box end-->
+
 
 
 	<!--packages start-->
 	<section id="pack" class="packages">
 		<div class="container">
-<!-- 			<div class="gallary-header text-center"> -->
-<!-- 				<h2> -->
-<!-- 					special packages -->
-<!-- 				</h2> -->
-<!-- 				<p> -->
-<!-- 					Duis aute irure dolor in velit esse cillum dolore eu fugiat nulla. -->
-<!-- 				</p> -->
-<!-- 			</div> -->
+			<!-- 			<div class="gallary-header text-center"> -->
+			<!-- 				<h2> -->
+			<!-- 					special packages -->
+			<!-- 				</h2> -->
+			<!-- 				<p> -->
+			<!-- 					Duis aute irure dolor in velit esse cillum dolore eu fugiat nulla. -->
+			<!-- 				</p> -->
+			<!-- 			</div> -->
 			<!--/.gallery-header-->
 			<div class="packages-content">
 				<div class="row">
 					<c:forEach var="attraction" items="${AttractionList}">
 						<div class="col-md-4 col-sm-6">
 							<div class="single-package-item">
-								<img src="/images/coco/attractionpicture/${attraction.photo}" alt="package-place">
+								<img src="/images/coco/attractionpicture/${attraction.photo}"
+									alt="package-place">
 								<div class="single-package-item-txt">
 									<h3>${attraction.attName}</h3>
 									<div class="packages-para">
 										<p>
-												<i class="fa fa-angle-right"></i>${attraction.attLocation}
+											<i class="fa fa-angle-right"></i>${attraction.attLocation}
 										</p>
 										<p>
-												<i class="fa fa-angle-right"></i>${attraction.attDescription.substring(3,22)}
+											<i class="fa fa-angle-right"></i>${attraction.attDescription.substring(3,22)}
 										</p>
 										<p>
-											${attraction.attDescription.substring(22,35)+="......"}<a href="AttractionPage?attID=${attraction.attid}">詳細</a>
+											${attraction.attDescription.substring(22,35)+="......"}<a
+												href="AttractionPage?attID=${attraction.attid}">詳細</a>
 										</p>
-										
+
 									</div>
 									<!--/.packages-review-->
 									<div class="about-btn">
 										<a href="AttractionPage?attID=${attraction.attid}">
-										<button class="about-view packages-btn">
-											詳細內文
-										</button>
+											<button class="about-view packages-btn">詳細內文</button>
 										</a>
 									</div>
 									<!--/.about-btn-->
@@ -260,56 +227,57 @@
 								<!--/.single-package-item-txt-->
 							</div>
 							<!--/.single-package-item-->
-	
+
 						</div>
-					<!--/.col-->
+						<!--/.col-->
 					</c:forEach>
 
-			<!--wrap clearfix-->
+					<!--wrap clearfix-->
+					
 
-			<div class="pageBox">
+					<div class="pageBox">
 
-				<ul class="clearfix">
-
-
-
-					<li><a href="video_1.html" class="active">1</a></li>
-
-
-					<li><a href="video_2.html">2</a></li>
-
-
-					<li><a href="video_3.html">3</a></li>
-
-
-					<li><a href="video_4.html">4</a></li>
-
-
-					<li><a href="video_5.html">5</a></li>
-
-
-					<li><a href="video_6.html">6</a></li>
-
-
-					<li><a href="video_7.html">7</a></li>
+						<ul class="clearfix">
 
 
 
-
-					<li><a href="video_2.html" class="function">next</a></li>
-
-					<li><a href="video_12.html" class="function">last</a></li>
+							<li><a href="video_1.html" class="active">1</a></li>
 
 
-				</ul>
-
-			</div>
+							<li><a href="video_2.html">2</a></li>
 
 
-	<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
+							<li><a href="video_3.html">3</a></li>
 
-		</div>
-	<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
 
+							<li><a href="video_4.html">4</a></li>
+
+
+							<li><a href="video_5.html">5</a></li>
+
+
+							<li><a href="video_6.html">6</a></li>
+
+
+							<li><a href="video_7.html">7</a></li>
+
+
+
+
+							<li><a href="video_2.html" class="function">next</a></li>
+
+							<li><a href="video_12.html" class="function">last</a></li>
+
+
+						</ul>
+
+					</div>
+
+
+					<%@ include file="/WEB-INF/includes/coco/attraction/Footer.jsp"%>
+
+				</div>
+				<%@ include
+					file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionJS.jsp"%>
 </body>
 </html>

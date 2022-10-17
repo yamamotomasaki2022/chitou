@@ -52,6 +52,7 @@ public class AttractionController {
 		m.addAttribute("listAttraction", aService.getAll());
 		return path1 + "Attraction";
 	}
+
 	
 	//test home background home page
 //	@GetMapping("/homeAttractions")

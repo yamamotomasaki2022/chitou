@@ -41,7 +41,8 @@ response.setCharacterEncoding("UTF-8");
 						<td>${selectbyname.hobbyclassification.preferid}</td>
 						<td>${selectbyname.attName}</td>
 						<td>${selectbyname.attLocation}</td>
-						<td>${selectbyname.attDescription}</td>
+<%-- 						<td>${selectbyname.attDescription}</td> --%>
+
 					</tr>
 				</c:forEach>
 				</table>

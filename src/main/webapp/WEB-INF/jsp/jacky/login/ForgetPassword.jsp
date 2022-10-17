@@ -7,11 +7,13 @@
 <title>忘記密碼頁面</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
+<%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 
 </head>
 <body>
 
 
+<%@ include file="/WEB-INF/includes/coco/attraction/Header.jsp"%>
 
 
 	<h1 id="fun">笑死，誰叫你忘記密碼，重辦！</h1>

@@ -80,7 +80,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 												 placeholder="請選擇新增的景點位置" />
 										</div>
 
-										<div class="form-group">
+										<div class="form-group" >
 											<form:label path="attDescription"> 景點說明: </form:label>
 											<div >
 												<form:textarea id="attDescription" path="attDescription" name="attDescription" placeholder="請輸入新增的景點說明"></form:textarea>
@@ -106,18 +106,17 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 
 
 	<script src="/js/coco/bootstrap/jquery-3.4.1.min.js"></script>
+        
 	<script>
-	
-// 	$('#fastinput').on('click',function{
-// 		console.log('yee')
-// 	})
-	
 	$('#fastinput').click(function(){
 		
 		$('#attid').val('1110')
 		$('#attName').val('麗寶樂園渡假區')
 		$('#attLocation').val('台中市后里區福容路8號')
-		$('#attDescription').val('遊客眾多的主題樂園，主打雲霄飛車、多種遊樂設施、人工波浪池和飄飄河。')
+		CKEDITOR.instances.attDescription.setData("要显示的文字内容");
+// 		$('#attDescription').val('遊客眾多的主題樂園，主打雲霄飛車、多種遊樂設施、人工波浪池和飄飄河。')
+// 		attDescription.data.set("<p>Testing</p>");
+// 		attDescription.setData('<p>This is the new Data!</p>');
 		
 	})
 	
@@ -127,14 +126,17 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 	<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
 	<script src="/js/coco/ckeditorCoco.js"></script>
 	<script>
-// 	 	ClassicEditor
-// 		   .create(document.querySelector('#editor1'),{
-// 			    ckfinder: {
-// 			        uploadUrl: '/ckUploadCoco'
-// 			    },
-// 			}).then(editor => {
-// 		    	  console.log("editor1 success");
-// 		   });
+	 	ClassicEditor
+		   .create(document.querySelector('#attDescription'),{
+			    ckfinder: {
+			        uploadUrl: '/ckUploadCoco'
+			    },
+			}).then(editor => {      
+				myEditor = editor;
+			         // 设置初始值
+			         myEditor.setData('');
+		    	  console.log("editor success");
+		   });
         </script>
 
 </body>

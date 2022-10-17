@@ -42,26 +42,26 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group">
 											<label>方案編號:</label> 
 											<input type="text"
-												name="planid" class="form-control"
+												id="planid" name="planid" class="form-control"
 												placeholder="請輸入新增的方案ID" />
 										</div>
 
 										<div class="form-group">
 											<label>方案名稱:</label>
 											 <input type="text" class="form-control"
-												id="" name="planname" placeholder="請輸入新增的方案名稱"/>
+												id="planname" name="planname" placeholder="請輸入新增的方案名稱"/>
 										</div>
 
 										<div class="form-group">
 											<label>價格:</label> 
 											<input type="text" name="planfee" class="form-control"
-												id="" placeholder="價格" />
+												id="planfee" placeholder="價格" />
 										</div>
 
 										<div class="form-group">
 											<label> 方案內容: </label>
 											<div >
-												<textarea id="editor1" name="plandiscript" placeholder="請輸入方案的內容"></textarea>
+												<textarea id="editor" name="plandiscript" placeholder="請輸入方案的內容"></textarea>
 											</div>
 										</div>
 										
@@ -69,23 +69,48 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 
 										<button type="submit" name="submit" class="btn btn-primary mr-2">新增</button>
 										<a href="showAttractionPlans?attractionid=${attractionid}"><button type="button" class="btn btn-light">返回</button></a> 
+									<button type="button" class="btn btn-primary mr-2" id="fastinput2" style="float:right;">一鍵輸入2</button>
+									<button type="button" class="btn btn-primary mr-2" id="fastinput" style="float:right;">一鍵輸入</button>
+									
 									</form>
 							<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 					
 
+<script src="/js/coco/bootstrap/jquery-3.4.1.min.js"></script>
+	<script>
+	$('#fastinput').click(function(){
+		$('#planid').val('220')
+		$('#planname').val('夏日午後票')
+		$('#planfee').val('599')
+// 		$('#attDescription').val('遊客眾多的主題樂園，主打雲霄飛車、多種遊樂設施、人工波浪池和飄飄河。')
+		myEditor.setData('<p>過下午1:00後才能入園。</p>');
+	})
+	
+	</script>
 
-
-
+	<script>
+	$('#fastinput2').click(function(){
+		$('#planid').val('221')
+		$('#planname').val('水陸雙園 1 日通票')
+		$('#planfee').val('899')
+// 		$('#attDescription').val('遊客眾多的主題樂園，主打雲霄飛車、多種遊樂設施、人工波浪池和飄飄河。')
+		myEditor.setData('<p>當日核銷後需於當日使用，逾期無效。</p>');
+	})
+	
+	</script>
 	<!-- ckeditor:js & function-->
 	<script src="/js/coco/ckeditor.js"></script>
 	<script>
 	 	ClassicEditor
-		   .create(document.querySelector('#editor1'),{
+		   .create(document.querySelector('#editor'),{
 			    ckfinder: {
 			        uploadUrl: '/ckUploadCoco'
 			    },
-			}).then(editor => {
-		    	  console.log("editor1 success");
+			}).then(editor => {      
+				myEditor = editor;
+			         // 设置初始值
+			         myEditor.setData('');
+		    	  console.log("editor success");
 		   });
         </script>
 

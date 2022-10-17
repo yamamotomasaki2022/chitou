@@ -82,6 +82,7 @@ response.setCharacterEncoding("UTF-8");
 
 										<button type="submit" name="modify" class="btn btn-primary mr-2">修正</button>
 										<a href="listAttractions"><button class="btn btn-light">返回</button></a>
+										<button type="button" class="btn btn-primary mr-2" id="fastinput" style="float:right;">一鍵修改</button>
                        				 </form:form>
 									</div>
 						<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
@@ -89,7 +90,21 @@ response.setCharacterEncoding("UTF-8");
 <!-- 		<script src="/js/coco/ckeditor.js"></script> -->
 	<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
 	<script src="/js/coco/ckeditorCoco.js"></script>
+<script src="/js/coco/bootstrap/jquery-3.4.1.min.js"></script>
+	<script>
+	
+// 	$('#fastinput').on('click',function{
+// 		console.log('yee')
+// 	})
+	
+	$('#fastinput').click(function(){
+		
+		$('#attName').val('金錢豹樂園')
+		$('#attDescription').val('充滿慶記的樂園。')
+		attDescription.setData('<p>Some text.</p>');
+	});
 
+	</script>
 
   
 								

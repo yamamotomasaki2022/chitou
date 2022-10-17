@@ -17,7 +17,7 @@
     <p class="card-description">
 		<a href="toAddPlan?attractionid=${attraction.attid}">
 			<button id="receive" type="button" class="btn btn-inverse-primary btn-fw">
-				<i class="ti-plus"></i>&nbsp;新增方案
+				<i class="fa-solid fa-plus"></i>&nbsp;新增方案
 			</button>
 		</a>
 	</p>
@@ -35,14 +35,15 @@
 			                <td>${plan.attraction.attName}</td>
 			                <td>${plan.planname}</td>
 			                <td>${plan.planfee}</td>
-			                <td>${plan.plandiscript}</td>
+			      			<td>${plan.plandiscript.substring(0,10)}</td>
+			                
 			                <td>
 			                	<div style="float:left;">
 			            			<form action="toUpdatePlan" method="get">
 			            				<input type="hidden" id="planID" class="planID" name="planID" value="${plan.planid}">
 			                			<button type="submit" class="btn btn-inverse-success btn-icon" style="width:30px;height:30px;" name="toUpdatePage">
-		                					<i class="ti-pencil-alt"></i>
-		                				</button>
+		                					<i class="fa-regular fa-pen-to-square"></i>
+		                				</button> &nbsp; &nbsp;
 		                			</form>
 		                		</div>
 								<div>
@@ -50,7 +51,7 @@
 			                			<input type="hidden" id="planID" class="planID" name="planid" value="${plan.planid}">
 			                			<input type="hidden" id="attractionID" class="attractionID" name="attractionid" value="${plan.attraction.attid}">
 			                			<button type="submit" class="btn btn-inverse-danger btn-icon" style="width:30px;height:30px;" name="delete">
-			                				<i class="ti-trash"></i>
+			                				<i class="fa-solid fa-trash-can"></i>
 			                			</button>
 			            			</form>
 			            		</div>

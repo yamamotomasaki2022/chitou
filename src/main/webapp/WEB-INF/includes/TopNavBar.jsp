@@ -12,15 +12,14 @@
 				class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 				<button class="navbar-toggler navbar-toggler align-self-center"
 					type="button" data-toggle="minimize">
-					<span class="icon-menu"></span>
+					<span class="fa-solid fa-bars"></span>
 				</button>
 				<ul class="navbar-nav mr-lg-2">
 					<li class="nav-item nav-search d-none d-lg-block">
 						<div class="input-group">
 							<div class="input-group-prepend hover-cursor"
 								id="navbar-search-icon">
-								<span class="input-group-text" id="search"> <i
-									class="icon-search"></i>
+								<span class="input-group-text" id="search"> <i class="fa-solid fa-magnifying-glass"></i>
 								</span>
 							</div>
 							<input type="text" class="form-control" id="navbar-search-input"
@@ -33,7 +32,7 @@
 					<li class="nav-item dropdown"><a
 						class="nav-link count-indicator dropdown-toggle"
 						id="notificationDropdown" href="#" data-toggle="dropdown"> <i
-							class="icon-bell mx-0"></i> <span class="count"></span>
+							class="fa-solid fa-bell mx-0"></i> <span class="count"></span>
 					</a>
 						<div
 							class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
@@ -92,7 +91,7 @@
 							</a>
 						</div></li>
 					<li class="nav-item nav-settings d-none d-lg-flex"><a
-						class="nav-link" href="#"> <i class="icon-ellipsis"></i>
+						class="nav-link" href="#"> <i class="fa-solid fa-ellipsis"></i>
 					</a></li>
 				</ul>
 				<button
