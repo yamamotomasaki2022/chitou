@@ -14,10 +14,10 @@
     <br>
 
     <div class="container">
-        <div class="zoomImage" style="background-image:url(images/coco/MemberRegisterVerificationPage.jpg)">
-            <a href="home"><button type="button" class="btn btn-primary" style=" left:290px; top:400px">返回主頁</button></a>
+        <div class="zoomImage" style="background-image:url(/images/coco/MemberRegisterVerificationPage.jpg)">
+            <a href="/home"><button type="button" class="btn btn-primary" style=" left:290px; top:400px">返回主頁</button></a>
         </div>
-        <img src="images/coco/MemberRegisterVerificationPage.jpg" style="width: 100%">
+        <img src="/images/coco/MemberRegisterVerificationPage.jpg" style="width: 100%">
 
     </div>
 

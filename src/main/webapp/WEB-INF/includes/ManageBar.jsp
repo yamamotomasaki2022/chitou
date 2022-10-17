@@ -3,7 +3,7 @@
 <!-- 左邊·功能欄 -->
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
 	<ul class="nav">
-		<li class="nav-item"><a class="nav-link" href="/manager/chart"> <i
+		<li class="nav-item"><a class="nav-link" href="/orderStatic"> <i
 				class="fa-solid fa-house"></i> <span class="menu-title">&emsp;首頁</span>
 		</a></li>
 
