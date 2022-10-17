@@ -229,7 +229,7 @@ public class CartController {
 	    
 	    StringBuilder builder = new StringBuilder();
 	    for(AttractionOrderDetail aDetail : checkOutCart) {
-	    	builder.append("<li>"+"名稱："+ aDetail.getAttractionname()+" "+aDetail.getPlanname()+"<br>數量："+aDetail.getQuantity()+"<br>價格："+aDetail.getPrice()*aDetail.getQuantity()+" 元</li>");
+	    	builder.append("<li>"+"名稱："+ aDetail.getAttractionname()+" "+aDetail.getPlanname()+"<br>數量："+aDetail.getQuantity()+"<br>價格："+aDetail.getPrice()+" 元</li>");
 	    }
 	    
 	    String html = "<!DOCTYPE html>"

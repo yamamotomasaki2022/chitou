@@ -83,7 +83,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group" >
 											<form:label path="attDescription"> 景點說明: </form:label>
 											<div >
-												<form:textarea id="attDescription" path="attDescription" name="attDescription" placeholder="請輸入新增的景點說明"></form:textarea>
+												<form:textarea id="editor" path="attDescription" name="attDescription" placeholder="請輸入新增的景點說明"></form:textarea>
 											</div>
 										</div>
 										
@@ -113,21 +113,21 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 		$('#attid').val('1110')
 		$('#attName').val('麗寶樂園渡假區')
 		$('#attLocation').val('台中市后里區福容路8號')
-		CKEDITOR.instances.attDescription.setData("要显示的文字内容");
-// 		$('#attDescription').val('遊客眾多的主題樂園，主打雲霄飛車、多種遊樂設施、人工波浪池和飄飄河。')
-// 		attDescription.data.set("<p>Testing</p>");
-// 		attDescription.setData('<p>This is the new Data!</p>');
+		myEditor.setData('<p>躺著玩，坐著玩，趴著玩，還是麗寶好玩。台中「麗寶樂園」有最廣為人知的探索樂園、刺激又好玩的水上樂園馬拉灣，加上麗寶OUTLET和國際認證的麗寶賽車場，還有各式主題表演和節慶活動，並可入住豪華五星級福容大飯店，精彩豐富的主題將整座園區規畫成全台最大的渡假區，一站就能滿足所有吃喝玩樂！</p>');
+
 		
 	})
 	
 	</script>
 	
 	<!-- ckeditor:js & function-->
-	<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
-	<script src="/js/coco/ckeditorCoco.js"></script>
+<!-- 	<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script> -->
+<!-- 	<script src="/js/coco/ckeditorCoco.js"></script> -->
+		<script src="/js/coco/ckeditor.js"></script>
+	
 	<script>
 	 	ClassicEditor
-		   .create(document.querySelector('#attDescription'),{
+		   .create(document.querySelector('#editor'),{
 			    ckfinder: {
 			        uploadUrl: '/ckUploadCoco'
 			    },

@@ -55,7 +55,7 @@ response.setCharacterEncoding("UTF-8");
 					<td>
 					<a href="frontaddFlightTicket">
 			<button id="receive" type="button" class="btn btn-inverse-primary btn-fw">
-				<i class="ti-plus">購買</i>
+				<i class="fa-solid fa-plus"></i>
 			</button>
 			</td>
 		</a>
@@ -75,7 +75,7 @@ response.setCharacterEncoding("UTF-8");
 	if(ordersuccess==1){
 		Swal.fire(
 				  '訂購成功!',
-				  '謝謝!',
+				  '訂購信已發至您的信箱,謝謝!',
 				  'success'
 				)
 	}
