@@ -31,7 +31,7 @@ public class ArticleService {
 	
 //	*************查詢全部*****************************
 	public List<Article> findAll() {
-		return articleRepository.findAll();
+		return articleRepository.findAllDesc();
 	}
 	
 //	***********查詢ID***********************

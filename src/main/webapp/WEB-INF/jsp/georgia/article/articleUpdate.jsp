@@ -53,7 +53,7 @@ Article tt=(Article)request.getAttribute("findByIdBean");
 <input type="hidden" name="_method" value="PUT">
 <INPUT TYPE="HIDDEN" NAME="postID" VALUE="<%= tt.getPostID() %>">
 <INPUT TYPE="HIDDEN" NAME="date" VALUE="<%= tt.getDate() %>">
-文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="<%= tt.getTitle() %>" style="width: 100%;"><BR>
+文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="<%= tt.getTitle() %>" style="width: 100%;" id="titleInput"><BR>
 文章副標題: <BR><INPUT TYPE="TEXT" NAME="subtitle" VALUE="<%= tt.getSubtitle() %>" id="subtitleInput" style="width: 100%;"><BR><BR>
 選擇縮圖:<BR><INPUT TYPE="FILE" NAME="photo" VALUE="" ID="upload"><BR>
 	   <div id="picPreview"><img id="img" src="images/georgia/picture/<%= tt.getPhoto() %>" class="box" style="height:100px"></div><BR>
@@ -95,10 +95,11 @@ Article tt=(Article)request.getAttribute("findByIdBean");
 		<br><br>
 發布日期: <%= tt.getDate() %><BR><BR>
 <%-- 文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="<%= tt.getContent() %>"><BR> --%>
-<textarea id="contentInput" name="content"><%= tt.getContent() %></textarea>
+<textarea id="editor" name="content"></textarea>
 
 <INPUT TYPE="SUBMIT" value="更新文章" name="updateArticle" class="btn btn-primary mr-2">
 </form>
+<button  onclick="oneInput();" class="btn btn-light">一鍵輸入</button>
 
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 
@@ -122,6 +123,22 @@ $('#upload').on('change',function(e){
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
 <script src="/js/georgia/ckeditorGeorgia.js"></script>
 <script>
+
+myEditor.setData('<%= tt.getContent() %>');
+
+function oneInput(){
+	
+	$('#titleInput').val('想吃辣就吃嚮辣');
+	$('#subtitleInput').val('不用老吃海底撈了~~');
+	myEditor.setData('<h3>朋友都好難約QQ</h3>'+
+			'<h3>本來因為另一個朋友是餐飲業，所以要找開比較晚的火鍋店</h3>'+
+			'<h3>心想好像只剩海底撈這個選擇</h3>'+
+			'<h3>結果朋友說每次有人生日都吃海底撈覺得很膩XD</h3>'+
+			'<h3>後來她看KOL分享決定歡送會來吃「嚮辣」</h3>'+
+			'<h3>說營業到兩點又是吃到飽</h3><h3>是歡送會的好選擇😋💝</h3>'+
+			'<p><img class="image_resized" style="width:35.51%;" src="https://imgur.dcard.tw/T0eUIGWh.jpg" alt="imgur"></p>'+
+			'<h3>雖然嚮辣價格有點偏高</h3><h3>但如果喜歡吃辣、和牛或宵夜想找地方聚餐還是推推~~</h3>')
+}
 //ClassicEditor
 //.create(document.querySelector('#contentInput'),{
 //	    ckfinder: {

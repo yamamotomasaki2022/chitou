@@ -64,6 +64,9 @@
 				height: 2.7rem;
 				color:rgb(69,71,155);
 				}
+.background-w{
+			background-color: #FFFFFF;"
+}
     </style>
     <%@ include file="/WEB-INF/includes/coco/attraction/AttractionsDescriptionCSS.jsp"%>
 </head>
@@ -81,12 +84,14 @@
         <!-- *******************************************國家：亞洲******************************************************* -->
             <div class="accordion-item">
                 <h2 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                        aria-expanded="true" aria-controls="collapseOne" onclick="country();" style="font-size: 35px;">亞洲</button>
+                    <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne" onclick="country();" style="font-size: 35px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="width:30px;height:30px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M565.6 36.24C572.1 40.72 576 48.11 576 56V392C576 401.1 569.8 410.9 560.5 414.4L392.5 478.4C387.4 480.4 381.7 480.5 376.4 478.8L192.5 417.5L32.54 478.4C25.17 481.2 16.88 480.2 10.38 475.8C3.882 471.3 0 463.9 0 456V120C0 110 6.15 101.1 15.46 97.57L183.5 33.57C188.6 31.6 194.3 31.48 199.6 33.23L383.5 94.52L543.5 33.57C550.8 30.76 559.1 31.76 565.6 36.24H565.6zM48 421.2L168 375.5V90.83L48 136.5V421.2zM360 137.3L216 89.3V374.7L360 422.7V137.3zM408 421.2L528 375.5V90.83L408 136.5V421.2z"/></svg>
+                        亞洲</button>
                 </h2>
 
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion_1">
-                    <div class="accordion-body">
+                    <div class="accordion-body background-w">
                         <p>・ 東亞</p>
                         <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >台灣</a><br>
                         <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >日本</a><br>
@@ -125,12 +130,13 @@
         <!-- *******************************************國家：歐洲******************************************************* -->
             <div class="accordion-item">
                 <h2 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                    <button class="btn collapsed" type="button" data-toggle="collapse"
                         data-target="#collapseTwo" aria-expanded="false"
-                        aria-controls="collapseTwo" style="font-size: 35px;">歐洲</button>
+                        aria-controls="collapseTwo" style="font-size: 35px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="width:30px;height:30px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M565.6 36.24C572.1 40.72 576 48.11 576 56V392C576 401.1 569.8 410.9 560.5 414.4L392.5 478.4C387.4 480.4 381.7 480.5 376.4 478.8L192.5 417.5L32.54 478.4C25.17 481.2 16.88 480.2 10.38 475.8C3.882 471.3 0 463.9 0 456V120C0 110 6.15 101.1 15.46 97.57L183.5 33.57C188.6 31.6 194.3 31.48 199.6 33.23L383.5 94.52L543.5 33.57C550.8 30.76 559.1 31.76 565.6 36.24H565.6zM48 421.2L168 375.5V90.83L48 136.5V421.2zM360 137.3L216 89.3V374.7L360 422.7V137.3zM408 421.2L528 375.5V90.83L408 136.5V421.2z"/></svg>
+                        歐洲</button>
                 </h2>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_1">
-                    <div class="accordion-body">
+                    <div class="accordion-body background-w">
                         <p>・ 西歐</p>
                         <a style="visibility:hidden;">這裡是空格</a><a class="country" name="101" >英國</a><br>
                         <a style="visibility:hidden;">這裡是空格</a><a class="country" name="102" >荷蘭</a><br>
@@ -165,13 +171,14 @@
         <!-- *******************************************國家：北美洲******************************************************* -->
             <div class="accordion-item">
                 <h2 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                    <button class="btn collapsed" type="button" data-toggle="collapse"
                         data-target="#collapseThree" aria-expanded="false"
-                        aria-controls="collapseThree" style="font-size: 35px;">北美洲</button>
+                        aria-controls="collapseThree" style="font-size: 35px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="width:30px;height:30px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M565.6 36.24C572.1 40.72 576 48.11 576 56V392C576 401.1 569.8 410.9 560.5 414.4L392.5 478.4C387.4 480.4 381.7 480.5 376.4 478.8L192.5 417.5L32.54 478.4C25.17 481.2 16.88 480.2 10.38 475.8C3.882 471.3 0 463.9 0 456V120C0 110 6.15 101.1 15.46 97.57L183.5 33.57C188.6 31.6 194.3 31.48 199.6 33.23L383.5 94.52L543.5 33.57C550.8 30.76 559.1 31.76 565.6 36.24H565.6zM48 421.2L168 375.5V90.83L48 136.5V421.2zM360 137.3L216 89.3V374.7L360 422.7V137.3zM408 421.2L528 375.5V90.83L408 136.5V421.2z"/></svg>
+                        北美洲</button>
                 </h2>
 
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion_1">
-                    <div class="accordion-body">
+                    <div class="accordion-body background-w">
                     
                     </div>
                 </div>
@@ -179,13 +186,14 @@
         <!-- *******************************************國家：南美洲******************************************************* -->
             <div class="accordion-item">
                 <h2 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                    <button class="btn collapsed" type="button" data-toggle="collapse"
                         data-target="#collapseFour" aria-expanded="false"
-                        aria-controls="collapseFour" style="font-size: 35px;">南美洲</button>
+                        aria-controls="collapseFour" style="font-size: 35px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="width:30px;height:30px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M565.6 36.24C572.1 40.72 576 48.11 576 56V392C576 401.1 569.8 410.9 560.5 414.4L392.5 478.4C387.4 480.4 381.7 480.5 376.4 478.8L192.5 417.5L32.54 478.4C25.17 481.2 16.88 480.2 10.38 475.8C3.882 471.3 0 463.9 0 456V120C0 110 6.15 101.1 15.46 97.57L183.5 33.57C188.6 31.6 194.3 31.48 199.6 33.23L383.5 94.52L543.5 33.57C550.8 30.76 559.1 31.76 565.6 36.24H565.6zM48 421.2L168 375.5V90.83L48 136.5V421.2zM360 137.3L216 89.3V374.7L360 422.7V137.3zM408 421.2L528 375.5V90.83L408 136.5V421.2z"/></svg>
+                        南美洲</button>
                 </h2>
 
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion_1">
-                    <div class="accordion-body">
+                    <div class="accordion-body background-w">
                         
                     </div>
                 </div>
@@ -194,13 +202,14 @@
         <!-- *******************************************國家：大洋洲******************************************************* -->
             <div class="accordion-item">
                 <h2 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                    <button class="btn collapsed" type="button" data-toggle="collapse"
                         data-target="#collapseFive" aria-expanded="false"
-                        aria-controls="collapseFive" style="font-size: 35px;">大洋洲</button>
+                        aria-controls="collapseFive" style="font-size: 35px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="width:30px;height:30px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M565.6 36.24C572.1 40.72 576 48.11 576 56V392C576 401.1 569.8 410.9 560.5 414.4L392.5 478.4C387.4 480.4 381.7 480.5 376.4 478.8L192.5 417.5L32.54 478.4C25.17 481.2 16.88 480.2 10.38 475.8C3.882 471.3 0 463.9 0 456V120C0 110 6.15 101.1 15.46 97.57L183.5 33.57C188.6 31.6 194.3 31.48 199.6 33.23L383.5 94.52L543.5 33.57C550.8 30.76 559.1 31.76 565.6 36.24H565.6zM48 421.2L168 375.5V90.83L48 136.5V421.2zM360 137.3L216 89.3V374.7L360 422.7V137.3zM408 421.2L528 375.5V90.83L408 136.5V421.2z"/></svg>
+                        大洋洲</button>
                 </h2>
 
                 <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion_1">
-                    <div class="accordion-body">
+                    <div class="accordion-body background-w">
                         
                     </div>
                 </div>
@@ -209,13 +218,14 @@
         <!-- *******************************************國家：非洲******************************************************* -->
             <div class="accordion-item">
                 <h2 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                    <button class="btn collapsed" type="button" data-toggle="collapse"
                         data-target="#collapseSix" aria-expanded="false"
-                        aria-controls="collapseSix" style="font-size: 35px;">非洲</button>
+                        aria-controls="collapseSix" style="font-size: 35px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="width:30px;height:30px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M565.6 36.24C572.1 40.72 576 48.11 576 56V392C576 401.1 569.8 410.9 560.5 414.4L392.5 478.4C387.4 480.4 381.7 480.5 376.4 478.8L192.5 417.5L32.54 478.4C25.17 481.2 16.88 480.2 10.38 475.8C3.882 471.3 0 463.9 0 456V120C0 110 6.15 101.1 15.46 97.57L183.5 33.57C188.6 31.6 194.3 31.48 199.6 33.23L383.5 94.52L543.5 33.57C550.8 30.76 559.1 31.76 565.6 36.24H565.6zM48 421.2L168 375.5V90.83L48 136.5V421.2zM360 137.3L216 89.3V374.7L360 422.7V137.3zM408 421.2L528 375.5V90.83L408 136.5V421.2z"/></svg>
+                        非洲</button>
                 </h2>
 
                 <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion_1">
-                    <div class="accordion-body">
+                    <div class="accordion-body background-w">
                         
                     </div>
                 </div>
@@ -223,13 +233,14 @@
         <!-- *******************************************國家：南極洲******************************************************* -->
             <div class="accordion-item">
                 <h2 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                    <button class="btn collapsed" type="button" data-toggle="collapse"
                         data-target="#collapseSeven" aria-expanded="false"
-                        aria-controls="collapseSeven" style="font-size: 35px;">南極洲</button>
+                        aria-controls="collapseSeven" style="font-size: 35px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="width:30px;height:30px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M565.6 36.24C572.1 40.72 576 48.11 576 56V392C576 401.1 569.8 410.9 560.5 414.4L392.5 478.4C387.4 480.4 381.7 480.5 376.4 478.8L192.5 417.5L32.54 478.4C25.17 481.2 16.88 480.2 10.38 475.8C3.882 471.3 0 463.9 0 456V120C0 110 6.15 101.1 15.46 97.57L183.5 33.57C188.6 31.6 194.3 31.48 199.6 33.23L383.5 94.52L543.5 33.57C550.8 30.76 559.1 31.76 565.6 36.24H565.6zM48 421.2L168 375.5V90.83L48 136.5V421.2zM360 137.3L216 89.3V374.7L360 422.7V137.3zM408 421.2L528 375.5V90.83L408 136.5V421.2z"/></svg>
+                        南極洲</button>
                 </h2>
 
                 <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion_1">
-                    <div class="accordion-body">
+                    <div class="accordion-body background-w">
                         
                     </div>
                 </div>
@@ -271,6 +282,8 @@
                                             <div class="details-wrapper">
                                                 <div class="post-info bigFont bigFont"><%=bean.getDate()%></div>
                                                 <div class="post-info bigFont">|</div><a href="/categories/travel"
+                                                    class="post-info bigFont when-link"><%=bean.getCategory().getCountry()%></a>
+                                                <div class="post-info bigFont">|</div><a href="/categories/travel"
                                                     class="post-info bigFont when-link"><%=bean.getCategory().getType()%></a>
                                             </div>
                                             <div class="post-summary-wrapper">
@@ -291,8 +304,8 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="detailTitle"></h3>
@@ -331,6 +344,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 <script type="text/javascript">
 		$(function(){
+			
+			var post_id=0;
 			$('#BackTop').click(function(){ 
 				$('html,body').animate({scrollTop:0},10);
 			});
@@ -359,10 +374,11 @@
                     data: "postID=" + postID,
                     success: function (data) {
                         console.log("讀取成功");
+                        post_id=data.postID;
                         //
                         $('#detailTitle').html(data.title);
                         $('#detailContent').html(data.content);
-                        $('#hiddenValue').append(
+                        /*$('#hiddenValue').append(
            	                 $('<tr/>')
            	                     .append(
            	                         $('<td/>')
@@ -373,7 +389,7 @@
            	                                     .attr('id', 'postID')
            	                             )
            	                     )
-           	             );
+           	             );*/
                         
                     }, error: function (data) {
                         console.log("讀取失敗");
@@ -395,15 +411,15 @@
 				
 			})
 			
-			$(document).on("click",".btn_comment",function(){
+			$(document).on("click",".btn_comment_overview_l",function(){
 				let comment = $(this).closest('td').prev().find('#comment').val();
-				console.log(comment);
-				var postID=$('#postID').val();
+				console.log("OL"+comment);
+				//var postID=$('#postID').val();
 				
 				$.ajax({
 				      type: "POST",
 				      url: "/article.commentinsert",
-				      data: "postID=" + postID+"&comment="+comment,
+				      data: "postID=" + post_id+"&comment="+comment,
 				      async: "false",//等他回來
 				      success: function (resopnse, status, xhr) {
 				        console.log("連線成功");
@@ -417,7 +433,7 @@
 			                    type: "GET",
 			                    url: "/article.comment",
 			                    async: "true",
-			                    data: "postID=" + postID,
+			                    data: "postID=" + post_id,
 			                    success: function (data) {
 			                        console.log("讀取成功");
 			                        //清空商品列表
@@ -485,7 +501,7 @@
                     .append(
                         $('<td/>')
                             .append(
-                                $('<input/>').addClass("btn_comment")
+                                $('<input/>').addClass("btn_comment_overview_l")
                                     .attr('type', 'button')
                                     .attr('value', '送出')
                                     .attr('id', 'commentNew')

@@ -185,8 +185,8 @@ button, .btn {
 		<!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="detailTitle"></h3>
@@ -222,6 +222,9 @@ button, .btn {
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
 		$(function(){
+			var post_id=0;
+			
+			
 			$('#BackTop').click(function(){ 
 				$('html,body').animate({scrollTop:0},10);
 			});
@@ -250,10 +253,11 @@ button, .btn {
                     data: "postID=" + postID,
                     success: function (data) {
                         console.log("讀取成功");
+                        post_id=postID;
                         //
                         $('#detailTitle').html(data.title);
                         $('#detailContent').html(data.content);
-                        $('#hiddenValue').append(
+                        /*$('#hiddenValue').append(
            	                 $('<tr/>')
            	                     .append(
            	                         $('<td/>')
@@ -264,7 +268,7 @@ button, .btn {
            	                                     .attr('id', 'postID')
            	                             )
            	                     )
-           	             );
+           	             );*/
                         
                     }, error: function (data) {
                         console.log("讀取失敗");
@@ -288,13 +292,13 @@ button, .btn {
 			
 			$(document).on("click",".btn_comment",function(){
 				let comment = $(this).closest('td').prev().find('#comment').val();
-				console.log(comment);
-				var postID=$('#postID').val();
+				console.log("UM="+post_id);
+				//var postID=$('#postID').val();
 				
 				$.ajax({
 				      type: "POST",
 				      url: "/article.commentinsert",
-				      data: "postID=" + postID+"&comment="+comment,
+				      data: "postID=" + post_id+"&comment="+comment,
 				      async: "false",//等他回來
 				      success: function (resopnse, status, xhr) {
 				        console.log("連線成功");
@@ -308,7 +312,7 @@ button, .btn {
 			                    type: "GET",
 			                    url: "/article.comment",
 			                    async: "true",
-			                    data: "postID=" + postID,
+			                    data: "postID=" + post_id,
 			                    success: function (data) {
 			                        console.log("讀取成功");
 			                        //清空商品列表

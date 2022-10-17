@@ -81,32 +81,25 @@ button, .btn {
 <!--國家編號:  <BR><INPUT TYPE="TEXT" NAME="bigClassID" VALUE="" id="bigClassIDInput"><BR>-->
 <!--文章類型編號:  <BR><INPUT TYPE="TEXT" NAME="articleClassID" VALUE="" id="articleClassIDInput"><BR>-->
 <!-- 文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="" id="contentInput"><BR> -->
-文章內文：<textarea id="contentInput" name="content"></textarea>
+文章內文：<textarea id="editor" name="content"></textarea>
 <INPUT TYPE="SUBMIT" value="發表文章" name="sentarticle" class="btn btn-primary mr-2">
 </form>
 <button  onclick="oneInput();" class="btn btn-light">一鍵輸入</button>
 
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
-
+  <script src="/js/coco/ckeditor.js"></script>
 <script src="/js/georgia/ckeditorGeorgia.js"></script>
-
 <script>
-var myEditor;
-	ClassicEditor
-	.create( document.querySelector( '#contentInput' ) )
-	.then( editor => {
-		myEditor = editor ;
-	} )
-	.catch( error => {
-	    console.error( error );
-	} );
+
 	
 
 
 function back(){
 	history.back();
 }
+
 $('#upload').on('change',function(e){
+	console.log('');
 	$('#picPreview').empty();
 	var photos = this.files;
 	for(let i=0;i<photos.length;i++){
@@ -144,54 +137,24 @@ $(function() {
 				}
 			});
 	   });
-	   
-$('#fastInput').click(function(){
-	//$('#posterIDInput').val('6666');
-	
-})
 
 function oneInput(){
 	
-	
-	
-	$('#titleInput').val('中壢必吃牛排店');
-	$('#subtitleInput').val('好牛排，不吃嗎？');
-	myEditor.setData('132');
-	
-	
-	
-/*	document.form.contentInput.value = CKEDITOR.instances.contentInput.insertHtml
-	  ( ' <p>椒麻雞主食與飯有分隔 （大推👍<br/>'+
-	'回家吃雞腿皮還是脆口的！<br />'+
-	'椒麻雞醬汁的味道有添加檸檬增加清爽口感<br />'+
-	'該有的花椒香也沒有忘記唷！<br />'+
-	'<br />'+
-	'綠咖哩雞的雞肉帶皮口感很好<br />'+
-	'椰奶的風味完全完美的巴在雞腿肉上面不放了！<br />'+
-	'<br />'+
-	'今天吃的配菜裡面的番茄炒蛋🍅<br />'+
-	'好好吃！！！！！<br />'+
-	'許願常常出現❤️❤️❤️<br />'+
-	'<br />'+
-	'泰式香蘭豆花店裡頭的招牌特色！<br />'+
-	'外面從未吃過的口味！值得一試<br />'+
-	'<br />'+
-	'泰式奶茶也好好喝 不會過甜～<br />'+
-	'符合我們的口味🥤</p>'+
-	'<img alt="" height="300" src="http://localhost:8080/EatWorld/photo/post11.PNG" width="300" />  ' ) ;*/
-	
+	$('#titleInput').val('想吃辣就吃嚮辣');
+	$('#subtitleInput').val('給朋友去美國留學的歡送餐~');
+	myEditor.setData('<h3>朋友要出國讀書了</h3>'+
+			'<h3>跟另一個朋友打算幫她辦個歡送會(沒有很盛大 大家都好難約QQ</h3>'+
+					'<h3>本來因為另一個朋友是餐飲業，所以要找開比較晚的火鍋店</h3>'+
+					'<h3>心想好像只剩海底撈這個選擇</h3>'+
+					'<h3>結果要出國的朋友說每次有人生日都吃海底撈覺得很膩XD</h3>'+
+					'<h3>後來她看KOL分享決定歡送會來吃「嚮辣」</h3>'+
+					'<h3>說營業到兩點又是吃到飽</h3><h3>是歡送會的好選擇😋💝</h3>'+
+					'<p><img class="image_resized" style="width:35.51%;" src="https://imgur.dcard.tw/T0eUIGWh.jpg" alt="imgur"></p>'+
+					'<h3>雖然嚮辣價格有點偏高</h3><h3>但如果喜歡吃辣、和牛或宵夜想找地方聚餐還是推推~~</h3>'+
+					'<h3>最後就祝我的朋朋順飛</h3><h3>一路平安順利 I’ll miss u ❤❤❤</h3>'+
+					'<p><img class="image_resized" style="width:34.88%;" src="https://imgur.dcard.tw/QppagLDh.jpg" alt="imgur"></p>');
 }
-</script>
 
-<script>
-// ClassicEditor
-// .create(document.querySelector('#contentInput'),{
-// 	    ckfinder: {
-// 	        uploadUrl: '/ckUploadGeorgia'
-// 	    },
-// 	}).then(editor => {
-//  	  console.log("editor1 success");
-// });
 </script>
 </body>
 </html>

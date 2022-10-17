@@ -302,7 +302,7 @@ Article article = articleService.findByID(postID);
 				}
 		        Collections.sort(search, new Comparator<Article>(){
 		        	public int compare(Article a1, Article a2) {
-		        		if(a1.getPostID() > a2.getPostID()){
+		        		if(a1.getPostID() < a2.getPostID()){
 		                    return 1;
 		                }
 		                if(a1.getPostID() == a2.getPostID()){
@@ -433,7 +433,7 @@ Article article = articleService.findByID(postID);
 				}
 				Collections.sort(search, new Comparator<Article>(){
 					public int compare(Article a1, Article a2) {
-						if(a1.getPostID() > a2.getPostID()){
+						if(a1.getPostID() < a2.getPostID()){
 							return 1;
 						}
 						if(a1.getPostID() == a2.getPostID()){
@@ -481,6 +481,7 @@ Article article = articleService.findByID(postID);
 	@GetMapping(path = "/article.comment")
 	@ResponseBody
 	public List<Reply> comment(@RequestParam("postID") int postID) {
+		System.out.println("article.comment**************************"+postID);
 		List<Reply> search = new LinkedList<Reply>();
 		
 		Article findByID = articleService.findByID(postID);
@@ -561,7 +562,7 @@ Article article = articleService.findByID(postID);
 				}
 				Collections.sort(search, new Comparator<Article>(){
 					public int compare(Article a1, Article a2) {
-						if(a1.getPostID() > a2.getPostID()){
+						if(a1.getPostID() < a2.getPostID()){
 							return 1;
 						}
 						if(a1.getPostID() == a2.getPostID()){

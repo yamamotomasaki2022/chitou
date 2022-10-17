@@ -1,4 +1,4 @@
-CKEDITOR.ClassicEditor.create(document.querySelector("#contentInput"), {
+CKEDITOR.ClassicEditor.create(document.querySelector("#editor"), {
 	ckfinder: {
 			        uploadUrl: '/ckUploadGeorgia'
 			    },
@@ -139,4 +139,9 @@ CKEDITOR.ClassicEditor.create(document.querySelector("#contentInput"), {
 		// from a local file system (file://) - load this site via HTTP server if you enable MathType
 		'MathType'
 	]
-});
+}).then(editor => {      
+    myEditor = editor;
+            // 设置初始值
+            myEditor.setData('');
+         console.log("editor success");
+     });
