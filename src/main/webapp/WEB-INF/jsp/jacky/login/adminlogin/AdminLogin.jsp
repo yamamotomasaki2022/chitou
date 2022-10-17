@@ -93,7 +93,7 @@
 								<div
 									class="my-2 d-flex justify-content-between align-items-center">
 									<div class="form-check">
-										<label class="form-check-label text-muted"> <input
+										<label class="label text-muted"> <input
 											type="checkbox" class="form-check-input"
 											name="jacky-rememberme"> <spring:message
 												code="label.login.header" />
@@ -101,6 +101,33 @@
 									</div>
 									<a href="/toForgetPassword" class="auth-link .text-primary"><spring:message
 											code="label.login.forgetpassword" /></a>
+								</div>
+								<div class="container">
+									<div class="mb-2">
+										<button type="button"
+											class="btn btn-social-icon btn-outline-facebook">
+											<i class="fa-brands fa-facebook-f"></i>
+										</button>
+
+										<!--          <button type="button" -->
+										<!--           class="btn btn-social-icon btn-outline-google"> -->
+										<!--           <i class="ti-google"></i> -->
+										<!--          </button> -->
+
+
+
+										<a href='/oauth2/authorization/google'>
+											<button type="button"
+												class="btn btn-social-icon btn-outline-google"
+												style="float: right;">
+												<i class="fa-brands fa-google"></i>
+											</button>
+										</a>
+
+
+
+									</div>
+
 								</div>
 								<div class="mb-2">
 
@@ -143,35 +170,35 @@
 								</div>
 
 
-								<div class="container">
-									<div class="mb-2">
-										<button type="button"
-											class="btn btn-social-icon btn-outline-facebook">
-											<i class="fa-brands fa-facebook-f"></i>
-										</button>
+								<!-- 								<div class="container"> -->
+								<!-- 									<div class="mb-2"> -->
+								<!-- 										<button type="button" -->
+								<!-- 											class="btn btn-social-icon btn-outline-facebook"> -->
+								<!-- 											<i class="fa-brands fa-facebook-f"></i> -->
+								<!-- 										</button> -->
 
-										<!--          <button type="button" -->
-										<!--           class="btn btn-social-icon btn-outline-google"> -->
-										<!--           <i class="ti-google"></i> -->
-										<!--          </button> -->
-
-
-
-										<a href='/oauth2/authorization/google'>
-											<button type="button" 
-												class="btn btn-social-icon btn-outline-google"
-												style="float: right;">
-												<i class="fa-brands fa-google"></i>
-											</button>
-										</a>
+								<!-- 										         <button type="button" -->
+								<!-- 										          class="btn btn-social-icon btn-outline-google"> -->
+								<!-- 										          <i class="ti-google"></i> -->
+								<!-- 										         </button> -->
 
 
 
-									</div>
+								<!-- 										<a href='/oauth2/authorization/google'> -->
+								<!-- 											<button type="button"  -->
+								<!-- 												class="btn btn-social-icon btn-outline-google" -->
+								<!-- 												style="float: right;"> -->
+								<!-- 												<i class="fa-brands fa-google"></i> -->
+								<!-- 											</button> -->
+								<!-- 										</a> -->
 
-								</div>
+
+
+								<!-- 									</div> -->
+
+								<!-- 								</div> -->
 						</div>
-						
+
 
 						<hr>
 						</form>
@@ -208,6 +235,8 @@
 	<!-- container-scroller -->
 	<!-- plugins:js -->
 	<script src="/js/coco/vendor.bundle.base.js"></script>
+	<script src="https://kit.fontawesome.com/6c4c414686.js"
+		crossorigin="anonymous"></script>
 
 	<!-- endinject -->
 	<!-- Plugin js for this page -->

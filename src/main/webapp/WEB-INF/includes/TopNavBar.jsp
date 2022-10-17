@@ -82,11 +82,11 @@
 					</a>
 						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 							aria-labelledby="profileDropdown">
-							<a class="dropdown-item"> <i class="ti-settings text-primary"></i>
+							<a class="dropdown-item"> <i class="fa-solid fa-user-gear text-primary"></i>
 								Settings
 							</a> 
 							<a href="/logout" / class="dropdown-item"> <i
-								class="ti-power-off text-primary" ></i>
+								class="fa-solid fa-arrow-right-to-bracket text-primary" ></i>
 								 管理員登出
 							</a>
 						</div></li>

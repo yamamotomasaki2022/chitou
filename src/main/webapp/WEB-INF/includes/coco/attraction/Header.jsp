@@ -31,28 +31,28 @@
 		</ul>
 		<ul class="navbar-nav mr-lg-4">
 			<li class="nav-item dropdown"><a
-				class="dropdown-toggle btn btn-inverse-primary btn-sm" href="#"
+				class=" btn btn-inverse-primary btn-sm" href="#"
 				data-toggle="dropdown"> <i class="fa-solid fa-location-dot"></i>&nbsp;景點門票
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
 					<a href="AttractionList" class="dropdown-item"> <i
-						class="ti-settings text-primary"></i> 景點總覽
+						class=" text-primary"></i> 景點總覽
 					</a>
 				</div></li>
 		</ul>
 
 		<ul class="navbar-nav mr-lg-4">
 			<li class="nav-item dropdown"><a
-				class="dropdown-toggle btn btn-inverse-primary btn-sm" href=""
+				class=" btn btn-inverse-primary btn-sm" href=""
 				data-toggle="dropdown"> <i class="fa-solid fa-hotel"></i>&nbsp;住宿酒店
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
 					<a href="searchHotel" class="dropdown-item"> <i
-						class="ti-settings text-primary"></i> 飯店搜尋
+						class=" text-primary"></i> 飯店搜尋
 					</a> <a href="/member/sss" class="dropdown-item"> <i
-						class="ti-power-off text-primary"></i> 簡單搜索頁面
+						class=" text-primary"></i> 簡單搜索頁面
 					</a>
 				</div></li>
 		</ul>
@@ -60,27 +60,27 @@
 
 		<ul class="navbar-nav mr-lg-4">
 			<li class="nav-item dropdown"><a
-				class="dropdown-toggle btn btn-inverse-primary btn-sm" href="#"
+				class=" btn btn-inverse-primary btn-sm" href="#"
 				data-toggle="dropdown"> <i class="fa-solid fa-plane"></i>&nbsp;交通機票
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
 					<a href="/chitou.flightticket" class="dropdown-item"> <i
-						class="ti-settings text-primary"></i> 機票總覽
+						class="text-primary"></i> 機票總覽
 					</a>
 				</div></li>
 		</ul>
 		<ul class="navbar-nav mr-lg-4">
 			<li class="nav-item dropdown"><a
-				class="dropdown-toggle btn btn-inverse-primary btn-sm" href="#"
+				class=" btn btn-inverse-primary btn-sm" href="#"
 				data-toggle="dropdown"> <i class="fa-solid fa-comment"></i>&nbsp;討論區
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
 					<a href="/article.main" class="dropdown-item"> <i
-						class="ti-settings text-primary"></i> 文章總覽
+						class=" text-primary"></i> 文章總覽
 					</a> <a href="/article.user" class="dropdown-item"> <i
-						class="ti-settings text-primary"></i> 文章管理
+						class=" text-primary"></i> 文章管理
 					</a>
 
 				</div></li>
@@ -101,7 +101,7 @@
 
 						<div class="preview-thumbnail">
 							<div class="preview-icon bg-success">
-								<i class="ti-info-alt mx-0"></i>
+								<i class="fa-solid fa-cart-shopping mx-0"></i>
 							</div>
 						</div>
 						<div class="preview-item-content">
@@ -113,7 +113,7 @@
 
 						<div class="preview-thumbnail">
 							<div class="preview-icon bg-warning">
-								<i class="ti-settings mx-0"></i>
+								<i class="fa-solid fa-basket-shopping mx-0"></i>
 							</div>
 						</div>
 						<div class="preview-item-content">
@@ -130,13 +130,13 @@
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
 					<a href="/uvmember/toMemberHomePage" class="dropdown-item"> <i
-						class="ti-settings text-primary"></i> 會員登入
+						class="fa-solid fa-user text-primary"></i> 會員登入
 					</a> <a href="/uvmember/toMemberHomePage" class="dropdown-item"> <i
-						class="ti-settings text-primary"></i> 個人頁面
-					</a> <a class="dropdown-item"> <i class="ti-settings text-primary"></i>
+						class=" fa-solid fa-house-user text-primary"></i> 個人頁面
+					</a> <a class="dropdown-item"> <i class="fa-solid fa-user-gear text-primary"></i>
 						Settings
 					</a> <a id="logout" href="/logout" class="dropdown-item"> <i
-						class="ti-power-off text-primary"></i> 登出
+						class="fa-solid fa-arrow-right-to-bracket text-primary"></i> 登出
 					</a>
 				</div></li>
 
