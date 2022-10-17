@@ -37,7 +37,7 @@
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
 	
-					<a href="AttractionList" class="dropdown-item"> <i
+					<a href="AttractionSearch" class="dropdown-item"> <i
 						class=" text-primary"></i> 景點總覽
 
 					</a>
