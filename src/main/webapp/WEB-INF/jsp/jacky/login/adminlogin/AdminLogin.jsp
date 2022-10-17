@@ -50,7 +50,7 @@
 						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
 							<div class="brand-logo">
 								<!-- <img src="../../images/logo1.png" alt="logo"> -->
-								<a class="navbar-brand brand-logo mr-5" href="home"><img
+								<a class="navbar-brand brand-logo mr-5" href="/home"><img
 									src="/images/coco/logo3.png" class="mr-6" width="auto"
 									height="auto" alt="logo" /><img src="/images/coco/logo2.png"
 									class="mr-2" alt="logo" /></a>
