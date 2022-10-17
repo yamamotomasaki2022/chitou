@@ -90,9 +90,12 @@
 								</div>
 
 								<div></div>
+								
+								
 								<div
 									class="my-2 d-flex justify-content-between align-items-center">
 									<div class="form-check">
+									&nbsp;&nbsp;&nbsp;&nbsp;
 										<label class="label text-muted"> <input
 											type="checkbox" class="form-check-input"
 											name="jacky-rememberme"> <spring:message
@@ -105,8 +108,8 @@
 								<div class="container">
 									<div class="mb-2">
 										<button type="button"
-											class="btn btn-social-icon btn-outline-facebook">
-											<i class="fa-brands fa-facebook-f"></i>
+											class="btn btn-social-icon btn-outline-facebook" >
+											<i class="fa-brands fa-facebook-f" ></i>
 										</button>
 
 										<!--          <button type="button" -->

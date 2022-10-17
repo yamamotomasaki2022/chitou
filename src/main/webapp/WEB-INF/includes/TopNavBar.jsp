@@ -4,7 +4,7 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 			<div
 				class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-				<a class="navbar-brand brand-logo mr-5" href="index.html"><img
+				<a class="navbar-brand brand-logo mr-5" href="/home"><img
 					src="/images/coco/logo3.png" class="mr-2" alt="logo" /> <img
 					src="/images/coco/logo2.png" class="mr-2" alt="logo" /></a>
 			</div>
