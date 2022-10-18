@@ -37,7 +37,7 @@
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
 	
-					<a href="AttractionSearch" class="dropdown-item"> <i
+					<a href="/AttractionSearch" class="dropdown-item"> <i
 						class=" text-primary"></i> 景點總覽
 
 					</a>
@@ -51,7 +51,7 @@
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
-					<a href="searchHotel" class="dropdown-item"> <i
+					<a href="/searchHotel" class="dropdown-item"> <i
 						class=" text-primary"></i> 飯店搜尋
 					</a> <a href="/member/sss" class="dropdown-item"> <i
 						class=" text-primary"></i> 簡單搜索頁面
@@ -98,7 +98,7 @@
 					class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
 					aria-labelledby="notificationDropdown">
 
-					<p class="mb-0 font-weight-normal float-left dropdown-header"><a href="cart">購物車</a></p>
+					<p class="mb-0 font-weight-normal float-left dropdown-header"><a href="/cart">購物車</a></p>
 					<a class="dropdown-item preview-item" href="/cart">
 
 						<div class="preview-thumbnail">

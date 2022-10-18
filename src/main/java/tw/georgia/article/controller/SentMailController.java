@@ -77,7 +77,7 @@ public class SentMailController {
 		String email = article.getMember().getEmail();
 		
 //		寄信的人
-		String fromEmail = "eeit49group1chitou@gmail.com";
+		String fromEmail = "eeit49chitougroup1@gmail.com";
 //		群發到不同的人身上
 		List<String> toEmaiList = new ArrayList<String>();
 		toEmaiList.add(email);
@@ -122,7 +122,7 @@ public class SentMailController {
 		String email = reply.getMember().getEmail();
 		
 //		寄信的人
-		String fromEmail = "eeit49group1chitou@gmail.com";
+		String fromEmail = "eeit49chitougroup1@gmail.com";
 //		群發到不同的人身上
 		List<String> toEmaiList = new ArrayList<String>();
 		toEmaiList.add(email);
