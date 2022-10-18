@@ -113,7 +113,7 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping(path="/sendVerificationMailFromForgetPassword")
+	@GetMapping(path="/sendVerificationMailFromForgetPassword")
 	public String processsendVerificationMailFromForgetPassword(@RequestParam("email")String email,Model m) {
 		String randomCode = RandomString.make(5);
 		MemberBasicInfo memberbean = lservice.findByEmail(email);
@@ -124,9 +124,10 @@ public class LoginController {
 		m.addAttribute("memberbasicinfo",memberbean);
 		
 		
-		return "jacky/SendEmailPage";
+		return "/jacky/login/SendEmailPage";
 	}
 	
+
 //	會員忘記密碼并且修改
 	@PostMapping(path="/MemberForgetPasswordAndModify")
 	public String processMemberForgetPasswordAndModify(@RequestParam("username") String username,@RequestParam("password") String password,Model m) {

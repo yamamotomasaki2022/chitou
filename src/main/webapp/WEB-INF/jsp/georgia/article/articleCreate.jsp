@@ -35,6 +35,7 @@ button, .btn {
 
 <br>
 <INPUT TYPE="Button" value="取消" name="goBack" class="btn btn-primary mr-2" onclick="back()"><br><br>
+<button  onclick="oneInput();" class="btn btn-light">一鍵輸入</button>
 <form action="article.insert" method="post" enctype="multipart/form-data" id="check">
 <!--  會員ID:  <BR><INPUT TYPE="TEXT" NAME="posterID" VALUE="" id="posterIDInput"><BR>-->
 文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="" id="titleInput" style="width: 100%;"><BR>
@@ -84,7 +85,7 @@ button, .btn {
 文章內文：<textarea id="editor" name="content"></textarea>
 <INPUT TYPE="SUBMIT" value="發表文章" name="sentarticle" class="btn btn-primary mr-2">
 </form>
-<button  onclick="oneInput();" class="btn btn-light">一鍵輸入</button>
+
 
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
   <script src="/js/coco/ckeditor.js"></script>

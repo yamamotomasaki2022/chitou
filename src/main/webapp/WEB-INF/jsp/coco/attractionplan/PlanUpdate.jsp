@@ -42,20 +42,20 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 										<div class="form-group">
 											<label>方案編號:</label> 
 											<input type="text"
-												name="planid" class="form-control"
+												name="planid" class="form-control" id="planid"
 												placeholder="請輸入新增的方案ID" value="${plan.planid}"/>
 										</div>
 
 										<div class="form-group">
 											<label>方案名稱:</label>
 											 <input type="text" class="form-control"
-												id="" name="planname" value="${plan.planname}" placeholder="請輸入新增的方案名稱"/>
+												id="planname" name="planname" value="${plan.planname}" placeholder="請輸入新增的方案名稱"/>
 										</div>
 
 										<div class="form-group">
 											<label>價格:</label> 
 											<input type="text" name="planfee" class="form-control"
-												id="" placeholder="價格" value="${plan.planfee}" />
+												id="planfee" placeholder="價格" value="${plan.planfee}" />
 										</div>
 
 										<div class="form-group">

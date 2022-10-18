@@ -77,7 +77,7 @@
 	    	$('#roomAmount').val('5');
 	    });
 	    $('#fastInput2').click(function(){
-	    	$('#name').val('大倉菁英一大床');
+	    	$('#name').val('煙波菁英一大床');
 	    	$('#capacity').val('4');
 	    	$('#bed').val('1 張特大雙人床');
 	    	$('#status').val('開放');
