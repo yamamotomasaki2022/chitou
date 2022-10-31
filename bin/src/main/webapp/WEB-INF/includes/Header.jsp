@@ -6,20 +6,20 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-<link href="https://img.onl/DOO7l" rel="icon" type="images/chitou.png" />
+<link href="https://img.onl/DOO7l" rel="icon" type="images/coco/favicon.png" />
 
 
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: lightblue">
 			<div>
-				<img src="images/chitou.png" /> <a
+				<img src="images/coco/favicon.png" /> <a
 					href="Home.jsp"
 					class="navbar-brand"> ChiTou </a>
 			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="memberlist"
+				<li><a href="adminhomepage"
 					class="nav-link">會員登入界面</a></li>
 				<li><a
 					href="article.main"
@@ -28,13 +28,13 @@
 					href="listAttractions"
 					class="nav-link">景點功能</a></li>
 				<li><a
-					href="flightTicket"
+					href="flightticket.main"
 					class="nav-link">機票功能</a></li>
 				<li><a
 					href="hotel"
-					class="nav-link">行程表</a></li>
+					class="nav-link">飯店功能</a></li>
 								<li><a
-					href="index"
+					href="allAttractions"
 					class="nav-link">購物車與訂單</a></li>	
 			</ul>
 		</nav>

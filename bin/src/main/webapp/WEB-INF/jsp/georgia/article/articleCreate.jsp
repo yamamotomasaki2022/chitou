@@ -1,13 +1,11 @@
-<%@ page language="java" contentType="text/html"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
 <title>新增文章</title>
 <link href="https://img.onl/DOO7l" rel="icon" type="image/png" />
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript"></script>
 <style type="text/css">
 *{
@@ -20,16 +18,31 @@ button, .btn {
 	border-radius: 25px;
 	font-size: 150%;
 }
+.error{
+		color:red;
+	}
 </style>
+
+<%@ include file="/WEB-INF/includes/CSSAndJS.jsp"%>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/super-build/ckeditor.js"></script>
 </head>
 <body>
-<header>
-</header>
+
+
+<%@ include file="/WEB-INF/includes/SuperTop.jsp"%>
+
 <br>
-<form action="article.insert" method="post" enctype="multipart/form-data">
-會員ID:  <BR><INPUT TYPE="TEXT" NAME="posterID" VALUE="" id="posterIDInput"><BR>
-文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="" id="titleInput"><BR>
-		<br> 選擇國家<select name="chooseCountry">
+<INPUT TYPE="Button" value="取消" name="goBack" class="btn btn-primary mr-2" onclick="back()"><br><br>
+<form action="article.insert" method="post" enctype="multipart/form-data" id="check">
+<!--  會員ID:  <BR><INPUT TYPE="TEXT" NAME="posterID" VALUE="" id="posterIDInput"><BR>-->
+文章標題: <BR><INPUT TYPE="TEXT" NAME="title" VALUE="" id="titleInput" style="width: 100%;"><BR>
+文章副標題: <BR><INPUT TYPE="TEXT" NAME="subtitle" VALUE="" id="subtitleInput" style="width: 100%;"><BR><BR>
+選擇縮圖:<BR><INPUT TYPE="FILE" NAME="photo" ID="upload"><BR>
+	   <div id="picPreview"></div><BR>
+
+		選擇國家<select name="chooseCountry">
 			<optgroup label="亞洲">
 				<option value=101>台灣</option>
 				<option value=102>日本</option>
@@ -67,23 +80,81 @@ button, .btn {
 		<br><br>
 <!--國家編號:  <BR><INPUT TYPE="TEXT" NAME="bigClassID" VALUE="" id="bigClassIDInput"><BR>-->
 <!--文章類型編號:  <BR><INPUT TYPE="TEXT" NAME="articleClassID" VALUE="" id="articleClassIDInput"><BR>-->
-<!--  發布日期: <BR><INPUT TYPE="TEXT" NAME="articleDate" VALUE="" id="articleDateInput"><BR>-->
-<!--選擇上傳的圖片:<INPUT TYPE="FILE" NAME="phototo" ID=""><BR>-->
-圖片上傳:  <BR><INPUT TYPE="TEXT" NAME="photo" VALUE="" id="photoInput"><BR>
-文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="" id="contentInput"><BR>
-<INPUT TYPE="SUBMIT" value="發表文章" name="sentarticle" class="btn">
+<!-- 文章內文：<BR><INPUT TYPE="TEXT" NAME="content" VALUE="" id="contentInput"><BR> -->
+文章內文：<textarea id="editor" name="content"></textarea>
+<INPUT TYPE="SUBMIT" value="發表文章" name="sentarticle" class="btn btn-primary mr-2">
 </form>
-<button id="fastInput">一鍵輸入</button>
+<button  onclick="oneInput();" class="btn btn-light">一鍵輸入</button>
+
+<%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
+  <script src="/js/coco/ckeditor.js"></script>
+<script src="/js/georgia/ckeditorGeorgia.js"></script>
 <script>
-$('#fastInput').click(function(){
-	$('#posterIDInput').val('2222');
-	$('#titleInput').val('中壢哪裡有好玩的地方?');
-	//$('#bigClassIDInput').val('101');
-	//$('#articleClassIDInput').val('10194');
-	//$('#articleDateInput').val('20220822');
-	$('#photoInput').val('nowhere.jpg');
-	$('#contentInput').val('求分享，求推薦');
-})
+
+	
+
+
+function back(){
+	history.back();
+}
+
+$('#upload').on('change',function(e){
+	console.log('');
+	$('#picPreview').empty();
+	var photos = this.files;
+	for(let i=0;i<photos.length;i++){
+		var file = photos[i];
+		var fr = new FileReader();
+		fr.onload = function(e){
+			$('#picPreview').append('<img id="img" src="'+e.target.result+'" class="box" style="height:100px">');
+		};
+		fr.readAsDataURL(file);
+	};
+});
+
+$(function() {
+	
+	
+	$('#check').validate({
+		onkeyup : function(element, event) {
+			var value = this.elementValue(element).replace(/^\s+/g, "");
+			$(element).val(value);
+			},
+		rules : {
+			title : {required : true},
+			subtitle : {required : true},
+			photo : {required : true},
+			content : {required : true},
+				},
+			messages : {
+			title : {required : '必填'},
+			photo : {required : '必填'},
+			content : {required : '必填'},
+			subtitle : {required : '必填'},
+			},
+		submitHandler : function(form) {
+			form.submit();
+				}
+			});
+	   });
+
+function oneInput(){
+	
+	$('#titleInput').val('想吃辣就吃嚮辣');
+	$('#subtitleInput').val('給朋友去美國留學的歡送餐~');
+	myEditor.setData('<h3>朋友要出國讀書了</h3>'+
+			'<h3>跟另一個朋友打算幫她辦個歡送會(沒有很盛大 大家都好難約QQ</h3>'+
+					'<h3>本來因為另一個朋友是餐飲業，所以要找開比較晚的火鍋店</h3>'+
+					'<h3>心想好像只剩海底撈這個選擇</h3>'+
+					'<h3>結果要出國的朋友說每次有人生日都吃海底撈覺得很膩XD</h3>'+
+					'<h3>後來她看KOL分享決定歡送會來吃「嚮辣」</h3>'+
+					'<h3>說營業到兩點又是吃到飽</h3><h3>是歡送會的好選擇😋💝</h3>'+
+					'<p><img class="image_resized" style="width:35.51%;" src="https://imgur.dcard.tw/T0eUIGWh.jpg" alt="imgur"></p>'+
+					'<h3>雖然嚮辣價格有點偏高</h3><h3>但如果喜歡吃辣、和牛或宵夜想找地方聚餐還是推推~~</h3>'+
+					'<h3>最後就祝我的朋朋順飛</h3><h3>一路平安順利 I’ll miss u ❤❤❤</h3>'+
+					'<p><img class="image_resized" style="width:34.88%;" src="https://imgur.dcard.tw/QppagLDh.jpg" alt="imgur"></p>');
+}
+
 </script>
 </body>
 </html>
