@@ -43,6 +43,7 @@ button, .btn {
 
 <br>
 <INPUT TYPE="Button" value="取消" name="goBack" class="btn btn-primary mr-2" onclick="back()"><br><br>
+<button  onclick="oneInput();" class="btn btn-light">一鍵輸入</button>
 <%
 Article tt=(Article)request.getAttribute("findByIdBean");
 //String articleCiassIDStr=Integer.toString(tt.getCategory().getCategoryID());
@@ -99,7 +100,7 @@ Article tt=(Article)request.getAttribute("findByIdBean");
 
 <INPUT TYPE="SUBMIT" value="更新文章" name="updateArticle" class="btn btn-primary mr-2">
 </form>
-<button  onclick="oneInput();" class="btn btn-light">一鍵輸入</button>
+
 
 <%@ include file="/WEB-INF/includes/SuperBottom.jsp"%>
 

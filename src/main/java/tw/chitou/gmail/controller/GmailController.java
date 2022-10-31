@@ -136,7 +136,7 @@ public class GmailController {
 			String verification_code= member.getVerificationcode() ;
 			List<String> toEmaiList = new ArrayList<String>();
 			toEmaiList.add(member.getEmail());
-		    String fromAddress = "eeit49group1chitou@gmail.com";
+		    String fromAddress = "eeit49chitougroup1@gmail.com";
 //		    String senderName = "Your company name";
 		    String subject = "會員權限驗證";
 		    Map<String,String> params= new HashMap<>();
@@ -153,7 +153,7 @@ public class GmailController {
 			String verification_code= member.getVerificationcode() ;
 			List<String> toEmaiList = new ArrayList<String>();
 			toEmaiList.add(member.getEmail());
-		    String fromAddress = "eeit49group1chitou@gmail.com";
+		    String fromAddress = "eeit49chitougroup1@gmail.com";
 //		    String senderName = "Your company name";
 		    String subject = "忘記密碼驗證";
 		    Map<String,String> params= new HashMap<>();
@@ -169,7 +169,7 @@ public class GmailController {
 			String verification_code= member.getVerificationcode() ;
 			List<String> toEmaiList = new ArrayList<String>();
 			toEmaiList.add(member.getEmail());
-		    String fromAddress = "eeit49group1chitou@gmail.com";
+		    String fromAddress = "eeit49chitougroup1@gmail.com";
 //		    String senderName = "Your company name";
 		    String subject = "會員權限驗證";
 		    Map<String,String> params= new HashMap<>();
@@ -228,7 +228,7 @@ public class GmailController {
 //			String email = foder.get(0).getEmailaddress();
 
 //			寄信的人
-			String fromEmail = "eeit49group1chitou@gmail.com";
+			String fromEmail = "eeit49chitougroup1@gmail.com";
 //			群發到不同的人身上
 			List<String> toEmaiList = new ArrayList<String>();
 			toEmaiList.add(email);

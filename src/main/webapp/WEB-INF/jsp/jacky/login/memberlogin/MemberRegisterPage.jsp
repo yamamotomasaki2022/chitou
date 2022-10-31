@@ -269,7 +269,8 @@ label.error {
 						},
 						rules : {
 							username : {
-								required : true
+								required : true,
+								minlength: 4
 							},
 							password : {
 								required : true
@@ -283,7 +284,8 @@ label.error {
 						messages : {
 
 							username : {
-								required : '必填'
+								required : '必填',
+								minlength:'請輸入4位數'
 							},
 							password : {
 								required : '必填'

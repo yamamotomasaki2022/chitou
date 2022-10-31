@@ -224,7 +224,7 @@ public class CartController {
 		List<String> toEmaiList = new ArrayList<String>();
 //		toEmaiList.add(member.getEmail());
 		toEmaiList.add("learningma0926@gmail.com");
-	    String fromAddress = "eeit49group1chitou@gmail.com";
+	    String fromAddress = "eeit49chitougroup1@gmail.com";
 	    String subject = "已確認您的訂單";
 	    
 	    StringBuilder builder = new StringBuilder();
